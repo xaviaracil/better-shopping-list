@@ -1,4 +1,5 @@
 ```mermaid
+%%{init: {'theme':'base'}}%%
 gantt
 dateFormat  DD-MM-YYYY
 axisFormat  %d/%m/%y
