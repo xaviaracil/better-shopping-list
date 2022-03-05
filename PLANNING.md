@@ -8,7 +8,7 @@ section Conceptualització
 Benchmarking: c0, 03-03-2022, 3d
 Recerca usuaris: c1, after c0, 3d
 Lliurament PAC1 : milestone, m1, 09-03-2022, 2min
-Captura de requeriments : c1, after m1, 5d
+Captura de requeriments : c1, after d0, 2d
 Backlog: milestone, backlog, after c1, 2min
 El·laboració Persones i escenaris : c3, after c1, 1d
 section Disseny
@@ -17,6 +17,7 @@ Validació Lo-Fi: d2, after d1, 1d
 Prototipatge Hi-fi: d3, after d2, 4d
 Validació Hi-Fi: d4, after d3, 1d
 Prototip: milestone, prototip, after d4, 2min
+Anàlisi integració establiments : d0, after m1, 3d
 Sprint 0 - Arquitecura tècnica : d5, after d4, 5d
 Diagrama arquitectura: milestone, arch, after d5, 2min
 Lliurament PAC2 : milestone, m2, 30-03-2022, 2min
