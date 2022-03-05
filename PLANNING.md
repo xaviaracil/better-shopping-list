@@ -3,6 +3,7 @@
 gantt
 dateFormat  DD-MM-YYYY
 axisFormat  %d/%m/%y
+todayMarker off
 title Llistes de la compra multi-establiments
 section Conceptualització
 Benchmarking: c0, 03-03-2022, 3d
