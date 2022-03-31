@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G527" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChosenProduct" representedClassName="ChosenProduct" syncable="YES" codeGenerationType="class">
+        <attribute name="marketId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="offerId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="products" inverseEntity="ShoppingList"/>
+    </entity>
+    <entity name="Market" representedClassName="Market" syncable="YES" codeGenerationType="class">
+        <attribute name="iconUrl" optional="YES" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="market" inverseEntity="Offer"/>
+    </entity>
+    <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
+        <attribute name="isSpecialOffer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="products" inverseEntity="Market"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="offers" inverseEntity="Product"/>
+    </entity>
+    <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
+        <attribute name="imageUrl" optional="YES" attributeType="URI"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="product" inverseEntity="Offer"/>
+    </entity>
+    <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class">
+        <attribute name="earning" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChosenProduct" inverseName="list" inverseEntity="ChosenProduct"/>
+    </entity>
+    <entity name="UserMarket" representedClassName="UserMarket" syncable="YES" codeGenerationType="class">
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="marketId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    </entity>
+    <configuration name="Local" usedWithCloudKit="YES">
+        <memberEntity name="ChosenProduct"/>
+        <memberEntity name="ShoppingList"/>
+        <memberEntity name="UserMarket"/>
+    </configuration>
+    <configuration name="Public" usedWithCloudKit="YES">
+        <memberEntity name="Market"/>
+        <memberEntity name="Product"/>
+        <memberEntity name="Offer"/>
+    </configuration>
+    <elements>
+        <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="104"/>
+        <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="74"/>
+        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="104"/>
+        <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
+        <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="104"/>
+        <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="59"/>
+    </elements>
+</model>
