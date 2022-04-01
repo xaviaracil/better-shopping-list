@@ -45,13 +45,15 @@ struct PersistenceController {
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             description.configuration = "Local"
 
-            // public
+            // public datababase
+            // swiftlint:disable:next line_length
             let publicStoreUrl = description.url!.deletingLastPathComponent().appendingPathComponent("Model-public.sqlite")
             let containerIdentifier = description.cloudKitContainerOptions!.containerIdentifier
 
             let publicDescription = NSPersistentStoreDescription(url: publicStoreUrl)
             publicDescription.configuration = "Public"
             publicDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            // swiftlint:disable:next line_length
             publicDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
 
             let publicOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: containerIdentifier)
