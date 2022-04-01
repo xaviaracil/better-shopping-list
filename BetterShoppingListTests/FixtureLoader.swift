@@ -46,3 +46,28 @@ func loadFixture(into context: NSManagedObjectContext) throws {
 
     try context.save()
 }
+
+func destroyFixture(from context: NSManagedObjectContext) throws {
+    let offerFetchRequest = Offer.fetchRequest()
+    offerFetchRequest.includesPropertyValues = false
+    let offers = try context.fetch(offerFetchRequest)
+    for offer in offers {
+        context.delete(offer)
+    }
+
+    let productFetchRequest = Product.fetchRequest()
+    productFetchRequest.includesPropertyValues = false
+    let products = try context.fetch(productFetchRequest)
+    for product in products {
+        context.delete(product)
+    }
+
+    let marketFetchRequest = Market.fetchRequest()
+    marketFetchRequest.includesPropertyValues = false
+    let markets = try context.fetch(marketFetchRequest)
+    for market in markets {
+        context.delete(market)
+    }
+
+    try context.save()
+}
