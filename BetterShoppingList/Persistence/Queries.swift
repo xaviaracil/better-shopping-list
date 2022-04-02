@@ -41,7 +41,7 @@ struct OfferQueries {
 }
 
 struct ShoppingListQueries {
-    static func savedListsFetchRequest() -> NSFetchRequest<ShoppingList> {
+    static var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
         let fetchRequest = ShoppingList.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isCurrent = NO")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: true)]

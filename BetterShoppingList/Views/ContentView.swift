@@ -25,7 +25,7 @@ struct ContentView: View {
         products.first?.list
     }
 
-    @FetchRequest(fetchRequest: ShoppingListQueries.savedListsFetchRequest(),
+    @FetchRequest(fetchRequest: ShoppingListQueries.savedListsFetchRequest,
         animation: .default)
     private var savedLists: FetchedResults<ShoppingList>
 
