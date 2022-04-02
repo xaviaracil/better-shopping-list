@@ -11,19 +11,31 @@ import CoreData
 struct OfferQueries {
     let context: NSManagedObjectContext
 
-    func query(name: String, markets: [String] = []) throws -> [Offer] {
+    func query(text: String, markets: [String] = []) throws -> [Offer] {
         let fetchRequest = Offer.fetchRequest()
-        fetchRequest.predicate = predicateFor(name: name, markets: markets)
+        fetchRequest.predicate = predicateFor(text: text, markets: markets)
         fetchRequest.relationshipKeyPathsForPrefetching = ["market", "product"]
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Offer.price, ascending: true)]
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Offer.product?.name, ascending: true), // by product
+            NSSortDescriptor(keyPath: \Offer.price, ascending: true) // then by price
+        ]
         return try context.fetch(fetchRequest)
     }
 
-    private func predicateFor(name: String, markets: [String]) -> NSPredicate {
-        var predicate = "product.name CONTAINS[cd] %@"
-        if !markets.isEmpty {
-            predicate.append(" AND market.name IN %@")
+    private func predicateFor(text: String, markets: [String]) -> NSPredicate {
+        let words = text.components(separatedBy: " ")
+        var textPredicates: [NSPredicate] = []
+        for word in words {
+            let predicate = NSPredicate(format: "product.name CONTAINS[cd] %@", word)
+            textPredicates.append(predicate)
         }
-        return NSPredicate(format: predicate, name, markets)
+        let namePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
+
+        if !markets.isEmpty {
+            let marketsPredicate = NSPredicate(format: "market.name IN %@", markets)
+            return NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, marketsPredicate])
+        }
+
+        return namePredicate
     }
 }

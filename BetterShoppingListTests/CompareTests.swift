@@ -14,6 +14,7 @@ class BetterShoppingListTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUpWithError() throws {
+        continueAfterFailure = false
         context = PersistenceController.preview.container.viewContext
         try loadFixture(into: context)
     }
@@ -28,7 +29,7 @@ class BetterShoppingListTests: XCTestCase {
         let query = OfferQueries(context: context)
 
         // when searching
-        let offers = try query.query(name: name)
+        let offers = try query.query(text: name)
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -51,7 +52,7 @@ class BetterShoppingListTests: XCTestCase {
         let query = OfferQueries(context: context)
 
         // when searching
-        let offers = try query.query(name: name, markets: markets)
+        let offers = try query.query(text: name, markets: markets)
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -67,4 +68,39 @@ class BetterShoppingListTests: XCTestCase {
         XCTAssertEqual(offers.map { $0.market?.name }, markets)
     }
 
+    func testGivenAMultipleNameWhenAskingForListThenTheListIsSortedByNameAndPrice() throws {
+        // given a name
+        let name = "Pro 1"
+        let query = OfferQueries(context: context)
+
+        // when searching
+        let offers = try query.query(text: name)
+
+        // then we got some only one product
+        XCTAssertNotNil(offers)
+        XCTAssertEqual(20, offers.count)
+
+        // and offers are sorted by name
+        let productOffers = Dictionary(grouping: offers, by: { $0.product?.name })
+        for productOffer in productOffers {
+            for index in 0..<productOffer.value.count - 1 {
+                XCTAssertTrue(productOffer.value[index].price <= productOffer.value[index+1].price,
+                              """
+                              List should be ordered: \(productOffer.value[index].price)
+                              is more expensive than \(productOffer.value[index+1].price)
+                              """)
+            }
+        }
+
+        XCTAssertEqual(offers.map { $0.price }, Constants.prices + Constants.prices)
+        let productNames = Set(offers.map { $0.product?.name})
+        XCTAssertEqual(productNames.count, 2)
+        XCTAssertTrue(productNames.contains("Product 1"))
+        XCTAssertTrue(productNames.contains("Product 10"))
+        XCTAssertEqual(offers.map { $0.market?.name }, ["Market 1", "Market 2", "Market 3", "Market 4", "Market 5",
+                                                        "Market 6", "Market 7", "Market 8", "Market 9", "Market 10",
+                                                        "Market 2", "Market 3", "Market 4", "Market 5", "Market 6",
+                                                        "Market 7", "Market 8", "Market 9", "Market 10", "Market 1"]
+        )
+    }
 }
