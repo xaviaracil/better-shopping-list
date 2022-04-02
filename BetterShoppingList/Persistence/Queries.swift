@@ -49,3 +49,11 @@ struct ShoppingListQueries {
     }
 }
 
+struct CurrentListQueries {
+    static var productsFetchRequest: NSFetchRequest<ChosenProduct> {
+        let fetchRequest = ChosenProduct.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "list.isCurrent = YES")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ChosenProduct.name, ascending: true)]
+        return fetchRequest
+    }
+}

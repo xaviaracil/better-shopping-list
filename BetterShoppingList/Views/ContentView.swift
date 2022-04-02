@@ -17,14 +17,12 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [],
-        predicate: NSPredicate(format: "isCurrent = YES"),
-        animation: .default
+        fetchRequest: CurrentListQueries.productsFetchRequest, animation: .default
     )
-    private var currentLists: FetchedResults<ShoppingList>
+    private var products: FetchedResults<ChosenProduct>
 
     private var currentList: ShoppingList? {
-        currentLists.first
+        products.first?.list
     }
 
     @FetchRequest(fetchRequest: ShoppingListQueries.savedListsFetchRequest(),
@@ -37,9 +35,11 @@ struct ContentView: View {
         } else {
             NavigationView {
                 VStack {
-                    if let _ = currentList {
+                    if products.isEmpty {
+                        EmptyCurrentListView(lists: savedLists)
+                    } else {
                         List {
-                            ForEach(currentLists) { item in
+                            ForEach(products) { item in
                                 // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                                 NavigationLink {
                                     Text(item.name ?? "No Name")
@@ -48,8 +48,6 @@ struct ContentView: View {
                                 }
                             }
                         }
-                    } else {
-                        EmptyCurrentListView(lists: savedLists)
                     }
                 }
                 .navigationBarTitle("", displayMode: .inline)
