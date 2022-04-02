@@ -26,6 +26,7 @@
     </entity>
     <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class">
         <attribute name="earning" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -51,7 +52,7 @@
         <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="74"/>
         <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="104"/>
         <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
-        <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="104"/>
+        <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
         <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="59"/>
     </elements>
 </model>
