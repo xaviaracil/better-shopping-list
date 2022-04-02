@@ -38,6 +38,22 @@ class BetterShoppingListUITests: XCTestCase {
         XCTAssertEqual(searchField.placeholderValue, "Search Products Here")
     }
 
+    func testDisplayInitialText() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+
+        // wait for the splash screen
+        sleep(4)
+
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        XCTAssertTrue(app.staticTexts["Start searching products"].exists)
+        XCTAssertFalse(app.staticTexts["OR"].exists)
+        XCTAssertTrue(app.scrollViews["Saved Lists"].exists)
+        XCTAssertFalse(app.scrollViews["Saved Lists"].images.firstMatch.exists)
+    }
+
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.

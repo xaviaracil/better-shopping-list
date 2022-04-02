@@ -15,8 +15,8 @@ where Data: RandomAccessCollection,
     var body: some View {
         VStack {
             Arrow()
-                    .foregroundColor(.accentColor)
-            Text("""
+                .foregroundColor(.accentColor)
+            Text(lists.isEmpty ? "Start searching products" : """
                 Start searching products
 
                 OR
@@ -25,16 +25,16 @@ where Data: RandomAccessCollection,
                 """)
                 .font(.title2)
                 .multilineTextAlignment(.center)
-                Arrow()
-                    .foregroundColor(.accentColor)
-                    .rotationEffect(.degrees(180))
+            Arrow()
+                .foregroundColor(.accentColor)
+                .rotationEffect(.degrees(180))
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(lists, id: \.objectID) { list in
                         ShoppingListView(list: list)
                     }
                 }.padding(.leading)
-            }
+            }.accessibilityIdentifier("Saved Lists")
         }
     }
 }
