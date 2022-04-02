@@ -41,12 +41,11 @@ struct OfferQueries {
 }
 
 struct ShoppingListQueries {
-    let context: NSManagedObjectContext
-
-    func savedLists() throws -> [ShoppingList] {
+    static func savedListsFetchRequest() -> NSFetchRequest<ShoppingList> {
         let fetchRequest = ShoppingList.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isCurrent = NO")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: true)]
-        return try context.fetch(fetchRequest)
+        return fetchRequest
     }
 }
+

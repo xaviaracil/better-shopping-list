@@ -12,11 +12,18 @@
 		470C391527F60695009C1967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470C391427F60695009C1967 /* Assets.xcassets */; };
 		470C391827F60695009C1967 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470C391727F60695009C1967 /* Preview Assets.xcassets */; };
 		470C391A27F60695009C1967 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
-		470C392727F60695009C1967 /* BetterShoppingListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C392627F60695009C1967 /* BetterShoppingListTests.swift */; };
+		470C392727F60695009C1967 /* CompareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C392627F60695009C1967 /* CompareTests.swift */; };
 		470C393127F60695009C1967 /* BetterShoppingListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C393027F60695009C1967 /* BetterShoppingListUITests.swift */; };
 		470C393327F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */; };
 		470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
-		470C394427F607D1009C1967 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
+		477EC55E27F8D89000A589FD /* CurrentListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC55D27F8D89000A589FD /* CurrentListTest.swift */; };
+		477F77DD27F8A505006F5902 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77DC27F8A505006F5902 /* SplashView.swift */; };
+		477F77E027F8A84A006F5902 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77DF27F8A849006F5902 /* ShoppingListView.swift */; };
+		477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */; };
+		477F77E427F8B1E8006F5902 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77E327F8B1E8006F5902 /* Arrow.swift */; };
+		47AFE35527F6355C003264D8 /* schema.ckdb in Resources */ = {isa = PBXBuildFile; fileRef = 47AFE35427F6355C003264D8 /* schema.ckdb */; };
+		47AFE35A27F766D2003264D8 /* Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35927F766D2003264D8 /* Queries.swift */; };
+		47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35627F758B6003264D8 /* FixtureLoader.swift */; };
 		47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,11 +52,19 @@
 		470C391727F60695009C1967 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		470C391927F60695009C1967 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		470C392227F60695009C1967 /* BetterShoppingListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterShoppingListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		470C392627F60695009C1967 /* BetterShoppingListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListTests.swift; sourceTree = "<group>"; };
+		470C392627F60695009C1967 /* CompareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareTests.swift; sourceTree = "<group>"; };
 		470C392C27F60695009C1967 /* BetterShoppingListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterShoppingListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		470C393027F60695009C1967 /* BetterShoppingListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListUITests.swift; sourceTree = "<group>"; };
 		470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		470C394227F607D1009C1967 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		477EC55D27F8D89000A589FD /* CurrentListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentListTest.swift; sourceTree = "<group>"; };
+		477F77DC27F8A505006F5902 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashView.swift; path = BetterShoppingList/Views/SplashView.swift; sourceTree = SOURCE_ROOT; };
+		477F77DF27F8A849006F5902 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
+		477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCurrentListView.swift; sourceTree = "<group>"; };
+		477F77E327F8B1E8006F5902 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		47AFE35427F6355C003264D8 /* schema.ckdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.ckdb; sourceTree = "<group>"; };
+		47AFE35627F758B6003264D8 /* FixtureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLoader.swift; sourceTree = "<group>"; };
+		47AFE35927F766D2003264D8 /* Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queries.swift; sourceTree = "<group>"; };
 		47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterShoppingList.entitlements; sourceTree = "<group>"; };
 		47BC1E3027F60DFE00293AE9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		47BC1E3227F60E2500293AE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +99,7 @@
 		470C390427F60694009C1967 = {
 			isa = PBXGroup;
 			children = (
+				47AFE35C27F77954003264D8 /* Test Fixtures */,
 				470C390F27F60694009C1967 /* BetterShoppingList */,
 				470C392527F60695009C1967 /* BetterShoppingListTests */,
 				470C392F27F60695009C1967 /* BetterShoppingListUITests */,
@@ -105,14 +121,14 @@
 		470C390F27F60694009C1967 /* BetterShoppingList */ = {
 			isa = PBXGroup;
 			children = (
-				47BC1E3227F60E2500293AE9 /* Info.plist */,
-				47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */,
-				470C394127F607D1009C1967 /* Model.xcdatamodeld */,
-				470C391027F60694009C1967 /* BetterShoppingListApp.swift */,
-				470C391227F60694009C1967 /* ContentView.swift */,
 				470C391427F60695009C1967 /* Assets.xcassets */,
-				470C391927F60695009C1967 /* Persistence.swift */,
+				47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */,
+				470C391027F60694009C1967 /* BetterShoppingListApp.swift */,
+				47BC1E3227F60E2500293AE9 /* Info.plist */,
+				470C394127F607D1009C1967 /* Model.xcdatamodeld */,
+				47AFE35B27F766D9003264D8 /* Persistence */,
 				470C391627F60695009C1967 /* Preview Content */,
+				477F77DE27F8A514006F5902 /* Views */,
 			);
 			path = BetterShoppingList;
 			sourceTree = "<group>";
@@ -128,7 +144,10 @@
 		470C392527F60695009C1967 /* BetterShoppingListTests */ = {
 			isa = PBXGroup;
 			children = (
-				470C392627F60695009C1967 /* BetterShoppingListTests.swift */,
+				47AFE35427F6355C003264D8 /* schema.ckdb */,
+				47AFE35627F758B6003264D8 /* FixtureLoader.swift */,
+				477EC55D27F8D89000A589FD /* CurrentListTest.swift */,
+				470C392627F60695009C1967 /* CompareTests.swift */,
 			);
 			path = BetterShoppingListTests;
 			sourceTree = "<group>";
@@ -140,6 +159,34 @@
 				470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */,
 			);
 			path = BetterShoppingListUITests;
+			sourceTree = "<group>";
+		};
+		477F77DE27F8A514006F5902 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				470C391227F60694009C1967 /* ContentView.swift */,
+				477F77DC27F8A505006F5902 /* SplashView.swift */,
+				477F77DF27F8A849006F5902 /* ShoppingListView.swift */,
+				477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */,
+				477F77E327F8B1E8006F5902 /* Arrow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		47AFE35B27F766D9003264D8 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				470C391927F60695009C1967 /* Persistence.swift */,
+				47AFE35927F766D2003264D8 /* Queries.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		47AFE35C27F77954003264D8 /* Test Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Test Fixtures";
 			sourceTree = "<group>";
 		};
 		47BC1E2F27F60DFE00293AE9 /* Frameworks */ = {
@@ -265,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47AFE35527F6355C003264D8 /* schema.ckdb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +367,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47AFE35A27F766D2003264D8 /* Queries.swift in Sources */,
+				477F77E027F8A84A006F5902 /* ShoppingListView.swift in Sources */,
+				477F77DD27F8A505006F5902 /* SplashView.swift in Sources */,
 				470C391A27F60695009C1967 /* Persistence.swift in Sources */,
 				470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */,
 				470C391327F60694009C1967 /* ContentView.swift in Sources */,
+				477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */,
 				470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */,
+				477F77E427F8B1E8006F5902 /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +383,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				470C392727F60695009C1967 /* BetterShoppingListTests.swift in Sources */,
-				470C394427F607D1009C1967 /* Model.xcdatamodeld in Sources */,
+				47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */,
+				470C392727F60695009C1967 /* CompareTests.swift in Sources */,
+				477EC55E27F8D89000A589FD /* CurrentListTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,9 +27,7 @@ struct ContentView: View {
         currentLists.first
     }
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: true)],
-        predicate: NSPredicate(format: "isCurrent = NO"),
+    @FetchRequest(fetchRequest: ShoppingListQueries.savedListsFetchRequest(),
         animation: .default)
     private var savedLists: FetchedResults<ShoppingList>
 

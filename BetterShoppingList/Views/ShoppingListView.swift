@@ -34,9 +34,9 @@ struct ShoppingListLabelStyle: LabelStyle {
 }
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        let query = ShoppingListQueries(context: PersistenceController.preview.container.viewContext)
-        let list = try? query.savedLists().first
-        ShoppingListView(list: list!)
+        let context = PersistenceController.preview.container.viewContext
+        let lists = try? context.fetch(ShoppingListQueries.savedListsFetchRequest())
+        ShoppingListView(list: lists!.first!)
     }
 }
 
