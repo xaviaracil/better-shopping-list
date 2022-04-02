@@ -9,6 +9,11 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @State private var splashDisplayed = false
+    @State private var searchText = ""
+
+    let hideSplash: Bool
+
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -17,30 +22,35 @@ struct ContentView: View {
     private var items: FetchedResults<ShoppingList>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    // swiftlint:disable no_space_in_method_call
-                    // swiftlint:disable multiple_closures_with_trailing_closure
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.name ?? "No Name")
+        if !splashDisplayed && !hideSplash {
+            SplashView(displayed: $splashDisplayed)
+        } else {
+            NavigationView {
+                List {
+                    ForEach(items) { item in
+                        // swiftlint:disable no_space_in_method_call
+                        // swiftlint:disable multiple_closures_with_trailing_closure
+                        NavigationLink {
+                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        } label: {
+                            Text(item.name ?? "No Name")
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Label("Add Item", systemImage: "plus")
+                        }
                     }
                 }
-                .onDelete(perform: deleteItems)
+                Text("Select an item")
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+            .searchable(text: $searchText, placement: .toolbar, prompt: "Search Products Here")
         }
     }
 
@@ -89,6 +99,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView(hideSplash: true)
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
