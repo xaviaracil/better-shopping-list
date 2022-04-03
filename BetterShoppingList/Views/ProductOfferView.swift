@@ -25,7 +25,7 @@ struct ProductOfferView: View {
             }
             .frame(width: 90, height: 90)
 
-            VStack (alignment: .leading) {
+            VStack(alignment: .leading) {
                 Text(productOffers.product.name ?? "No Name")
                     .productTitle()
                 Text(bestOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
