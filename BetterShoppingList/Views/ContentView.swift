@@ -11,6 +11,7 @@ import CoreData
 struct ContentView: View {
     @State private var splashDisplayed = false
     @State private var searchText = ""
+    @Environment(\.isSearching) var isSearching
 
     let hideSplash: Bool
 
@@ -34,26 +35,37 @@ struct ContentView: View {
             SplashView(displayed: $splashDisplayed)
         } else {
             NavigationView {
-                VStack {
-                    if products.isEmpty {
-                        EmptyCurrentListView(lists: savedLists)
-                    } else {
-                        List {
-                            ForEach(products) { item in
-                                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
-                                NavigationLink {
-                                    Text(item.name ?? "No Name")
-                                } label: {
-                                    Text(item.name ?? "No Name")
+                ZStack {
+                    VStack {
+                        if products.isEmpty {
+                            EmptyCurrentListView(lists: savedLists)
+                                .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                        } else {
+                            List {
+                                ForEach(products) { item in
+                                    // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                                    NavigationLink {
+                                        Text(item.name ?? "No Name")
+                                    } label: {
+                                        Text(item.name ?? "No Name")
+                                    }
                                 }
                             }
                         }
+                    }
+                    if !searchText.isEmpty {
+                        SearchingResultsView(text: searchText)
+                            .transition(.move(edge: .top))
                     }
                 }
                 .navigationBarTitle("", displayMode: .inline)
 
             }
             .searchable(text: $searchText, placement: .automatic, prompt: "Search Products Here")
+            .onSubmit(of: .search) {
+                // search for products here
+                print("search for \(searchText)")
+            }
         }
     }
 }

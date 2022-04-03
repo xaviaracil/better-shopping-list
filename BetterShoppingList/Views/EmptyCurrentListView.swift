@@ -25,9 +25,11 @@ where Data: RandomAccessCollection,
                 """)
                 .font(.title2)
                 .multilineTextAlignment(.center)
-            Arrow()
-                .foregroundColor(.accentColor)
-                .rotationEffect(.degrees(180))
+            if !lists.isEmpty {
+                Arrow()
+                    .foregroundColor(.accentColor)
+                    .rotationEffect(.degrees(180))
+            }
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(lists, id: \.objectID) { list in
