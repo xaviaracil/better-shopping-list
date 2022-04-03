@@ -23,14 +23,14 @@ struct PersistenceController {
         for marketIndex in 1...3 {
             let market = Market(context: viewContext)
             market.name = "Market \(marketIndex)"
-            market.iconUrl = URL(string: "http://url.to/market/\(marketIndex)")
+            market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
             markets.append(market)
         }
 
         for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
             let product = Product(context: viewContext)
             product.name = name
-            product.imageUrl = URL(string: "http://url.to/product/\(name)")
+            product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
 
             // load some offers
             for market in markets {
