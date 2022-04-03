@@ -19,23 +19,28 @@ struct SearchingResultsView: View {
         _results = FetchRequest<Offer>(fetchRequest: OfferQueries.queryFetchRequest(text: text), animation: .default)
     }
 
+    func makeProductOfferList() -> [ProductOffers] {
+        let productOffers = OrderedDictionary<String?, [Offer]>(grouping: results, by: { $0.product?.name })
+        var list = [ProductOffers]()
+        for key in productOffers.keys {
+            if let offers = productOffers[key],
+            let product = offers.first?.product {
+                list.append(ProductOffers(product: product, offers: offers))
+            }
+        }
+        return list
+    }
     var body: some View {
         VStack {
             if results.isEmpty {
                 Label("Can't find any product with this name.", systemImage: "info.circle")
                     .font(.largeTitle)
             } else {
-                let productOffers = OrderedDictionary<String?, [Offer]>(grouping: results, by: { $0.product?.name })
-                List(productOffers.keys, id: \.self) { productName in
-                    Section(productName ?? "No Name") {
-                        if let offers = productOffers[productName] {
-                            ForEach(offers) { offer in
-                                HStack {
-                                    Text(offer.market?.name ?? "No Name")
-                                    Text(offer.price.formatted(.currency(code: "eur")))
-                                }
-                            }
-                        }
+                ScrollView {
+                    let list = makeProductOfferList()
+                    ForEach(list, id: \.self) { productOffer in
+                        ProductOfferView(productOffers: productOffer)
+                            .padding()
                     }
                 }
             }
