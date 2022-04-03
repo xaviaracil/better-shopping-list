@@ -10,7 +10,7 @@ import SwiftUI
 struct EmptyCurrentListView<Data>: View
 where Data: RandomAccessCollection,
       Data.Element: ShoppingList {
-    @State var lists: Data
+    var lists: Data
 
     var body: some View {
         VStack {
