@@ -6,10 +6,10 @@
 //
 
 import XCTest
-@testable import BetterShoppingList
 import CoreData
+@testable import BetterShoppingList
 
-class BetterShoppingListTests: XCTestCase {
+final class BetterShoppingListTests: XCTestCase {
 
     var context: NSManagedObjectContext!
 
