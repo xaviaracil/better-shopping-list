@@ -19,6 +19,29 @@ struct PersistenceController {
             newList.timestamp = Date()
             newList.name = "List \(index + 1)"
         }
+        var markets: [Market] = []
+        for marketIndex in 1...3 {
+            let market = Market(context: viewContext)
+            market.name = "Market \(marketIndex)"
+            market.iconUrl = URL(string: "http://url.to/market/\(marketIndex)")
+            markets.append(market)
+        }
+
+        for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
+            let product = Product(context: viewContext)
+            product.name = name
+            product.imageUrl = URL(string: "http://url.to/product/\(name)")
+
+            // load some offers
+            for market in markets {
+                let offer = Offer(context: viewContext)
+                offer.product = product
+                offer.market = market
+                offer.isSpecialOffer = false
+                // prices is based on prices arrays, shifted by market index and product index
+                offer.price = Double.random(in: (0.15)...(3.00))
+            }
+        }
         do {
             try viewContext.save()
         } catch {
