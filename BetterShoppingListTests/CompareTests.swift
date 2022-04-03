@@ -26,10 +26,9 @@ final class BetterShoppingListTests: XCTestCase {
     func testGivenAProductNameWhenAskingForListThenTheListIsSortedByPrice() throws {
         // given a name
         let name = "9"
-        let query = OfferQueries(context: context)
 
         // when searching
-        let offers = try query.query(text: name)
+        let offers = try context.fetch(OfferQueries.queryFetchRequest(text: name))
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -49,10 +48,9 @@ final class BetterShoppingListTests: XCTestCase {
         // given a name and market list
         let name = "9"
         let markets = ["Market 3", "Market 8"]
-        let query = OfferQueries(context: context)
 
         // when searching
-        let offers = try query.query(text: name, markets: markets)
+        let offers = try context.fetch(OfferQueries.queryFetchRequest(text: name, markets: markets))
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -71,10 +69,9 @@ final class BetterShoppingListTests: XCTestCase {
     func testGivenAMultipleNameWhenAskingForListThenTheListIsSortedByNameAndPrice() throws {
         // given a name
         let name = "Pro 1"
-        let query = OfferQueries(context: context)
 
         // when searching
-        let offers = try query.query(text: name)
+        let offers = try context.fetch(OfferQueries.queryFetchRequest(text: name))
 
         // then we got some only one product
         XCTAssertNotNil(offers)
