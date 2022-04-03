@@ -14,7 +14,6 @@
     </entity>
     <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
         <attribute name="isSpecialOffer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="products" inverseEntity="Market"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="offers" inverseEntity="Product"/>
@@ -50,7 +49,7 @@
     <elements>
         <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="104"/>
         <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="74"/>
-        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="104"/>
+        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="89"/>
         <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
         <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
         <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="59"/>
