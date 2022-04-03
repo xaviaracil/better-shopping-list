@@ -30,7 +30,10 @@ struct SearchingResultsView: View {
                     Section(productName ?? "No Name") {
                         if let offers = productOffers[productName] {
                             ForEach(offers) { offer in
-                                Text(offer.price.formatted(.currency(code: "eur")))
+                                HStack {
+                                    Text(offer.market?.name ?? "No Name")
+                                    Text(offer.price.formatted(.currency(code: "eur")))
+                                }
                             }
                         }
                     }
