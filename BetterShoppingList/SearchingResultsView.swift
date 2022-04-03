@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import Collections
+import OrderedCollections
 
 struct SearchingResultsView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -23,9 +25,15 @@ struct SearchingResultsView: View {
                 Label("Can't find any product with this name.", systemImage: "info.circle")
                     .font(.largeTitle)
             } else {
-                List(results) { offer in
-                    Text(offer.product?.name ?? "No Name")
-                    Text("\(offer.price)")
+                let productOffers = OrderedDictionary<String?, [Offer]>(grouping: results, by: { $0.product?.name })
+                List(productOffers.keys, id: \.self) { productName in
+                    Section(productName ?? "No Name") {
+                        if let offers = productOffers[productName] {
+                            ForEach(offers) { offer in
+                                Text(offer.price.formatted(.currency(code: "eur")))
+                            }
+                        }
+                    }
                 }
             }
         }
