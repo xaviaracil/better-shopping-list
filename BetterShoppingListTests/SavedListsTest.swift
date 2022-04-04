@@ -38,7 +38,7 @@ class SavedListsTest: XCTestCase {
 
     func testGivenListsFetchReturnOnlyCompletedLists() throws {
         // given some lists
-        let _ = mockList(name: "Current List", current: true, context: context)
+        _ = mockList(name: "Current List", current: true, context: context)
         let list2 = mockList(name: "Another List", current: false, context: context)
         try context.save()
 

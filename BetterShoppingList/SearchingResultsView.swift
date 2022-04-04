@@ -12,11 +12,14 @@ import OrderedCollections
 
 struct SearchingResultsView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    let persitenceAdapter = PersistenceAdapter()
 
-    @FetchRequest var results: FetchedResults<Offer>
+    @FetchRequest
+    private var results: FetchedResults<Offer>
 
     init(text: String) {
-        _results = FetchRequest<Offer>(fetchRequest: OfferQueries.queryFetchRequest(text: text), animation: .default)
+        // swiftlint:disable line_length
+        _results = FetchRequest(fetchRequest: persitenceAdapter.offersFetchRequest(productName: text), animation: .default)
     }
 
     func makeProductOfferList() -> [ProductOffers] {

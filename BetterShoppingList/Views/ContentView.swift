@@ -11,24 +11,27 @@ import CoreData
 struct ContentView: View {
     @State private var splashDisplayed = false
     @State private var searchText = ""
-    @Environment(\.isSearching) var isSearching
 
     let hideSplash: Bool
 
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        fetchRequest: CurrentListQueries.productsFetchRequest, animation: .default
-    )
+    let persistenceAdapter = PersistenceAdapter()
+
+    @FetchRequest
     private var products: FetchedResults<ChosenProduct>
+    @FetchRequest
+    private var savedLists: FetchedResults<ShoppingList>
 
     private var currentList: ShoppingList? {
         products.first?.list
     }
 
-    @FetchRequest(fetchRequest: ShoppingListQueries.savedListsFetchRequest,
-        animation: .default)
-    private var savedLists: FetchedResults<ShoppingList>
+    init(hideSplash: Bool = false) {
+        self.hideSplash = hideSplash
+        _products = FetchRequest(fetchRequest: persistenceAdapter.currentProductsFetchRequest, animation: .default)
+        _savedLists = FetchRequest(fetchRequest: persistenceAdapter.savedListsFetchRequest, animation: .default)
+    }
 
     var body: some View {
         if !splashDisplayed && !hideSplash {

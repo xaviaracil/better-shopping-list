@@ -46,7 +46,8 @@ where Data: RandomAccessCollection,
 struct EmptyCurrentListView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let lists = try? context.fetch(ShoppingListQueries.savedListsFetchRequest)
+        let persitenceAdapter = PersistenceAdapter()
+        let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
         EmptyCurrentListView(lists: lists ?? [])
     }
 }

@@ -13,7 +13,7 @@ struct BetterShoppingListApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(hideSplash: false)
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
