@@ -18,9 +18,10 @@ final class CurrentListTest: XCTestCase {
 
     func testEmptyList() throws {
         // given initial state
+        let persistenceAdapter = PersistenceAdapter()
 
         // when asking for products of the current list
-        let products = try context.fetch(CurrentListQueries.productsFetchRequest)
+        let products = try context.fetch(persistenceAdapter.currentProductsFetchRequest)
 
         // then we get an empty list
         XCTAssertNotNil(products)
@@ -29,21 +30,18 @@ final class CurrentListTest: XCTestCase {
 
     func testGivenCurrentListFetchReturnItsProducts() throws {
         // given a current list
-        let list = ShoppingList(context: context)
-        list.timestamp = Date()
-        list.name = "Current List"
-        list.isCurrent = true
+        let list = mockList(name: "Current List", current: true, context: context)
 
-        let product = ChosenProduct(context: context)
-        product.name = "Product 1"
-        product.price = 1.50
+        let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
 
         list.addToProducts(product)
 
         try context.save()
 
+        let persistenceAdapter = PersistenceAdapter()
+
         // when asking for products of the current list
-        let products = try context.fetch(CurrentListQueries.productsFetchRequest)
+        let products = try context.fetch(persistenceAdapter.currentProductsFetchRequest)
 
         // then we get a list
         XCTAssertNotNil(products)

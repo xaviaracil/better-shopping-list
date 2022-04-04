@@ -71,3 +71,18 @@ func destroyFixture(from context: NSManagedObjectContext) throws {
 
     try context.save()
 }
+
+func mockList(name: String, current: Bool, context: NSManagedObjectContext) -> ShoppingList {
+    let list = ShoppingList(context: context)
+    list.timestamp = Date()
+    list.name = name
+    list.isCurrent = current
+    return list
+}
+
+func mockChosenProduct(name: String, price: Double, context: NSManagedObjectContext) -> ChosenProduct {
+    let product = ChosenProduct(context: context)
+    product.name = name
+    product.price = price
+    return product
+}
