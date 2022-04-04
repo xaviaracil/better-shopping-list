@@ -9,8 +9,6 @@ import Foundation
 import CoreData
 
 struct OfferQueries {
-    let context: NSManagedObjectContext
-
     static func queryFetchRequest(text: String, markets: [String] = []) -> NSFetchRequest<Offer> {
         let fetchRequest = Offer.fetchRequest()
         fetchRequest.predicate = predicateFor(text: text, markets: markets)
