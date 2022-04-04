@@ -16,6 +16,7 @@ where Data: RandomAccessCollection,
         VStack {
             Arrow()
                 .foregroundColor(.accentColor)
+                .padding()
             Text(lists.isEmpty ? "Start searching products" : """
                 Start searching products
 
@@ -29,6 +30,7 @@ where Data: RandomAccessCollection,
                 Arrow()
                     .foregroundColor(.accentColor)
                     .rotationEffect(.degrees(180))
+                    .padding()
             }
             ScrollView(.horizontal) {
                 LazyHStack {
