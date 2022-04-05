@@ -12,6 +12,7 @@ class ContentViewModel: ObservableObject {
         didSet {
             if productAdded {
                 searchText = ""
+                productAdded = false
             }
         }
     }
