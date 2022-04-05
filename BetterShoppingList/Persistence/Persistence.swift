@@ -13,47 +13,7 @@ struct PersistenceController {
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        for index in 0..<10 {
-            let newList = ShoppingList(context: viewContext)
-            newList.isCurrent = false
-            newList.timestamp = Date()
-            newList.name = "List \(index + 1)"
-        }
-        var markets: [Market] = []
-        for marketIndex in 1...3 {
-            let market = Market(context: viewContext)
-            market.name = "Market \(marketIndex)"
-            // swiftlint:disable line_length
-            market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
-            markets.append(market)
-        }
-
-        for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
-            let product = Product(context: viewContext)
-            product.name = name
-            // swiftlint:disable line_length
-            product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
-
-            // load some offers
-            for market in markets {
-                let offer = Offer(context: viewContext)
-                offer.product = product
-                offer.market = market
-                offer.isSpecialOffer = false
-                // prices is based on prices arrays, shifted by market index and product index
-                offer.price = Double.random(in: (0.15)...(3.00))
-            }
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        result.loadTestData()
         return result
     }()
 
@@ -117,10 +77,60 @@ struct PersistenceController {
         do {
             // Use the container to initialize the development schema.
             try container.initializeCloudKitSchema(options: [])
+
         } catch {
             // Handle any errors.
             print("Error initializing CloudKit: \(error)")
         }
+
+        // load test data
+        loadTestData()
+
         #endif
+    }
+
+    fileprivate func loadTestData() {
+        var markets: [Market] = []
+        for marketIndex in 1...3 {
+            let market = Market(context: container.viewContext)
+            market.name = "Market \(marketIndex)"
+            // swiftlint:disable line_length
+            market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
+            markets.append(market)
+        }
+
+        for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
+            let product = Product(context: container.viewContext)
+            product.name = name
+            // swiftlint:disable line_length
+            product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
+
+            // load some offers
+            for market in markets {
+                let offer = Offer(context: container.viewContext)
+                offer.product = product
+                offer.market = market
+                offer.isSpecialOffer = false
+                // prices is based on prices arrays, shifted by market index and product index
+                offer.price = Double.random(in: (0.15)...(3.00))
+            }
+        }
+
+        for index in 0..<10 {
+            let newList = ShoppingList(context: container.viewContext)
+            newList.isCurrent = false
+            newList.timestamp = Date()
+            newList.name = "List \(index + 1)"
+        }
+
+        do {
+            try container.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 }
