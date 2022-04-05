@@ -20,27 +20,24 @@ func loadFixture(into context: NSManagedObjectContext) throws {
 
     // load some markets
     for marketIndex in 1...Constants.marketNumber {
-        let market = Market(context: context)
-        market.name = "Market \(marketIndex)"
-        market.iconUrl = URL(string: "http://url.to/market/\(marketIndex)")
+
+        let market = mockMarket(name: "Market \(marketIndex)",
+                                url: "http://url.to/market/\(marketIndex)",
+                                context: context)
         markets.append(market)
     }
 
     // load some products and offers
     for productIndex in 1...Constants.productNumber {
-        let product = Product(context: context)
-        product.name = "Product \(productIndex)"
-        product.imageUrl = URL(string: "http://url.to/product/\(productIndex)")
+        let product = mockProduct(name: "Product \(productIndex)",
+                                  url: "http://url.to/product/\(productIndex)",
+                                  context: context)
 
         // load some offers
         for market in markets {
-            let offer = Offer(context: context)
-            offer.product = product
-            offer.market = market
-            offer.isSpecialOffer = false
             // prices is based on prices arrays, shifted by market index and product index
             let index = (markets.firstIndex(of: market)! + (productIndex-1)) % Constants.productNumber
-            offer.price = Constants.prices[index]
+            _ = mockOffer(for: product, at: market, with: Constants.prices[index], context: context)
         }
     }
 
@@ -86,9 +83,30 @@ func mockList(name: String, current: Bool, context: NSManagedObjectContext) -> S
     return list
 }
 
+func mockMarket(name: String, url: String, context: NSManagedObjectContext) -> Market {
+    let market = Market(context: context)
+    market.name = name
+    market.iconUrl = URL(string: url)
+    return market
+}
 func mockChosenProduct(name: String, price: Double, context: NSManagedObjectContext) -> ChosenProduct {
     let product = ChosenProduct(context: context)
     product.name = name
     product.price = price
     return product
+}
+
+func mockProduct(name: String, url: String, context: NSManagedObjectContext) -> Product {
+    let product = Product(context: context)
+    product.name = name
+    product.imageUrl = URL(string: url)
+    return product
+}
+
+func mockOffer(for product: Product, at market: Market, with price: Double, context: NSManagedObjectContext) -> Offer {
+    let offer = Offer(context: context)
+    offer.product = product
+    offer.market = market
+    offer.price = price
+    return offer
 }

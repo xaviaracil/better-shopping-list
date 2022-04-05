@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Algorithms
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter {

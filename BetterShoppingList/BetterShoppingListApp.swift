@@ -22,6 +22,7 @@ struct BetterShoppingListApp: App {
         WindowGroup {
             ContentView(shoppingAssistant: shoppingAssitant)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(shoppingAssitant)
         }
     }
 }

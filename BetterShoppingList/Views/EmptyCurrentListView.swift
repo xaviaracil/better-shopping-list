@@ -25,6 +25,7 @@ where Data: RandomAccessCollection,
                 Choose a favourite list to start
                 """)
                 .font(.title2)
+                .allowsTightening(true)
                 .multilineTextAlignment(.center)
             if !lists.isEmpty {
                 Arrow()
@@ -49,5 +50,6 @@ struct EmptyCurrentListView_Previews: PreviewProvider {
         let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
         EmptyCurrentListView(lists: lists ?? [])
+.previewInterfaceOrientation(.portrait)
     }
 }

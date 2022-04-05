@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SplashView: View {
-
     @Binding var displayed: Bool
 
     let waitingTime: Double = 1

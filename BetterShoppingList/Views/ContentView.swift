@@ -9,8 +9,6 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @State private var splashDisplayed = false
-    @State private var searchText = ""
     let hideSplash: Bool
 
     let shoppingAssistant: ShoppingAssistant
@@ -20,27 +18,26 @@ struct ContentView: View {
     @FetchRequest
     private var savedLists: FetchedResults<ShoppingList>
 
-    private var currentList: ShoppingList? {
-        products.first?.list
-    }
+    @StateObject private var viewModel = ContentViewModel()
 
     init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
         self.hideSplash = hideSplash
         self.shoppingAssistant = shoppingAssistant
         _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
         _savedLists = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
+
     }
 
     var body: some View {
-        if !splashDisplayed && !hideSplash {
-            SplashView(displayed: $splashDisplayed)
+        if !viewModel.splashDisplayed && !hideSplash {
+            SplashView(displayed: $viewModel.splashDisplayed)
         } else {
             NavigationView {
                 ZStack {
                     VStack {
                         if products.isEmpty {
                             EmptyCurrentListView(lists: savedLists)
-                                .opacity(searchText.isEmpty ? 1.0 : 0.0)
+                                .opacity(viewModel.searchText.isEmpty ? 1.0 : 0.0)
                         } else {
                             List {
                                 ForEach(products) { item in
@@ -54,18 +51,20 @@ struct ContentView: View {
                             }
                         }
                     }
-                    if !searchText.isEmpty {
-                        SearchingResultsView(text: searchText, shoppingAssistant: shoppingAssistant)
+                    if !viewModel.searchText.isEmpty && !viewModel.productAdded {
+                        SearchingResultsView(text: viewModel.searchText,
+                                             viewModel: viewModel,
+                                             shoppingAssistant: shoppingAssistant)
                             .transition(.move(edge: .top))
                     }
                 }
                 .navigationBarTitle("", displayMode: .inline)
 
             }
-            .searchable(text: $searchText, placement: .automatic, prompt: "Search Products Here")
+            .searchable(text: $viewModel.searchText, placement: .automatic, prompt: "Search Products Here")
             .onSubmit(of: .search) {
                 // search for products here
-                print("search for \(searchText)")
+                print("search for \(viewModel.searchText)")
             }
         }
     }
@@ -83,6 +82,6 @@ struct ContentView_Previews: PreviewProvider {
         let viewContext = PersistenceController.preview.container.viewContext
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
-        ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
+        ContentView(hideSplash: false, shoppingAssistant: shoppingAssistant)
     }
 }

@@ -13,21 +13,14 @@ struct SearchingResultsView: View {
     @FetchRequest
     private var results: FetchedResults<Offer>
 
-    init(text: String, shoppingAssistant: ShoppingAssistant) {
-        _results = FetchRequest(fetchRequest: shoppingAssistant.offersFetchRequest(productName: text, in: []),
+    @ObservedObject var viewModel: ContentViewModel
+
+    init(text: String, viewModel: ContentViewModel, shoppingAssistant: ShoppingAssistant) {
+        _results = FetchRequest(fetchRequest: shoppingAssistant.offersFetchRequest(productName: text),
                                 animation: .default)
+        self.viewModel = viewModel
     }
 
-    func makeProductOfferList() -> [ProductOffers] {
-        let productsOffers = results.chunked(on: \.product)
-        let list = productsOffers.filter { product, _ in
-            product != nil
-        }
-        .map { product, offers in
-            ProductOffers(product: product!, offers: Array(offers))
-        }
-        return list
-    }
     var body: some View {
         VStack {
             if results.isEmpty {
@@ -35,9 +28,8 @@ struct SearchingResultsView: View {
                     .font(.largeTitle)
             } else {
                 ScrollView {
-                    let list = makeProductOfferList()
-                    ForEach(list, id: \.self) { productOffer in
-                        ProductOfferView(productOffers: productOffer)
+                    ForEach(results.toProductOffers(), id: \.self) { productOffer in
+                        ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
                             .padding()
                     }
                 }
@@ -48,10 +40,10 @@ struct SearchingResultsView: View {
 
 struct SearchingResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewContext = PersistenceController.preview.container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
+        let context = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
-        SearchingResultsView(text: "Cervesa", shoppingAssistant: shoppingAssistant)
+        SearchingResultsView(text: "Cervesa", viewModel: ContentViewModel(), shoppingAssistant: shoppingAssistant)
     }
 }

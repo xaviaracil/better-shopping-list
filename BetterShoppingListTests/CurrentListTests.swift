@@ -8,7 +8,7 @@ final class CurrentListTests: XCTestCase {
     var shoppingAssistant: ShoppingAssistant!
 
     override func setUpWithError() throws {
-        context = PersistenceController(inMemory: true).container.viewContext
+        context = PersistenceController(inMemory: true, withTestData: false).container.viewContext
         try loadFixture(into: context)
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)

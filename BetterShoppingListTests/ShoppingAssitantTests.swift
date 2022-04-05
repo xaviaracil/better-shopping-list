@@ -16,7 +16,7 @@ class ShoppingAssitantTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUpWithError() throws {
-        context = PersistenceController(inMemory: true).container.viewContext
+        context = PersistenceController(inMemory: true, withTestData: false).container.viewContext
         try loadFixture(into: context)
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         shoppingAsistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)

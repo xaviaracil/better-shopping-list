@@ -11,8 +11,11 @@ struct ProductOfferView: View {
     var productOffers: ProductOffers
     @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
+    @State var currentOfferIndex: Int = 0
+    @Binding var productAdded: Bool
+
     var bestOffer: Offer? {
-        return productOffers.offers?.first
+        return productOffers.offers?[currentOfferIndex]
     }
 
     var body: some View {
@@ -47,7 +50,11 @@ struct ProductOfferView: View {
 
             Spacer()
 
-            Button(action: {print("action!")}) {
+            Button(action: {
+                shoppingAssistant.addProductToCurrentList(
+                    productOffers.chooseOffer(at: currentOfferIndex))
+                productAdded = true
+            }) {
                 Label("Add to basket", systemImage: "cart.circle")
                     .font(.system(size: 48))
                     .foregroundColor(.accentColor)
@@ -95,8 +102,10 @@ extension View {
 }
 
 struct ProductOfferView_Previews: PreviewProvider {
+    @State private static var productAdded = false
+
     static var previews: some View {
-        ProductOfferView(productOffers: mockOffer())
+        ProductOfferView(productOffers: mockOffer(), productAdded: $productAdded)
     }
 
     static func mockOffer() -> ProductOffers {

@@ -13,13 +13,55 @@ struct PersistenceController {
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        result.loadTestData()
+        let viewContext = result.container.viewContext
+        var markets: [Market] = []
+        for marketIndex in 1...3 {
+            let market = Market(context: viewContext)
+            market.name = "Market \(marketIndex)"
+            // swiftlint:disable line_length
+            market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
+            markets.append(market)
+        }
+
+        for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
+            let product = Product(context: viewContext)
+            product.name = name
+            // swiftlint:disable line_length
+            product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
+
+            // load some offers
+            for market in markets {
+                let offer = Offer(context: viewContext)
+                offer.product = product
+                offer.market = market
+                offer.isSpecialOffer = false
+                // prices is based on prices arrays, shifted by market index and product index
+                offer.price = Double.random(in: (0.15)...(3.00))
+            }
+        }
+
+        for index in 0..<10 {
+            let newList = ShoppingList(context: viewContext)
+            newList.isCurrent = false
+            newList.timestamp = Date()
+            newList.name = "List \(index + 1)"
+        }
+
+        do {
+            try viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate.
+            // You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
         return result
     }()
 
     let container: NSPersistentCloudKitContainer
 
-    init(inMemory: Bool = false) {
+    init(inMemory: Bool = false, withTestData: Bool = true) {
         container = NSPersistentCloudKitContainer(name: "Model")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
@@ -84,7 +126,9 @@ struct PersistenceController {
         }
 
         // load test data
-        loadTestData()
+        if withTestData {
+            loadTestData()
+        }
 
         #endif
     }
