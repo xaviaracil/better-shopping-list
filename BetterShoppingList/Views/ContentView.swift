@@ -11,12 +11,9 @@ import CoreData
 struct ContentView: View {
     @State private var splashDisplayed = false
     @State private var searchText = ""
-
     let hideSplash: Bool
 
-    @Environment(\.managedObjectContext) private var viewContext
-
-    let persistenceAdapter = PersistenceAdapter()
+    let shoppingAssistant: ShoppingAssitant
 
     @FetchRequest
     private var products: FetchedResults<ChosenProduct>
@@ -27,10 +24,11 @@ struct ContentView: View {
         products.first?.list
     }
 
-    init(hideSplash: Bool = false) {
+    init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssitant) {
         self.hideSplash = hideSplash
-        _products = FetchRequest(fetchRequest: persistenceAdapter.currentProductsFetchRequest, animation: .default)
-        _savedLists = FetchRequest(fetchRequest: persistenceAdapter.savedListsFetchRequest, animation: .default)
+        self.shoppingAssistant = shoppingAssistant
+        _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
+        _savedLists = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
     }
 
     var body: some View {
@@ -57,7 +55,7 @@ struct ContentView: View {
                         }
                     }
                     if !searchText.isEmpty {
-                        SearchingResultsView(text: searchText)
+                        SearchingResultsView(text: searchText, shoppingAssistant: shoppingAssistant)
                             .transition(.move(edge: .top))
                     }
                 }
@@ -82,7 +80,9 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(hideSplash: true)
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        let viewContext = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
+        let shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+        ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
     }
 }

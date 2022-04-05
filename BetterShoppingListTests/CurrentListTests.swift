@@ -5,11 +5,14 @@ import CoreData
 final class CurrentListTests: XCTestCase {
 
     var context: NSManagedObjectContext!
+    var shoppingAssistant: ShoppingAssitant!
 
     override func setUpWithError() throws {
-        continueAfterFailure = false
         context = PersistenceController.preview.container.viewContext
         try loadFixture(into: context)
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+
     }
 
     override func tearDownWithError() throws {
@@ -18,10 +21,9 @@ final class CurrentListTests: XCTestCase {
 
     func testEmptyList() throws {
         // given initial state
-        let persistenceAdapter = PersistenceAdapter()
 
         // when asking for products of the current list
-        let products = try context.fetch(persistenceAdapter.currentProductsFetchRequest)
+        let products = try context.fetch(shoppingAssistant.currentProductsFetchRequest)
 
         // then we get an empty list
         XCTAssertNotNil(products)
@@ -38,10 +40,8 @@ final class CurrentListTests: XCTestCase {
 
         try context.save()
 
-        let persistenceAdapter = PersistenceAdapter()
-
         // when asking for products of the current list
-        let products = try context.fetch(persistenceAdapter.currentProductsFetchRequest)
+        let products = try context.fetch(shoppingAssistant.currentProductsFetchRequest)
 
         // then we get a list
         XCTAssertNotNil(products)

@@ -12,11 +12,13 @@ import CoreData
 final class BetterShoppingListTests: XCTestCase {
 
     var context: NSManagedObjectContext!
+    var shoppingAssistant: ShoppingAssitant!
 
     override func setUpWithError() throws {
-        continueAfterFailure = false
         context = PersistenceController.preview.container.viewContext
         try loadFixture(into: context)
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
     }
 
     override func tearDownWithError() throws {
@@ -26,10 +28,9 @@ final class BetterShoppingListTests: XCTestCase {
     func testGivenAProductNameWhenAskingForListThenTheListIsSortedByPrice() throws {
         // given a name
         let name = "9"
-        let persistenceAdapter = PersistenceAdapter()
 
         // when searching
-        let offers = try context.fetch(persistenceAdapter.offersFetchRequest(productName: name))
+        let offers = try context.fetch(shoppingAssistant.offersFetchRequest(productName: name))
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -49,10 +50,9 @@ final class BetterShoppingListTests: XCTestCase {
         // given a name and market list
         let name = "9"
         let markets = ["Market 3", "Market 8"]
-        let persistenceAdapter = PersistenceAdapter()
 
         // when searching
-        let offers = try context.fetch(persistenceAdapter.offersFetchRequest(productName: name, in: markets))
+        let offers = try context.fetch(shoppingAssistant.offersFetchRequest(productName: name, in: markets))
 
         // then we got some only one product
         XCTAssertNotNil(offers)
@@ -71,10 +71,9 @@ final class BetterShoppingListTests: XCTestCase {
     func testGivenAMultipleNameWhenAskingForListThenTheListIsSortedByNameAndPrice() throws {
         // given a name
         let name = "Pro 1"
-        let persistenceAdapter = PersistenceAdapter()
 
         // when searching
-        let offers = try context.fetch(persistenceAdapter.offersFetchRequest(productName: name))
+        let offers = try context.fetch(shoppingAssistant.offersFetchRequest(productName: name))
 
         // then we got some only one product
         XCTAssertNotNil(offers)

@@ -10,14 +10,11 @@ import CoreData
 import Algorithms
 
 struct SearchingResultsView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    let persitenceAdapter = PersistenceAdapter()
-
     @FetchRequest
     private var results: FetchedResults<Offer>
 
-    init(text: String) {
-        _results = FetchRequest(fetchRequest: persitenceAdapter.offersFetchRequest(productName: text),
+    init(text: String, shoppingAssistant: ShoppingAssitant) {
+        _results = FetchRequest(fetchRequest: shoppingAssistant.offersFetchRequest(productName: text, in: []),
                                 animation: .default)
     }
 
@@ -51,7 +48,10 @@ struct SearchingResultsView: View {
 
 struct SearchingResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchingResultsView(text: "Cervesa")
-            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        let viewContext = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
+        let shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+
+        SearchingResultsView(text: "Cervesa", shoppingAssistant: shoppingAssistant)
     }
 }

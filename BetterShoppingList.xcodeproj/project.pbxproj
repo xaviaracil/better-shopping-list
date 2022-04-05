@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4701904327FB527F00488534 /* SavedListsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701904227FB527F00488534 /* SavedListsTest.swift */; };
+		4701904327FB527F00488534 /* SavedListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701904227FB527F00488534 /* SavedListsTests.swift */; };
 		4701904627FC182500488534 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 4701904527FC182500488534 /* Algorithms */; };
 		470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391027F60694009C1967 /* BetterShoppingListApp.swift */; };
 		470C391327F60694009C1967 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391227F60694009C1967 /* ContentView.swift */; };
@@ -19,7 +19,7 @@
 		470C393327F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */; };
 		470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
-		477EC55E27F8D89000A589FD /* CurrentListTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC55D27F8D89000A589FD /* CurrentListTest.swift */; };
+		477EC55E27F8D89000A589FD /* CurrentListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC55D27F8D89000A589FD /* CurrentListTests.swift */; };
 		477EC56227F99B1100A589FD /* SearchSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */; };
 		477EC56427F99D8100A589FD /* SearchingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56327F99D8100A589FD /* SearchingResultsView.swift */; };
 		477EC56627F9D26600A589FD /* SearchResultsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56527F9D26600A589FD /* SearchResultsUITests.swift */; };
@@ -33,6 +33,7 @@
 		47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
 		47C57DF227FB446D00A86D5A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 47C57DF127FB446D00A86D5A /* Collections */; };
 		47C57DF427FB446D00A86D5A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 47C57DF327FB446D00A86D5A /* OrderedCollections */; };
+		47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */; };
 		47F831B627FB4E6400A02CE7 /* ShoppingAssitant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B527FB4E6400A02CE7 /* ShoppingAssitant.swift */; };
 		47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4701904227FB527F00488534 /* SavedListsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsTest.swift; sourceTree = "<group>"; };
+		4701904227FB527F00488534 /* SavedListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsTests.swift; sourceTree = "<group>"; };
 		470C390D27F60694009C1967 /* BetterShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		470C391027F60694009C1967 /* BetterShoppingListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListApp.swift; sourceTree = "<group>"; };
 		470C391227F60694009C1967 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,7 +70,7 @@
 		470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		470C394227F607D1009C1967 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
-		477EC55D27F8D89000A589FD /* CurrentListTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentListTest.swift; sourceTree = "<group>"; };
+		477EC55D27F8D89000A589FD /* CurrentListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentListTests.swift; sourceTree = "<group>"; };
 		477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsView.swift; sourceTree = "<group>"; };
 		477EC56327F99D8100A589FD /* SearchingResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchingResultsView.swift; path = BetterShoppingList/SearchingResultsView.swift; sourceTree = SOURCE_ROOT; };
 		477EC56527F9D26600A589FD /* SearchResultsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsUITests.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterShoppingList.entitlements; sourceTree = "<group>"; };
 		47BC1E3027F60DFE00293AE9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		47BC1E3227F60E2500293AE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssitantTests.swift; sourceTree = "<group>"; };
 		47F831B527FB4E6400A02CE7 /* ShoppingAssitant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssitant.swift; sourceTree = "<group>"; };
 		47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,9 +170,10 @@
 			children = (
 				47AFE35427F6355C003264D8 /* schema.ckdb */,
 				47AFE35627F758B6003264D8 /* FixtureLoader.swift */,
-				477EC55D27F8D89000A589FD /* CurrentListTest.swift */,
+				477EC55D27F8D89000A589FD /* CurrentListTests.swift */,
 				470C392627F60695009C1967 /* CompareTests.swift */,
-				4701904227FB527F00488534 /* SavedListsTest.swift */,
+				4701904227FB527F00488534 /* SavedListsTests.swift */,
+				47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */,
 			);
 			path = BetterShoppingListTests;
 			sourceTree = "<group>";
@@ -425,9 +428,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */,
-				4701904327FB527F00488534 /* SavedListsTest.swift in Sources */,
+				4701904327FB527F00488534 /* SavedListsTests.swift in Sources */,
+				47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */,
 				470C392727F60695009C1967 /* CompareTests.swift in Sources */,
-				477EC55E27F8D89000A589FD /* CurrentListTest.swift in Sources */,
+				477EC55E27F8D89000A589FD /* CurrentListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,11 +12,14 @@ import CoreData
 class SavedListsTests: XCTestCase {
 
     var context: NSManagedObjectContext!
+    var shoppingAssistant: ShoppingAssitant!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         context = PersistenceController.preview.container.viewContext
         try loadFixture(into: context)
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
     }
 
     override func tearDownWithError() throws {
@@ -26,10 +29,9 @@ class SavedListsTests: XCTestCase {
 
     func testEmpty() throws {
         // given initial state
-        let persistenceAdapter = PersistenceAdapter()
 
         // when asking for saved lists
-        let lists = try context.fetch(persistenceAdapter.savedListsFetchRequest)
+        let lists = try context.fetch(shoppingAssistant.savedListsFetchRequest)
 
         // then we get an empty list
         XCTAssertNotNil(lists)
@@ -42,10 +44,8 @@ class SavedListsTests: XCTestCase {
         let list2 = mockList(name: "Another List", current: false, context: context)
         try context.save()
 
-        let persistenceAdapter = PersistenceAdapter()
-
         // when asking for saved lists
-        let lists = try context.fetch(persistenceAdapter.savedListsFetchRequest)
+        let lists = try context.fetch(shoppingAssistant.savedListsFetchRequest)
 
         // then we get a list
         XCTAssertNotNil(lists)

@@ -7,8 +7,26 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
-struct PersistenceAdapter {
+protocol PersistenceAdapter {
+    var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
+    var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> { get }
+    var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
+
+    func newList(isCurrent: Bool) -> ShoppingList
+    func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
+}
+
+struct CoreDataPersistenceAdapter: PersistenceAdapter {
+    let viewContext: NSManagedObjectContext
+
+    func newList(isCurrent: Bool = false) -> ShoppingList {
+        let list = ShoppingList(context: viewContext)
+        list.isCurrent = isCurrent
+        list.timestamp = Date()
+        return list
+    }
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
         let fetchRequest = ShoppingList.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isCurrent = NO")
@@ -20,6 +38,14 @@ struct PersistenceAdapter {
         let fetchRequest = ChosenProduct.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "list.isCurrent = YES")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ChosenProduct.name, ascending: true)]
+        return fetchRequest
+    }
+
+    var currentListFetchRequest: NSFetchRequest<ShoppingList> {
+        let fetchRequest = ShoppingList.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isCurrent = YES")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: false)]
+        fetchRequest.fetchLimit = 1
         return fetchRequest
     }
 
