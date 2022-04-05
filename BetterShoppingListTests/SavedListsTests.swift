@@ -9,7 +9,7 @@ import XCTest
 import CoreData
 @testable import BetterShoppingList
 
-class SavedListsTest: XCTestCase {
+class SavedListsTests: XCTestCase {
 
     var context: NSManagedObjectContext!
 
