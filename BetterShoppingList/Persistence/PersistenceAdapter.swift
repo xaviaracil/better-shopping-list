@@ -13,6 +13,7 @@ protocol PersistenceAdapter {
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
     var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> { get }
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
+    var markertsFetchRequest:NSFetchRequest<Market> { get }
     var currentList: ShoppingList? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
@@ -53,6 +54,12 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         fetchRequest.predicate = NSPredicate(format: "isCurrent == YES")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: false)]
         fetchRequest.fetchLimit = 1
+        return fetchRequest
+    }
+
+    var markertsFetchRequest: NSFetchRequest<Market> {
+        let fetchRequest = Market.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Market.name, ascending: true)]
         return fetchRequest
     }
 

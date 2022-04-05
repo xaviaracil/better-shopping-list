@@ -36,6 +36,7 @@
 		47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */; };
 		47CC13F427FCB33200839DA5 /* ProductOffersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F327FCB33200839DA5 /* ProductOffersTests.swift */; };
 		47CC13F627FCC46700839DA5 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F527FCC46700839DA5 /* ContentViewModel.swift */; };
+		47CC13F927FCD7D200839DA5 /* ChosenProduct+grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */; };
 		47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */; };
 		47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssitantTests.swift; sourceTree = "<group>"; };
 		47CC13F327FCB33200839DA5 /* ProductOffersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOffersTests.swift; sourceTree = "<group>"; };
 		47CC13F527FCC46700839DA5 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChosenProduct+grouping.swift"; sourceTree = "<group>"; };
 		47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssistant.swift; sourceTree = "<group>"; };
 		47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 			children = (
 				474FB90427F9ED4100BCC79B /* ProductOfferList.swift */,
 				47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */,
+				47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */,
 				477F77E427F8B1E8006F5902 /* Arrow.swift in Sources */,
 				474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */,
+				47CC13F927FCD7D200839DA5 /* ChosenProduct+grouping.swift in Sources */,
 				47CC13F627FCC46700839DA5 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

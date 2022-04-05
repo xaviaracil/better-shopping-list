@@ -17,6 +17,8 @@ struct ContentView: View {
     private var products: FetchedResults<ChosenProduct>
     @FetchRequest
     private var savedLists: FetchedResults<ShoppingList>
+    @FetchRequest
+    private var markets: FetchedResults<Market>
 
     @StateObject private var viewModel = ContentViewModel()
 
@@ -25,6 +27,7 @@ struct ContentView: View {
         self.shoppingAssistant = shoppingAssistant
         _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
         _savedLists = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
+        _markets = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest, animation: .default)
 
     }
 
@@ -39,13 +42,17 @@ struct ContentView: View {
                             EmptyCurrentListView(lists: savedLists)
                                 .opacity(viewModel.searchText.isEmpty ? 1.0 : 0.0)
                         } else {
-                            List {
-                                ForEach(products) { item in
-                                    // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
-                                    NavigationLink {
-                                        Text(item.name ?? "No Name")
-                                    } label: {
-                                        Text(item.name ?? "No Name")
+                            if viewModel.searchText.isEmpty {
+                                List {
+                                    ForEach(products.groupedByMarket(markets: markets)) { market in
+                                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+                                        NavigationLink {
+                                            List(products.ofMarket(market: market)) { product in
+                                                Text(product.name ?? "No Name")
+                                            }
+                                        } label: {
+                                            Text(market.name ?? "No Name")
+                                        }
                                     }
                                 }
                             }
@@ -61,7 +68,9 @@ struct ContentView: View {
                 .navigationBarTitle("", displayMode: .inline)
 
             }
-            .searchable(text: $viewModel.searchText, placement: .automatic, prompt: "Search Products Here")
+            .searchable(text: $viewModel.searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: "Search Products Here")
             .onSubmit(of: .search) {
                 // search for products here
                 print("search for \(viewModel.searchText)")

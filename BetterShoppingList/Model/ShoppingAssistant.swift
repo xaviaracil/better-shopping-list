@@ -31,6 +31,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         persitenceAdapter.currentListFetchRequest
     }
 
+    var markertsFetchRequest: NSFetchRequest<Market> {
+        persitenceAdapter.markertsFetchRequest
+    }
+
     func newList(isCurrent: Bool) -> ShoppingList {
         persitenceAdapter.newList(isCurrent: isCurrent)
     }
