@@ -155,8 +155,7 @@
 				47AFE35B27F766D9003264D8 /* Persistence */,
 				470C391627F60695009C1967 /* Preview Content */,
 				477F77DE27F8A514006F5902 /* Views */,
-				474FB90427F9ED4100BCC79B /* ProductOfferList.swift */,
-				47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */,
+				47CC13F727FCD77B00839DA5 /* Model */,
 				47CC13F527FCC46700839DA5 /* ContentViewModel.swift */,
 			);
 			path = BetterShoppingList;
@@ -231,6 +230,15 @@
 				47BC1E3027F60DFE00293AE9 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		47CC13F727FCD77B00839DA5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				474FB90427F9ED4100BCC79B /* ProductOfferList.swift */,
+				47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

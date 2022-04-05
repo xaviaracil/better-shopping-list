@@ -11,7 +11,7 @@ import Algorithms
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter {
-    var currentList: ShoppingList?
+    @Published var currentList: ShoppingList?
 
     let persitenceAdapter: PersistenceAdapter
     init(persistenceAdapter: PersistenceAdapter) {
@@ -44,5 +44,11 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
             currentList = newList(isCurrent: true)
         }
         currentList?.addToProducts(product)
+    }
+}
+
+extension ShoppingList {
+    var markets: [URL]? {
+        return (self.products as? Set<ChosenProduct>)?.compactMap { $0.marketUri }
     }
 }
