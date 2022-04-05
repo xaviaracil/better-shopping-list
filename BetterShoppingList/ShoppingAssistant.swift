@@ -9,12 +9,13 @@ import Foundation
 import CoreData
 
 /// Main Model class for the application
-class ShoppingAssitant: ObservableObject, PersistenceAdapter {
-    @Published var currentList: ShoppingList?
+class ShoppingAssistant: ObservableObject, PersistenceAdapter {
+    var currentList: ShoppingList?
 
     let persitenceAdapter: PersistenceAdapter
     init(persistenceAdapter: PersistenceAdapter) {
         self.persitenceAdapter = persistenceAdapter
+        currentList = persistenceAdapter.currentList
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {

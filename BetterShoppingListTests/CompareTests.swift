@@ -12,13 +12,13 @@ import CoreData
 final class BetterShoppingListTests: XCTestCase {
 
     var context: NSManagedObjectContext!
-    var shoppingAssistant: ShoppingAssitant!
+    var shoppingAssistant: ShoppingAssistant!
 
     override func setUpWithError() throws {
-        context = PersistenceController.preview.container.viewContext
+        context = PersistenceController(inMemory: true).container.viewContext
         try loadFixture(into: context)
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
-        shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+        shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
     }
 
     override func tearDownWithError() throws {

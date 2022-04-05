@@ -13,7 +13,7 @@ struct SearchingResultsView: View {
     @FetchRequest
     private var results: FetchedResults<Offer>
 
-    init(text: String, shoppingAssistant: ShoppingAssitant) {
+    init(text: String, shoppingAssistant: ShoppingAssistant) {
         _results = FetchRequest(fetchRequest: shoppingAssistant.offersFetchRequest(productName: text, in: []),
                                 animation: .default)
     }
@@ -50,7 +50,7 @@ struct SearchingResultsView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = PersistenceController.preview.container.viewContext
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
-        let shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+        let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         SearchingResultsView(text: "Cervesa", shoppingAssistant: shoppingAssistant)
     }

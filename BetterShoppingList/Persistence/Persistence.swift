@@ -16,6 +16,7 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for index in 0..<10 {
             let newList = ShoppingList(context: viewContext)
+            newList.isCurrent = false
             newList.timestamp = Date()
             newList.name = "List \(index + 1)"
         }

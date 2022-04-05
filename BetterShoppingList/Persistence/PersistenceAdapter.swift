@@ -13,6 +13,7 @@ protocol PersistenceAdapter {
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
     var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> { get }
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
+    var currentList: ShoppingList? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
@@ -27,23 +28,29 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         list.timestamp = Date()
         return list
     }
+
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
         let fetchRequest = ShoppingList.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isCurrent = NO")
+        fetchRequest.predicate = NSPredicate(format: "isCurrent == NO")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: true)]
         return fetchRequest
     }
 
     var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> {
         let fetchRequest = ChosenProduct.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "list.isCurrent = YES")
+        fetchRequest.predicate = NSPredicate(format: "list.isCurrent == YES")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ChosenProduct.name, ascending: true)]
         return fetchRequest
     }
 
+    var currentList: ShoppingList? {
+        let results = try? viewContext.fetch(currentListFetchRequest)
+        return results?.first
+    }
+
     var currentListFetchRequest: NSFetchRequest<ShoppingList> {
         let fetchRequest = ShoppingList.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isCurrent = YES")
+        fetchRequest.predicate = NSPredicate(format: "isCurrent == YES")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: false)]
         fetchRequest.fetchLimit = 1
         return fetchRequest

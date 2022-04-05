@@ -8,17 +8,22 @@
 import XCTest
 @testable import BetterShoppingList
 import CoreData
+import Combine
 
 class ShoppingAssitantTests: XCTestCase {
 
-    var shoppingAsistant: ShoppingAssitant!
+    var shoppingAsistant: ShoppingAssistant!
     var context: NSManagedObjectContext!
 
     override func setUpWithError() throws {
-        context = PersistenceController.preview.container.viewContext
+        context = PersistenceController(inMemory: true).container.viewContext
         try loadFixture(into: context)
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
-        shoppingAsistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+        shoppingAsistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
+    }
+
+    override func tearDownWithError() throws {
+        try destroyFixture(from: context)
     }
 
     func testItHasPersistenceAdapter() throws {
@@ -37,7 +42,7 @@ class ShoppingAssitantTests: XCTestCase {
         // When asking for currentList
         let currentList = shoppingAsistant.currentList
 
-        // Then nothing is returned
+        // Then an empty list is returned
         XCTAssertNil(currentList)
     }
 

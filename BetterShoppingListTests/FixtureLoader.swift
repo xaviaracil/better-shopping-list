@@ -69,6 +69,12 @@ func destroyFixture(from context: NSManagedObjectContext) throws {
         context.delete(market)
     }
 
+    let listsFetchRequest = ShoppingList.fetchRequest()
+    listsFetchRequest.includesPropertyValues = false
+    let lists = try context.fetch(marketFetchRequest)
+    for list in lists {
+        context.delete(list)
+    }
     try context.save()
 }
 
