@@ -33,7 +33,6 @@ class SearchResultsUITest: XCTestCase {
     }
 
     func testDisplayEmptyResults() throws {
-
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let searchField = app.searchFields.element
@@ -44,5 +43,45 @@ class SearchResultsUITest: XCTestCase {
         XCTAssertTrue(emptyResultsMessage.waitForExistence(timeout: 5))
 
         XCTAssertEqual(searchField.placeholderValue, "Search Products Here")
+    }
+
+    func testDisplayGoodResults() throws {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let searchField = app.searchFields.element
+        searchField.tap()
+        searchField.typeText("Cervesa")
+
+        let estrellaDamm = app.staticTexts["Cervesa Estrella Damm"]
+        XCTAssertTrue(estrellaDamm.waitForExistence(timeout: 5))
+        let moritz = app.staticTexts["Cervesa Moritz 33"]
+        XCTAssertTrue(moritz.waitForExistence(timeout: 5))
+
+    }
+
+    func testSelectingAProductMustAddItToTheCurrentList() throws {
+        let searchField = app.searchFields.element
+        searchField.tap()
+        searchField.typeText("Cervesa")
+
+        sleep(1)
+
+        // When tapping in the add button
+        let estrellaDammAddButton = app.buttons["Add to basket"].firstMatch
+        estrellaDammAddButton.tap()
+
+        sleep(1)
+
+        // Then search field must be visible
+        XCTAssertTrue(searchField.exists)
+        // And product listing must not exists
+        let estrellaDamm = app.staticTexts["Cervesa Estrella Damm"]
+        XCTAssertFalse(estrellaDamm.exists)
+        let moritz = app.staticTexts["Cervesa Moritz 33"]
+        XCTAssertFalse(moritz.exists)
+        // And market of the product must be visible
+        let market2 = app.staticTexts["Market 2"]
+        XCTAssertTrue(market2.waitForExistence(timeout: 5))
+
     }
 }
