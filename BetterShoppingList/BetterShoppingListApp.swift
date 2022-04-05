@@ -11,11 +11,11 @@ import SwiftUI
 struct BetterShoppingListApp: App {
     let persistenceController = PersistenceController.shared
 
-    @StateObject var shoppingAssitant: ShoppingAssitant
+    @StateObject var shoppingAssitant: ShoppingAssistant
 
     init() {
         let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: persistenceController.container.viewContext)
-        self._shoppingAssitant = StateObject(wrappedValue: ShoppingAssitant(persistenceAdapter: persistanceAdapter))
+        self._shoppingAssitant = StateObject(wrappedValue: ShoppingAssistant(persistenceAdapter: persistanceAdapter))
     }
 
     var body: some Scene {

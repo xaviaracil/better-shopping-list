@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var searchText = ""
     let hideSplash: Bool
 
-    let shoppingAssistant: ShoppingAssitant
+    let shoppingAssistant: ShoppingAssistant
 
     @FetchRequest
     private var products: FetchedResults<ChosenProduct>
@@ -24,7 +24,7 @@ struct ContentView: View {
         products.first?.list
     }
 
-    init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssitant) {
+    init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
         self.hideSplash = hideSplash
         self.shoppingAssistant = shoppingAssistant
         _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
@@ -82,7 +82,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = PersistenceController.preview.container.viewContext
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
-        let shoppingAssistant = ShoppingAssitant(persistenceAdapter: persistenceAdapter)
+        let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
         ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
     }
 }

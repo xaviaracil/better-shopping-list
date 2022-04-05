@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProductOfferView: View {
     var productOffers: ProductOffers
+    @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
     var bestOffer: Offer? {
         return productOffers.offers?.first
