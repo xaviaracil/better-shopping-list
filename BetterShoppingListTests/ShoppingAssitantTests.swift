@@ -50,10 +50,31 @@ class ShoppingAssitantTests: XCTestCase {
 
         // Then currentList is created
         let currentList = shoppingAsistant.currentList
-
-        // Then nothing is returned
         XCTAssertNotNil(currentList)
+
+        // And it has only one product
         XCTAssertEqual(1, currentList?.products?.count)
+
+    }
+
+    func testGivenACurrentListChoosingAProductAddsItToTheCurrentList() throws {
+        // Given some chosenProduct and a list
+        let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
+        shoppingAsistant.addProductToCurrentList(product)
+        let currentList = shoppingAsistant.currentList
+
+        let product2 = mockChosenProduct(name: "Product 2", price: 2.50, context: context)
+
+        // When adding the product to our list
+        shoppingAsistant.addProductToCurrentList(product2)
+
+        // Then currentList is created
+        let currentListAfter = shoppingAsistant.currentList
+        XCTAssertNotNil(currentListAfter)
+        XCTAssertEqual(currentList, currentListAfter)
+
+        // And it has all the products
+        XCTAssertEqual(2, currentList?.products?.count)
 
     }
 
