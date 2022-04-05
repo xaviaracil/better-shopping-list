@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G527" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ChosenProduct" representedClassName="ChosenProduct" syncable="YES" codeGenerationType="class">
-        <attribute name="marketId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="marketUri" optional="YES" attributeType="URI"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="offerId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="offerUri" optional="YES" attributeType="URI"/>
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="products" inverseEntity="ShoppingList"/>
     </entity>
@@ -33,7 +33,7 @@
     </entity>
     <entity name="UserMarket" representedClassName="UserMarket" syncable="YES" codeGenerationType="class">
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="marketId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="marketUri" optional="YES" attributeType="URI"/>
     </entity>
     <fetchRequest name="FetchRequest" entity="Offer" predicateString="TRUEPREDICATE"/>
     <configuration name="Local" usedWithCloudKit="YES">
@@ -47,11 +47,11 @@
         <memberEntity name="Offer"/>
     </configuration>
     <elements>
-        <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="104"/>
+        <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="118"/>
         <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="74"/>
         <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="89"/>
         <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
         <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
-        <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="59"/>
+        <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="73"/>
     </elements>
 </model>
