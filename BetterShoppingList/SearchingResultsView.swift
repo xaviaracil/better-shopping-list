@@ -7,8 +7,7 @@
 
 import SwiftUI
 import CoreData
-import Collections
-import OrderedCollections
+import Algorithms
 
 struct SearchingResultsView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -18,18 +17,17 @@ struct SearchingResultsView: View {
     private var results: FetchedResults<Offer>
 
     init(text: String) {
-        // swiftlint:disable line_length
-        _results = FetchRequest(fetchRequest: persitenceAdapter.offersFetchRequest(productName: text), animation: .default)
+        _results = FetchRequest(fetchRequest: persitenceAdapter.offersFetchRequest(productName: text),
+                                animation: .default)
     }
 
     func makeProductOfferList() -> [ProductOffers] {
-        let productOffers = OrderedDictionary<String?, [Offer]>(grouping: results, by: { $0.product?.name })
-        var list = [ProductOffers]()
-        for key in productOffers.keys {
-            if let offers = productOffers[key],
-            let product = offers.first?.product {
-                list.append(ProductOffers(product: product, offers: offers))
-            }
+        let productsOffers = results.chunked(on: \.product)
+        let list = productsOffers.filter { product, _ in
+            product != nil
+        }
+        .map { product, offers in
+            ProductOffers(product: product!, offers: Array(offers))
         }
         return list
     }

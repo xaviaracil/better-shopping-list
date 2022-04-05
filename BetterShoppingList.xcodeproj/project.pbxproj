@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4701904327FB527F00488534 /* SavedListsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701904227FB527F00488534 /* SavedListsTest.swift */; };
+		4701904627FC182500488534 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 4701904527FC182500488534 /* Algorithms */; };
 		470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391027F60694009C1967 /* BetterShoppingListApp.swift */; };
 		470C391327F60694009C1967 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391227F60694009C1967 /* ContentView.swift */; };
 		470C391527F60695009C1967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470C391427F60695009C1967 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4701904627FC182500488534 /* Algorithms in Frameworks */,
 				47C57DF227FB446D00A86D5A /* Collections in Frameworks */,
 				47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */,
 				47C57DF427FB446D00A86D5A /* OrderedCollections in Frameworks */,
@@ -242,6 +244,7 @@
 			packageProductDependencies = (
 				47C57DF127FB446D00A86D5A /* Collections */,
 				47C57DF327FB446D00A86D5A /* OrderedCollections */,
+				4701904527FC182500488534 /* Algorithms */,
 			);
 			productName = BetterShoppingList;
 			productReference = 470C390D27F60694009C1967 /* BetterShoppingList.app */;
@@ -318,6 +321,7 @@
 			mainGroup = 470C390427F60694009C1967;
 			packageReferences = (
 				47C57DF027FB446D00A86D5A /* XCRemoteSwiftPackageReference "swift-collections" */,
+				4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 470C390E27F60694009C1967 /* Products */;
 			projectDirPath = "";
@@ -749,6 +753,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		47C57DF027FB446D00A86D5A /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
@@ -760,6 +772,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4701904527FC182500488534 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
 		47C57DF127FB446D00A86D5A /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 47C57DF027FB446D00A86D5A /* XCRemoteSwiftPackageReference "swift-collections" */;
