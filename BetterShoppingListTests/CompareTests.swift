@@ -80,14 +80,16 @@ final class BetterShoppingListTests: XCTestCase {
         XCTAssertEqual(20, offers.count)
 
         // and offers are sorted by name
-        let productOffers = Dictionary(grouping: offers, by: { $0.product?.name })
-        for productOffer in productOffers {
-            for index in 0..<productOffer.value.count - 1 {
-                XCTAssertTrue(productOffer.value[index].price <= productOffer.value[index+1].price,
-                              """
-                              List should be ordered: \(productOffer.value[index].price)
-                              is more expensive than \(productOffer.value[index+1].price)
-                              """)
+        let productsOffers = offers.toProductOffers()
+        for productOffer in productsOffers {
+            if let fetchedOffers = productOffer.offers {
+                for index in 0..<fetchedOffers.count - 1 {
+                    XCTAssertTrue(fetchedOffers[index].price <= fetchedOffers[index+1].price,
+                                  """
+                                  List should be ordered: \(fetchedOffers[index].price)
+                                  is more expensive than \(fetchedOffers[index+1].price)
+                                  """)
+                }
             }
         }
 
