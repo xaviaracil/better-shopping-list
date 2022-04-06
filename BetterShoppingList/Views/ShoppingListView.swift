@@ -15,7 +15,7 @@ struct ShoppingListView: View {
         Group {
             Label(list.name ?? "No Name", systemImage: "cart")
                 .labelStyle(ShoppingListLabelStyle())
-                .padding(EdgeInsets(top: 30.0, leading: 20.0, bottom: 10.0, trailing: 20.0))
+                .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
         }
         .addBorder(.foreground, width: 1, cornerRadius: 10)
     }
@@ -24,8 +24,10 @@ struct ShoppingListView: View {
 struct ShoppingListLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack {
+
             configuration.icon
                 .font(.system(size: 96))
+                .minimumScaleFactor(0.5)
                 .foregroundColor(.accentColor)
             configuration.title
                 .font(.headline)
@@ -37,7 +39,13 @@ struct ShoppingListView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
-        ShoppingListView(list: lists!.first!)
+        Group {
+            ShoppingListView(list: lists!.first!)
+            ShoppingListView(list: lists!.first!)
+                .frame(height: 100.0)
+                .background(.teal)
+.previewInterfaceOrientation(.landscapeLeft)
+        }
     }
 }
 
