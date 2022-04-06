@@ -17,18 +17,18 @@ struct Arrow: View {
     struct Constants {
         // swiftlint:disable nesting type_name
         struct X {
-            static let controlPoint = 60.0
-            static let arrowLengthLeft = 40.0
-            static let arrowLengthRight = 30.0
+            static let controlPoint = -0.25
+            static let arrowLengthLeft = 0.15
+            static let arrowLengthRight = 0.075
             static let vertexOffsetLeft = 3.0
             static let vertexOffsetRight = 1.0
 
         }
         // swiftlint:disable nesting type_name
         struct Y {
-            static let controlPoint = 10.0
-            static let arrowLengthLeft = 20.0
-            static let arrowLengthRight = 30.0
+            static let controlPoint = 0.05
+            static let arrowLengthLeft = 0.1
+            static let arrowLengthRight = 0.15
             static let vertexOffsetLeft = 1.0
             static let vertexOffsetRight = 1.0
         }
@@ -45,21 +45,27 @@ struct Arrow: View {
             let topPoint = CGPoint(x: midX, y: minY)
             let midPoint = CGPoint(x: midX, y: midY)
 
+            let controlPointX = reader.size.width * Constants.X.controlPoint
+            let controlPointY = reader.size.height * Constants.Y.controlPoint
+            let leftArrowLengthX = reader.size.width * Constants.X.arrowLengthLeft
+            let leftArrowLengthY = reader.size.height * Constants.Y.arrowLengthLeft
+            let rightArrowLengthX = reader.size.width * Constants.X.arrowLengthRight
+            let rightArrowLengthY = reader.size.height * Constants.Y.arrowLengthRight
+
             ZStack {
                 Path { path in
                     path.move(to: bottomPoint)
-                    // swiftlint:disable line_length
                     path.addCurve(to: topPoint,
-                                  control1: midPoint.delta(dx: -Constants.X.controlPoint, dy: -Constants.Y.controlPoint),
-                                  control2: midPoint.delta(dx: -Constants.X.controlPoint, dy: Constants.Y.controlPoint))
+                                  control1: midPoint.delta(dx: controlPointX, dy: -controlPointY),
+                                  control2: midPoint.delta(dx: controlPointX, dy: controlPointY))
                 }.stroke(lineWidth: self.lineWidth)
 
                 Path { path in
                     path.move(to: topPoint.delta(dx: Constants.X.vertexOffsetLeft, dy: -Constants.Y.vertexOffsetLeft))
-                    path.addLine(to: topPoint.delta(dx: -Constants.X.arrowLengthLeft, dy: Constants.Y.arrowLengthLeft))
+                    path.addLine(to: topPoint.delta(dx: -leftArrowLengthX, dy: leftArrowLengthY))
                     // swiftlint:disable line_length
                     path.move(to: topPoint.delta(dx: -Constants.X.vertexOffsetRight, dy: -Constants.Y.vertexOffsetRight))
-                    path.addLine(to: topPoint.delta(dx: Constants.X.arrowLengthRight, dy: Constants.Y.arrowLengthRight))
+                    path.addLine(to: topPoint.delta(dx: rightArrowLengthX, dy: rightArrowLengthY))
                 }.stroke(lineWidth: self.lineWidth)
             }
         }
