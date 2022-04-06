@@ -43,7 +43,7 @@ struct ContentView: View {
                                 .opacity(viewModel.searchText.isEmpty ? 1.0 : 0.0)
                         } else {
                             if viewModel.searchText.isEmpty {
-
+                                CurrentListView()
                             }
                         }
                     }
