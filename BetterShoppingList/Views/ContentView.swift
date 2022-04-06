@@ -91,6 +91,10 @@ struct ContentView_Previews: PreviewProvider {
         let viewContext = PersistenceController.preview.container.viewContext
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
-        ContentView(hideSplash: false, shoppingAssistant: shoppingAssistant)
+        Group {
+            ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
+            ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
+.previewInterfaceOrientation(.landscapeLeft)
+        }
     }
 }
