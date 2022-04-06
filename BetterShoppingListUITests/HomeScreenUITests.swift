@@ -43,10 +43,15 @@ class HomeScreenUITests: XCTestCase {
     func testDisplayInitialText() throws {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertTrue(app.staticTexts["Start searching products"].exists)
-        XCTAssertFalse(app.staticTexts["OR"].exists)
-        XCTAssertTrue(app.scrollViews["Saved Lists"].exists)
-        XCTAssertFalse(app.scrollViews["Saved Lists"].images.firstMatch.exists)
+        let predicate = NSPredicate(format: "label BEGINSWITH[c] %@", "Start searching products")
+        XCTAssertTrue(app.staticTexts.containing(predicate).element.exists)
+        if app.staticTexts["OR"].exists ||
+            app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "OR")).element.exists {
+            XCTAssertTrue(app.scrollViews["Saved Lists"].exists)
+            XCTAssertTrue(app.scrollViews["Saved Lists"].images.firstMatch.exists)
+        } else {
+            XCTAssertFalse(app.scrollViews["Saved Lists"].images.firstMatch.exists)
+        }
     }
 
     func testLaunchPerformance() throws {
