@@ -12,11 +12,13 @@ import Algorithms
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     @Published var currentList: ShoppingList?
+    @Published var markets: [Market]?
 
     let persitenceAdapter: PersistenceAdapter
     init(persistenceAdapter: PersistenceAdapter) {
         self.persitenceAdapter = persistenceAdapter
         currentList = persistenceAdapter.currentList
+        markets = persistenceAdapter.markets
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {

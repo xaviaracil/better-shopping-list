@@ -15,6 +15,7 @@ protocol PersistenceAdapter {
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
     var markertsFetchRequest: NSFetchRequest<Market> { get }
     var currentList: ShoppingList? { get }
+    var markets: [Market]? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
@@ -47,6 +48,10 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
     var currentList: ShoppingList? {
         let results = try? viewContext.fetch(currentListFetchRequest)
         return results?.first
+    }
+
+    var markets: [Market]? {
+        try? viewContext.fetch(markertsFetchRequest)
     }
 
     var currentListFetchRequest: NSFetchRequest<ShoppingList> {

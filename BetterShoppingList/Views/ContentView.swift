@@ -43,18 +43,7 @@ struct ContentView: View {
                                 .opacity(viewModel.searchText.isEmpty ? 1.0 : 0.0)
                         } else {
                             if viewModel.searchText.isEmpty {
-                                List {
-                                    ForEach(products.groupedByMarket(markets: markets)) { market in
-                                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
-                                        NavigationLink {
-                                            List(products.ofMarket(market: market)) { product in
-                                                Text(product.name ?? "No Name")
-                                            }
-                                        } label: {
-                                            Text(market.name ?? "No Name")
-                                        }
-                                    }
-                                }
+
                             }
                         }
                     }

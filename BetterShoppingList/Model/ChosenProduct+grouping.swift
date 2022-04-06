@@ -10,7 +10,7 @@ import Algorithms
 import SwiftUI
 
 extension Collection where Element == ChosenProduct {
-    func groupedByMarket(markets: FetchedResults<Market>) -> [Market] {
+    func groupedByMarket(markets: [Market]) -> [Market] {
         self.chunked(on: \.marketUri)
             .filter { marketUri, _ in
                 marketUri != nil
