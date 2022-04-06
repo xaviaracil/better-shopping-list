@@ -43,7 +43,12 @@ struct MarketListView: View {
     var body: some View {
         if let products = products,
            let markets = markets {
-            ForEach(products.groupedByMarket(markets: markets)) { market in
+            let sortedMarkets = products.groupedByMarket(markets: markets)
+                .sorted {
+                    $0.name?.localizedCaseInsensitiveCompare($1.name ?? "") ?? .orderedDescending == .orderedAscending
+                }
+
+            ForEach(sortedMarkets) { market in
                 ZStack(alignment: .topTrailing) {
                 Group {
                     // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
