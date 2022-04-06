@@ -12,6 +12,7 @@ struct ProductOfferView: View {
     @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
     @State var currentOfferIndex: Int = 0
+    @State var quantity: Int16 = 1
     @Binding var productAdded: Bool
 
     var bestOffer: Offer? {
@@ -35,13 +36,18 @@ struct ProductOfferView: View {
                 Text(bestOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
                     .bestPrice()
                 MarketLabelView(market: bestOffer?.market)
+                Stepper(value: $quantity) {
+                    Text("Quantity: \(quantity)")
+
+                }
+                .font(.subheadline)
             }
 
             Spacer()
 
             Button(action: {
                 shoppingAssistant.addProductToCurrentList(
-                    productOffers.chooseOffer(at: currentOfferIndex))
+                    productOffers.chooseOffer(at: currentOfferIndex, quantity: quantity))
                 productAdded = true
             }) {
                 Label("Add to basket", systemImage: "cart.circle")

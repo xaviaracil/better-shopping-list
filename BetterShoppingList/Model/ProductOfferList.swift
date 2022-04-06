@@ -4,7 +4,7 @@ struct ProductOffers: Hashable {
     let product: Product
     let offers: [Offer]?
 
-    func chooseOffer(at index: Int) -> ChosenProduct {
+    func chooseOffer(at index: Int, quantity: Int16) -> ChosenProduct {
         var chosenProduct: ChosenProduct
         if let managedObjectContext = product.managedObjectContext {
             chosenProduct = ChosenProduct(context: managedObjectContext)
@@ -15,6 +15,7 @@ struct ProductOffers: Hashable {
         if let offers = offers {
             let offer = offers[index]
             chosenProduct.price = offer.price
+            chosenProduct.quantity = quantity
             chosenProduct.marketUri = offer.market?.objectID.uriRepresentation()
             chosenProduct.offerUri = offer.objectID.uriRepresentation()
         }

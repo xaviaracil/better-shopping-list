@@ -5,6 +5,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="offerUri" optional="YES" attributeType="URI"/>
         <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ShoppingList" inverseName="products" inverseEntity="ShoppingList"/>
     </entity>
     <entity name="Market" representedClassName="Market" syncable="YES" codeGenerationType="class">
@@ -47,7 +48,7 @@
         <memberEntity name="Offer"/>
     </configuration>
     <elements>
-        <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="118"/>
+        <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="133"/>
         <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="74"/>
         <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="89"/>
         <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
