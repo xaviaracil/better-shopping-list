@@ -11,7 +11,6 @@ struct ShoppingListView: View {
     var list: ShoppingList
 
     var body: some View {
-
         Group {
             Label(list.name ?? "No Name", systemImage: "cart")
                 .labelStyle(ShoppingListLabelStyle())
@@ -24,7 +23,6 @@ struct ShoppingListView: View {
 struct ShoppingListLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack {
-
             configuration.icon
                 .font(.system(size: 96))
                 .minimumScaleFactor(0.5)
@@ -42,8 +40,6 @@ struct ShoppingListView_Previews: PreviewProvider {
         Group {
             ShoppingListView(list: lists!.first!)
             ShoppingListView(list: lists!.first!)
-                .frame(height: 100.0)
-                .background(.teal)
 .previewInterfaceOrientation(.landscapeLeft)
         }
     }
