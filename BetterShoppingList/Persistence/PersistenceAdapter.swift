@@ -13,7 +13,7 @@ protocol PersistenceAdapter {
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
     var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> { get }
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
-    var markertsFetchRequest:NSFetchRequest<Market> { get }
+    var markertsFetchRequest: NSFetchRequest<Market> { get }
     var currentList: ShoppingList? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
