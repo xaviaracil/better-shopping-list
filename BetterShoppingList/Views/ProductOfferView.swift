@@ -34,18 +34,7 @@ struct ProductOfferView: View {
                     .productTitle()
                 Text(bestOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
                     .bestPrice()
-                HStack {
-                    AsyncImage(url: bestOffer?.market?.iconUrl) { logo in
-                        logo.resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(height: 16.0)
-                    Text(bestOffer?.market?.name ?? "N.A")
-                        .marketLabel()
-                }
-
+                MarketLabelView(market: bestOffer?.market)
             }
 
             Spacer()
@@ -81,12 +70,6 @@ struct OfferBestPrice: ViewModifier {
     }
 }
 
-struct MarketLabel: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.caption2)
-    }
-}
 extension View {
     func productTitle() -> some View {
         modifier(ProductTitle())
@@ -94,10 +77,6 @@ extension View {
 
     func bestPrice() -> some View {
         modifier(OfferBestPrice())
-    }
-
-    func marketLabel() -> some View {
-        modifier(MarketLabel())
     }
 }
 
