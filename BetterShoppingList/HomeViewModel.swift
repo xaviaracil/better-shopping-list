@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
     @Published var productAdded: Bool = false {
@@ -22,11 +23,18 @@ class HomeViewModel: ObservableObject {
     var displaySlash: Bool {
         !splashDisplayed && !hideSplash
     }
-    
+
+    @Published var productsFetchRequest: FetchRequest<ChosenProduct>
+    @Published var savedListsFetchRequest: FetchRequest<ShoppingList>
+    @Published var marketsFetchRequest: FetchRequest<Market>
+
     let shoppingAssistant: ShoppingAssistant
 
     init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
         self.hideSplash = hideSplash
         self.shoppingAssistant = shoppingAssistant
+        productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
+        savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
+        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest, animation: .default)
     }
 }

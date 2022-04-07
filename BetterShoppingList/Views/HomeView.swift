@@ -21,12 +21,13 @@ struct HomeView: View {
     private var viewModel: HomeViewModel
 
     init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
-        viewModel = HomeViewModel(hideSplash: hideSplash, shoppingAssistant: shoppingAssistant)
+        let auxViewModel = HomeViewModel(hideSplash: hideSplash, shoppingAssistant: shoppingAssistant)
 
-        _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
-        _savedLists = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
-        _markets = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest, animation: .default)
+        _products = auxViewModel.productsFetchRequest
+        _savedLists = auxViewModel.savedListsFetchRequest
+        _markets = auxViewModel.marketsFetchRequest
 
+        viewModel = auxViewModel
     }
 
     var body: some View {
