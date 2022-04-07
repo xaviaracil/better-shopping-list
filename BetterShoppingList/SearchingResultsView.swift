@@ -7,34 +7,27 @@
 
 import SwiftUI
 import CoreData
-import Algorithms
 
 struct SearchingResultsView: View {
-    @FetchRequest
-    private var results: FetchedResults<Offer>
     @Environment(\.verticalSizeClass) var verticalSizeClass
 
-    @ObservedObject var viewModel: ContentViewModel
-//    let text: String
+    @ObservedObject
+    private var viewModel: SearchResultsViewModel
 
-//    @FetchRequest(fetchRequest: Offer.fetchRequest(), animation: .default)
-//    private var offers: FetchedResults<Offer>
+    @FetchRequest
+    private var results: FetchedResults<Offer>
 
-    init(text: String, viewModel: ContentViewModel, shoppingAssistant: ShoppingAssistant) {
-        _results = FetchRequest(fetchRequest: shoppingAssistant.offersFetchRequest(productName: text),
-                                animation: .default)
-        self.viewModel = viewModel
-//        self.text = text
+    init(text: String, shoppingAssistant: ShoppingAssistant, onAdded: @escaping () -> (Void) = {}) {
+        let vm = SearchResultsViewModel(text: text, shoppingAssistant: shoppingAssistant, onAdded: onAdded)
+        _results = vm.fetchRequest
+        viewModel = vm
     }
 
     var body: some View {
         VStack {
             if results.isEmpty {
-//                VStack {
-//                    Text("\(text). total offers: \(offers.count)")
                 Label("Can't find any product with this name.", systemImage: "info.circle")
                     .font(.largeTitle)
-//                }
             } else {
                 if verticalSizeClass == .compact {
                     // landscape
@@ -42,7 +35,7 @@ struct SearchingResultsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(results.toProductOffers(), id: \.self) { productOffer in
-                                ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
+                                ProductOfferView(productOffers: productOffer, onAdded: viewModel.onAdded)
                                     .padding()
                             }
                         }
@@ -51,7 +44,7 @@ struct SearchingResultsView: View {
                     // portrait
                     ScrollView {
                         ForEach(results.toProductOffers(), id: \.self) { productOffer in
-                            ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
+                            ProductOfferView(productOffers: productOffer, onAdded: viewModel.onAdded)
                                 .padding()
                         }
                     }
@@ -67,6 +60,8 @@ struct SearchingResultsView_Previews: PreviewProvider {
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
-        SearchingResultsView(text: "Cervesa", viewModel: ContentViewModel(), shoppingAssistant: shoppingAssistant)
+        SearchingResultsView(text: "Cervesa", shoppingAssistant: shoppingAssistant) {
+            print("product Added")
+        }
     }
 }

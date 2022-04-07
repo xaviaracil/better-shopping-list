@@ -13,7 +13,8 @@ struct ProductOfferView: View {
 
     @State var currentOfferIndex: Int = 0
     @State var quantity: Int16 = 1
-    @Binding var productAdded: Bool
+
+    var onAdded: () -> Void = {}
 
     var bestOffer: Offer? {
         return productOffers.offers?[currentOfferIndex]
@@ -48,7 +49,7 @@ struct ProductOfferView: View {
             Button(action: {
                 shoppingAssistant.addProductToCurrentList(
                     productOffers.chooseOffer(at: currentOfferIndex, quantity: quantity))
-                productAdded = true
+                onAdded()
             }) {
                 Label("Add to basket", systemImage: "cart.circle")
                     .font(.system(size: 48))
@@ -87,10 +88,10 @@ extension View {
 }
 
 struct ProductOfferView_Previews: PreviewProvider {
-    @State private static var productAdded = false
-
     static var previews: some View {
-        ProductOfferView(productOffers: mockOffer(), productAdded: $productAdded)
+        ProductOfferView(productOffers: mockOffer()) {
+            print("Product Added")
+        }
     }
 
     static func mockOffer() -> ProductOffers {

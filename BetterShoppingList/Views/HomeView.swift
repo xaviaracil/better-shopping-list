@@ -9,9 +9,6 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    let hideSplash: Bool
-
-    let shoppingAssistant: ShoppingAssistant
 
     @FetchRequest
     private var products: FetchedResults<ChosenProduct>
@@ -20,11 +17,12 @@ struct HomeView: View {
     @FetchRequest
     private var markets: FetchedResults<Market>
 
-    @StateObject private var viewModel = ContentViewModel()
+    @ObservedObject
+    private var viewModel: HomeViewModel
 
     init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
-        self.hideSplash = hideSplash
-        self.shoppingAssistant = shoppingAssistant
+        viewModel = HomeViewModel(hideSplash: hideSplash, shoppingAssistant: shoppingAssistant)
+
         _products = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
         _savedLists = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
         _markets = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest, animation: .default)
@@ -32,7 +30,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        if !viewModel.splashDisplayed && !hideSplash {
+        if viewModel.displaySlash {
             SplashView(displayed: $viewModel.splashDisplayed)
         } else {
             NavigationView {
@@ -49,9 +47,10 @@ struct HomeView: View {
                     }
                     if !viewModel.searchText.isEmpty && !viewModel.productAdded {
                         SearchingResultsView(text: viewModel.searchText,
-                                             viewModel: viewModel,
-                                             shoppingAssistant: shoppingAssistant)
-                            .transition(.move(edge: .top))
+                                             shoppingAssistant: viewModel.shoppingAssistant) {
+                            viewModel.productAdded = true
+                        }
+                        .transition(.move(edge: .top))
                     }
                 }
                 .navigationBarTitle("", displayMode: .inline)
