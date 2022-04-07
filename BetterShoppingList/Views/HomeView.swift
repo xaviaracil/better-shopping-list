@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct HomeView: View {
     let hideSplash: Bool
 
     let shoppingAssistant: ShoppingAssistant
@@ -81,8 +81,8 @@ struct ContentView_Previews: PreviewProvider {
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
         Group {
-            ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
-            ContentView(hideSplash: true, shoppingAssistant: shoppingAssistant)
+            HomeView(hideSplash: true, shoppingAssistant: shoppingAssistant)
+            HomeView(hideSplash: true, shoppingAssistant: shoppingAssistant)
 .previewInterfaceOrientation(.landscapeLeft)
         }
     }

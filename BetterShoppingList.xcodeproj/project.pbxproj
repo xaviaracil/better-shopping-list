@@ -10,7 +10,7 @@
 		4701904327FB527F00488534 /* SavedListsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701904227FB527F00488534 /* SavedListsTests.swift */; };
 		4701904627FC182500488534 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 4701904527FC182500488534 /* Algorithms */; };
 		470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391027F60694009C1967 /* BetterShoppingListApp.swift */; };
-		470C391327F60694009C1967 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391227F60694009C1967 /* ContentView.swift */; };
+		470C391327F60694009C1967 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391227F60694009C1967 /* HomeView.swift */; };
 		470C391527F60695009C1967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470C391427F60695009C1967 /* Assets.xcassets */; };
 		470C391827F60695009C1967 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 470C391727F60695009C1967 /* Preview Assets.xcassets */; };
 		470C391A27F60695009C1967 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
@@ -65,7 +65,7 @@
 		4701904227FB527F00488534 /* SavedListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsTests.swift; sourceTree = "<group>"; };
 		470C390D27F60694009C1967 /* BetterShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		470C391027F60694009C1967 /* BetterShoppingListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterShoppingListApp.swift; sourceTree = "<group>"; };
-		470C391227F60694009C1967 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		470C391227F60694009C1967 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		470C391427F60695009C1967 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		470C391727F60695009C1967 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		470C391927F60695009C1967 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */,
-				470C391227F60694009C1967 /* ContentView.swift */,
+				470C391227F60694009C1967 /* HomeView.swift */,
 				477F77DC27F8A505006F5902 /* SplashView.swift */,
 				477F77DF27F8A849006F5902 /* ShoppingListView.swift */,
 				477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */,
@@ -446,7 +446,7 @@
 				470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */,
 				477EC56D27F9E70100A589FD /* ProductOfferView.swift in Sources */,
 				47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */,
-				470C391327F60694009C1967 /* ContentView.swift in Sources */,
+				470C391327F60694009C1967 /* HomeView.swift in Sources */,
 				477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */,
 				478C142A27FE0EAF007FF217 /* CurrentListView.swift in Sources */,
 				470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */,

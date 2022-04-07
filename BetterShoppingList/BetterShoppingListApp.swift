@@ -20,7 +20,7 @@ struct BetterShoppingListApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(shoppingAssistant: shoppingAssitant)
+            HomeView(shoppingAssistant: shoppingAssitant)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(shoppingAssitant)
         }
