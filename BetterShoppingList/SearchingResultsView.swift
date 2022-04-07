@@ -12,6 +12,7 @@ import Algorithms
 struct SearchingResultsView: View {
     @FetchRequest
     private var results: FetchedResults<Offer>
+    @Environment(\.verticalSizeClass) var verticalSizeClass
 
     @ObservedObject var viewModel: ContentViewModel
 //    let text: String
@@ -35,10 +36,24 @@ struct SearchingResultsView: View {
                     .font(.largeTitle)
 //                }
             } else {
-                ScrollView {
-                    ForEach(results.toProductOffers(), id: \.self) { productOffer in
-                        ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
-                            .padding()
+                if verticalSizeClass == .compact {
+                    // landscape
+                    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(results.toProductOffers(), id: \.self) { productOffer in
+                                ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
+                                    .padding()
+                            }
+                        }
+                    }
+                } else {
+                    // portrait
+                    ScrollView {
+                        ForEach(results.toProductOffers(), id: \.self) { productOffer in
+                            ProductOfferView(productOffers: productOffer, productAdded: $viewModel.productAdded)
+                                .padding()
+                        }
                     }
                 }
             }
