@@ -34,8 +34,10 @@ struct ShoppingListLabelStyle: LabelStyle {
 }
 struct ShoppingListView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        let container = PersistenceController.preview.container
+        let context = container.viewContext
+        let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
+                                                           coordinator: container.persistentStoreCoordinator)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
         Group {
             ShoppingListView(list: lists!.first!)

@@ -21,7 +21,7 @@ struct CurrentListView: View {
             let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
             ScrollView(.horizontal) {
                 LazyHGrid(rows: rows) {
-                    MarketListView(products: products, markets: shoppingAssistant.markets)
+                    CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
                 }
             }
         } else {
@@ -29,58 +29,19 @@ struct CurrentListView: View {
             let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    MarketListView(products: products, markets: shoppingAssistant.markets)
+                    CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
                 }
             }
         }
     }
 }
 
-struct MarketListView: View {
-    var products: Set<ChosenProduct>?
-    var markets: [Market]?
-
-    var body: some View {
-        if let products = products,
-           let markets = markets {
-            ForEach(markets) { market in
-                ZStack(alignment: .topTrailing) {
-                    Group {
-                        // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
-                        Label {
-                            MarketLabelView(market: market)
-                        } icon: {
-                            Image(systemName: "cart")
-                        }
-                        .labelStyle(ShoppingListLabelStyle())
-                        .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
-                    }
-                    .accessibility(label: Text("Products in market \(market.name ?? "N.A.")"))
-                    .addBorder(.foreground, width: 1, cornerRadius: 10)
-                    .padding(10)
-
-                    Circle()
-                        .fill(.red)
-                        .frame(width: 36, height: 36, alignment: .center)
-                        .overlay(
-                            Text("\(products.ofMarket(market: market).count)")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .minimumScaleFactor(0.5)
-                        )
-                        .accessibilityLabel(Text("Number of products in market \(market.name ?? "N.A.")"))
-                        .accessibilityValue(Text("\(products.ofMarket(market: market).count)"))
-                }
-            }
-        } else {
-            Spacer()
-        }
-    }
-}
 struct CurrentListView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewContext = PersistenceController.preview.container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
+        let container = PersistenceController.preview.container
+        let viewContext = container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext,
+                                                            coordinator: container.persistentStoreCoordinator)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         let market1 = Market(context: viewContext)

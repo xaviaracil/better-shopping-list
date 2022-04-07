@@ -14,7 +14,9 @@ struct BetterShoppingListApp: App {
     @StateObject var shoppingAssitant: ShoppingAssistant
 
     init() {
-        let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: persistenceController.container.viewContext)
+        let container = persistenceController.container
+        let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
+                                                            coordinator: container.persistentStoreCoordinator)
         self._shoppingAssitant = StateObject(wrappedValue: ShoppingAssistant(persistenceAdapter: persistanceAdapter))
     }
 

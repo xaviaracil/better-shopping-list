@@ -61,6 +61,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     func save() throws {
         try persitenceAdapter.save()
     }
+
+    func object(forURIRepresentation url: URL) -> NSObject? {
+        return persitenceAdapter.object(forURIRepresentation: url)
+    }
 }
 
 extension ShoppingList {

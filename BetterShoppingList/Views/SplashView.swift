@@ -35,8 +35,7 @@ struct SplashView: View {
 }
 
 struct SplashView_Previews: PreviewProvider {
-    @State private static var displayed = false
     static var previews: some View {
-        SplashView(displayed: $displayed)
+        SplashView(displayed: .constant(false))
     }
 }

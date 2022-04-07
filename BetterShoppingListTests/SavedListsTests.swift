@@ -16,9 +16,11 @@ class SavedListsTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        context = PersistenceController(inMemory: true, withTestData: false).container.viewContext
+        let container = PersistenceController(inMemory: true, withTestData: false).container
+        context = container.viewContext
         try loadFixture(into: context)
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
+                                                            coordinator: container.persistentStoreCoordinator)
         shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
     }
 

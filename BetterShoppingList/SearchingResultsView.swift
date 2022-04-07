@@ -56,8 +56,10 @@ struct SearchingResultsView: View {
 
 struct SearchingResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        let container = PersistenceController.preview.container
+        let context = container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
+                                                            coordinator: container.persistentStoreCoordinator)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         SearchingResultsView(text: "Cervesa", shoppingAssistant: shoppingAssistant) {
