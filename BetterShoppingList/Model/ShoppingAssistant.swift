@@ -50,6 +50,16 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
             currentList = newList(isCurrent: true)
         }
         currentList?.addToProducts(product)
+        do {
+            try save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+
+    func save() throws {
+        try persitenceAdapter.save()
     }
 }
 

@@ -19,6 +19,7 @@ protocol PersistenceAdapter {
 
     func newList(isCurrent: Bool) -> ShoppingList
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
+    func save() throws
 }
 
 struct CoreDataPersistenceAdapter: PersistenceAdapter {
@@ -95,5 +96,9 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         }
 
         return namePredicate
+    }
+
+    func save() throws {
+        try viewContext.save()
     }
 }
