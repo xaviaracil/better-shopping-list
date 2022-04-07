@@ -33,8 +33,11 @@ class HomeViewModel: ObservableObject {
     init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
         self.hideSplash = hideSplash
         self.shoppingAssistant = shoppingAssistant
-        productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest, animation: .default)
-        savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest, animation: .default)
-        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest, animation: .default)
+        productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest,
+                                            animation: .default)
+        savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
+                                              animation: .default)
+        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
+                                           animation: .default)
     }
 }
