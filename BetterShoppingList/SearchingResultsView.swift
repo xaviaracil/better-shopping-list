@@ -17,10 +17,10 @@ struct SearchingResultsView: View {
     @FetchRequest
     private var results: FetchedResults<Offer>
 
-    init(text: String, shoppingAssistant: ShoppingAssistant, onAdded: @escaping () -> (Void) = {}) {
-        let vm = SearchResultsViewModel(text: text, shoppingAssistant: shoppingAssistant, onAdded: onAdded)
-        _results = vm.fetchRequest
-        viewModel = vm
+    init(text: String, shoppingAssistant: ShoppingAssistant, onAdded: @escaping () -> Void = {}) {
+        let auxViewModel = SearchResultsViewModel(text: text, shoppingAssistant: shoppingAssistant, onAdded: onAdded)
+        _results = auxViewModel.fetchRequest
+        viewModel = auxViewModel
     }
 
     var body: some View {
