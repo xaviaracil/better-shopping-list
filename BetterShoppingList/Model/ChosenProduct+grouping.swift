@@ -6,24 +6,24 @@
 //
 
 import Foundation
-import Algorithms
-import SwiftUI
 
 extension Collection where Element == ChosenProduct {
     func groupedByMarket(markets: [Market]) -> [Market] {
-        self.chunked(on: \.marketUri)
-            .filter { marketUri, _ in
+        let dict = Dictionary(grouping: self) {
+            $0.marketUri
+        }
+        return dict.keys
+            .filter { marketUri in
                 marketUri != nil
             }
-            .map { marketUri, _ in
+            .compactMap { marketUri in
                 return markets.first { market in
                     market.objectID.uriRepresentation() == marketUri
                 }
             }
-            .filter { marketUri in
-                marketUri != nil
+            .sorted {
+                $0.name?.localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending
             }
-            .map { $0! }
     }
 
     func ofMarket(market: Market) -> [Element] {
