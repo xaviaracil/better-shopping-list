@@ -42,6 +42,7 @@ struct CurrentListView: View {
                     }
                 }
             }
+            Spacer()
             Label {
                 Text(currentList?.earned.formatted(.currency(code: "eur")) ?? "0.0")
             } icon: {
@@ -104,7 +105,12 @@ struct CurrentListView_Previews: PreviewProvider {
 
         shoppingAssistant.addProductToCurrentList(chosenProduct)
 
-        return CurrentListView()
-            .environmentObject(shoppingAssistant)
+        return Group {
+            CurrentListView()
+                .environmentObject(shoppingAssistant)
+            CurrentListView()
+                .environmentObject(shoppingAssistant)
+.previewInterfaceOrientation(.landscapeRight)
+        }
     }
 }
