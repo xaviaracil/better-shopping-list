@@ -11,8 +11,12 @@ struct CurrentListView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
+    var currentList: ShoppingList? {
+        shoppingAssistant.currentList
+    }
+
     var products: Set<ChosenProduct>? {
-        shoppingAssistant.currentList?.products as? Set<ChosenProduct>
+        currentList?.products as? Set<ChosenProduct>
     }
 
     var body: some View {
@@ -22,7 +26,9 @@ struct CurrentListView: View {
                 let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: rows) {
-                        CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
+                        ForEach(currentList?.markets ?? []) { market in
+                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                        }
                     }
                 }
             } else {
@@ -30,12 +36,14 @@ struct CurrentListView: View {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
+                        ForEach(currentList?.markets ?? []) { market in
+                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                        }
                     }
                 }
             }
             Label {
-                Text("Earned")
+                Text(currentList?.earned.formatted(.currency(code: "eur")) ?? "0.0")
             } icon: {
                 Image(systemName: "eurosign.square.fill")
             }
@@ -65,6 +73,7 @@ struct CurrentListView_Previews: PreviewProvider {
 
         let market1 = Market(context: viewContext)
         market1.name = "Market 1"
+        market1.uuid = UUID()
         market1.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
         //        let market2 = Market(context: viewContext)
         //        market2.name = "Market 2"
@@ -75,6 +84,7 @@ struct CurrentListView_Previews: PreviewProvider {
         //
         let offer1 = Offer(context: viewContext)
         offer1.price = 1.10
+        offer1.uuid = UUID()
         offer1.market = market1
         offer1.product = product
         //
@@ -89,8 +99,8 @@ struct CurrentListView_Previews: PreviewProvider {
         let chosenProduct = ChosenProduct(context: viewContext)
         chosenProduct.name = "Producte"
         chosenProduct.price = 1.1
-        chosenProduct.offerUri = offer1.objectID.uriRepresentation()
-        chosenProduct.marketUri = market1.objectID.uriRepresentation()
+        chosenProduct.offerUUID = offer1.uuid
+        chosenProduct.marketUUID = market1.uuid
 
         shoppingAssistant.addProductToCurrentList(chosenProduct)
 
