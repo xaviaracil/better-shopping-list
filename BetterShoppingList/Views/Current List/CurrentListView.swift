@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CurrentListView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
     var currentList: ShoppingList? {
@@ -19,6 +20,9 @@ struct CurrentListView: View {
         currentList?.products as? Set<ChosenProduct>
     }
 
+    var bottomPadding: Edge.Set {
+        horizontalSizeClass == .regular && verticalSizeClass == .regular ? [.bottom] : []
+    }
     var body: some View {
         VStack {
             if verticalSizeClass == .compact {
@@ -32,8 +36,17 @@ struct CurrentListView: View {
                     }
                     .padding([.top, .bottom])
                 }
+            } else if horizontalSizeClass == .regular {
+                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        ForEach(currentList?.markets ?? []) { market in
+                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                        }
+                    }
+                }
             } else {
-                // portrait
+            // portrait
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
                 ScrollView {
                     LazyVGrid(columns: columns) {
@@ -52,6 +65,7 @@ struct CurrentListView: View {
             .labelStyle(EarnedLabelStyle())
             .font(.largeTitle)
             .foregroundColor(.accentColor)
+            .padding(bottomPadding)
         }
 
     }
