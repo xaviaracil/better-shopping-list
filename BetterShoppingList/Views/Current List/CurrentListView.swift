@@ -16,22 +16,42 @@ struct CurrentListView: View {
     }
 
     var body: some View {
-        if verticalSizeClass == .compact {
-            // landscape
-            let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-            ScrollView(.horizontal) {
-                LazyHGrid(rows: rows) {
-                    CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
+        VStack {
+            if verticalSizeClass == .compact {
+                // landscape
+                let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+                ScrollView(.horizontal) {
+                    LazyHGrid(rows: rows) {
+                        CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
+                    }
+                }
+            } else {
+                // portrait
+                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
+                ScrollView {
+                    LazyVGrid(columns: columns) {
+                        CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
+                    }
                 }
             }
-        } else {
-            // portrait
-            let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    CurrentListMarketListView(products: products, markets: shoppingAssistant.markets)
-                }
+            // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
+            Label {
+                Text("Earned")
+            } icon: {
+                Image(systemName: "eurosign.square.fill")
             }
+            .labelStyle(EarnedLabelStyle())
+            .font(.largeTitle)
+            .foregroundColor(.accentColor)
+        }
+    }
+}
+
+struct EarnedLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            configuration.title
+            configuration.icon
         }
     }
 }

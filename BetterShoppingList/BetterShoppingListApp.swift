@@ -12,7 +12,7 @@ struct BetterShoppingListApp: App {
     let persistenceController = PersistenceController.shared
 
     @StateObject var shoppingAssitant: ShoppingAssistant
-
+    
     init() {
         let container = persistenceController.container
         let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
@@ -22,7 +22,7 @@ struct BetterShoppingListApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(shoppingAssistant: shoppingAssitant)
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(shoppingAssitant)
         }

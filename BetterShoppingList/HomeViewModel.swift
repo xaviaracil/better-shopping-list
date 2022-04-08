@@ -1,8 +1,8 @@
 //
-//  ContentViewModel.swift
+//  HomeViewModel.swift
 //  BetterShoppingList
 //
-//  Created by Xavi Aracil on 5/4/22.
+//  Created by Xavi Aracil on 8/4/22.
 //
 
 import Foundation
@@ -17,27 +17,17 @@ class HomeViewModel: ObservableObject {
             }
         }
     }
-    @Published var splashDisplayed = false
     @Published var searchText = ""
-    @Published var hideSplash: Bool
-    var displaySlash: Bool {
-        !splashDisplayed && !hideSplash
-    }
-
     @Published var productsFetchRequest: FetchRequest<ChosenProduct>
     @Published var savedListsFetchRequest: FetchRequest<ShoppingList>
-    @Published var marketsFetchRequest: FetchRequest<Market>
 
     let shoppingAssistant: ShoppingAssistant
 
-    init(hideSplash: Bool = false, shoppingAssistant: ShoppingAssistant) {
-        self.hideSplash = hideSplash
+    init(shoppingAssistant: ShoppingAssistant) {
         self.shoppingAssistant = shoppingAssistant
         productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest,
                                             animation: .default)
         savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
                                               animation: .default)
-        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
-                                           animation: .default)
     }
 }

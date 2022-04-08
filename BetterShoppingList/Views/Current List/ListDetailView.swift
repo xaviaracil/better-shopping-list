@@ -40,6 +40,7 @@ struct ListDetailView: View {
                 }
             }
             .navigationBarTitle(Text(name), displayMode: .inline)
+            // swiftlint:disable multiple_closures_with_trailing_closure
             .navigationBarItems(trailing: Button(action: { presentationMode.wrappedValue.dismiss() }
                                                 ) {
                 Label("Close", systemImage: "xmark")
