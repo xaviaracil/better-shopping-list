@@ -25,6 +25,7 @@ struct SideBar: View {
 
     var body: some View {
         List {
+            // swiftlint:disable line_length
             NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant), tag: "Current", selection: $selectedItem) {
                 Label("Current List", systemImage: "bag.fill")
             }

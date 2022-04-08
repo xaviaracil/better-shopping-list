@@ -15,7 +15,6 @@ struct CurrentListMarketView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             Group {
-                // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
                 Label {
                     MarketLabelView(market: market)
                 } icon: {

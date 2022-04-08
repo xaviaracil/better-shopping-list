@@ -40,6 +40,7 @@
 		47941FE727FF7A5100F0D5AF /* ChosenProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */; };
 		47941FEA27FF8DE000F0D5AF /* CurrentListMarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */; };
 		47941FEC27FF8E0D00F0D5AF /* CurrentListMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */; };
+		47A0D70528008285008C2663 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 47A0D70428008285008C2663 /* .swiftlint.yml */; };
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
 		47AFE35527F6355C003264D8 /* schema.ckdb in Resources */ = {isa = PBXBuildFile; fileRef = 47AFE35427F6355C003264D8 /* schema.ckdb */; };
 		47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35627F758B6003264D8 /* FixtureLoader.swift */; };
@@ -110,6 +111,7 @@
 		47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductViewModel.swift; sourceTree = "<group>"; };
 		47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketListView.swift; sourceTree = "<group>"; };
 		47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketView.swift; sourceTree = "<group>"; };
+		47A0D70428008285008C2663 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
 		47AFE35427F6355C003264D8 /* schema.ckdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.ckdb; sourceTree = "<group>"; };
 		47AFE35627F758B6003264D8 /* FixtureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLoader.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		470C390427F60694009C1967 = {
 			isa = PBXGroup;
 			children = (
+				47A0D70428008285008C2663 /* .swiftlint.yml */,
 				47AFE35C27F77954003264D8 /* Test Fixtures */,
 				470C390F27F60694009C1967 /* BetterShoppingList */,
 				470C392527F60695009C1967 /* BetterShoppingListTests */,
@@ -413,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A0D70528008285008C2663 /* .swiftlint.yml in Resources */,
 				470C391827F60695009C1967 /* Preview Assets.xcassets in Resources */,
 				470D066827FE2B00002A5EBA /* Localizable.strings in Resources */,
 				470C391527F60695009C1967 /* Assets.xcassets in Resources */,

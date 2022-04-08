@@ -34,7 +34,6 @@ struct CurrentListView: View {
                     }
                 }
             }
-            // swiftlint:disable no_space_in_method_call multiple_closures_with_trailing_closure
             Label {
                 Text("Earned")
             } icon: {

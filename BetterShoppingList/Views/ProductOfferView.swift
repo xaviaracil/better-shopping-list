@@ -102,6 +102,7 @@ struct ProductOfferView_Previews: PreviewProvider {
         market1.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
         let market2 = Market(context: context)
         market2.name = "Market 2"
+        market2.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1272912771873738753/4mJRDWoR_400x400.png")
 
         let product = Product(context: context)
         product.name = "Producte 1"

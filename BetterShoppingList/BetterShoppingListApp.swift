@@ -12,7 +12,7 @@ struct BetterShoppingListApp: App {
     let persistenceController = PersistenceController.shared
 
     @StateObject var shoppingAssitant: ShoppingAssistant
-    
+
     init() {
         let container = persistenceController.container
         let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
