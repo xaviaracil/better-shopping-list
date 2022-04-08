@@ -20,5 +20,4 @@ class SidebarViewModel: ObservableObject {
         marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
                                            animation: .default)
     }
-
 }

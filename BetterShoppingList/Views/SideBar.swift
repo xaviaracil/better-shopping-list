@@ -37,7 +37,7 @@ struct SideBar: View {
             }
         }
         .listStyle(.sidebar)
-        .navigationTitle("Sidebar")
+        .navigationTitle("Menu")
     }
 }
 
