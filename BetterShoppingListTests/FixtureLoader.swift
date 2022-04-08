@@ -86,14 +86,25 @@ func mockList(name: String, current: Bool, context: NSManagedObjectContext) -> S
 func mockMarket(name: String, url: String, context: NSManagedObjectContext) -> Market {
     let market = Market(context: context)
     market.name = name
+    market.uuid = UUID()
     market.iconUrl = URL(string: url)
     return market
 }
+
 func mockChosenProduct(name: String, price: Double, context: NSManagedObjectContext) -> ChosenProduct {
     let product = ChosenProduct(context: context)
     product.name = name
     product.price = price
     return product
+}
+
+func mockChosenProduct(offer: Offer, context: NSManagedObjectContext) -> ChosenProduct {
+    let chosenProduct = ChosenProduct(context: context)
+    chosenProduct.name = offer.product?.name ?? "N.A."
+    chosenProduct.price = offer.price
+    chosenProduct.marketUUID = offer.market!.uuid
+    chosenProduct.offerUUID = offer.uuid
+    return chosenProduct
 }
 
 func mockProduct(name: String, url: String, context: NSManagedObjectContext) -> Product {
@@ -106,6 +117,7 @@ func mockProduct(name: String, url: String, context: NSManagedObjectContext) -> 
 func mockOffer(for product: Product, at market: Market, with price: Double, context: NSManagedObjectContext) -> Offer {
     let offer = Offer(context: context)
     offer.product = product
+    offer.uuid = UUID()
     offer.market = market
     offer.price = price
     return offer

@@ -22,7 +22,7 @@ class ProductOffersTests: XCTestCase {
         try destroyFixture(from: context)
     }
 
-    func testChooseOfferReturnsAChosenProduct() throws {
+    func test_Given_SomeOffer_When_ChooseOffer_ThenAChosenProductIsReturned() throws {
         // Given some products and offers
         let product1 = mockProduct(name: "Product 1", url: "http://imat.ge", context: context)
         let product2 = mockProduct(name: "Product 2", url: "http://imat.ge", context: context)

@@ -27,7 +27,7 @@ final class BetterShoppingListTests: XCTestCase {
         try destroyFixture(from: context)
     }
 
-    func testGivenAProductNameWhenAskingForListThenTheListIsSortedByPrice() throws {
+    func test_Given_AProductName_When_AskingForList_Then_TheListIsSortedByPrice() throws {
         // given a name
         let name = "9"
 
@@ -48,7 +48,7 @@ final class BetterShoppingListTests: XCTestCase {
         XCTAssertEqual(offers.map { $0.market?.name }, ["Market 3", "Market 4", "Market 5", "Market 6", "Market 7", "Market 8", "Market 9", "Market 10", "Market 1", "Market 2"])
     }
 
-    func testGivenAProductNameAndMarketListWhenAskingForListThenTheListContainsOnlyMarketOffers() throws {
+    func test_Given_AProductNameAndMarketList_When_AskingForList_Then_TheListContainsOnlyMarketOffers() throws {
         // given a name and market list
         let name = "9"
         let markets = ["Market 3", "Market 8"]
@@ -70,7 +70,7 @@ final class BetterShoppingListTests: XCTestCase {
         XCTAssertEqual(offers.map { $0.market?.name }, markets)
     }
 
-    func testGivenAMultipleNameWhenAskingForListThenTheListIsSortedByNameAndPrice() throws {
+    func test_Given_AMultipleName_When_AskingForList_Then_TheListIsSortedByNameAndPrice() throws {
         // given a name
         let name = "Pro 1"
 

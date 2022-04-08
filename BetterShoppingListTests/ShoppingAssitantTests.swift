@@ -28,7 +28,7 @@ class ShoppingAssitantTests: XCTestCase {
         try destroyFixture(from: context)
     }
 
-    func testItHasPersistenceAdapter() throws {
+    func test_Given_Initial_Then_ItHasPersistenceAdapter() throws {
         // Given inital
 
         // When asking for persistence
@@ -38,7 +38,7 @@ class ShoppingAssitantTests: XCTestCase {
         XCTAssertNotNil(persistenceAdapter)
     }
 
-    func testInitiallyCurrentListIsEmpty() throws {
+    func test_Given_Initial_Then_CurrentListIsEmpty() throws {
         // Given inital
 
         // When asking for currentList
@@ -48,7 +48,7 @@ class ShoppingAssitantTests: XCTestCase {
         XCTAssertNil(currentList)
     }
 
-    func testChoosingAProductProducesACurrentList() throws {
+    func test_Given_Initial_When_ChoosingAProduct_Then_ACurrentListIsCreated() throws {
         // Given some chosenProduct
         let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
 
@@ -64,7 +64,7 @@ class ShoppingAssitantTests: XCTestCase {
 
     }
 
-    func testGivenACurrentListChoosingAProductAddsItToTheCurrentList() throws {
+    func test_Given_ACurrentList_When_ChoosingAProduct_Then_ItsAddedToTheCurrentList() throws {
         // Given some chosenProduct and a list
         let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
         shoppingAsistant.addProductToCurrentList(product)

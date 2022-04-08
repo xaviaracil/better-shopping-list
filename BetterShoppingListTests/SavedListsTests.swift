@@ -29,7 +29,7 @@ class SavedListsTests: XCTestCase {
         try destroyFixture(from: context)
     }
 
-    func testEmpty() throws {
+    func test_Given_InitialState_When_Fetched_Then_TheCurrentListIsEmpty() throws {
         // given initial state
 
         // when asking for saved lists
@@ -40,7 +40,7 @@ class SavedListsTests: XCTestCase {
         XCTAssertTrue(lists.isEmpty)
     }
 
-    func testGivenListsFetchReturnOnlyCompletedLists() throws {
+    func test_Given_Lists_When_Fetched_Then_OnlyCompletedListsAreReturned() throws {
         // given some lists
         _ = mockList(name: "Current List", current: true, context: context)
         let list2 = mockList(name: "Another List", current: false, context: context)
