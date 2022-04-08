@@ -10,21 +10,20 @@ import CoreData
 
 struct ContentView: View {
 
-    @ObservedObject
-    private var viewModel: ContentViewModel
-
     @EnvironmentObject
     private var shoppingAssistant: ShoppingAssistant
 
     @State private var selectedItem: String? = "Current"
+    @State private var splashDisplayed = false
+    private var hideSplash: Bool
 
     init(hideSplash: Bool = false) {
-        viewModel = ContentViewModel(hideSplash: hideSplash)
+        self.hideSplash = hideSplash
     }
 
     var body: some View {
-        if viewModel.displaySlash {
-            SplashView(displayed: $viewModel.splashDisplayed)
+        if !splashDisplayed && !hideSplash {
+            SplashView(displayed: $splashDisplayed)
         } else {
             NavigationView {
                 SideBar(shoppingAssistant: shoppingAssistant, selectedItem: $selectedItem)
