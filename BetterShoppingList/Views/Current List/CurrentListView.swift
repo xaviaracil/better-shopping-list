@@ -23,13 +23,14 @@ struct CurrentListView: View {
         VStack {
             if verticalSizeClass == .compact {
                 // landscape
-                let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+                let rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 200.0, maximum: .infinity)), count: 1)
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: rows) {
                         ForEach(currentList?.markets ?? []) { market in
                             CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
                         }
                     }
+                    .padding([.top, .bottom])
                 }
             } else {
                 // portrait
@@ -52,6 +53,7 @@ struct CurrentListView: View {
             .font(.largeTitle)
             .foregroundColor(.accentColor)
         }
+
     }
 }
 
@@ -110,7 +112,7 @@ struct CurrentListView_Previews: PreviewProvider {
                 .environmentObject(shoppingAssistant)
             CurrentListView()
                 .environmentObject(shoppingAssistant)
-.previewInterfaceOrientation(.landscapeRight)
+                .previewInterfaceOrientation(.landscapeRight)
         }
     }
 }
