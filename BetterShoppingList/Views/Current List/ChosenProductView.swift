@@ -62,6 +62,7 @@ struct ListDetailProductView_Previews: PreviewProvider {
 
         let market1 = Market(context: viewContext)
         market1.name = "Market 1"
+        market1.uuid = UUID()
         market1.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
         //        let market2 = Market(context: viewContext)
         //        market2.name = "Market 2"
@@ -72,6 +73,7 @@ struct ListDetailProductView_Previews: PreviewProvider {
         //
         let offer1 = Offer(context: viewContext)
         offer1.price = 1.10
+        offer1.uuid = UUID()
         offer1.market = market1
         offer1.product = product
         //
@@ -86,8 +88,8 @@ struct ListDetailProductView_Previews: PreviewProvider {
         let chosenProduct = ChosenProduct(context: viewContext)
         chosenProduct.name = "Producte"
         chosenProduct.price = 1.1
-        chosenProduct.offerUri = offer1.objectID.uriRepresentation()
-        chosenProduct.marketUri = market1.objectID.uriRepresentation()
+        chosenProduct.offerUUID = offer1.uuid
+        chosenProduct.marketUUID = market1.uuid
 
         return ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
     }

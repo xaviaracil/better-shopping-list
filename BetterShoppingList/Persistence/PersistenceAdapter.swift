@@ -19,7 +19,6 @@ protocol PersistenceAdapter {
 
     func newList(isCurrent: Bool) -> ShoppingList
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
-    func object(forURIRepresentation url: URL) -> NSObject?
     func save() throws
 }
 
@@ -98,13 +97,6 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         }
 
         return namePredicate
-    }
-
-    func object(forURIRepresentation url: URL) -> NSObject? {
-        guard let objectId = coordinator.managedObjectID(forURIRepresentation: url) else {
-            return nil
-        }
-        return viewContext.object(with: objectId)
     }
 
     func save() throws {

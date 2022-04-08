@@ -16,8 +16,8 @@ struct ProductOffers: Hashable {
             let offer = offers[index]
             chosenProduct.price = offer.price
             chosenProduct.quantity = quantity
-            chosenProduct.marketUri = offer.market?.objectID.uriRepresentation()
-            chosenProduct.offerUri = offer.objectID.uriRepresentation()
+            chosenProduct.marketUUID = offer.market?.uuid
+            chosenProduct.offerUUID = offer.uuid
         }
         return chosenProduct
     }

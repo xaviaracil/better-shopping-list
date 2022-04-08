@@ -7,20 +7,23 @@
 
 import Foundation
 
+extension ChosenProduct {
+    var offer: Offer? {
+        let array = value(forKey: "offer") as? [Offer]
+        return array?.first
+    }
+
+    var market: Market? {
+        let array = value(forKey: "market") as? [Market]
+        return array?.first
+
+    }
+}
+
 extension Collection where Element == ChosenProduct {
     func groupedByMarket(markets: [Market]) -> [Market] {
-        let dict = Dictionary(grouping: self) {
-            $0.marketUri
-        }
-        return dict.keys
-            .filter { marketUri in
-                marketUri != nil
-            }
-            .compactMap { marketUri in
-                return markets.first { market in
-                    market.objectID.uriRepresentation() == marketUri
-                }
-            }
+        return self
+            .compactMap { $0.market }
             .sorted {
                 $0.name?.localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending
             }
@@ -28,7 +31,7 @@ extension Collection where Element == ChosenProduct {
 
     func ofMarket(market: Market) -> [Element] {
         return self.filter { product in
-            product.marketUri == market.objectID.uriRepresentation()
+            product.market == market
         }
     }
 }

@@ -20,9 +20,7 @@ class ChosenProductViewModel: ObservableObject {
         self.chosenProduct = chosenProduct
         self.quantity = chosenProduct.quantity
 
-        if let uri = chosenProduct.offerUri {
-            self.offer = shoppingAssitant.object(forURIRepresentation: uri) as? Offer
-            self.product = offer?.product
-        }
+        self.offer = chosenProduct.offer
+        self.product = self.offer?.product
     }
 }

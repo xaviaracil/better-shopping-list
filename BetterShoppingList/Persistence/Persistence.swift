@@ -112,10 +112,10 @@ struct PersistenceController {
 //            print("Error initializing CloudKit: \(error)")
 //        }
 //
-//        // load test data
-//        if withTestData {
-//            loadTestData()
-//        }
+        // load test data
+        if withTestData {
+            loadTestData()
+        }
 //
 //        #endif
     }
@@ -125,6 +125,7 @@ struct PersistenceController {
         for marketIndex in 1...3 {
             let market = Market(context: container.viewContext)
             market.name = "Market \(marketIndex)"
+            market.uuid = UUID()
             // swiftlint:disable line_length
             market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
             markets.append(market)
@@ -141,6 +142,7 @@ struct PersistenceController {
                 let offer = Offer(context: container.viewContext)
                 offer.product = product
                 offer.market = market
+                offer.uuid = UUID()
                 offer.isSpecialOffer = false
                 // prices is based on prices arrays, shifted by market index and product index
                 offer.price = Double.random(in: (0.15)...(3.00))
