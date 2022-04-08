@@ -62,4 +62,3 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         try persitenceAdapter.save()
     }
 }
-

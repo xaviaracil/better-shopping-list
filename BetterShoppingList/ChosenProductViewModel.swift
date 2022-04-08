@@ -10,7 +10,12 @@ import Foundation
 class ChosenProductViewModel: ObservableObject {
     @Published var offer: Offer?
     @Published var product: Product?
-    @Published var quantity: Int16
+    @Published var quantity: Int16 {
+        didSet {
+            chosenProduct.quantity = quantity
+            try? shoppingAssitant.save()
+        }
+    }
 
     let shoppingAssitant: ShoppingAssistant
     let chosenProduct: ChosenProduct
