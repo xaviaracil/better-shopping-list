@@ -98,10 +98,11 @@ func mockChosenProduct(name: String, price: Double, context: NSManagedObjectCont
     return product
 }
 
-func mockChosenProduct(offer: Offer, context: NSManagedObjectContext) -> ChosenProduct {
+func mockChosenProduct(offer: Offer, quantity: Int16 = 1, context: NSManagedObjectContext) -> ChosenProduct {
     let chosenProduct = ChosenProduct(context: context)
     chosenProduct.name = offer.product?.name ?? "N.A."
     chosenProduct.price = offer.price
+    chosenProduct.quantity = quantity
     chosenProduct.marketUUID = offer.market!.uuid
     chosenProduct.offerUUID = offer.uuid
     return chosenProduct

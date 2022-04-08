@@ -42,7 +42,7 @@ extension ShoppingList {
                 }
                 .compactMap { $0.price }
                 .sorted().last ?? chosenProduct.price
-            return maxPrice - chosenProduct.price
+            return (maxPrice - chosenProduct.price) * Double(chosenProduct.quantity)
         }
         return maxPrices.reduce(0.0, +)
     }
