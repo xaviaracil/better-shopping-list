@@ -100,24 +100,24 @@ struct PersistenceController {
             guard let error = error as NSError? else { return }
             fatalError("😱 \(#function): Failed to load persistent stores: \(error)")
         })
-//        // Only initialize the schema when building the app with the
-//        // Debug build configuration.
-//        #if DEBUG
-//        do {
-//            // Use the container to initialize the development schema.
-//            try container.initializeCloudKitSchema(options: [])
-//
-//        } catch {
-//            // Handle any errors.
-//            print("Error initializing CloudKit: \(error)")
-//        }
-//
+
+        // Only initialize the schema when building the app with the
+        // Debug build configuration.
+        #if DEBUG
+        do {
+            // Use the container to initialize the development schema.
+            try container.initializeCloudKitSchema(options: [])
+
+        } catch {
+            // Handle any errors.
+            print("Error initializing CloudKit: \(error)")
+        }
+        #endif
+
         // load test data
         if withTestData {
             loadTestData()
         }
-//
-//        #endif
     }
 
     fileprivate func loadTestData() {
