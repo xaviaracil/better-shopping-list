@@ -20,9 +20,6 @@ struct CurrentListView: View {
         currentList?.products as? Set<ChosenProduct>
     }
 
-    var bottomPadding: Edge.Set {
-        horizontalSizeClass == .regular && verticalSizeClass == .regular ? [.bottom] : []
-    }
     var body: some View {
         VStack {
             if verticalSizeClass == .compact {
@@ -65,7 +62,7 @@ struct CurrentListView: View {
             .labelStyle(EarnedLabelStyle())
             .font(.largeTitle)
             .foregroundColor(.accentColor)
-            .padding(bottomPadding)
+            .padding(.bottom)
         }
 
     }
