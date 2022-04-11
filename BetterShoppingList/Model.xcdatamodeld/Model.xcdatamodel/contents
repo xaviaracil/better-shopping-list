@@ -22,6 +22,7 @@
     </entity>
     <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
         <attribute name="isSpecialOffer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="marketProductId" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="products" inverseEntity="Market"/>
@@ -31,6 +32,7 @@
         </fetchedProperty>
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
+        <attribute name="brand" optional="YES" attributeType="String"/>
         <attribute name="imageUrl" optional="YES" attributeType="URI"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="product" inverseEntity="Offer"/>
@@ -64,8 +66,8 @@
     <elements>
         <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="176"/>
         <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="103"/>
-        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="146"/>
-        <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="88"/>
+        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="41"/>
+        <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="28"/>
         <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
         <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="101"/>
     </elements>
