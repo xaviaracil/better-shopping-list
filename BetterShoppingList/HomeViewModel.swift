@@ -23,6 +23,10 @@ class HomeViewModel: ObservableObject {
 
     let shoppingAssistant: ShoppingAssistant
 
+    var canSearch: Bool {
+        searchText.count > 2
+    }
+
     init(shoppingAssistant: ShoppingAssistant) {
         self.shoppingAssistant = shoppingAssistant
         productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest,

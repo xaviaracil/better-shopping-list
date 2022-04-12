@@ -29,14 +29,14 @@ struct HomeView: View {
             VStack {
                 if products.isEmpty {
                     EmptyCurrentListView(lists: savedLists)
-                        .opacity(viewModel.searchText.isEmpty ? 1.0 : 0.0)
+                        .opacity(!viewModel.canSearch ? 1.0 : 0.0)
                 } else {
-                    if viewModel.searchText.isEmpty {
+                    if !viewModel.canSearch {
                         CurrentListView()
                     }
                 }
             }
-            if !viewModel.searchText.isEmpty && !viewModel.productAdded {
+            if viewModel.canSearch && !viewModel.productAdded {
                 SearchingResultsView(text: viewModel.searchText,
                                      shoppingAssistant: viewModel.shoppingAssistant) {
                     viewModel.productAdded = true
