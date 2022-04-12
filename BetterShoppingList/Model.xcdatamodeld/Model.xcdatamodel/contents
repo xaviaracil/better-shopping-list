@@ -18,14 +18,14 @@
         <attribute name="iconUrl" optional="YES" attributeType="URI"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="market" inverseEntity="Offer"/>
+        <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="market" inverseEntity="Offer"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProductMarket" inverseName="market" inverseEntity="ProductMarket"/>
     </entity>
     <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
         <attribute name="isSpecialOffer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="marketProductId" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="products" inverseEntity="Market"/>
+        <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="offers" inverseEntity="Market"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="offers" inverseEntity="Product"/>
         <fetchedProperty name="chosenProductList" optional="YES">
             <fetchRequest name="fetchedPropertyFetchRequest" entity="ChosenProduct" predicateString="offerUUID==$FECTH_SOURCE.uuid"/>
@@ -33,9 +33,19 @@
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
         <attribute name="brand" optional="YES" attributeType="String"/>
+        <attribute name="ean" optional="YES" attributeType="String"/>
         <attribute name="imageUrl" optional="YES" attributeType="URI"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="tokenizedName" optional="YES" attributeType="String"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="product" inverseEntity="Offer"/>
+        <relationship name="productMarkets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductMarket" inverseName="product" inverseEntity="ProductMarket"/>
+    </entity>
+    <entity name="ProductMarket" representedClassName="ProductMarket" syncable="YES" codeGenerationType="class">
+        <attribute name="additionalInfo" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="products" inverseEntity="Market"/>
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="productMarkets" inverseEntity="Product"/>
     </entity>
     <entity name="ShoppingList" representedClassName="ShoppingList" syncable="YES" codeGenerationType="class">
         <attribute name="earning" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -62,12 +72,14 @@
         <memberEntity name="Market"/>
         <memberEntity name="Product"/>
         <memberEntity name="Offer"/>
+        <memberEntity name="ProductMarket"/>
     </configuration>
     <elements>
         <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="176"/>
-        <element name="Market" positionX="-3.1295166015625" positionY="-109.1812133789062" width="128" height="103"/>
-        <element name="Offer" positionX="-197.807373046875" positionY="-143.0926513671875" width="128" height="41"/>
-        <element name="Product" positionX="-406.14111328125" positionY="-128.4017333984375" width="128" height="28"/>
+        <element name="Market" positionX="16.21630859375" positionY="-109.1812133789062" width="128" height="118"/>
+        <element name="Offer" positionX="-185.5287475585938" positionY="-262.6195068359375" width="121.0392456054688" height="125"/>
+        <element name="Product" positionX="-442.247314453125" positionY="-126.1036376953125" width="128" height="134"/>
+        <element name="ProductMarket" positionX="-210.7304077148438" positionY="-51.4351806640625" width="128" height="118"/>
         <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
         <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="101"/>
     </elements>
