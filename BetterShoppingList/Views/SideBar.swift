@@ -30,6 +30,10 @@ struct SideBar: View {
                 Label("Current List", systemImage: "bag.fill")
             }
             Section(header: Label("Markets", systemImage: "cart")) {
+                NavigationLink(destination: MarketsMapView(markets: markets)) {
+                    Label("Mapa", systemImage: "map")
+                }
+
                 ForEach(markets, id: \.self) { market in
                     NavigationLink(destination: MarketLabelView(market: market)) {
                     Label(market.name ?? "N.A.", systemImage: "info.circle")
