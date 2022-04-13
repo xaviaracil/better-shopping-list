@@ -17,6 +17,7 @@ class ProductOfferViewModel {
         chosenProduct.name = product.name
         chosenProduct.price = offer.price
         chosenProduct.quantity = quantity
+        chosenProduct.isSpecialOffer = offer.isSpecialOffer
         chosenProduct.marketUUID = offer.market?.uuid
         chosenProduct.offerUUID = offer.uuid
         return chosenProduct
