@@ -8,9 +8,11 @@
 import Foundation
 
 extension Market {
-    var userMarket: UserMarket? {
-        let array = value(forKey: "userMarket") as? [UserMarket]
-        return array?.first
+    var userMarkets: [UserMarket]? {
+        value(forKey: "userMarkets") as? [UserMarket]
+    }
 
+    var userMarket: UserMarket? {
+        return userMarkets?.first
     }
 }

@@ -21,7 +21,7 @@
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="market" inverseEntity="Offer"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProductMarket" inverseName="market" inverseEntity="ProductMarket"/>
         <fetchedProperty name="userMarkets" optional="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="UserMarket" predicateString="marketUUID==$FECTH_SOURCE.uuid"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="UserMarket" predicateString="marketUUID==$FETCH_SOURCE.uuid"/>
         </fetchedProperty>
     </entity>
     <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
@@ -31,7 +31,7 @@
         <relationship name="market" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Market" inverseName="offers" inverseEntity="Market"/>
         <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="offers" inverseEntity="Product"/>
         <fetchedProperty name="chosenProductList" optional="YES">
-            <fetchRequest name="fetchedPropertyFetchRequest" entity="ChosenProduct" predicateString="offerUUID==$FECTH_SOURCE.uuid"/>
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="ChosenProduct" predicateString="offerUUID==$FETCH_SOURCE.uuid"/>
         </fetchedProperty>
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
