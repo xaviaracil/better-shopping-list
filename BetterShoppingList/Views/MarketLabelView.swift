@@ -42,5 +42,6 @@ struct MarketLabel: ViewModifier {
 struct MarketLabelView_Previews: PreviewProvider {
     static var previews: some View {
         MarketLabelView()
+            .border(.foreground, width: 30.0)
     }
 }

@@ -22,6 +22,7 @@ struct MarketRowView: View {
                     .symbolVariant(market.userMarket?.isFavorite ?? false ? .fill : .none)
             }
         }
+        .padding([.horizontal, .vertical], 4.0)
         .onTapGesture {
             if let market = market {
                 shoppingAssitant.toogleFavourite(market: market)
@@ -40,6 +41,7 @@ struct MarketRowView_Previews: PreviewProvider {
 
         MarketRowView(market: mockMarket())
             .environmentObject(shoppingAssistant)
+            .border(.foreground, width: 1.0)
     }
 
     static func mockMarket() -> Market {
