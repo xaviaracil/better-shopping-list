@@ -27,14 +27,33 @@ struct ProductOfferView: View {
 
     var body: some View {
         HStack {
-            // swiftlint:disable multiple_closures_with_trailing_closure
-            AsyncImage(url: product.imageUrl) { image in
-                image.resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
+            GeometryReader { geometry in
+                ZStack(alignment: .topTrailing) {
+                    // swiftlint:disable multiple_closures_with_trailing_closure
+                    AsyncImage(url: product.imageUrl) { image in
+                        image.resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    // mark special offers
+                    if let _ = chosenOffer?.isSpecialOffer {
+                        ForEach(0..<4) { index in
+                            Rectangle()
+                                .fill(.red)
+                                .frame(width: geometry.size.width * 0.2,
+                                       height: geometry.size.width * 0.2)
+                                .rotationEffect(.degrees(Double(index) * 60.0))
+                        }.overlay {
+                            Text("!")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
             }
             .frame(width: 90, height: 90)
+
 
             VStack(alignment: .leading) {
                 Text(product.name ?? "No Name")
@@ -97,6 +116,7 @@ extension View {
 struct ProductOfferView_Previews: PreviewProvider {
     static var previews: some View {
         ProductOfferView(product: mockProduct(), added: .constant(false))
+            .border(.foreground, width: 1.0)
     }
 
     static func mockProduct() -> Product {
