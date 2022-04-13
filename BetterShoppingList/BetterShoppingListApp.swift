@@ -12,6 +12,7 @@ struct BetterShoppingListApp: App {
     let persistenceController = PersistenceController.shared
 
     @StateObject var shoppingAssitant: ShoppingAssistant
+    @Environment(\.scenePhase) var scenePhase
 
     init() {
         let container = persistenceController.container
@@ -25,6 +26,9 @@ struct BetterShoppingListApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(shoppingAssitant)
+        }.onChange(of: scenePhase) { _ in
+            // save when entering background, etc
+            try? persistenceController.container.viewContext.save()
         }
     }
 }
