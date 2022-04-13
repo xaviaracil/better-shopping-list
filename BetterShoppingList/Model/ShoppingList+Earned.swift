@@ -13,6 +13,9 @@ extension ShoppingList {
         return (self.products as? Set<ChosenProduct>)?.compactMap { $0.market }
     }
 
+    /// Amount of money earned in the current list. It depends on the number of markets in the list:
+    /// - If there's only one market, earned is calculated with all markets in the **app**
+    /// - If there's more than one market, earned is calculated with the markets in the **current list**
     var earned: Double {
         guard let products = products else {
             return 0.0

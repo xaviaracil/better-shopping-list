@@ -9,17 +9,46 @@ import SwiftUI
 
 struct HomeView: View {
     @FetchRequest
-    private var products: FetchedResults<ChosenProduct>
+    private var currentListProducts: FetchedResults<ChosenProduct>
     @FetchRequest
     private var savedLists: FetchedResults<ShoppingList>
+
+    @FetchRequest(sortDescriptors: [SortDescriptor(\Product.name)])
+    private var products: FetchedResults<Product>
 
     @ObservedObject
     private var viewModel: HomeViewModel
 
+    var canSearch: Bool {
+        return searchText.count > 2
+    }
+
+    @State private var searchText = ""
+    var query: Binding<String> {
+        Binding {
+            searchText
+        } set: { newValue in
+            searchText = newValue
+            productAdded = false
+            products.nsPredicate = viewModel.productQueryPredicate(for: newValue)
+        }
+    }
+
+    @State private var productAdded = false
+    var added: Binding<Bool> {
+        Binding {
+            productAdded
+        } set: { newValue in
+            if newValue {
+                searchText = ""
+            }
+        }
+    }
+
     init(shoppingAssistant: ShoppingAssistant) {
         let auxViewModel = HomeViewModel(shoppingAssistant: shoppingAssistant)
 
-        _products = auxViewModel.productsFetchRequest
+        _currentListProducts = auxViewModel.productsFetchRequest
         _savedLists = auxViewModel.savedListsFetchRequest
         viewModel = auxViewModel
     }
@@ -27,25 +56,21 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             VStack {
-                if products.isEmpty {
+                if currentListProducts.isEmpty {
                     EmptyCurrentListView(lists: savedLists)
-                        .opacity(!viewModel.canSearch ? 1.0 : 0.0)
+                        .opacity(!canSearch ? 1.0 : 0.0)
                 } else {
-                    if !viewModel.canSearch {
+                    if !canSearch {
                         CurrentListView()
                     }
                 }
             }
-            if viewModel.canSearch && !viewModel.productAdded {
-                SearchingResultsView(text: viewModel.searchText,
-                                     shoppingAssistant: viewModel.shoppingAssistant) {
-                    viewModel.productAdded = true
-                }
-                .transition(.move(edge: .top))
+            if canSearch {
+                SearchingResultsView(products: products, added: added)
             }
         }
         .navigationBarTitle("", displayMode: .inline)
-        .searchable(text: $viewModel.searchText,
+        .searchable(text: query,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search Products Here")
     }

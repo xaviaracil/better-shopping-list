@@ -9,23 +9,10 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var productAdded: Bool = false {
-        didSet {
-            if productAdded {
-                searchText = ""
-                productAdded = false
-            }
-        }
-    }
-    @Published var searchText = ""
     @Published var productsFetchRequest: FetchRequest<ChosenProduct>
     @Published var savedListsFetchRequest: FetchRequest<ShoppingList>
 
     let shoppingAssistant: ShoppingAssistant
-
-    var canSearch: Bool {
-        searchText.count > 2
-    }
 
     init(shoppingAssistant: ShoppingAssistant) {
         self.shoppingAssistant = shoppingAssistant
@@ -33,5 +20,10 @@ class HomeViewModel: ObservableObject {
                                             animation: .default)
         savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
                                               animation: .default)
+    }
+
+    func productQueryPredicate(for text: String) -> NSPredicate? {
+        print("🖥 predicate for \(text)")
+        return shoppingAssistant.productNamePredicate(for: text)
     }
 }

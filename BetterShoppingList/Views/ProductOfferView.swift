@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductOfferView: View {
-    var productOffers: ProductOffers
+    var product: Product
     @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
     @State var currentOfferIndex: Int = 0
@@ -16,14 +16,19 @@ struct ProductOfferView: View {
 
     var onAdded: () -> Void = {}
 
-    var bestOffer: Offer? {
-        return productOffers.offers?[currentOfferIndex]
+    var chosenOffer: Offer? {
+        return product.sorteredOffers?.first// [currentOfferIndex]
     }
+
+    var viewModel = ProductOfferViewModel()
+
+    @Binding
+    var added: Bool
 
     var body: some View {
         HStack {
             // swiftlint:disable multiple_closures_with_trailing_closure
-            AsyncImage(url: productOffers.product.imageUrl) { image in
+            AsyncImage(url: product.imageUrl) { image in
                 image.resizable()
                     .scaledToFit()
             } placeholder: {
@@ -32,11 +37,11 @@ struct ProductOfferView: View {
             .frame(width: 90, height: 90)
 
             VStack(alignment: .leading) {
-                Text(productOffers.product.name ?? "No Name")
+                Text(product.name ?? "No Name")
                     .productTitle()
-                Text(bestOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
+                Text(chosenOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
                     .bestPrice()
-                MarketLabelView(market: bestOffer?.market)
+                MarketLabelView(market: chosenOffer?.market)
                 Stepper(value: $quantity) {
                     Text("Quantity: \(quantity)")
 
@@ -47,9 +52,11 @@ struct ProductOfferView: View {
             Spacer()
 
             Button(action: {
-                shoppingAssistant.addProductToCurrentList(
-                    productOffers.chooseOffer(at: currentOfferIndex, quantity: quantity))
-                onAdded()
+                if let chosenOffer = chosenOffer {
+                    let chosenProduct = viewModel.choseProduct(product: product, offer: chosenOffer, quantity: quantity)
+                    shoppingAssistant.addProductToCurrentList(chosenProduct)
+                    added = true
+                }
             }) {
                 Label("Add to basket", systemImage: "cart.circle")
                     .font(.system(size: 48))
@@ -89,12 +96,10 @@ extension View {
 
 struct ProductOfferView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductOfferView(productOffers: mockOffer()) {
-            print("Product Added")
-        }
+        ProductOfferView(product: mockProduct(), added: .constant(false))
     }
 
-    static func mockOffer() -> ProductOffers {
+    static func mockProduct() -> Product {
         let context = PersistenceController.preview.container.viewContext
 
         let market1 = Market(context: context)
@@ -118,6 +123,6 @@ struct ProductOfferView_Previews: PreviewProvider {
         offer2.market = market2
         offer2.product = product
 
-        return ProductOffers(product: product, offers: [offer1, offer2])
+        return product
     }
 }

@@ -19,6 +19,7 @@ protocol PersistenceAdapter {
 
     func newList(isCurrent: Bool) -> ShoppingList
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
+    func productNamePredicate(for text: String) -> NSPredicate?
     func save() throws
 }
 
@@ -72,8 +73,9 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
 
     func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
         let fetchRequest = Offer.fetchRequest()
-        fetchRequest.predicate = predicateFor(text: text, markets: markets)
+        fetchRequest.predicate = offersNamePredicate(for: text, markets: markets)
         fetchRequest.relationshipKeyPathsForPrefetching = ["market", "product"]
+        fetchRequest.fetchBatchSize = 100
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Offer.product?.name, ascending: true), // by product
             NSSortDescriptor(keyPath: \Offer.price, ascending: true) // then by price
@@ -82,12 +84,14 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
 
     }
 
-    private func predicateFor(text: String, markets: [String]) -> NSPredicate {
+    func offersNamePredicate(for text: String, markets: [String] = []) -> NSPredicate {
         let words = text.components(separatedBy: " ")
         var textPredicates: [NSPredicate] = []
         for word in words {
-            let predicate = NSPredicate(format: "product.name CONTAINS[cd] %@", word)
-            textPredicates.append(predicate)
+            if !word.isEmpty && !(word == " ") {
+                let predicate = NSPredicate(format: "product.name CONTAINS[cd] %@", word)
+                textPredicates.append(predicate)
+            }
         }
         let namePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
 
@@ -97,6 +101,21 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         }
 
         return namePredicate
+    }
+
+    func productNamePredicate(for text: String) -> NSPredicate? {
+        guard !text.isEmpty else {
+            return nil
+        }
+        let words = text.components(separatedBy: " ")
+        var textPredicates: [NSPredicate] = []
+        for word in words {
+            if !word.isEmpty && !(word == " ") {
+                let predicate = NSPredicate(format: "name CONTAINS[cd] %@", word)
+                textPredicates.append(predicate)
+            }
+        }
+        return NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
     }
 
     func save() throws {

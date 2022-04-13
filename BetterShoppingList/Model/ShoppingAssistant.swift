@@ -45,6 +45,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         return persitenceAdapter.offersFetchRequest(productName: text, in: markets)
     }
 
+    func productNamePredicate(for text: String) -> NSPredicate? {
+        return persitenceAdapter.productNamePredicate(for: text)
+    }
+
     func addProductToCurrentList(_ product: ChosenProduct) {
         if currentList == nil {
             currentList = newList(isCurrent: true)

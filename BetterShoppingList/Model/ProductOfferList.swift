@@ -1,4 +1,6 @@
 import Algorithms
+import OrderedCollections
+import Foundation
 
 struct ProductOffers: Hashable {
     let product: Product
@@ -33,5 +35,11 @@ extension Collection where Self.Element == Offer {
             ProductOffers(product: product!, offers: Array(offers))
         }
         return list
+    }
+}
+
+extension Product {
+    var sorteredOffers: [Offer]? {
+        self.offers?.sortedArray(using: [NSSortDescriptor(keyPath: \Offer.price, ascending: true)]) as? [Offer]
     }
 }
