@@ -25,10 +25,10 @@
 		470D066827FE2B00002A5EBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 470D066627FE2B00002A5EBA /* Localizable.strings */; };
 		4737B8D72806D0B5009B9E98 /* ProductOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */; };
 		4737B8DB2806DC91009B9E98 /* MarketsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */; };
+		4737B8DD2806DE75009B9E98 /* SearchingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8DC2806DE75009B9E98 /* SearchingResultsView.swift */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
 		477EC55E27F8D89000A589FD /* CurrentListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC55D27F8D89000A589FD /* CurrentListTests.swift */; };
 		477EC56227F99B1100A589FD /* SearchSuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */; };
-		477EC56427F99D8100A589FD /* SearchingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56327F99D8100A589FD /* SearchingResultsView.swift */; };
 		477EC56627F9D26600A589FD /* SearchResultsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56527F9D26600A589FD /* SearchResultsUITests.swift */; };
 		477EC56D27F9E70100A589FD /* ProductOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477EC56C27F9E70100A589FD /* ProductOfferView.swift */; };
 		477F77DD27F8A505006F5902 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77DC27F8A505006F5902 /* SplashView.swift */; };
@@ -42,6 +42,9 @@
 		47941FE727FF7A5100F0D5AF /* ChosenProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */; };
 		47941FEA27FF8DE000F0D5AF /* CurrentListMarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */; };
 		47941FEC27FF8E0D00F0D5AF /* CurrentListMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */; };
+		479554162806E21700BD23F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554152806E21700BD23F3 /* LocationManager.swift */; };
+		479554182806E39400BD23F3 /* MarketMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554172806E39400BD23F3 /* MarketMapViewModel.swift */; };
+		4795541A28070C0500BD23F3 /* MarketSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541928070C0500BD23F3 /* MarketSearchManager.swift */; };
 		47A0D70528008285008C2663 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 47A0D70428008285008C2663 /* .swiftlint.yml */; };
 		47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */; };
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
@@ -97,10 +100,10 @@
 		470D066A27FE302C002A5EBA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferViewModel.swift; sourceTree = "<group>"; };
 		4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsMapView.swift; sourceTree = "<group>"; };
+		4737B8DC2806DE75009B9E98 /* SearchingResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchingResultsView.swift; path = ../../../../../../../Desktop/SearchingResultsView.swift; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
 		477EC55D27F8D89000A589FD /* CurrentListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentListTests.swift; sourceTree = "<group>"; };
 		477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsView.swift; sourceTree = "<group>"; };
-		477EC56327F99D8100A589FD /* SearchingResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchingResultsView.swift; path = "BetterShoppingList/Views/New Group/SearchingResultsView.swift"; sourceTree = SOURCE_ROOT; };
 		477EC56527F9D26600A589FD /* SearchResultsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsUITests.swift; sourceTree = "<group>"; };
 		477EC56C27F9E70100A589FD /* ProductOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferView.swift; sourceTree = "<group>"; };
 		477F77DC27F8A505006F5902 /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SplashView.swift; path = BetterShoppingList/Views/SplashView.swift; sourceTree = SOURCE_ROOT; };
@@ -114,6 +117,9 @@
 		47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductViewModel.swift; sourceTree = "<group>"; };
 		47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketListView.swift; sourceTree = "<group>"; };
 		47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketView.swift; sourceTree = "<group>"; };
+		479554152806E21700BD23F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		479554172806E39400BD23F3 /* MarketMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketMapViewModel.swift; sourceTree = "<group>"; };
+		4795541928070C0500BD23F3 /* MarketSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSearchManager.swift; sourceTree = "<group>"; };
 		47A0D70428008285008C2663 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Earned.swift"; sourceTree = "<group>"; };
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
@@ -238,8 +244,8 @@
 		4737B8D82806DBDF009B9E98 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				4737B8DC2806DE75009B9E98 /* SearchingResultsView.swift */,
 				477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */,
-				477EC56327F99D8100A589FD /* SearchingResultsView.swift */,
 				477EC56C27F9E70100A589FD /* ProductOfferView.swift */,
 			);
 			path = Search;
@@ -249,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */,
+				479554172806E39400BD23F3 /* MarketMapViewModel.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -314,6 +321,8 @@
 				47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */,
 				47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */,
 				47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */,
+				479554152806E21700BD23F3 /* LocationManager.swift */,
+				4795541928070C0500BD23F3 /* MarketSearchManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,18 +512,21 @@
 			files = (
 				47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */,
 				470A76B828003F8A00328EB2 /* HomeView.swift in Sources */,
+				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
 				477F77E027F8A84A006F5902 /* ShoppingListView.swift in Sources */,
 				47941FE327FF757900F0D5AF /* ChosenProductView.swift in Sources */,
-				477EC56427F99D8100A589FD /* SearchingResultsView.swift in Sources */,
 				477F77DD27F8A505006F5902 /* SplashView.swift in Sources */,
 				47941FE727FF7A5100F0D5AF /* ChosenProductViewModel.swift in Sources */,
 				47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */,
 				477EC56227F99B1100A589FD /* SearchSuggestionsView.swift in Sources */,
+				4795541A28070C0500BD23F3 /* MarketSearchManager.swift in Sources */,
+				4737B8DD2806DE75009B9E98 /* SearchingResultsView.swift in Sources */,
 				470C391A27F60695009C1967 /* Persistence.swift in Sources */,
 				470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */,
 				477EC56D27F9E70100A589FD /* ProductOfferView.swift in Sources */,
 				47941FEA27FF8DE000F0D5AF /* CurrentListMarketListView.swift in Sources */,
 				47941FEC27FF8E0D00F0D5AF /* CurrentListMarketView.swift in Sources */,
+				479554182806E39400BD23F3 /* MarketMapViewModel.swift in Sources */,
 				47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */,
 				470C391327F60694009C1967 /* ContentView.swift in Sources */,
 				477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */,
@@ -719,6 +731,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterShoppingList/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location services, please";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -750,6 +763,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterShoppingList/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location services, please";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
