@@ -45,6 +45,8 @@
 		479554162806E21700BD23F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554152806E21700BD23F3 /* LocationManager.swift */; };
 		479554182806E39400BD23F3 /* MarketMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554172806E39400BD23F3 /* MarketMapViewModel.swift */; };
 		4795541A28070C0500BD23F3 /* MarketSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541928070C0500BD23F3 /* MarketSearchManager.swift */; };
+		4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541B2807344000BD23F3 /* Market+usermarkets.swift */; };
+		4795542028073DAA00BD23F3 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541F28073DAA00BD23F3 /* MarketRowView.swift */; };
 		47A0D70528008285008C2663 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 47A0D70428008285008C2663 /* .swiftlint.yml */; };
 		47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */; };
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
@@ -120,6 +122,8 @@
 		479554152806E21700BD23F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		479554172806E39400BD23F3 /* MarketMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketMapViewModel.swift; sourceTree = "<group>"; };
 		4795541928070C0500BD23F3 /* MarketSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSearchManager.swift; sourceTree = "<group>"; };
+		4795541B2807344000BD23F3 /* Market+usermarkets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Market+usermarkets.swift"; sourceTree = "<group>"; };
+		4795541F28073DAA00BD23F3 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
 		47A0D70428008285008C2663 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Earned.swift"; sourceTree = "<group>"; };
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 			children = (
 				4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */,
 				479554172806E39400BD23F3 /* MarketMapViewModel.swift */,
+				4795541F28073DAA00BD23F3 /* MarketRowView.swift */,
 			);
 			path = Markets;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */,
 				479554152806E21700BD23F3 /* LocationManager.swift */,
 				4795541928070C0500BD23F3 /* MarketSearchManager.swift */,
+				4795541B2807344000BD23F3 /* Market+usermarkets.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */,
 				47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */,
 				470A76B828003F8A00328EB2 /* HomeView.swift in Sources */,
 				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
@@ -540,6 +547,7 @@
 				474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */,
 				470A76BA28003FC100328EB2 /* HomeViewModel.swift in Sources */,
 				47941FE127FF74C200F0D5AF /* ListDetailView.swift in Sources */,
+				4795542028073DAA00BD23F3 /* MarketRowView.swift in Sources */,
 				47CC13F927FCD7D200839DA5 /* ChosenProduct+grouping.swift in Sources */,
 				470A76B628003D4300328EB2 /* SidebarViewModel.swift in Sources */,
 			);

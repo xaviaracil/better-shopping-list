@@ -10,20 +10,19 @@ import MapKit
 import Combine
 
 class MarketSearchManager: NSObject {
-    private let searchRequest = MKLocalSearch.Request()
+
+    struct Constants {
+        static let DISTANCE: CLLocationDistance = 5000.0
+    }
 
     let resultsPublisher =
     PassthroughSubject<[MKMapItem], Never>()
 
-    override init() {
-        super.init()
-        self.searchRequest.resultTypes = .pointOfInterest
-        self.searchRequest.naturalLanguageQuery = "Supermercat"
-    }
-
     func search(region: MKCoordinateRegion) {
-        self.searchRequest.region = region
-        let localSearch = MKLocalSearch(request: self.searchRequest)
+
+        let searchRequest = MKLocalPointsOfInterestRequest(center: region.center, radius: Constants.DISTANCE)
+        searchRequest.pointOfInterestFilter = MKPointOfInterestFilter(including: [.foodMarket, .store])
+        let localSearch = MKLocalSearch(request: searchRequest)
         print("🖥 searching...")
         localSearch.start { [unowned self] (response, error) in
             if let error = error as NSError? {

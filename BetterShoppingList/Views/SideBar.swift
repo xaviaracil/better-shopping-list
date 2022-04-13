@@ -35,8 +35,8 @@ struct SideBar: View {
                 }
 
                 ForEach(markets, id: \.self) { market in
-                    NavigationLink(destination: MarketLabelView(market: market)) {
-                    Label(market.name ?? "N.A.", systemImage: "info.circle")
+                    NavigationLink(destination: MarketRowView(market: market)) {
+                        Label(market.name ?? "N.A.", systemImage: "info.circle")
                     }
                 }
             }

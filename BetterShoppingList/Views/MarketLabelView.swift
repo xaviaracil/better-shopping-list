@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MarketLabelView: View {
     var market: Market?
+    var defaultString = "N.A."
     var body: some View {
         HStack {
             // swiftlint:disable multiple_closures_with_trailing_closure
@@ -16,10 +17,10 @@ struct MarketLabelView: View {
                 logo.resizable()
                     .scaledToFit()
             } placeholder: {
-                ProgressView()
+                Image(systemName: "cart.circle")
             }
             .frame(height: 16.0)
-            Text(market?.name ?? "N.A")
+            Text(market?.name ?? defaultString)
                 .marketLabel()
         }
     }

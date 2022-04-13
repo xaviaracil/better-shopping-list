@@ -95,7 +95,9 @@ class MarketsMapViewModel: ObservableObject {
         marketSearchManager.resultsPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .removeDuplicates()
-            .assign(to: \.items, on: self)
+            .sink {
+                self.items.append(contentsOf: $0)
+            }
             .store(in: &cancellableSet)
 
         regionPublisher

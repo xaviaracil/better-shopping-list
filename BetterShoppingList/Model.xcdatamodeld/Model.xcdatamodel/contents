@@ -20,6 +20,9 @@
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="offers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Offer" inverseName="market" inverseEntity="Offer"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ProductMarket" inverseName="market" inverseEntity="ProductMarket"/>
+        <fetchedProperty name="userMarkets" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="UserMarket" predicateString="marketUUID==$FECTH_SOURCE.uuid"/>
+        </fetchedProperty>
     </entity>
     <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
         <attribute name="isSpecialOffer" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -76,7 +79,7 @@
     </configuration>
     <elements>
         <element name="ChosenProduct" positionX="-198.783935546875" positionY="78.83563232421875" width="128" height="176"/>
-        <element name="Market" positionX="16.21630859375" positionY="-109.1812133789062" width="128" height="118"/>
+        <element name="Market" positionX="16.21630859375" positionY="-109.1812133789062" width="128" height="125"/>
         <element name="Offer" positionX="-185.5287475585938" positionY="-262.6195068359375" width="121.0392456054688" height="125"/>
         <element name="Product" positionX="-442.247314453125" positionY="-126.1036376953125" width="128" height="134"/>
         <element name="ProductMarket" positionX="-210.7304077148438" positionY="-51.4351806640625" width="128" height="118"/>

@@ -62,6 +62,18 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         }
     }
 
+    public func toogleFavourite(market: Market) {
+        var userMarket = market.userMarket
+        if userMarket == nil {
+            userMarket = UserMarket(context: market.managedObjectContext!)
+            userMarket?.marketUUID = market.uuid
+        }
+        guard let userMarket = userMarket else {
+            return
+        }
+        userMarket.isFavorite.toggle()
+    }
+
     func save() throws {
         try persitenceAdapter.save()
     }
