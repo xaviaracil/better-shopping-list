@@ -60,6 +60,7 @@
 		47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */; };
 		47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
 		47FCCA822807691400D84107 /* SearchingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCCA812807691400D84107 /* SearchingResultsView.swift */; };
+		47FCCA862807751700D84107 /* ProductImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCCA852807751700D84107 /* ProductImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssistant.swift; sourceTree = "<group>"; };
 		47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceAdapter.swift; sourceTree = "<group>"; };
 		47FCCA812807691400D84107 /* SearchingResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchingResultsView.swift; sourceTree = "<group>"; };
+		47FCCA852807751700D84107 /* ProductImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 				477F77DF27F8A849006F5902 /* ShoppingListView.swift */,
 				470A76B328003C2D00328EB2 /* SideBar.swift */,
 				477F77DC27F8A505006F5902 /* SplashView.swift */,
+				47FCCA852807751700D84107 /* ProductImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 			files = (
 				4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */,
 				47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */,
+				47FCCA862807751700D84107 /* ProductImageView.swift in Sources */,
 				470A76B828003F8A00328EB2 /* HomeView.swift in Sources */,
 				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
 				477F77E027F8A84A006F5902 /* ShoppingListView.swift in Sources */,

@@ -17,13 +17,7 @@ struct ChosenProductView: View {
 
     var body: some View {
         HStack {
-            // swiftlint:disable multiple_closures_with_trailing_closure
-            AsyncImage(url: viewModel.product?.imageUrl) { image in
-                image.resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
-            }
+            ProductImageView(product: viewModel.product, isSpecialOffer: viewModel.chosenProduct.isSpecialOffer)
             .frame(width: 90, height: 90)
 
             VStack(alignment: .leading) {
@@ -88,6 +82,7 @@ struct ListDetailProductView_Previews: PreviewProvider {
         let chosenProduct = ChosenProduct(context: viewContext)
         chosenProduct.name = "Producte"
         chosenProduct.price = 1.1
+        chosenProduct.isSpecialOffer = true
         chosenProduct.offerUUID = offer1.uuid
         chosenProduct.marketUUID = market1.uuid
 
