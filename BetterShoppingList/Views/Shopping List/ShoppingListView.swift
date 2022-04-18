@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CurrentListView: View {
+struct ShoppingListView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var shoppingList: ShoppingList?
@@ -104,8 +104,8 @@ struct CurrentListView_Previews: PreviewProvider {
         shoppingAssistant.addProductToCurrentList(chosenProduct)
 
         return Group {
-            CurrentListView(shoppingList: shoppingAssistant.currentList)
-            CurrentListView(shoppingList: shoppingAssistant.currentList)
+            ShoppingListView(shoppingList: shoppingAssistant.currentList)
+            ShoppingListView(shoppingList: shoppingAssistant.currentList)
                 .previewInterfaceOrientation(.landscapeRight)
         }
     }
