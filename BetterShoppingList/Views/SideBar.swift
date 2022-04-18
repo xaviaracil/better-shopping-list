@@ -11,6 +11,9 @@ struct SideBar: View {
     @FetchRequest
     private var markets: FetchedResults<Market>
 
+    @SectionedFetchRequest
+    private var shoppingLists: SectionedFetchResults<Bool, ShoppingList>
+
     @ObservedObject
     private var viewModel: SidebarViewModel
 
@@ -19,6 +22,7 @@ struct SideBar: View {
     init(shoppingAssistant: ShoppingAssistant, selectedItem: Binding<String?>) {
         let auxViewModel = SidebarViewModel(shoppingAssistant: shoppingAssistant)
         _markets = auxViewModel.marketsFetchRequest
+        _shoppingLists = auxViewModel.shoppingListFetchRequest
         viewModel = auxViewModel
         _selectedItem = selectedItem
     }
@@ -29,6 +33,17 @@ struct SideBar: View {
             NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant), tag: "Current", selection: $selectedItem) {
                 Label("Current List", systemImage: "bag.fill")
             }
+
+            ForEach(shoppingLists) { section in
+                Section(header: Label(section.id ? "Favorites" : "All", systemImage: section.id ? "star" : "bag") ) {
+                    ForEach(section) { shoppingList in
+                        NavigationLink(destination: ShoppingListView(shoppingList: shoppingList)) {
+                            Text(shoppingList.name ?? "No Name")
+                        }
+                    }
+                }
+            }
+
             Section(header: Label("Markets", systemImage: "cart")) {
                 NavigationLink(destination: MarketsMapView(markets: markets)) {
                     Label("Mapa", systemImage: "map")

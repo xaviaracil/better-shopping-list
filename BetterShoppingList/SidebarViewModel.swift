@@ -13,11 +13,17 @@ class SidebarViewModel: ObservableObject {
     @Published
     var marketsFetchRequest: FetchRequest<Market>
 
+    @Published
+    var shoppingListFetchRequest: SectionedFetchRequest<Bool, ShoppingList>
+
     let shoppingAssistant: ShoppingAssistant
 
     init(shoppingAssistant: ShoppingAssistant) {
         self.shoppingAssistant = shoppingAssistant
         marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
                                            animation: .default)
+        shoppingListFetchRequest = SectionedFetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
+                                                         sectionIdentifier: \.isFavorite,
+                                                         animation: .default)
     }
 }
