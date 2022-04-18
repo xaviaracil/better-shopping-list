@@ -77,7 +77,7 @@ where Data: RandomAccessCollection,
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(lists, id: \.objectID) { list in
-                        ShoppingListView(list: list)
+                        ShoppingListButtonView(list: list)
                     }
                 }
             }

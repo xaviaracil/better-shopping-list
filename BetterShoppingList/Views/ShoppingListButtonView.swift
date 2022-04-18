@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShoppingListView: View {
+struct ShoppingListButtonView: View {
     var list: ShoppingList
 
     var body: some View {
@@ -32,7 +32,7 @@ struct ShoppingListLabelStyle: LabelStyle {
         }
     }
 }
-struct ShoppingListView_Previews: PreviewProvider {
+struct ShoppingListButtonView_Previews: PreviewProvider {
     static var previews: some View {
         let container = PersistenceController.preview.container
         let context = container.viewContext
@@ -40,8 +40,8 @@ struct ShoppingListView_Previews: PreviewProvider {
                                                            coordinator: container.persistentStoreCoordinator)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
         Group {
-            ShoppingListView(list: lists!.first!)
-            ShoppingListView(list: lists!.first!)
+            ShoppingListButtonView(list: lists!.first!)
+            ShoppingListButtonView(list: lists!.first!)
 .previewInterfaceOrientation(.landscapeLeft)
         }
     }
