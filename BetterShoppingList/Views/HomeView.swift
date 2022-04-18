@@ -61,7 +61,7 @@ struct HomeView: View {
                         .opacity(!canSearch ? 1.0 : 0.0)
                 } else {
                     if !canSearch {
-                        CurrentListView()
+                        CurrentListView(shoppingList: viewModel.currentList)
                     }
                 }
             }
