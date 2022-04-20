@@ -74,6 +74,20 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         userMarket.isFavorite.toggle()
     }
 
+    public func saveList(name: String) -> ShoppingList {
+        let newList = currentList!
+        newList.isCurrent = false
+        newList.name = name
+        do {
+            try save()
+            currentList = persitenceAdapter.currentList
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        return newList
+    }
+
     func save() throws {
         try persitenceAdapter.save()
     }

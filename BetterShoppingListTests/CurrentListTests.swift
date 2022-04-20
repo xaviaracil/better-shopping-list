@@ -163,4 +163,39 @@ final class CurrentListTests: XCTestCase {
         let earnedAnotherProduct = (anoherProductAnotherOffer.price - anotherOffer.price) * Double(anotherProduct.quantity)
         XCTAssertEqual(earnedProduct + earnedAnotherProduct, earned)
     }
+
+    // MARK: - save list
+    func test_Given_CurrentList_When_Saving_Then_TheListIsSaved() throws {
+        // given a current list with some products
+        shoppingAssistant.addProductToCurrentList(mockChosenProduct(name: "Product 1", price: 1.50, context: context))
+        shoppingAssistant.addProductToCurrentList(mockChosenProduct(name: "Product 2", price: 2.50, context: context))
+
+        let earned = shoppingAssistant.currentList?.earned
+        let productCount = shoppingAssistant.currentList?.products?.count
+
+        // when asking for products of the current list
+        let savedLists = try context.fetch(shoppingAssistant.savedListsFetchRequest)
+
+        try context.save()
+
+        // when saved
+        let savedList = shoppingAssistant.saveList(name: "saved list")
+
+        let newSavedLists = try context.fetch(shoppingAssistant.savedListsFetchRequest)
+
+        // then the list is no longer the current
+        XCTAssertEqual(savedList.name, "saved list")
+        XCTAssertNotNil(savedList.timestamp)
+        XCTAssertFalse(savedList.isCurrent)
+
+        // and the saved list has the offers of the current list
+        XCTAssertEqual(savedList.products?.count, productCount)
+
+        // and the list of shopping list has been increased
+        XCTAssertEqual(savedList.earning, earned)
+        XCTAssertEqual(savedLists.count + 1, newSavedLists.count)
+
+        // and the current list is now empty
+        XCTAssertNil(shoppingAssistant.currentList)
+    }
 }
