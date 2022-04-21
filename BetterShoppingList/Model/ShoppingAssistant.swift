@@ -41,6 +41,46 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         persitenceAdapter.newList(isCurrent: isCurrent)
     }
 
+    ///
+    /// Creates a new current list from another list. The new list contains the same products than the original list,
+    /// with the best offers.
+    /// - Parameters:
+    ///     - from: The list to copy the products from
+    func newList(from list: ShoppingList) {
+        let newList = persitenceAdapter.newList(isCurrent: true)
+        if let products = list.products {
+            // copy offers from list to the new list
+            for chosenProduct in products {
+                if let chosenProduct = chosenProduct as? ChosenProduct,
+                   let product = chosenProduct.offer?.product {
+                    // search best offer for product
+                    let bestOffer = product.sorteredOffers?.first ?? chosenProduct.offer!
+
+                    var newChosenProduct: ChosenProduct
+                    if let managedObjectContext = chosenProduct.managedObjectContext {
+                        newChosenProduct = ChosenProduct(context: managedObjectContext)
+                    } else {
+                        newChosenProduct = ChosenProduct()
+                    }
+                    newChosenProduct.name = chosenProduct.name
+                    newChosenProduct.price = bestOffer.price
+                    newChosenProduct.quantity = chosenProduct.quantity
+                    newChosenProduct.isSpecialOffer = bestOffer.isSpecialOffer
+                    newChosenProduct.marketUUID = bestOffer.market?.uuid
+                    newChosenProduct.offerUUID = bestOffer.uuid
+                    newList.addToProducts(newChosenProduct)
+                }
+            }
+        }
+        do {
+            try save()
+            currentList = persitenceAdapter.currentList
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+
     func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
         return persitenceAdapter.offersFetchRequest(productName: text, in: markets)
     }
@@ -74,6 +114,11 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         userMarket.isFavorite.toggle()
     }
 
+    ///
+    /// Saves the list for further user. The list is no longer the current one
+    /// - Parameters:
+    ///     - name: The name which of the saved list
+    /// - Returns: the saved list
     public func saveList(name: String) -> ShoppingList {
         let newList = currentList!
         newList.isCurrent = false
