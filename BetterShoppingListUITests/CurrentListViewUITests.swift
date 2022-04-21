@@ -18,6 +18,12 @@ class CurrentListViewUITests: XCTestCase {
 
         // UI tests must launch the application that they test.
         app = launchApp()
+
+        let searchField = app.searchFields.element
+        searchField.tap()
+        searchField.typeText("Cervesa Damm")
+
+        sleep(1)
     }
 
     override func tearDownWithError() throws {
@@ -27,11 +33,6 @@ class CurrentListViewUITests: XCTestCase {
     func testChooseProduct() throws {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let searchField = app.searchFields.element
-        searchField.tap()
-        searchField.typeText("Cervesa Damm")
-
-        sleep(1)
 
         let market = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH \"Market\"")).firstMatch
         XCTAssertNotNil(market)
@@ -51,6 +52,28 @@ class CurrentListViewUITests: XCTestCase {
 //        XCTAssertTrue(market1.waitForExistence(timeout: 5))
         XCTAssertTrue(marketNumber.waitForExistence(timeout: 5))
         XCTAssertEqual("1", marketNumber.value as? String)
+
+    }
+
+    func testDisplayList() throws {
+        let market = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH \"Market\"")).firstMatch
+        XCTAssertNotNil(market)
+        let label = market.label
+
+        let estrellaDammAddButton = app.buttons["Add to basket"].firstMatch
+        estrellaDammAddButton.tap()
+
+        sleep(1)
+
+        let listButton = app.buttons["Products in market \(label)"].firstMatch
+        XCTAssertTrue(listButton.waitForExistence(timeout: 5))
+        listButton.tap()
+
+        let marketName = app.staticTexts[label].firstMatch
+        XCTAssertTrue(marketName.waitForExistence(timeout: 5))
+
+        let productName = app.staticTexts["Cervesa Estrella Damm"].firstMatch
+        XCTAssertTrue(productName.waitForExistence(timeout: 5))
 
     }
 

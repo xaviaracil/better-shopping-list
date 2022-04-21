@@ -46,7 +46,7 @@ struct SideBar: View {
 
             Section(header: Label("Markets", systemImage: "cart")) {
                 NavigationLink(destination: MarketsMapView(markets: markets)) {
-                    Label("Mapa", systemImage: "map")
+                    Label("Map", systemImage: "map")
                 }
 
                 ForEach(markets, id: \.self) { market in
