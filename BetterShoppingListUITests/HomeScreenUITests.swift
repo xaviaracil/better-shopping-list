@@ -50,6 +50,18 @@ class HomeScreenUITests: XCTestCase {
         }
     }
 
+    func testSelectASavedList() throws {
+        let listButton = app.buttons["List 1"].firstMatch
+        XCTAssert(listButton.exists)
+        listButton.tap()
+
+        // at least ther must be one market
+        let predicate = NSPredicate(format: "label BEGINSWITH \"Number of products in market \"")
+        let marketText = app.staticTexts.matching(predicate).firstMatch
+        XCTAssertTrue(marketText.waitForExistence(timeout: 5))
+
+    }
+
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
             // This measures how long it takes to launch your application.

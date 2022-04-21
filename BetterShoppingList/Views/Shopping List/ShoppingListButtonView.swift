@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShoppingListButtonView: View {
+    @EnvironmentObject private var shoppingAssistant: ShoppingAssistant
+
     var list: ShoppingList
 
     var body: some View {
@@ -16,7 +18,11 @@ struct ShoppingListButtonView: View {
                 .labelStyle(ShoppingListLabelStyle())
                 .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
         }
+        .accessibilityAddTraits(.isButton)
         .addBorder(.foreground, width: 1, cornerRadius: 10)
+        .onTapGesture {
+            shoppingAssistant.newList(from: list)            
+        }
     }
 }
 
@@ -36,14 +42,18 @@ struct ShoppingListButtonView_Previews: PreviewProvider {
     static var previews: some View {
         let container = PersistenceController.preview.container
         let context = container.viewContext
-        let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
                                                            coordinator: container.persistentStoreCoordinator)
-        let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
+
+        let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
+
+        let lists = try? context.fetch(persistenceAdapter.savedListsFetchRequest)
         Group {
             ShoppingListButtonView(list: lists!.first!)
             ShoppingListButtonView(list: lists!.first!)
-.previewInterfaceOrientation(.landscapeLeft)
+                .previewInterfaceOrientation(.landscapeLeft)
         }
+        .environmentObject(shoppingAssistant)
     }
 }
 

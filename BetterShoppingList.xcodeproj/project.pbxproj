@@ -127,7 +127,6 @@
 		47941FE027FF74C200F0D5AF /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
 		47941FE227FF757900F0D5AF /* ChosenProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductView.swift; sourceTree = "<group>"; };
 		47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductViewModel.swift; sourceTree = "<group>"; };
-		47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketListView.swift; sourceTree = "<group>"; };
 		47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketView.swift; sourceTree = "<group>"; };
 		479554152806E21700BD23F3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		479554172806E39400BD23F3 /* MarketMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketMapViewModel.swift; sourceTree = "<group>"; };
@@ -311,7 +310,6 @@
 				478C142927FE0EAF007FF217 /* ShoppingListView.swift */,
 				47941FE027FF74C200F0D5AF /* ListDetailView.swift */,
 				47941FE227FF757900F0D5AF /* ChosenProductView.swift */,
-				47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */,
 				47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */,
 			);
 			path = "Shopping List";
@@ -555,7 +553,6 @@
 				471BE63D28118FE300A4CF42 /* Model+utils.swift in Sources */,
 				470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */,
 				477EC56D27F9E70100A589FD /* ProductOfferView.swift in Sources */,
-				47941FEA27FF8DE000F0D5AF /* CurrentListMarketListView.swift in Sources */,
 				47941FEC27FF8E0D00F0D5AF /* CurrentListMarketView.swift in Sources */,
 				47FCCA822807691400D84107 /* SearchingResultsView.swift in Sources */,
 				479554182806E39400BD23F3 /* MarketMapViewModel.swift in Sources */,

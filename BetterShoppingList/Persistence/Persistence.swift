@@ -29,12 +29,15 @@ struct PersistenceController {
                 markets.append(market)
             }
 
-            for name in ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"] {
+            let names = ["Cervesa Estrella Damm", "Cervesa Moritz 33", "Llet ATO 1L"]
+            var offers: [String: [Offer]] = [:]
+            for name in names {
                 let product = Product(context: viewContext)
                 product.name = name
                 // swiftlint:disable line_length
                 product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
 
+                var productOffers: [Offer] = []
                 // load some offers
                 for market in markets {
                     let offer = Offer(context: viewContext)
@@ -44,8 +47,10 @@ struct PersistenceController {
                     offer.isSpecialOffer = false
                     // prices is based on prices arrays, shifted by market index and product index
                     offer.price = Double.random(in: (0.15)...(3.00))
+                    productOffers.append(offer)
                     print("🖥 Adding Offer for product \(String(describing: product.name)) in market \(String(describing: market.name)) at price \(String(describing: offer.price))")
                 }
+                offers[name] = productOffers
             }
 
             for index in 0..<10 {
@@ -54,6 +59,19 @@ struct PersistenceController {
                 newList.timestamp = Date()
                 newList.name = "List \(index + 1)"
                 newList.isFavorite = Bool.random()
+                newList.earning = Double.random(in: 0...(16.0))
+                for name in names {
+                    let chosenProduct = ChosenProduct(context: viewContext)
+                    let offer = offers[name]?.randomElement()
+                    chosenProduct.quantity = Int16.random(in: 0..<Int16.max)
+                    chosenProduct.name = name
+                    chosenProduct.price = offer?.price ?? Double.random(in: 0...(16.0))
+                    chosenProduct.isSpecialOffer = offer?.isSpecialOffer ?? false
+                    chosenProduct.offerUUID = offer?.uuid
+                    chosenProduct.marketUUID = offer?.market?.uuid
+                    newList.addToProducts(chosenProduct)
+                }
+
             }
 
             try viewContext.save()
