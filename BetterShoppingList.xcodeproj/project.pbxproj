@@ -43,7 +43,6 @@
 		47941FE127FF74C200F0D5AF /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE027FF74C200F0D5AF /* ListDetailView.swift */; };
 		47941FE327FF757900F0D5AF /* ChosenProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE227FF757900F0D5AF /* ChosenProductView.swift */; };
 		47941FE727FF7A5100F0D5AF /* ChosenProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */; };
-		47941FEA27FF8DE000F0D5AF /* CurrentListMarketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE927FF8DE000F0D5AF /* CurrentListMarketListView.swift */; };
 		47941FEC27FF8E0D00F0D5AF /* CurrentListMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */; };
 		479554162806E21700BD23F3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554152806E21700BD23F3 /* LocationManager.swift */; };
 		479554182806E39400BD23F3 /* MarketMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554172806E39400BD23F3 /* MarketMapViewModel.swift */; };
