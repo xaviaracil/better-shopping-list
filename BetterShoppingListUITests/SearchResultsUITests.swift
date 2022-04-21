@@ -18,11 +18,7 @@ class SearchResultsUITest: XCTestCase {
         continueAfterFailure = false
 
         // UI tests must launch the application that they test.
-        app = XCUIApplication()
-        app.launch()
-
-        // wait for the splash screen
-        sleep(4)
+        app = launchApp()
     }
 
     override func tearDownWithError() throws {

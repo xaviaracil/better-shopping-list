@@ -17,25 +17,25 @@ class CurrentListViewUITests: XCTestCase {
         continueAfterFailure = false
 
         // UI tests must launch the application that they test.
-        app = XCUIApplication()
-        app.launch()
-
-        // wait for the splash screen
-        sleep(4)
+        app = launchApp()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testChooseProduct() throws {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let searchField = app.searchFields.element
         searchField.tap()
-        searchField.typeText("Cervesa")
+        searchField.typeText("Cervesa Damm")
 
         sleep(1)
+
+        let market = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH \"Market\"")).firstMatch
+        XCTAssertNotNil(market)
+        let label = market.label
 
         // When tapping in the add button
         let estrellaDammAddButton = app.buttons["Add to basket"].firstMatch
@@ -46,11 +46,11 @@ class CurrentListViewUITests: XCTestCase {
         // Then the current list is shown
 
         // And market of the product must be visible
-        let market1 = app.staticTexts["Products in market Market 1"]
-        let market1Number = app.staticTexts["Number of products in market Market 1"]
-        XCTAssertTrue(market1.waitForExistence(timeout: 5))
-        XCTAssertTrue(market1Number.waitForExistence(timeout: 5))
-        XCTAssertEqual(1, market1Number.value as? Int)
+//        let market1 = app.staticTexts["Products in market \(String(describing: market.label))"]
+        let marketNumber = app.staticTexts["Number of products in market \(label)"]
+//        XCTAssertTrue(market1.waitForExistence(timeout: 5))
+        XCTAssertTrue(marketNumber.waitForExistence(timeout: 5))
+        XCTAssertEqual("1", marketNumber.value as? String)
 
     }
 

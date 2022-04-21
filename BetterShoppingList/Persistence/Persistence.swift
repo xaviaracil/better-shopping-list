@@ -23,6 +23,7 @@ struct PersistenceController {
             for marketIndex in 1...3 {
                 let market = Market(context: viewContext)
                 market.name = "Market \(marketIndex)"
+                market.uuid = UUID()
                 // swiftlint:disable line_length
                 market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
                 markets.append(market)
@@ -37,11 +38,13 @@ struct PersistenceController {
                 // load some offers
                 for market in markets {
                     let offer = Offer(context: viewContext)
+                    offer.uuid = UUID()
                     offer.product = product
                     offer.market = market
                     offer.isSpecialOffer = false
                     // prices is based on prices arrays, shifted by market index and product index
                     offer.price = Double.random(in: (0.15)...(3.00))
+                    print("🖥 Adding Offer for product \(String(describing: product.name)) in market \(String(describing: market.name)) at price \(String(describing: offer.price))")
                 }
             }
 

@@ -21,11 +21,7 @@ class HomeScreenUITests: XCTestCase {
         // tests before they run. The setUp method is a good place to do this.
 
         // UI tests must launch the application that they test.
-        app = XCUIApplication()
-        app.launch()
-
-        // wait for the splash screen
-        sleep(4)
+        app = launchApp()
     }
 
     override func tearDownWithError() throws {

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct BetterShoppingListApp: App {
-    let runningInTests = NSClassFromString("XCTestCase") != nil
+    let runningInTests = NSClassFromString("XCTestCase") != nil || ProcessInfo().arguments.contains("testMode")
 
     var persistenceController: PersistenceController!
 
