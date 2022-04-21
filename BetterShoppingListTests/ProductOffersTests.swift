@@ -14,7 +14,7 @@ class ProductOffersTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUpWithError() throws {
-        context = PersistenceController(inMemory: true, withTestData: false).container.viewContext
+        context = PersistenceController(inMemory: true).container.viewContext
         try loadFixture(into: context)
     }
 

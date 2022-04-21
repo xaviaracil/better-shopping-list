@@ -45,34 +45,7 @@ func loadFixture(into context: NSManagedObjectContext) throws {
 }
 
 func destroyFixture(from context: NSManagedObjectContext) throws {
-    let offerFetchRequest = Offer.fetchRequest()
-    offerFetchRequest.includesPropertyValues = false
-    let offers = try context.fetch(offerFetchRequest)
-    for offer in offers {
-        context.delete(offer)
-    }
-
-    let productFetchRequest = Product.fetchRequest()
-    productFetchRequest.includesPropertyValues = false
-    let products = try context.fetch(productFetchRequest)
-    for product in products {
-        context.delete(product)
-    }
-
-    let marketFetchRequest = Market.fetchRequest()
-    marketFetchRequest.includesPropertyValues = false
-    let markets = try context.fetch(marketFetchRequest)
-    for market in markets {
-        context.delete(market)
-    }
-
-    let listsFetchRequest = ShoppingList.fetchRequest()
-    listsFetchRequest.includesPropertyValues = false
-    let lists = try context.fetch(marketFetchRequest)
-    for list in lists {
-        context.delete(list)
-    }
-    try context.save()
+    try context.deleteAllObjects()
 }
 
 func mockList(name: String, current: Bool, context: NSManagedObjectContext) -> ShoppingList {

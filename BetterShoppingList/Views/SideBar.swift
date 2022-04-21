@@ -69,5 +69,6 @@ struct SideBar_Previews: PreviewProvider {
                                                             coordinator: container.persistentStoreCoordinator)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
         return SideBar(shoppingAssistant: shoppingAssistant, selectedItem: .constant("Current"))
+            .environment(\.managedObjectContext, viewContext)
     }
 }

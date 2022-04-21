@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct BetterShoppingListApp: App {
-    let persistenceController = PersistenceController.shared
+    let runningInTests = NSClassFromString("XCTestCase") != nil
+
+    var persistenceController: PersistenceController!
 
     @StateObject var shoppingAssitant: ShoppingAssistant
     @Environment(\.scenePhase) var scenePhase
 
     init() {
+        persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
         let container = persistenceController.container
         let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
                                                             coordinator: container.persistentStoreCoordinator)
