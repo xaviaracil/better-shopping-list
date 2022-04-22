@@ -25,10 +25,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         persitenceAdapter.savedListsFetchRequest
     }
 
-    var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> {
-        persitenceAdapter.currentProductsFetchRequest
-    }
-
     var currentListFetchRequest: NSFetchRequest<ShoppingList> {
         persitenceAdapter.currentListFetchRequest
     }

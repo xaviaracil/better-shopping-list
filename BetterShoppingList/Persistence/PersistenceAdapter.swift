@@ -11,7 +11,6 @@ import SwiftUI
 
 protocol PersistenceAdapter {
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
-    var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> { get }
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
     var markertsFetchRequest: NSFetchRequest<Market> { get }
     var currentList: ShoppingList? { get }
@@ -38,13 +37,6 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         let fetchRequest = ShoppingList.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "isCurrent == NO")
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ShoppingList.timestamp, ascending: true)]
-        return fetchRequest
-    }
-
-    var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> {
-        let fetchRequest = ChosenProduct.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "list.isCurrent == YES")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \ChosenProduct.name, ascending: true)]
         return fetchRequest
     }
 

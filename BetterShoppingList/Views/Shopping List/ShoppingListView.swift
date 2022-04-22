@@ -15,7 +15,7 @@ struct ShoppingListView: View {
     @State private var saveListIsPresented = false
     @State private var name = ""
 
-    @StateObject
+    @ObservedObject
     var viewModel: ShoppingListViewModel
 
     var products: Set<ChosenProduct>? {
@@ -78,7 +78,7 @@ struct ShoppingListView: View {
                     Button(action: { saveListIsPresented = true }) {
                         Image(systemName: "square.and.arrow.down")
                     }
-                } else {
+                } else if viewModel.shoppingList != nil {
                     FavoriteButton(isOn: $viewModel.isFavorite)
                 }
             }
@@ -86,6 +86,7 @@ struct ShoppingListView: View {
         .sheet(isPresented: $saveListIsPresented) {
             VStack {
                 Text("Save List").font(.largeTitle)
+                Spacer()
                 TextField(text: $name, prompt: Text("List name")) {
                     Text("Name")
                 }
@@ -93,9 +94,11 @@ struct ShoppingListView: View {
                 .padding()
                 .submitLabel(.done)
                 .onSubmit {
-                    _ = shoppingAssitant.saveList(name: name)
+                    let newList = shoppingAssitant.saveList(name: name)
+                    viewModel.shoppingList = newList
                     saveListIsPresented = false
                 }
+                Spacer()
             }
         }
     }

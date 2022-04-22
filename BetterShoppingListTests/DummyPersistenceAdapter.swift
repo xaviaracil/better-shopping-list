@@ -14,10 +14,6 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
         NSFetchRequest()
     }
 
-    var currentProductsFetchRequest: NSFetchRequest<ChosenProduct> {
-        NSFetchRequest()
-    }
-
     var currentListFetchRequest: NSFetchRequest<ShoppingList> {
         NSFetchRequest()
     }

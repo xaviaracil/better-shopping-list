@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var productsFetchRequest: FetchRequest<ChosenProduct>
     @Published var savedListsFetchRequest: FetchRequest<ShoppingList>
 
     var currentList: ShoppingList? {
@@ -20,8 +19,6 @@ class HomeViewModel: ObservableObject {
 
     init(shoppingAssistant: ShoppingAssistant) {
         self.shoppingAssistant = shoppingAssistant
-        productsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.currentProductsFetchRequest,
-                                            animation: .default)
         savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
                                               animation: .default)
     }

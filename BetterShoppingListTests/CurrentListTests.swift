@@ -25,11 +25,11 @@ final class CurrentListTests: XCTestCase {
         // given initial state
 
         // when asking for products of the current list
-        let products = try context.fetch(shoppingAssistant.currentProductsFetchRequest)
+        let products = shoppingAssistant.currentList?.products
 
         // then we get an empty list
         XCTAssertNotNil(products)
-        XCTAssertTrue(products.isEmpty)
+        XCTAssertTrue(products?.count == 0)
     }
 
     func test_Given_CurrentList_When_Fetched_Then_ItsProductsAreReturned() throws {
@@ -43,15 +43,15 @@ final class CurrentListTests: XCTestCase {
         try context.save()
 
         // when asking for products of the current list
-        let products = try context.fetch(shoppingAssistant.currentProductsFetchRequest)
+        let products = shoppingAssistant.currentList?.products
 
         // then we get a list
         XCTAssertNotNil(products)
-        XCTAssertFalse(products.isEmpty)
-        XCTAssertEqual(1, products.count)
-        XCTAssertEqual(product.price, products.first?.price)
-        XCTAssertEqual(product.name, products.first?.name)
-        XCTAssertEqual(list.name, products.first?.list?.name)
+        XCTAssertFalse(products!.count == 0)
+        XCTAssertEqual(1, products!.count)
+        XCTAssertEqual(product.price, products!.first?.price)
+        XCTAssertEqual(product.name, products!.first?.name)
+        XCTAssertEqual(list.name, products!.first?.list?.name)
     }
 
     // MARK: Earned test

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @FetchRequest
-    private var currentListProducts: FetchedResults<ChosenProduct>
-    @FetchRequest
     private var savedLists: FetchedResults<ShoppingList>
 
     @FetchRequest(sortDescriptors: [SortDescriptor(\Product.name)])
@@ -47,8 +45,6 @@ struct HomeView: View {
 
     init(shoppingAssistant: ShoppingAssistant) {
         let auxViewModel = HomeViewModel(shoppingAssistant: shoppingAssistant)
-
-        _currentListProducts = auxViewModel.productsFetchRequest
         _savedLists = auxViewModel.savedListsFetchRequest
         viewModel = auxViewModel
     }
@@ -56,7 +52,7 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             VStack {
-                if currentListProducts.isEmpty {
+                if viewModel.currentList?.products?.count ?? 0 == 0 {
                     EmptyCurrentListView(lists: savedLists)
                         .opacity(!canSearch ? 1.0 : 0.0)
                 } else {
