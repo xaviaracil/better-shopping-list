@@ -10,6 +10,10 @@ import SwiftUI
 struct ShoppingListView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @EnvironmentObject var shoppingAssitant: ShoppingAssistant
+
+    @State private var saveListIsPresented = false
+    @State private var name = ""
 
     @StateObject
     var viewModel: ShoppingListViewModel
@@ -71,7 +75,7 @@ struct ShoppingListView: View {
         .toolbar(content: {
             ToolbarItem(placement: .primaryAction) {
                 if viewModel.shoppingList?.isCurrent ?? false {
-                    Button(action: { print("something") }) {
+                    Button(action: { saveListIsPresented = true }) {
                         Image(systemName: "square.and.arrow.down")
                     }
                 } else {
@@ -79,6 +83,21 @@ struct ShoppingListView: View {
                 }
             }
         })
+        .sheet(isPresented: $saveListIsPresented) {
+            VStack {
+                Text("Save List").font(.largeTitle)
+                TextField(text: $name, prompt: Text("List name")) {
+                    Text("Name")
+                }
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .submitLabel(.done)
+                .onSubmit {
+                    _ = shoppingAssitant.saveList(name: name)
+                    saveListIsPresented = false
+                }
+            }
+        }
     }
 }
 
@@ -125,6 +144,6 @@ struct CurrentListView_Previews: PreviewProvider {
             ShoppingListView(shoppingList: shoppingAssistant.currentList)
             ShoppingListView(shoppingList: shoppingAssistant.currentList)
                 .previewInterfaceOrientation(.landscapeRight)
-        }
+        }.environmentObject(shoppingAssistant)
     }
 }

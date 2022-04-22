@@ -122,6 +122,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     public func saveList(name: String) -> ShoppingList {
         let newList = currentList!
         newList.isCurrent = false
+        newList.isFavorite = false
         newList.name = name
         do {
             try save()
