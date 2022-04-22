@@ -10,10 +10,16 @@ import SwiftUI
 struct ShoppingListView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    var shoppingList: ShoppingList?
+
+    @StateObject
+    var viewModel: ShoppingListViewModel
 
     var products: Set<ChosenProduct>? {
-        shoppingList?.products as? Set<ChosenProduct>
+        viewModel.shoppingList?.products as? Set<ChosenProduct>
+    }
+
+    init(shoppingList: ShoppingList?) {
+        _viewModel = .init(wrappedValue: ShoppingListViewModel(shoppingList: shoppingList))
     }
 
     var body: some View {
@@ -23,7 +29,7 @@ struct ShoppingListView: View {
                 let rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 200.0, maximum: .infinity)), count: 1)
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: rows) {
-                        ForEach(shoppingList?.markets ?? []) { market in
+                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
                         }
                     }
@@ -33,7 +39,7 @@ struct ShoppingListView: View {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(shoppingList?.markets ?? []) { market in
+                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
                         }
                     }
@@ -43,7 +49,7 @@ struct ShoppingListView: View {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(shoppingList?.markets ?? []) { market in
+                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
                         }
                     }
@@ -51,7 +57,7 @@ struct ShoppingListView: View {
             }
             Spacer()
             Label {
-                Text(shoppingList?.earned.formatted(.currency(code: "eur")) ?? "0.0")
+                Text(viewModel.shoppingList?.earned.formatted(.currency(code: "eur")) ?? "0.0")
             } icon: {
                 Image(systemName: "eurosign.square.fill")
             }
@@ -60,7 +66,19 @@ struct ShoppingListView: View {
             .foregroundColor(.accentColor)
             .padding(.bottom)
         }
-
+        .navigationTitle(viewModel.shoppingList?.name ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            ToolbarItem(placement: .primaryAction) {
+                if viewModel.shoppingList?.isCurrent ?? false {
+                    Button(action: { print("something") }) {
+                        Image(systemName: "square.and.arrow.down")
+                    }
+                } else {
+                    FavoriteButton(isOn: $viewModel.isFavorite)
+                }
+            }
+        })
     }
 }
 

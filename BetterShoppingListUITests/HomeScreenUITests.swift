@@ -55,7 +55,7 @@ class HomeScreenUITests: XCTestCase {
         XCTAssert(listButton.exists)
         listButton.tap()
 
-        // at least ther must be one market
+        // at least there must be one market
         let predicate = NSPredicate(format: "label BEGINSWITH \"Number of products in market \"")
         let marketText = app.staticTexts.matching(predicate).firstMatch
         XCTAssertTrue(marketText.waitForExistence(timeout: 5))

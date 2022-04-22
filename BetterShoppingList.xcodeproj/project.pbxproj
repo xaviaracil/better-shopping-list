@@ -27,6 +27,7 @@
 		471BE63F28119D0500A4CF42 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63E28119D0500A4CF42 /* AppUtils.swift */; };
 		471BE6412811B23F00A4CF42 /* MarketMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */; };
 		471BE6432811B4D900A4CF42 /* SidebarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6422811B4D900A4CF42 /* SidebarUITests.swift */; };
+		471BE6452811C42D00A4CF42 /* SavedListsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */; };
 		4737B8D72806D0B5009B9E98 /* ProductOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */; };
 		4737B8DB2806DC91009B9E98 /* MarketsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
@@ -52,6 +53,8 @@
 		47A0D70528008285008C2663 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 47A0D70428008285008C2663 /* .swiftlint.yml */; };
 		47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */; };
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
+		47A9E0FF2812A35D007DDA1D /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */; };
+		47A9E1012812A6BC007DDA1D /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9E1002812A6BC007DDA1D /* ShoppingListViewModel.swift */; };
 		47AFE35527F6355C003264D8 /* schema.ckdb in Resources */ = {isa = PBXBuildFile; fileRef = 47AFE35427F6355C003264D8 /* schema.ckdb */; };
 		47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35627F758B6003264D8 /* FixtureLoader.swift */; };
 		47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
@@ -111,6 +114,7 @@
 		471BE63E28119D0500A4CF42 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
 		471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketMapUITests.swift; sourceTree = "<group>"; };
 		471BE6422811B4D900A4CF42 /* SidebarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarUITests.swift; sourceTree = "<group>"; };
+		471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsUITest.swift; sourceTree = "<group>"; };
 		4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferViewModel.swift; sourceTree = "<group>"; };
 		4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsMapView.swift; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 		47A0D70428008285008C2663 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Earned.swift"; sourceTree = "<group>"; };
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
+		47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		47A9E1002812A6BC007DDA1D /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
 		47AFE35427F6355C003264D8 /* schema.ckdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.ckdb; sourceTree = "<group>"; };
 		47AFE35627F758B6003264D8 /* FixtureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLoader.swift; sourceTree = "<group>"; };
 		47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterShoppingList.entitlements; sourceTree = "<group>"; };
@@ -222,6 +228,7 @@
 				4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */,
 				470A76B528003D4300328EB2 /* SidebarViewModel.swift */,
 				477F77DE27F8A514006F5902 /* Views */,
+				47A9E1002812A6BC007DDA1D /* ShoppingListViewModel.swift */,
 			);
 			path = BetterShoppingList;
 			sourceTree = "<group>";
@@ -261,6 +268,7 @@
 				471BE63E28119D0500A4CF42 /* AppUtils.swift */,
 				471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */,
 				471BE6422811B4D900A4CF42 /* SidebarUITests.swift */,
+				471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */,
 			);
 			path = BetterShoppingListUITests;
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 				470A76B328003C2D00328EB2 /* SideBar.swift */,
 				477F77DC27F8A505006F5902 /* SplashView.swift */,
 				47FCCA852807751700D84107 /* ProductImageView.swift */,
+				47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -540,11 +549,13 @@
 				4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */,
 				47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */,
 				47FCCA862807751700D84107 /* ProductImageView.swift in Sources */,
+				47A9E0FF2812A35D007DDA1D /* FavoriteButton.swift in Sources */,
 				470A76B828003F8A00328EB2 /* HomeView.swift in Sources */,
 				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
 				477F77E027F8A84A006F5902 /* ShoppingListButtonView.swift in Sources */,
 				47941FE327FF757900F0D5AF /* ChosenProductView.swift in Sources */,
 				477F77DD27F8A505006F5902 /* SplashView.swift in Sources */,
+				47A9E1012812A6BC007DDA1D /* ShoppingListViewModel.swift in Sources */,
 				47941FE727FF7A5100F0D5AF /* ChosenProductViewModel.swift in Sources */,
 				47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */,
 				477EC56227F99B1100A589FD /* SearchSuggestionsView.swift in Sources */,
@@ -596,6 +607,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				471BE63F28119D0500A4CF42 /* AppUtils.swift in Sources */,
+				471BE6452811C42D00A4CF42 /* SavedListsUITest.swift in Sources */,
 				477EC56627F9D26600A589FD /* SearchResultsUITests.swift in Sources */,
 				470C393327F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift in Sources */,
 				47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */,

@@ -27,7 +27,6 @@ class HomeViewModel: ObservableObject {
     }
 
     func productQueryPredicate(for text: String) -> NSPredicate? {
-        print("🖥 predicate for \(text)")
         return shoppingAssistant.productNamePredicate(for: text)
     }
 }

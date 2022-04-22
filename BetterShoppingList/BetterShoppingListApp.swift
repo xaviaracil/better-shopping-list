@@ -15,7 +15,6 @@ struct BetterShoppingListApp: App {
 
     @StateObject var shoppingAssitant: ShoppingAssistant
     @Environment(\.scenePhase) var scenePhase
-
     init() {
         persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
         let container = persistenceController.container

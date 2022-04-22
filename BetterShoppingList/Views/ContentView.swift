@@ -13,7 +13,6 @@ struct ContentView: View {
     @EnvironmentObject
     private var shoppingAssistant: ShoppingAssistant
 
-    @State private var selectedItem: String? = "Current"
     @State private var splashDisplayed = false
     private var hideSplash: Bool
 
@@ -26,7 +25,7 @@ struct ContentView: View {
             SplashView(displayed: $splashDisplayed)
         } else {
             NavigationView {
-                SideBar(shoppingAssistant: shoppingAssistant, selectedItem: $selectedItem)
+                SideBar(shoppingAssistant: shoppingAssistant)
 
                 HomeView(shoppingAssistant: shoppingAssistant)
             }

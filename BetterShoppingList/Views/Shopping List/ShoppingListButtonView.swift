@@ -21,7 +21,7 @@ struct ShoppingListButtonView: View {
         .accessibilityAddTraits(.isButton)
         .addBorder(.foreground, width: 1, cornerRadius: 10)
         .onTapGesture {
-            shoppingAssistant.newList(from: list)            
+            shoppingAssistant.newList(from: list)
         }
     }
 }
