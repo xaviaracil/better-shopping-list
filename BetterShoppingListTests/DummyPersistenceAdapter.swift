@@ -41,4 +41,8 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
     func save() throws {
         // nothing here
     }
+
+    func removeChosenProduct(_ chosenProduct: ChosenProduct) {
+        // nothing here
+    }
 }

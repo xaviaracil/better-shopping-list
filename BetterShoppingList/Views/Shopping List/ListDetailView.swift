@@ -14,6 +14,7 @@ struct ListDetailView: View {
 
     var products: [ChosenProduct]
     var name: String
+    var deleteChosenProducts: (([ChosenProduct]) -> Void)?
 
     var body: some View {
         NavigationView {
@@ -27,16 +28,18 @@ struct ListDetailView: View {
                                 ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
                                     .padding()
                             }
+                            .onDelete(perform: deleteProducts)
                         }
                     }
                 } else {
                     // portrait
-                    ScrollView {
+                    List {
                         ForEach(products, id: \.self) { chosenProduct in
                             ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
-                                .padding()
+                                .padding(.vertical, 4.0)
                         }
-                    }
+                        .onDelete(perform: deleteProducts)
+                    }.listStyle(.plain)
                 }
             }
             .navigationBarTitle(Text(name), displayMode: .inline)
@@ -50,8 +53,16 @@ struct ListDetailView: View {
                 }
             })
         }
-
     }
+
+    private func deleteProducts(offsets: IndexSet) {
+        guard let deleteChosenProducts = deleteChosenProducts else {
+            return
+        }
+
+        deleteChosenProducts(offsets.map { products[$0] })
+    }
+
 }
 
 struct ListDetailView_Previews: PreviewProvider {
@@ -62,7 +73,44 @@ struct ListDetailView_Previews: PreviewProvider {
                                                             coordinator: container.persistentStoreCoordinator)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
-        ListDetailView(products: [], name: "Some Name")
-            .environmentObject(shoppingAssistant)
+        let market1 = Market(context: viewContext)
+        market1.name = "Market 1"
+        market1.uuid = UUID()
+        market1.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
+        //        let market2 = Market(context: viewContext)
+        //        market2.name = "Market 2"
+        //
+        let product = Product(context: viewContext)
+        product.name = "Producte 1"
+        product.imageUrl = URL(string: "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg")
+        //
+        let offer1 = Offer(context: viewContext)
+        offer1.price = 1.10
+        offer1.uuid = UUID()
+        offer1.market = market1
+        offer1.product = product
+        //
+        //        let offer2 = Offer(context: viewContext)
+        //        offer2.price = 1.30
+        //        offer2.market = market2
+        //        offer2.product = product
+        //
+        //        let productOffer = ProductOffers(product: product, offers: [offer1, offer2])
+        //
+        //        shoppingAssistant.addProductToCurrentList(productOffer.chooseOffer(at: 0))
+        let chosenProduct = ChosenProduct(context: viewContext)
+        chosenProduct.name = "Producte"
+        chosenProduct.price = 1.1
+        chosenProduct.isSpecialOffer = true
+        chosenProduct.offerUUID = offer1.uuid
+        chosenProduct.marketUUID = market1.uuid
+
+        return Group {
+            ListDetailView(products: [chosenProduct], name: "Some Name")
+                .environmentObject(shoppingAssistant)
+            ListDetailView(products: [chosenProduct], name: "Some Name")
+                .environmentObject(shoppingAssistant)
+.previewInterfaceOrientation(.landscapeLeft)
+        }
     }
 }
