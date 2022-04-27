@@ -28,17 +28,13 @@ final class CurrentListTests: XCTestCase {
         let products = shoppingAssistant.currentList?.products
 
         // then we get an empty list
-        XCTAssertNotNil(products)
-        XCTAssertTrue(products?.count == 0)
+        XCTAssertNil(products)
     }
 
     func test_Given_CurrentList_When_Fetched_Then_ItsProductsAreReturned() throws {
-        // given a current list
-        let list = mockList(name: "Current List", current: true, context: context)
-
+        // given a current list with products
         let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
-
-        list.addToProducts(product)
+        shoppingAssistant.addProductToCurrentList(product)
 
         try context.save()
 
@@ -49,9 +45,9 @@ final class CurrentListTests: XCTestCase {
         XCTAssertNotNil(products)
         XCTAssertFalse(products!.count == 0)
         XCTAssertEqual(1, products!.count)
-        XCTAssertEqual(product.price, products!.first?.price)
-        XCTAssertEqual(product.name, products!.first?.name)
-        XCTAssertEqual(list.name, products!.first?.list?.name)
+        XCTAssertEqual(product.price, (products!.allObjects.first as? ChosenProduct)?.price)
+        XCTAssertEqual(product.name, (products!.allObjects.first as? ChosenProduct)?.name)
+        XCTAssertEqual(shoppingAssistant.currentList?.name, (products!.allObjects.first as? ChosenProduct)?.list?.name)
     }
 
     // MARK: Earned test
@@ -198,4 +194,22 @@ final class CurrentListTests: XCTestCase {
         // and the current list is now empty
         XCTAssertNil(shoppingAssistant.currentList)
     }
+
+    // MARK: - delete chosen product from list
+    func test_Given_CurrentList_When_RemovingOneProduct_Then_TheListIsUpdated() throws {
+        // given a current list with some products
+        let chosenProduct1 = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
+        shoppingAssistant.addProductToCurrentList(chosenProduct1)
+        let chosenProduct2 = mockChosenProduct(name: "Product 2", price: 2.50, context: context)
+        shoppingAssistant.addProductToCurrentList(chosenProduct2)
+
+        // when asking for removing a product
+        shoppingAssistant.removeChosenProduct(chosenProduct1)
+
+        // then the list of products is updated
+        XCTAssertEqual(shoppingAssistant.currentList?.products?.count ?? 0, 1)
+        XCTAssertEqual(chosenProduct2, shoppingAssistant.currentList?.products?.allObjects.first as? ChosenProduct)
+
+    }
+
 }

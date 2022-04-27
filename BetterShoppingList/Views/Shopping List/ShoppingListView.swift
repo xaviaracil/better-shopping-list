@@ -18,10 +18,6 @@ struct ShoppingListView: View {
     @ObservedObject
     var viewModel: ShoppingListViewModel
 
-    var products: Set<ChosenProduct>? {
-        viewModel.shoppingList?.products as? Set<ChosenProduct>
-    }
-
     init(shoppingList: ShoppingList?) {
         _viewModel = .init(wrappedValue: ShoppingListViewModel(shoppingList: shoppingList))
     }
@@ -34,7 +30,9 @@ struct ShoppingListView: View {
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: rows) {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                            CurrentListMarketView(market: market,
+                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
+                                                  deleteChosenProducts: deleteChosenProducts)
                         }
                     }
                     .padding([.top, .bottom])
@@ -44,7 +42,9 @@ struct ShoppingListView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                            CurrentListMarketView(market: market,
+                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
+                                                  deleteChosenProducts: deleteChosenProducts)
                         }
                     }
                 }
@@ -54,7 +54,9 @@ struct ShoppingListView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market, products: products?.ofMarket(market: market) ?? [])
+                            CurrentListMarketView(market: market,
+                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
+                                                  deleteChosenProducts: deleteChosenProducts)
                         }
                     }
                 }
@@ -102,6 +104,18 @@ struct ShoppingListView: View {
             }
         }
     }
+
+    func deleteChosenProducts(products: [ChosenProduct]) {
+        withAnimation {
+            print("Removing \(products)")
+            products.forEach {
+                viewModel.removeProduct($0)
+                shoppingAssitant.removeChosenProduct($0)
+            }
+
+        }
+    }
+
 }
 
 struct EarnedLabelStyle: LabelStyle {

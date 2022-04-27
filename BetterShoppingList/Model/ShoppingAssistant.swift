@@ -111,6 +111,20 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     }
 
     ///
+    /// Removes a chosen product
+    /// - Parameters:
+    ///     - the chosen product to remove
+    public func removeChosenProduct(_ chosenProduct: ChosenProduct) {
+        persitenceAdapter.removeChosenProduct(chosenProduct)
+        do {
+            try save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+
+    ///
     /// Saves the list for further user. The list is no longer the current one
     /// - Parameters:
     ///     - name: The name which of the saved list
