@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListDetailView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var shoppingAssistant: ShoppingAssistant
 
     var products: [ChosenProduct]
@@ -43,8 +43,7 @@ struct ListDetailView: View {
             // swiftlint:disable multiple_closures_with_trailing_closure
             .toolbar(content: {
                 ToolbarItem(placement: .destructiveAction) {
-                    Button(action: { presentationMode.wrappedValue.dismiss() }
-                                                        ) {
+                    Button(action: { dismiss() }) {
                         Label("Close", systemImage: "xmark")
                             .labelStyle(.iconOnly)
                     }
