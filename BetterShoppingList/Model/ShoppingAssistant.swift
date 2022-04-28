@@ -152,6 +152,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         newList.isCurrent = false
         newList.isFavorite = false
         newList.name = name
+        newList.earning = newList.earned
         do {
             try save()
             currentList = persitenceAdapter.currentList
