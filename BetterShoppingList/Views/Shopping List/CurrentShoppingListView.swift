@@ -16,10 +16,10 @@ struct CurrentShoppingListView: View {
     @State private var name = ""
 
     @ObservedObject
-    var viewModel: ShoppingListViewModel
+    var viewModel: CurrentShoppingListViewModel
 
     init(shoppingList: ShoppingList?) {
-        _viewModel = .init(wrappedValue: ShoppingListViewModel(shoppingList: shoppingList))
+        _viewModel = .init(wrappedValue: CurrentShoppingListViewModel(shoppingList: shoppingList))
     }
 
     var body: some View {

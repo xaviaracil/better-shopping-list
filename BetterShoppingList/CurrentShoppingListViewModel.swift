@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ShoppingListViewModel: ObservableObject {
+class CurrentShoppingListViewModel: ObservableObject {
     @Published var isFavorite: Bool {
         didSet {
             shoppingList?.isFavorite = isFavorite
