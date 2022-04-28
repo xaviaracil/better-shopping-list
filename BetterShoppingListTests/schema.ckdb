@@ -1,0 +1,148 @@
+DEFINE SCHEMA
+
+    RECORD TYPE CD_ChosenProduct (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_list                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_marketId            STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_name                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_name_ckAsset        ASSET,
+        CD_offer               STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_offerId             STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_price               DOUBLE QUERYABLE SORTABLE,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_Item (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_timestamp           TIMESTAMP QUERYABLE SORTABLE,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_Market (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_iconUrl             STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_iconUrl_ckAsset     ASSET,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_name                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_name_ckAsset        ASSET,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_Offer (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_isSpecialOffer      INT64 QUERYABLE SORTABLE,
+        CD_market              STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_name                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_name_ckAsset        ASSET,
+        CD_price               DOUBLE QUERYABLE SORTABLE,
+        CD_product             STRING QUERYABLE SEARCHABLE SORTABLE,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_Product (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_imageUrl            STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_imageUrl_ckAsset    ASSET,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_name                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_name_ckAsset        ASSET,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_ShoppingList (
+        CD_earning             DOUBLE QUERYABLE SORTABLE,
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_isFavorite          INT64 QUERYABLE SORTABLE,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        CD_name                STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_name_ckAsset        ASSET,
+        CD_timestamp           TIMESTAMP QUERYABLE SORTABLE,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE CD_UserMarket (
+        CD_entityName          STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_isFavorite          INT64 QUERYABLE SORTABLE,
+        CD_market              STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_marketId            STRING QUERYABLE SEARCHABLE SORTABLE,
+        CD_moveReceipt         BYTES QUERYABLE SORTABLE,
+        CD_moveReceipt_ckAsset ASSET,
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP QUERYABLE,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Users (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE,
+        roles           LIST<INT64>,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
