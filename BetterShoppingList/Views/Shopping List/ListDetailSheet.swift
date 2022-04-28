@@ -12,6 +12,8 @@ struct ListDetailSheet: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var shoppingAssistant: ShoppingAssistant
 
+    @State var isShowingInMarket = false
+
     var products: [ChosenProduct]
     var name: String
     var deleteChosenProducts: (([ChosenProduct]) -> Void)?
@@ -19,12 +21,29 @@ struct ListDetailSheet: View {
 
     var body: some View {
         NavigationView {
-            ListDetailView(products: products,
-                           name: name,
-                           deleteChosenProducts: deleteChosenProducts,
-                           changeChosenProduct: changeChosenProduct)
+            Group {
+                if isShowingInMarket {
+                    CurrentListMarketInMarketView(name: name, products: products)
+
+                } else {
+                    ListDetailView(products: products,
+                                   name: name,
+                                   deleteChosenProducts: deleteChosenProducts,
+                                   changeChosenProduct: changeChosenProduct)
+                }
+            }
             // swiftlint:disable multiple_closures_with_trailing_closure
             .toolbar(content: {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: {
+                        withAnimation {
+                            isShowingInMarket.toggle()
+                        }
+                    }) {
+                        Label("Shop", systemImage: "cart")
+                            .labelStyle(.iconOnly)
+                    }
+                }
                 ToolbarItem(placement: .destructiveAction) {
                     Button(action: { dismiss() }) {
                         Label("Close", systemImage: "xmark")

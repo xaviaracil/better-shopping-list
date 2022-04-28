@@ -18,6 +18,14 @@ class ChosenProductViewModel: ObservableObject {
     }
 
     let shoppingAssitant: ShoppingAssistant
+
+    @Published
+    var inBasket: Bool {
+        didSet {
+            chosenProduct.inBasket.toggle()
+        }
+    }
+
     let chosenProduct: ChosenProduct
     let additionalOffers: [Offer]?
 
@@ -25,7 +33,7 @@ class ChosenProductViewModel: ObservableObject {
         self.shoppingAssitant = shoppingAssistant
         self.chosenProduct = chosenProduct
         self.quantity = chosenProduct.quantity
-
+        self.inBasket = chosenProduct.inBasket
         self.offer = chosenProduct.offer
         self.product = chosenProduct.offer?.product
         self.additionalOffers = chosenProduct.offer?.product?.offers?
@@ -35,5 +43,9 @@ class ChosenProductViewModel: ObservableObject {
                 let diffRhs = ((rhs as? Offer)?.price ?? 0.0) - chosenProduct.price
                 return diffLhs < diffRhs
             } as? [Offer]
+    }
+
+    func toogleInCart() {
+        self.inBasket.toggle()
     }
 }
