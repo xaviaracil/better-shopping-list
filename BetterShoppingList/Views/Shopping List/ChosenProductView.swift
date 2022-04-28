@@ -12,15 +12,21 @@ struct ChosenProductView: View {
     private var viewModel: ChosenProductViewModel
     var deleteChosenProducts: (([ChosenProduct]) -> Void)?
     var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
+    var canEdit: Bool
+    var canChangeQuantity: Bool
 
     init(chosenProduct: ChosenProduct,
          shoppingAssistant: ShoppingAssistant,
          deleteChosenProducts: (([ChosenProduct]) -> Void)?,
-         changeChosenProduct: ((ChosenProduct, Offer) -> Void)?) {
+         changeChosenProduct: ((ChosenProduct, Offer) -> Void)?,
+         canEdit: Bool = true,
+         canChangeQuantity: Bool = true) {
         viewModel = ChosenProductViewModel(shoppingAssistant: shoppingAssistant,
                                            chosenProduct: chosenProduct)
         self.deleteChosenProducts = deleteChosenProducts
         self.changeChosenProduct = changeChosenProduct
+        self.canEdit = canEdit
+        self.canChangeQuantity = canChangeQuantity
     }
 
     private func deleteProduct() {
@@ -49,37 +55,44 @@ struct ChosenProductView: View {
                     .productTitle()
                 Text(viewModel.chosenProduct.price.formatted(.currency(code: "eur")))
                     .bestPrice()
-                Stepper(value: $viewModel.quantity) {
+                if canChangeQuantity {
+                    Stepper(value: $viewModel.quantity) {
+                        Text("Quantity: \(viewModel.quantity)")
+                    }
+                    .font(.subheadline)
+                } else {
                     Text("Quantity: \(viewModel.quantity)")
+                        .font(.subheadline)
                 }
-                .font(.subheadline)
             }
 
             Spacer()
 
-            if let additionalOffers = viewModel.additionalOffers {
-                Menu {
-                    ForEach(additionalOffers) { offer in
-                        let diff = offer.price - viewModel.chosenProduct.price
-                        Button(action: {
-                            changeOffer(offer)
-                        }) {
-                            Label("\(offer.market?.name ?? "N.A.") (\(diff.formatted(.currency(code: "eur"))))",
-                                  systemImage: "rectangle.portrait.and.arrow.right")
-                                .foregroundColor(.red)
+            if canEdit {
+                if let additionalOffers = viewModel.additionalOffers {
+                    Menu {
+                        ForEach(additionalOffers) { offer in
+                            let diff = offer.price - viewModel.chosenProduct.price
+                            Button(action: {
+                                changeOffer(offer)
+                            }) {
+                                Label("\(offer.market?.name ?? "N.A.") (\(diff.formatted(.currency(code: "eur"))))",
+                                      systemImage: "rectangle.portrait.and.arrow.right")
+                                    .foregroundColor(.red)
 
+                            }
+                            .foregroundColor(diff < 0.0 ? .green : (diff > 0.0 ? .red : .primary))
                         }
-                        .foregroundColor(diff < 0.0 ? .green : (diff > 0.0 ? .red : .primary))
+                        Divider()
+                        Button(role: .destructive, action: deleteProduct) {
+                            Label("Delete", systemImage: "trash.fill")
+                        }
+                    } label: {
+                        Label("Move to", systemImage: "ellipsis.circle")
+                            .font(.system(size: 48))
+                            .foregroundColor(.accentColor)
+                            .labelStyle(.iconOnly)
                     }
-                    Divider()
-                    Button(role: .destructive, action: deleteProduct) {
-                        Label("Delete", systemImage: "trash.fill")
-                    }
-                } label: {
-                    Label("Move to", systemImage: "ellipsis.circle")
-                        .font(.system(size: 48))
-                        .foregroundColor(.accentColor)
-                        .labelStyle(.iconOnly)
                 }
             }
         }
