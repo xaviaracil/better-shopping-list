@@ -1,73 +1,42 @@
 //
-//  ListDetailView.swift
+//  ListDetailSheet.swift
 //  BetterShoppingList
 //
-//  Created by Xavi Aracil on 7/4/22.
+//  Created by Xavi Aracil on 28/4/22.
 //
 
 import SwiftUI
 
-struct ListDetailView: View {
+struct ListDetailSheet: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var shoppingAssistant: ShoppingAssistant
 
     var products: [ChosenProduct]
     var name: String
     var deleteChosenProducts: (([ChosenProduct]) -> Void)?
     var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
-    var canEdit = true
-    var canChangeQuantity = true
 
     var body: some View {
-        Group {
-            if verticalSizeClass == .compact {
-                // landscape
-                let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(products, id: \.self) { chosenProduct in
-                            ChosenProductView(chosenProduct: chosenProduct,
-                                              shoppingAssistant: shoppingAssistant,
-                                              deleteChosenProducts: deleteChosenProducts,
-                                              changeChosenProduct: changeChosenProduct,
-                                              canEdit: canEdit,
-                                              canChangeQuantity: canChangeQuantity)
-                                .padding()
-                        }
-                        .onDelete(perform: deleteProducts)
+        NavigationView {
+            ListDetailView(products: products,
+                           name: name,
+                           deleteChosenProducts: deleteChosenProducts,
+                           changeChosenProduct: changeChosenProduct)
+            // swiftlint:disable multiple_closures_with_trailing_closure
+            .toolbar(content: {
+                ToolbarItem(placement: .destructiveAction) {
+                    Button(action: { dismiss() }) {
+                        Label("Close", systemImage: "xmark")
+                            .labelStyle(.iconOnly)
                     }
                 }
-            } else {
-                // portrait
-                List {
-                    ForEach(products, id: \.self) { chosenProduct in
-                        ChosenProductView(chosenProduct: chosenProduct,
-                                          shoppingAssistant: shoppingAssistant,
-                                          deleteChosenProducts: deleteChosenProducts,
-                                          changeChosenProduct: changeChosenProduct,
-                                          canEdit: canEdit,
-                                          canChangeQuantity: canChangeQuantity)
-                            .padding(.vertical, 4.0)
-
-                    }
-                    .onDelete(perform: deleteProducts)
-                }
-                .listStyle(.plain)
-            }
+            })
         }
-        .navigationBarTitle(Text(name), displayMode: .inline)
-    }
-
-    private func deleteProducts(offsets: IndexSet) {
-        guard let deleteChosenProducts = deleteChosenProducts else {
-            return
-        }
-
-        deleteChosenProducts(offsets.map { products[$0] })
     }
 }
 
-struct ListDetailView_Previews: PreviewProvider {
+struct ListDetailSheet_Previews: PreviewProvider {
     static var previews: some View {
         let container = PersistenceController.preview.container
         let viewContext = container.viewContext
@@ -108,9 +77,9 @@ struct ListDetailView_Previews: PreviewProvider {
         chosenProduct.marketUUID = market1.uuid
 
         return Group {
-            ListDetailView(products: [chosenProduct], name: "List 1")
+            ListDetailSheet(products: [chosenProduct], name: "Some Name")
                 .environmentObject(shoppingAssistant)
-            ListDetailView(products: [chosenProduct], name: "List 1")
+            ListDetailSheet(products: [chosenProduct], name: "Some Name")
                 .environmentObject(shoppingAssistant)
 .previewInterfaceOrientation(.landscapeLeft)
         }

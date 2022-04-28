@@ -46,7 +46,7 @@ struct CurrentListMarketView: View {
                 .accessibilityLabel(Text("Number of products in market \(market.name ?? "N.A.")"))
                 .accessibilityValue(Text("\(products.ofMarket(market: market).count)"))
         }.sheet(isPresented: $isPresented) {
-            ListDetailView(products: products,
+            ListDetailSheet(products: products,
                            name: market.name ?? "N. A.",
                            deleteChosenProducts: deleteChosenProducts,
                            changeChosenProduct: changeChosenProduct)

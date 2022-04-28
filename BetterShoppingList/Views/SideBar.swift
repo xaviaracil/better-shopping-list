@@ -28,7 +28,7 @@ struct SideBar: View {
     }
 
     var body: some View {
-        _ = print("Update body \(String(describing: viewModel.selectedItem))")
+        print("Update body \(String(describing: viewModel.selectedItem))")
         return List {
             // swiftlint:disable line_length
             NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant), tag: "Current", selection: $viewModel.selectedItem) {
@@ -38,7 +38,10 @@ struct SideBar: View {
             ForEach(shoppingLists) { section in
                 Section(header: Label(section.id ? "Favorites" : "All", systemImage: section.id ? "star" : "bag") ) {
                     ForEach(section) { shoppingList in
-                        NavigationLink(destination: ShoppingListView(shoppingList: shoppingList), tag: shoppingList.name ?? "N.A.", selection: $viewModel.selectedItem) {
+                        NavigationLink(destination:
+                                        ShoppingListView(shoppingList: shoppingList),
+                                       tag: shoppingList.name ?? "N.A.",
+                                       selection: $viewModel.selectedItem) {
                             Text(shoppingList.name ?? "No Name")
                         }
                     }

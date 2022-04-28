@@ -83,8 +83,6 @@ struct CurrentShoppingListView: View {
                     Button(action: { saveListIsPresented = true }) {
                         Image(systemName: "square.and.arrow.down")
                     }
-                } else if viewModel.shoppingList != nil {
-                    FavoriteButton(isOn: $viewModel.isFavorite)
                 }
             }
         })
