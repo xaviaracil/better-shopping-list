@@ -63,7 +63,7 @@ struct PersistenceController {
                 for name in names {
                     let chosenProduct = ChosenProduct(context: viewContext)
                     let offer = offers[name]?.randomElement()
-                    chosenProduct.quantity = Int16.random(in: 0..<10)
+                    chosenProduct.quantity = Int16.random(in: 1..<10)
                     chosenProduct.name = name
                     chosenProduct.price = offer?.price ?? Double.random(in: 0...(16.0))
                     chosenProduct.isSpecialOffer = offer?.isSpecialOffer ?? false
