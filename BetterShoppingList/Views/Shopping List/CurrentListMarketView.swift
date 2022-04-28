@@ -12,6 +12,7 @@ struct CurrentListMarketView: View {
     var products: [ChosenProduct]
     @State private var isPresented = false
     var deleteChosenProducts: (([ChosenProduct]) -> Void)?
+    var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -45,7 +46,10 @@ struct CurrentListMarketView: View {
                 .accessibilityLabel(Text("Number of products in market \(market.name ?? "N.A.")"))
                 .accessibilityValue(Text("\(products.ofMarket(market: market).count)"))
         }.sheet(isPresented: $isPresented) {
-            ListDetailView(products: products, name: market.name ?? "N. A.", deleteChosenProducts: deleteChosenProducts)
+            ListDetailView(products: products,
+                           name: market.name ?? "N. A.",
+                           deleteChosenProducts: deleteChosenProducts,
+                           changeChosenProduct: changeChosenProduct)
         }
     }
 }

@@ -32,7 +32,8 @@ struct ShoppingListView: View {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market,
                                                   products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts)
+                                                  deleteChosenProducts: deleteChosenProducts,
+                                                  changeChosenProduct: changeChosenProduct)
                         }
                     }
                     .padding([.top, .bottom])
@@ -44,7 +45,8 @@ struct ShoppingListView: View {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market,
                                                   products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts)
+                                                  deleteChosenProducts: deleteChosenProducts,
+                                                  changeChosenProduct: changeChosenProduct)
                         }
                     }
                 }
@@ -56,7 +58,8 @@ struct ShoppingListView: View {
                         ForEach(viewModel.shoppingList?.markets ?? []) { market in
                             CurrentListMarketView(market: market,
                                                   products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts)
+                                                  deleteChosenProducts: deleteChosenProducts,
+                                                  changeChosenProduct: changeChosenProduct)
                         }
                     }
                 }
@@ -107,12 +110,18 @@ struct ShoppingListView: View {
 
     func deleteChosenProducts(products: [ChosenProduct]) {
         withAnimation {
-            print("Removing \(products)")
             products.forEach {
                 viewModel.removeProduct($0)
                 shoppingAssitant.removeChosenProduct($0)
             }
 
+        }
+    }
+
+    func changeChosenProduct(chosenProduct: ChosenProduct, offer: Offer) {
+        withAnimation {
+            let newChosenProduct = shoppingAssitant.changeChosenProduct(chosenProduct, to: offer)
+            viewModel.replaceProduct(chosenProduct, with: newChosenProduct)
         }
     }
 

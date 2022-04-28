@@ -212,4 +212,36 @@ final class CurrentListTests: XCTestCase {
 
     }
 
+    func test_Given_CurrentList_When_ChosingAnotherOfferForAProduct_Then_TheListIsUpdated() throws {
+        // given a current list with some products
+        let offers = try context.fetch(Offer.fetchRequest())
+
+        let offerForProduct = offers.first!
+        let offerForAnotherProduct = offers.first { offer in
+            offer.product != offerForProduct.product
+        }!
+
+        let chosenProduct1 = mockChosenProduct(offer: offerForProduct, context: context)
+        shoppingAssistant.addProductToCurrentList(chosenProduct1)
+        let chosenProduct2 = mockChosenProduct(offer: offerForAnotherProduct, context: context)
+        shoppingAssistant.addProductToCurrentList(chosenProduct2)
+
+        // and another offer
+        let anotherOfferForProduct = offers.last { offer in
+            offer.product == offerForProduct.product
+        }!
+
+        let initialEarned = shoppingAssistant.currentList?.earned ?? 0.0
+
+        // when asking for changing the offer of a product
+        let newChosenProduct = shoppingAssistant.changeChosenProduct(chosenProduct1, to: anotherOfferForProduct)
+        let currentEarned = shoppingAssistant.currentList?.earned ?? 0.0
+
+        // then the list of products is updated
+        XCTAssertEqual(shoppingAssistant.currentList?.products?.count ?? 0, 2)
+        XCTAssertEqual(shoppingAssistant.currentList?.products?.contains(chosenProduct2), true)
+        XCTAssertEqual(shoppingAssistant.currentList?.products?.contains(chosenProduct1), false)
+        XCTAssertEqual(shoppingAssistant.currentList?.products?.contains(newChosenProduct), true)
+        XCTAssertNotEqual(currentEarned, initialEarned)
+    }
 }

@@ -17,6 +17,7 @@ protocol PersistenceAdapter {
     var markets: [Market]? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
+    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
     func productNamePredicate(for text: String) -> NSPredicate?
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
@@ -32,6 +33,17 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         list.isCurrent = isCurrent
         list.timestamp = Date()
         return list
+    }
+
+    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
+        let chosenProduct = ChosenProduct(context: viewContext)
+        chosenProduct.name = offer.product?.name
+        chosenProduct.price = offer.price
+        chosenProduct.quantity = quantity
+        chosenProduct.isSpecialOffer = offer.isSpecialOffer
+        chosenProduct.marketUUID = offer.market?.uuid
+        chosenProduct.offerUUID = offer.uuid
+        return chosenProduct
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {

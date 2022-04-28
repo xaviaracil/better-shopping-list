@@ -10,9 +10,33 @@ import SwiftUI
 struct ChosenProductView: View {
     @ObservedObject
     private var viewModel: ChosenProductViewModel
+    var deleteChosenProducts: (([ChosenProduct]) -> Void)?
+    var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
 
-    init(chosenProduct: ChosenProduct, shoppingAssistant: ShoppingAssistant) {
-        viewModel = ChosenProductViewModel(shoppingAssistant: shoppingAssistant, chosenProduct: chosenProduct)
+    init(chosenProduct: ChosenProduct,
+         shoppingAssistant: ShoppingAssistant,
+         deleteChosenProducts: (([ChosenProduct]) -> Void)?,
+         changeChosenProduct: ((ChosenProduct, Offer) -> Void)?) {
+        viewModel = ChosenProductViewModel(shoppingAssistant: shoppingAssistant,
+                                           chosenProduct: chosenProduct)
+        self.deleteChosenProducts = deleteChosenProducts
+        self.changeChosenProduct = changeChosenProduct
+    }
+
+    private func deleteProduct() {
+        guard let deleteChosenProducts = deleteChosenProducts else {
+            return
+        }
+
+        deleteChosenProducts([viewModel.chosenProduct])
+    }
+
+    private func changeOffer(_ offer: Offer) {
+        guard let changeChosenProduct = changeChosenProduct else {
+            return
+        }
+
+        changeChosenProduct(viewModel.chosenProduct, offer)
     }
 
     var body: some View {
@@ -33,20 +57,36 @@ struct ChosenProductView: View {
 
             Spacer()
 
-            Button(action: {
-            }) {
-                Label("Move to", systemImage: "ellipsis.circle")
-                    .font(.system(size: 48))
-                    .foregroundColor(.accentColor)
-                    .labelStyle(.iconOnly)
+            if let additionalOffers = viewModel.additionalOffers {
+                Menu {
+                    ForEach(additionalOffers) { offer in
+                        let diff = offer.price - viewModel.chosenProduct.price
+                        Button(action: {
+                            changeOffer(offer)
+                        }) {
+                            Label("\(offer.market?.name ?? "N.A.") (\(diff.formatted(.currency(code: "eur"))))",
+                                  systemImage: "rectangle.portrait.and.arrow.right")
+                                .foregroundColor(.red)
 
+                        }
+                        .foregroundColor(diff < 0.0 ? .green : (diff > 0.0 ? .red : .primary))
+                    }
+                    Divider()
+                    Button(role: .destructive, action: deleteProduct) {
+                        Label("Delete", systemImage: "trash.fill")
+                    }
+                } label: {
+                    Label("Move to", systemImage: "ellipsis.circle")
+                        .font(.system(size: 48))
+                        .foregroundColor(.accentColor)
+                        .labelStyle(.iconOnly)
+                }
             }
         }
-
     }
 }
 
-struct ListDetailProductView_Previews: PreviewProvider {
+struct ChosenProductView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = PersistenceController.preview.container.viewContext
         // swiftlint:disable line_length
@@ -86,6 +126,8 @@ struct ListDetailProductView_Previews: PreviewProvider {
         chosenProduct.offerUUID = offer1.uuid
         chosenProduct.marketUUID = market1.uuid
 
-        return ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
+        return
+            ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant, deleteChosenProducts: nil, changeChosenProduct: nil)
+
     }
 }

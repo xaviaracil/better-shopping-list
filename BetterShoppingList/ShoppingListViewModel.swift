@@ -29,4 +29,9 @@ class ShoppingListViewModel: ObservableObject {
         products = shoppingList?.products as? Set<ChosenProduct>
     }
 
+    func replaceProduct(_ chosenProduct: ChosenProduct, with newChosenProduct: ChosenProduct) {
+        shoppingList?.removeFromProducts(chosenProduct)
+        shoppingList?.addToProducts(newChosenProduct)
+        products = shoppingList?.products as? Set<ChosenProduct>
+    }
 }

@@ -15,6 +15,7 @@ struct ListDetailView: View {
     var products: [ChosenProduct]
     var name: String
     var deleteChosenProducts: (([ChosenProduct]) -> Void)?
+    var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
 
     var body: some View {
         NavigationView {
@@ -25,7 +26,10 @@ struct ListDetailView: View {
                     ScrollView {
                         LazyVGrid(columns: columns) {
                             ForEach(products, id: \.self) { chosenProduct in
-                                ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
+                                ChosenProductView(chosenProduct: chosenProduct,
+                                                  shoppingAssistant: shoppingAssistant,
+                                                  deleteChosenProducts: deleteChosenProducts,
+                                                  changeChosenProduct: changeChosenProduct)
                                     .padding()
                             }
                             .onDelete(perform: deleteProducts)
@@ -35,7 +39,10 @@ struct ListDetailView: View {
                     // portrait
                     List {
                         ForEach(products, id: \.self) { chosenProduct in
-                            ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant)
+                            ChosenProductView(chosenProduct: chosenProduct,
+                                              shoppingAssistant: shoppingAssistant,
+                                              deleteChosenProducts: deleteChosenProducts,
+                                              changeChosenProduct: changeChosenProduct)
                                 .padding(.vertical, 4.0)
                         }
                         .onDelete(perform: deleteProducts)

@@ -19,6 +19,7 @@ class ChosenProductViewModel: ObservableObject {
 
     let shoppingAssitant: ShoppingAssistant
     let chosenProduct: ChosenProduct
+    let additionalOffers: [Offer]?
 
     init(shoppingAssistant: ShoppingAssistant, chosenProduct: ChosenProduct) {
         self.shoppingAssitant = shoppingAssistant
@@ -26,6 +27,13 @@ class ChosenProductViewModel: ObservableObject {
         self.quantity = chosenProduct.quantity
 
         self.offer = chosenProduct.offer
-        self.product = self.offer?.product
+        self.product = chosenProduct.offer?.product
+        self.additionalOffers = chosenProduct.offer?.product?.offers?
+            .filter { $0 as? Offer != chosenProduct.offer }
+            .sorted { lhs, rhs in // sort by difference
+                let diffLhs = ((lhs as? Offer)?.price ?? 0.0) - chosenProduct.price
+                let diffRhs = ((rhs as? Offer)?.price ?? 0.0) - chosenProduct.price
+                return diffLhs < diffRhs
+            } as? [Offer]
     }
 }

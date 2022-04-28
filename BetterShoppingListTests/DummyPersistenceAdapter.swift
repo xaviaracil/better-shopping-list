@@ -30,6 +30,10 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
         return ShoppingList()
     }
 
+    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
+        return ChosenProduct()
+    }
+
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer> {
         NSFetchRequest()
     }

@@ -37,6 +37,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         persitenceAdapter.newList(isCurrent: isCurrent)
     }
 
+    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
+        persitenceAdapter.newChosenProduct(offer: offer, quantity: quantity)
+    }
+
     ///
     /// Creates a new current list from another list. The new list contains the same products than the original list,
     /// with the best offers.
@@ -122,6 +126,20 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+
+    ///
+    /// Changes a chosen product to another offer in the current list
+    /// - Parameters:
+    ///     - the chosen product to remove
+    ///     - to: new offer
+    ///  - Returns: the new chosen product
+    ///
+    public func changeChosenProduct(_ chosenProduct: ChosenProduct, to offer: Offer) -> ChosenProduct {
+        let newChosenProduct = newChosenProduct(offer: offer, quantity: chosenProduct.quantity)
+        addProductToCurrentList(newChosenProduct)
+        removeChosenProduct(chosenProduct)
+        return newChosenProduct
     }
 
     ///
