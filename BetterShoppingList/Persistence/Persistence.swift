@@ -20,9 +20,9 @@ struct PersistenceController {
             try viewContext.deleteAllObjects()
 
             var markets: [Market] = []
-            for marketIndex in 1...3 {
+            for name in ["Sorli", "Carrefour", "BonPreu Esclat"] {
                 let market = Market(context: viewContext)
-                market.name = "Market \(marketIndex)"
+                market.name = name
                 market.uuid = UUID()
                 // swiftlint:disable line_length
                 market.iconUrl = URL(string: "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png")
