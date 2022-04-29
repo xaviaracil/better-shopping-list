@@ -36,7 +36,7 @@ class MarketsMapViewModel: ObservableObject {
         }
     }
 
-    private let locationManager = LocationManager()
+    private let locationManager = LocationManager(desiredAccuracy: kCLLocationAccuracyBest)
     private let marketSearchManager = MarketSearchManager()
 
     var thereIsAnError: Bool {
