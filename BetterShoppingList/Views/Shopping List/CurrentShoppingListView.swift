@@ -65,15 +65,7 @@ struct CurrentShoppingListView: View {
                 }
             }
             Spacer()
-            Label {
-                Text(viewModel.shoppingList?.earned.euros ?? "0.0")
-            } icon: {
-                Image(systemName: "eurosign.square.fill")
-            }
-            .labelStyle(EarnedLabelStyle())
-            .font(.largeTitle)
-            .foregroundColor(.accentColor)
-            .padding(.bottom)
+            EarnedView(value: viewModel.shoppingList?.earned)
         }
         .navigationTitle(viewModel.shoppingList?.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
@@ -123,15 +115,6 @@ struct CurrentShoppingListView: View {
         }
     }
 
-}
-
-struct EarnedLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.title
-            configuration.icon
-        }
-    }
 }
 
 struct CurrentListView_Previews: PreviewProvider {
