@@ -46,6 +46,34 @@
 		47835981281BC13900239174 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835980281BC13900239174 /* UIExtensions.swift */; };
 		478ADB61281BD095009C852E /* EarnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB60281BD095009C852E /* EarnedView.swift */; };
 		478ADB63281BE029009C852E /* ListMarketLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB62281BE029009C852E /* ListMarketLocationManager.swift */; };
+		478ADB69281C0F30009C852E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478ADB68281C0F30009C852E /* Assets.xcassets */; };
+		478ADB6F281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		478ADB76281C0F30009C852E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB75281C0F30009C852E /* ContentView.swift */; };
+		478ADB78281C0F30009C852E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB77281C0F30009C852E /* NotificationController.swift */; };
+		478ADB7A281C0F30009C852E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB79281C0F30009C852E /* NotificationView.swift */; };
+		478ADB7C281C0F30009C852E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB7B281C0F30009C852E /* ComplicationController.swift */; };
+		478ADB7E281C0F31009C852E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478ADB7D281C0F31009C852E /* Assets.xcassets */; };
+		478ADB81281C0F31009C852E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478ADB80281C0F31009C852E /* Preview Assets.xcassets */; };
+		478ADB86281C0F31009C852E /* WatchBetterShoppingList.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		478ADB91281C12B8009C852E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478ADB90281C12B8009C852E /* CloudKit.framework */; };
+		478ADB95281C14EF009C852E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB94281C14EF009C852E /* Persistence.swift */; };
+		478ADB96281C150C009C852E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
+		478ADB99281C1A8C009C852E /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
+		478ADB9A281C1AAD009C852E /* CurrentListMarketInMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783597A281B14A100239174 /* CurrentListMarketInMarketView.swift */; };
+		478ADB9B281C1AAD009C852E /* CurrentListMarketInMarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783597C281B305B00239174 /* CurrentListMarketInMarketViewModel.swift */; };
+		478ADB9C281C1B11009C852E /* ChosenProduct+grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */; };
+		478ADB9D281C1B2D009C852E /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
+		478ADB9F281C1B71009C852E /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 478ADB9E281C1B71009C852E /* Algorithms */; };
+		478ADBA1281C1BA5009C852E /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 478ADBA0281C1BA5009C852E /* OrderedCollections */; };
+		478ADBA3281C1BB3009C852E /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 478ADBA2281C1BB3009C852E /* Collections */; };
+		478ADBA4281C1BEC009C852E /* ProductImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCCA852807751700D84107 /* ProductImageView.swift */; };
+		478ADBA5281C1BFD009C852E /* ShoppingList+Earned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */; };
+		478ADBA6281C1BFD009C852E /* Market+usermarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541B2807344000BD23F3 /* Market+usermarkets.swift */; };
+		478ADBA7281C1C1E009C852E /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835980281BC13900239174 /* UIExtensions.swift */; };
+		478ADBAC281C1C53009C852E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479554152806E21700BD23F3 /* LocationManager.swift */; };
+		478ADBAE281C1F50009C852E /* BetterShoppingListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADBAD281C1F4F009C852E /* BetterShoppingListApp.swift */; };
+		478ADBB0281C1FF4009C852E /* WatchConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADBAF281C1FF4009C852E /* WatchConnector.swift */; };
+		478ADBB2281C2304009C852E /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADBB1281C2304009C852E /* ContentViewModel.swift */; };
 		478C142A27FE0EAF007FF217 /* CurrentShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */; };
 		478C142C27FE1CD6007FF217 /* MarketLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478C142B27FE1CD6007FF217 /* MarketLabelView.swift */; };
 		47941FE127FF74C200F0D5AF /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE027FF74C200F0D5AF /* ListDetailView.swift */; };
@@ -94,7 +122,46 @@
 			remoteGlobalIDString = 470C390C27F60694009C1967;
 			remoteInfo = BetterShoppingList;
 		};
+		478ADB70281C0F30009C852E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 470C390527F60694009C1967 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 478ADB6D281C0F30009C852E;
+			remoteInfo = "WatchBetterShoppingList WatchKit Extension";
+		};
+		478ADB84281C0F31009C852E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 470C390527F60694009C1967 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 478ADB65281C0F2B009C852E;
+			remoteInfo = WatchBetterShoppingList;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		478ADB8A281C0F32009C852E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				478ADB6F281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478ADB8E281C0F32009C852E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				478ADB86281C0F31009C852E /* WatchBetterShoppingList.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4701904227FB527F00488534 /* SavedListsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsTests.swift; sourceTree = "<group>"; };
@@ -140,6 +207,23 @@
 		47835980281BC13900239174 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		478ADB60281BD095009C852E /* EarnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedView.swift; sourceTree = "<group>"; };
 		478ADB62281BE029009C852E /* ListMarketLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMarketLocationManager.swift; sourceTree = "<group>"; };
+		478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchBetterShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		478ADB68281C0F30009C852E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchBetterShoppingList WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		478ADB75281C0F30009C852E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		478ADB77281C0F30009C852E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		478ADB79281C0F30009C852E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		478ADB7B281C0F30009C852E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		478ADB7D281C0F31009C852E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		478ADB80281C0F31009C852E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		478ADB82281C0F31009C852E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		478ADB83281C0F31009C852E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		478ADB8F281C12B5009C852E /* WatchBetterShoppingList WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WatchBetterShoppingList WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		478ADB90281C12B8009C852E /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		478ADB94281C14EF009C852E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		478ADBAD281C1F4F009C852E /* BetterShoppingListApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterShoppingListApp.swift; sourceTree = "<group>"; };
+		478ADBAF281C1FF4009C852E /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
+		478ADBB1281C2304009C852E /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShoppingListView.swift; sourceTree = "<group>"; };
 		478C142B27FE1CD6007FF217 /* MarketLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketLabelView.swift; sourceTree = "<group>"; };
 		47941FE027FF74C200F0D5AF /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -199,6 +283,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		478ADB6B281C0F30009C852E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478ADB9F281C1B71009C852E /* Algorithms in Frameworks */,
+				478ADB91281C12B8009C852E /* CloudKit.framework in Frameworks */,
+				478ADBA3281C1BB3009C852E /* Collections in Frameworks */,
+				478ADBA1281C1BA5009C852E /* OrderedCollections in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -210,6 +305,8 @@
 				470C390F27F60694009C1967 /* BetterShoppingList */,
 				470C392527F60695009C1967 /* BetterShoppingListTests */,
 				470C392F27F60695009C1967 /* BetterShoppingListUITests */,
+				478ADB67281C0F2B009C852E /* WatchBetterShoppingList */,
+				478ADB72281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
 				470C390E27F60694009C1967 /* Products */,
 				47BC1E2F27F60DFE00293AE9 /* Frameworks */,
 			);
@@ -221,6 +318,8 @@
 				470C390D27F60694009C1967 /* BetterShoppingList.app */,
 				470C392227F60695009C1967 /* BetterShoppingListTests.xctest */,
 				470C392C27F60695009C1967 /* BetterShoppingListUITests.xctest */,
+				478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */,
+				478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,6 +426,41 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		478ADB67281C0F2B009C852E /* WatchBetterShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				478ADB68281C0F30009C852E /* Assets.xcassets */,
+			);
+			path = WatchBetterShoppingList;
+			sourceTree = "<group>";
+		};
+		478ADB72281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				478ADBAD281C1F4F009C852E /* BetterShoppingListApp.swift */,
+				478ADB8F281C12B5009C852E /* WatchBetterShoppingList WatchKit Extension.entitlements */,
+				478ADB75281C0F30009C852E /* ContentView.swift */,
+				478ADB77281C0F30009C852E /* NotificationController.swift */,
+				478ADB79281C0F30009C852E /* NotificationView.swift */,
+				478ADB7B281C0F30009C852E /* ComplicationController.swift */,
+				478ADB7D281C0F31009C852E /* Assets.xcassets */,
+				478ADB82281C0F31009C852E /* Info.plist */,
+				478ADB83281C0F31009C852E /* PushNotificationPayload.apns */,
+				478ADB7F281C0F31009C852E /* Preview Content */,
+				478ADB94281C14EF009C852E /* Persistence.swift */,
+				478ADBB1281C2304009C852E /* ContentViewModel.swift */,
+			);
+			path = "WatchBetterShoppingList WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		478ADB7F281C0F31009C852E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				478ADB80281C0F31009C852E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		47941FE827FF8DC100F0D5AF /* Shopping List */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +497,7 @@
 		47BC1E2F27F60DFE00293AE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				478ADB90281C12B8009C852E /* CloudKit.framework */,
 				47BC1E3027F60DFE00293AE9 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -380,6 +515,7 @@
 				4795541B2807344000BD23F3 /* Market+usermarkets.swift */,
 				471BE63C28118FE300A4CF42 /* Model+utils.swift */,
 				478ADB62281BE029009C852E /* ListMarketLocationManager.swift */,
+				478ADBAF281C1FF4009C852E /* WatchConnector.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -395,10 +531,12 @@
 				470C390A27F60694009C1967 /* Frameworks */,
 				470C390B27F60694009C1967 /* Resources */,
 				470C393F27F606D7009C1967 /* ShellScript */,
+				478ADB8E281C0F32009C852E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				478ADB85281C0F31009C852E /* PBXTargetDependency */,
 			);
 			name = BetterShoppingList;
 			packageProductDependencies = (
@@ -447,6 +585,45 @@
 			productReference = 470C392C27F60695009C1967 /* BetterShoppingListUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		478ADB65281C0F2B009C852E /* WatchBetterShoppingList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 478ADB8B281C0F32009C852E /* Build configuration list for PBXNativeTarget "WatchBetterShoppingList" */;
+			buildPhases = (
+				478ADB64281C0F2B009C852E /* Resources */,
+				478ADB8A281C0F32009C852E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				478ADB71281C0F30009C852E /* PBXTargetDependency */,
+			);
+			name = WatchBetterShoppingList;
+			productName = WatchBetterShoppingList;
+			productReference = 478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		478ADB6D281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 478ADB87281C0F32009C852E /* Build configuration list for PBXNativeTarget "WatchBetterShoppingList WatchKit Extension" */;
+			buildPhases = (
+				478ADB6A281C0F30009C852E /* Sources */,
+				478ADB6B281C0F30009C852E /* Frameworks */,
+				478ADB6C281C0F30009C852E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchBetterShoppingList WatchKit Extension";
+			packageProductDependencies = (
+				478ADB9E281C1B71009C852E /* Algorithms */,
+				478ADBA0281C1BA5009C852E /* OrderedCollections */,
+				478ADBA2281C1BB3009C852E /* Collections */,
+			);
+			productName = "WatchBetterShoppingList WatchKit Extension";
+			productReference = 478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -467,6 +644,12 @@
 					470C392B27F60695009C1967 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 470C390C27F60694009C1967;
+					};
+					478ADB65281C0F2B009C852E = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					478ADB6D281C0F30009C852E = {
+						CreatedOnToolsVersion = 13.2.1;
 					};
 				};
 			};
@@ -492,6 +675,8 @@
 				470C390C27F60694009C1967 /* BetterShoppingList */,
 				470C392127F60695009C1967 /* BetterShoppingListTests */,
 				470C392B27F60695009C1967 /* BetterShoppingListUITests */,
+				478ADB65281C0F2B009C852E /* WatchBetterShoppingList */,
+				478ADB6D281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -520,6 +705,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478ADB64281C0F2B009C852E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478ADB69281C0F30009C852E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478ADB6C281C0F30009C852E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478ADB81281C0F31009C852E /* Preview Assets.xcassets in Resources */,
+				478ADB7E281C0F31009C852E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */,
+				478ADBB0281C1FF4009C852E /* WatchConnector.swift in Sources */,
 				47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */,
 				47FCCA862807751700D84107 /* ProductImageView.swift in Sources */,
 				47A9E0FF2812A35D007DDA1D /* FavoriteButton.swift in Sources */,
@@ -645,6 +848,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		478ADB6A281C0F30009C852E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478ADB78281C0F30009C852E /* NotificationController.swift in Sources */,
+				478ADB76281C0F30009C852E /* ContentView.swift in Sources */,
+				478ADBA5281C1BFD009C852E /* ShoppingList+Earned.swift in Sources */,
+				478ADBA7281C1C1E009C852E /* UIExtensions.swift in Sources */,
+				478ADBA4281C1BEC009C852E /* ProductImageView.swift in Sources */,
+				478ADB96281C150C009C852E /* Model.xcdatamodeld in Sources */,
+				478ADB9D281C1B2D009C852E /* ProductOfferList.swift in Sources */,
+				478ADB95281C14EF009C852E /* Persistence.swift in Sources */,
+				478ADB7C281C0F30009C852E /* ComplicationController.swift in Sources */,
+				478ADBAC281C1C53009C852E /* LocationManager.swift in Sources */,
+				478ADBAE281C1F50009C852E /* BetterShoppingListApp.swift in Sources */,
+				478ADB7A281C0F30009C852E /* NotificationView.swift in Sources */,
+				478ADB9B281C1AAD009C852E /* CurrentListMarketInMarketViewModel.swift in Sources */,
+				478ADB9C281C1B11009C852E /* ChosenProduct+grouping.swift in Sources */,
+				478ADBB2281C2304009C852E /* ContentViewModel.swift in Sources */,
+				478ADBA6281C1BFD009C852E /* Market+usermarkets.swift in Sources */,
+				478ADB99281C1A8C009C852E /* PersistenceAdapter.swift in Sources */,
+				478ADB9A281C1AAD009C852E /* CurrentListMarketInMarketView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -657,6 +885,16 @@
 			isa = PBXTargetDependency;
 			target = 470C390C27F60694009C1967 /* BetterShoppingList */;
 			targetProxy = 470C392D27F60695009C1967 /* PBXContainerItemProxy */;
+		};
+		478ADB71281C0F30009C852E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 478ADB6D281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */;
+			targetProxy = 478ADB70281C0F30009C852E /* PBXContainerItemProxy */;
+		};
+		478ADB85281C0F31009C852E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 478ADB65281C0F2B009C852E /* WatchBetterShoppingList */;
+			targetProxy = 478ADB84281C0F31009C852E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -934,6 +1172,124 @@
 			};
 			name = Release;
 		};
+		478ADB88281C0F32009C852E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchBetterShoppingList WatchKit Extension/WatchBetterShoppingList WatchKit Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchBetterShoppingList WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Q74977A756;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchBetterShoppingList WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchBetterShoppingList WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchBetterShoppingList_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		478ADB89281C0F32009C852E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "WatchBetterShoppingList WatchKit Extension/WatchBetterShoppingList WatchKit Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchBetterShoppingList WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = Q74977A756;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchBetterShoppingList WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchBetterShoppingList WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchBetterShoppingList_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		478ADB8C281C0F32009C852E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchBetterShoppingList;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		478ADB8D281C0F32009C852E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchBetterShoppingList;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -973,6 +1329,24 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		478ADB87281C0F32009C852E /* Build configuration list for PBXNativeTarget "WatchBetterShoppingList WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478ADB88281C0F32009C852E /* Debug */,
+				478ADB89281C0F32009C852E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		478ADB8B281C0F32009C852E /* Build configuration list for PBXNativeTarget "WatchBetterShoppingList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478ADB8C281C0F32009C852E /* Debug */,
+				478ADB8D281C0F32009C852E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -999,6 +1373,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
+		};
+		478ADB9E281C1B71009C852E /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		478ADBA0281C1BA5009C852E /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47C57DF027FB446D00A86D5A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		478ADBA2281C1BB3009C852E /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47C57DF027FB446D00A86D5A /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
 		};
 		47C57DF127FB446D00A86D5A /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;

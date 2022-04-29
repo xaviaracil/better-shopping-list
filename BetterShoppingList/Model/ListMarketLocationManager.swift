@@ -55,7 +55,6 @@ class ListMarketLocationManager: ObservableObject {
         }
     }
 
-
     init() {
         locationManager.locationPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -100,6 +99,10 @@ class ListMarketLocationManager: ObservableObject {
         }
         self.checkMarkets(items)
         locationManager.start()
+    }
+
+    func stop() {
+        locationManager.stop()
     }
 
     private func lessThan50Meters(_ lhs: CLLocation?,

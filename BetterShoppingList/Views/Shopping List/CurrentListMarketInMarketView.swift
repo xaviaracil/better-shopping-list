@@ -25,11 +25,12 @@ struct CurrentListMarketInMarketView: View {
         List {
             ForEach(sortedProducts, id: \.self) { product in
                 HStack {
-                    ProductImageView(product: product.offer?.product, isSpecialOffer: product.isSpecialOffer)
-                        .frame(width: 90, height: 90)
-
+                    if let offer = product.offer {
+                        ProductImageView(product: offer.product, isSpecialOffer: product.isSpecialOffer)
+                            .frame(width: 90, height: 90)
+                    }
                     VStack(alignment: .leading) {
-                        Text(product.offer?.product?.name ?? "No Name")
+                        Text(product.name ?? "No Name")
                             .strikethrough(product.inBasket, color: .accentColor)
                             .productTitle()
                         Text(product.price.euros)

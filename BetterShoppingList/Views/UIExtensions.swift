@@ -13,6 +13,22 @@ extension Double {
     }
 }
 
+struct ProductTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .truncationMode(.tail)
+            .font(.headline)
+    }
+}
+
+struct OfferBestPrice: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title2)
+            .foregroundColor(.accentColor)
+    }
+}
+
 extension View {
     public func addBorder<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S: ShapeStyle {
         let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)

@@ -62,22 +62,6 @@ struct ProductOfferView: View {
     }
 }
 
-struct ProductTitle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .truncationMode(.tail)
-            .font(.headline)
-    }
-}
-
-struct OfferBestPrice: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.title2)
-            .foregroundColor(.accentColor)
-    }
-}
-
 struct ProductOfferView_Previews: PreviewProvider {
     static var previews: some View {
         ProductOfferView(product: mockProduct(), added: .constant(false))

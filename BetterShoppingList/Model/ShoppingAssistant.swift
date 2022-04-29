@@ -7,11 +7,11 @@
 
 import Foundation
 import CoreData
-import Algorithms
+// import Algorithms
 import Combine
 
 /// Main Model class for the application
-class ShoppingAssistant: ObservableObject, PersistenceAdapter {
+class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDelegate {
     @Published var currentList: ShoppingList? {
         didSet {
             listMarketLocationManager.shoppingList = currentList
@@ -23,10 +23,17 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     let persitenceAdapter: PersistenceAdapter
 
     let listMarketLocationManager = ListMarketLocationManager()
+    let watchConnector = WatchConnector()
 
     @Published var marketTheUserIsInCurrently: Market? {
         didSet {
             self.userIsinAMarket = marketTheUserIsInCurrently != nil
+            if self.userIsinAMarket {
+                // notify watch app
+                if let products = self.currentList?.products as? Set<ChosenProduct> {
+                    watchConnector.notifyProducts(products.map {$0.objectID }, for: marketTheUserIsInCurrently!)
+                }
+            }
         }
     }
 
@@ -46,6 +53,8 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
             .removeDuplicates()
             .assign(to: \.marketTheUserIsInCurrently, on: self)
             .store(in: &cancellableSet)
+
+        watchConnector.delegate = self
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
@@ -202,5 +211,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
 
     func stopSearchingForNearMarkets() {
         listMarketLocationManager.stop()
+    }
+
+    // MARK: - WatchConnector Delegate
+    func askForNearbyProducts() {
+        startSearchingForNearMarkets()
     }
 }
