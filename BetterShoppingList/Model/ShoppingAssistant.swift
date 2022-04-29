@@ -199,4 +199,8 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
     func startSearchingForNearMarkets() {
         listMarketLocationManager.start()
     }
+
+    func stopSearchingForNearMarkets() {
+        listMarketLocationManager.stop()
+    }
 }

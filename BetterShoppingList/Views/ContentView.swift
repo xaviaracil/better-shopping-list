@@ -37,11 +37,16 @@ struct ContentView: View {
             Button(action: {
                 print("Time to switch")
                 withAnimation {
+                    shoppingAssistant.stopSearchingForNearMarkets()
                     shoppingAssistant.switchToInMarketView.toggle()
                 }
 
             }) {
                 Label("Switch", systemImage: "cart")
+            }
+
+            Button("Cancel", role: .cancel) {
+                shoppingAssistant.stopSearchingForNearMarkets()
             }
         } message: {
             // swiftlint:disable line_length
