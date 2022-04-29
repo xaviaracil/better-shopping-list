@@ -72,16 +72,14 @@ struct ChosenProductView: View {
                 if let additionalOffers = viewModel.additionalOffers {
                     Menu {
                         ForEach(additionalOffers) { offer in
-                            let diff = offer.price - viewModel.chosenProduct.price
                             Button(action: {
                                 changeOffer(offer)
                             }) {
-                                Label("\(offer.market?.name ?? "N.A.") (\(diff.formatted(.currency(code: "eur"))))",
+                                Label("\(offer.market?.name ?? "N.A.") (\(offer.price.formatted(.currency(code: "eur"))))",
                                       systemImage: "rectangle.portrait.and.arrow.right")
                                     .foregroundColor(.red)
 
                             }
-                            .foregroundColor(diff < 0.0 ? .green : (diff > 0.0 ? .red : .primary))
                         }
                         Divider()
                         Button(role: .destructive, action: deleteProduct) {
