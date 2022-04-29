@@ -14,22 +14,19 @@ struct ChosenProductView: View {
     var changeChosenProduct: ((ChosenProduct, Offer) -> Void)?
     var canEdit: Bool
     var canChangeQuantity: Bool
-    var inMarket: Bool
 
     init(chosenProduct: ChosenProduct,
          shoppingAssistant: ShoppingAssistant,
          deleteChosenProducts: (([ChosenProduct]) -> Void)? = nil,
          changeChosenProduct: ((ChosenProduct, Offer) -> Void)? = nil,
          canEdit: Bool = true,
-         canChangeQuantity: Bool = true,
-         inMarket: Bool = false) {
+         canChangeQuantity: Bool = true) {
         viewModel = ChosenProductViewModel(shoppingAssistant: shoppingAssistant,
                                            chosenProduct: chosenProduct)
         self.deleteChosenProducts = deleteChosenProducts
         self.changeChosenProduct = changeChosenProduct
         self.canEdit = canEdit
         self.canChangeQuantity = canChangeQuantity
-        self.inMarket = inMarket
     }
 
     private func deleteProduct() {
@@ -95,23 +92,6 @@ struct ChosenProductView: View {
                             .font(.system(size: 48))
                             .foregroundColor(.accentColor)
                             .labelStyle(.iconOnly)
-                    }
-                }
-            }
-
-            if inMarket {
-                Button(action: { viewModel.toogleInCart() }) {
-                    if viewModel.inBasket {
-                        Label("Remove from cart", systemImage: "checkmark.circle")
-                            .font(.system(size: 48))
-                            .foregroundColor(.accentColor)
-                            .labelStyle(.iconOnly)
-                    } else {
-                        Label("Add to cart", systemImage: "circle")
-                            .font(.system(size: 48))
-                            .foregroundColor(.accentColor)
-                            .labelStyle(.iconOnly)
-
                     }
                 }
             }
