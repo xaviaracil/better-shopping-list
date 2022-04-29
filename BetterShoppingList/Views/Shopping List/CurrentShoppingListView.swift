@@ -66,7 +66,7 @@ struct CurrentShoppingListView: View {
             }
             Spacer()
             Label {
-                Text(viewModel.shoppingList?.earned.formatted(.currency(code: "eur")) ?? "0.0")
+                Text(viewModel.shoppingList?.earned.euros ?? "0.0")
             } icon: {
                 Image(systemName: "eurosign.square.fill")
             }

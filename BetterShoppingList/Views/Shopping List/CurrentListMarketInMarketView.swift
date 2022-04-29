@@ -32,7 +32,7 @@ struct CurrentListMarketInMarketView: View {
                         Text(product.offer?.product?.name ?? "No Name")
                             .strikethrough(product.inBasket, color: .accentColor)
                             .productTitle()
-                        Text(product.price.formatted(.currency(code: "eur")))
+                        Text(product.price.euros)
                             .strikethrough(product.inBasket, color: .accentColor)
                             .bestPrice()
                         Text("Quantity: \(product.quantity)")

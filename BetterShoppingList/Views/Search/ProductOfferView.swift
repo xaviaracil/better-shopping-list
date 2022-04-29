@@ -33,7 +33,7 @@ struct ProductOfferView: View {
             VStack(alignment: .leading) {
                 Text(product.name ?? "No Name")
                     .productTitle()
-                Text(chosenOffer?.price.formatted(.currency(code: "eur")) ?? "N.A")
+                Text(chosenOffer?.price.euros ?? "N.A")
                     .bestPrice()
                 MarketLabelView(market: chosenOffer?.market)
                 Stepper(value: $quantity) {
@@ -75,16 +75,6 @@ struct OfferBestPrice: ViewModifier {
         content
             .font(.title2)
             .foregroundColor(.accentColor)
-    }
-}
-
-extension View {
-    func productTitle() -> some View {
-        modifier(ProductTitle())
-    }
-
-    func bestPrice() -> some View {
-        modifier(OfferBestPrice())
     }
 }
 

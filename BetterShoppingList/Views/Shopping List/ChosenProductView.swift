@@ -53,7 +53,7 @@ struct ChosenProductView: View {
             VStack(alignment: .leading) {
                 Text(viewModel.product?.name ?? "No Name")
                     .productTitle()
-                Text(viewModel.chosenProduct.price.formatted(.currency(code: "eur")))
+                Text(viewModel.chosenProduct.price.euros)
                     .bestPrice()
                 if canChangeQuantity {
                     Stepper(value: $viewModel.quantity) {
@@ -68,30 +68,29 @@ struct ChosenProductView: View {
 
             Spacer()
 
-            if canEdit {
-                if let additionalOffers = viewModel.additionalOffers {
-                    Menu {
-                        ForEach(additionalOffers) { offer in
-                            Button(action: {
-                                changeOffer(offer)
-                            }) {
-                                Label("\(offer.market?.name ?? "N.A.") (\(offer.price.formatted(.currency(code: "eur"))))",
-                                      systemImage: "rectangle.portrait.and.arrow.right")
-                                    .foregroundColor(.red)
+            Menu {
+                if let additionalOffers = viewModel.additionalOffers,
+                   canEdit {
+                    ForEach(additionalOffers) { offer in
+                        Button(action: {
+                            changeOffer(offer)
+                        }) {
+                            Label("\(offer.market?.name ?? "N.A.") (\(offer.price.euros))",
+                                  systemImage: "rectangle.portrait.and.arrow.right")
+                                .foregroundColor(.red)
 
-                            }
                         }
-                        Divider()
-                        Button(role: .destructive, action: deleteProduct) {
-                            Label("Delete", systemImage: "trash.fill")
-                        }
-                    } label: {
-                        Label("Move to", systemImage: "ellipsis.circle")
-                            .font(.system(size: 48))
-                            .foregroundColor(.accentColor)
-                            .labelStyle(.iconOnly)
                     }
+                    Divider()
                 }
+                Button(role: .destructive, action: deleteProduct) {
+                    Label("Delete", systemImage: "trash.fill")
+                }
+            } label: {
+                Label("Move to", systemImage: "ellipsis.circle")
+                    .font(.system(size: 48))
+                    .foregroundColor(.accentColor)
+                    .labelStyle(.iconOnly)
             }
         }
     }

@@ -26,19 +26,6 @@ struct MarketLabelView: View {
     }
 }
 
-extension View {
-    func marketLabel() -> some View {
-        modifier(MarketLabel())
-    }
-}
-
-struct MarketLabel: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.caption2)
-    }
-}
-
 struct MarketLabelView_Previews: PreviewProvider {
     static var previews: some View {
         MarketLabelView()
