@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShoppingListView: View {
-    @EnvironmentObject var shoppingAssitant: ShoppingAssistant
+    @EnvironmentObject var shoppingAssistant: ShoppingAssistant
 
     @ObservedObject
     var viewModel: CurrentShoppingListViewModel
@@ -18,23 +18,50 @@ struct ShoppingListView: View {
     }
 
     var body: some View {
-        ListDetailView(products: viewModel.shoppingList?.products?.allObjects as? [ChosenProduct] ?? [],
-                       name: viewModel.shoppingList?.name ?? "N.A.",
-                       deleteChosenProducts: deleteChosenProducts,
-                       canEdit: false,
-                       canChangeQuantity: true)
-            .toolbar(content: {
-                ToolbarItem(placement: .primaryAction) {
-                    FavoriteButton(isOn: $viewModel.isFavorite)
-                }
-            })
+        VStack {
+            ForEach(viewModel.shoppingList?.markets ?? [], id: \.self) { market in
+                VStack(alignment: .leading) {
+                    MarketLabelView(market: market)
+                    ScrollView(.horizontal) {
+                        let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+                        LazyHGrid(rows: rows) {
+                            ForEach(viewModel.products?.ofMarket(market: market) ?? [], id: \.self) { chosenProduct in
+
+                                HStack {
+                                    ProductImageView(product: chosenProduct.offer?.product,
+                                                     isSpecialOffer: chosenProduct.isSpecialOffer)
+                                        .frame(width: 90, height: 90)
+
+                                    VStack(alignment: .leading) {
+                                        Text(chosenProduct.offer?.product?.name ?? "No Name")
+                                            .productTitle()
+                                        Text(chosenProduct.price.euros)
+                                            .bestPrice()
+                                    }
+                                }
+                                .padding()
+                            }
+                        }
+                    }
+                }.padding()
+            }
+            Spacer()
+            EarnedView(value: viewModel.shoppingList?.earning)
+        }
+        .navigationTitle(viewModel.shoppingList?.name ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar(content: {
+            ToolbarItem(placement: .primaryAction) {
+                FavoriteButton(isOn: $viewModel.isFavorite)
+            }
+        })
     }
 
     func deleteChosenProducts(products: [ChosenProduct]) {
         withAnimation {
             products.forEach {
                 viewModel.removeProduct($0)
-                shoppingAssitant.removeChosenProduct($0)
+                shoppingAssistant.removeChosenProduct($0)
             }
 
         }

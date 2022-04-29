@@ -20,7 +20,7 @@ struct ProductImageView: View {
                         .scaledToFit()
                 } placeholder: {
                     ProgressView()
-                        .frame(width: .infinity, height: .infinity, alignment: .center)
+                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 }
                 // mark special offers
                 if isSpecialOffer {
