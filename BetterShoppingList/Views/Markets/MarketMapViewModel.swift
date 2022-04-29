@@ -125,4 +125,3 @@ class MarketsMapViewModel: ObservableObject {
 
 extension MKMapItem: Identifiable {
 }
-
