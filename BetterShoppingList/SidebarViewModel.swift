@@ -19,7 +19,7 @@ class SidebarViewModel: ObservableObject {
     @Published
     var selectedItem: String? = "Current"
 
-    let shoppingAssistant: ShoppingAssistant
+    var shoppingAssistant: ShoppingAssistant
 
     init(shoppingAssistant: ShoppingAssistant) {
         print("SidebarViewModel init!!!")

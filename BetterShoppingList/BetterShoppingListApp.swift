@@ -28,9 +28,14 @@ struct BetterShoppingListApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(shoppingAssitant)
-        }.onChange(of: scenePhase) { _ in
+        }.onChange(of: scenePhase) { phase in
             // save when entering background, etc
             try? persistenceController.container.viewContext.save()
+
+            if phase == .active {
+                // when active, check if we are near a market in the current list
+                shoppingAssitant.startSearchingForNearMarkets()
+            }
         }
     }
 }

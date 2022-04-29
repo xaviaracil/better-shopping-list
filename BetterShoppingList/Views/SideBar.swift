@@ -17,19 +17,28 @@ struct SideBar: View {
     @StateObject
     private var viewModel: SidebarViewModel
 
-//    @State var selectedItem: String? = "Current"
-
     init(shoppingAssistant: ShoppingAssistant) {
         let auxViewModel = SidebarViewModel(shoppingAssistant: shoppingAssistant)
         _viewModel = .init(wrappedValue: auxViewModel)
         _markets = auxViewModel.marketsFetchRequest
         _shoppingLists = auxViewModel.shoppingListFetchRequest
-        print("init!!!")
+        print("init!!! \(_viewModel)")
     }
 
     var body: some View {
-        print("Update body \(String(describing: viewModel.selectedItem))")
+        print("Update body \(viewModel)")
         return List {
+            if let market = viewModel.shoppingAssistant.marketTheUserIsInCurrently {
+                // swiftlint:disable line_length
+                NavigationLink(destination:
+                    CurrentListMarketInMarketView(name: market.name ?? "N.A.",
+                                                  products: (viewModel.shoppingAssistant.currentList?.products as? Set<ChosenProduct>)?.ofMarket(market: market) ?? [])
+                                .navigationBarTitle(market.name ?? "N.A."),
+                               isActive: $viewModel.shoppingAssistant.switchToInMarketView) {
+                    Label(market.name ?? "N.A.", systemImage: "cart")
+                }
+            }
+
             // swiftlint:disable line_length
             NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant), tag: "Current", selection: $viewModel.selectedItem) {
                 Label("Current List", systemImage: "bag.fill")

@@ -14,6 +14,7 @@ struct ContentView: View {
     private var shoppingAssistant: ShoppingAssistant
 
     @State private var splashDisplayed = false
+    @State private var switchToInMarket = false
     private var hideSplash: Bool
 
     init(hideSplash: Bool = false) {
@@ -21,14 +22,30 @@ struct ContentView: View {
     }
 
     var body: some View {
-        if !splashDisplayed && !hideSplash {
-            SplashView(displayed: $splashDisplayed)
-        } else {
-            NavigationView {
-                SideBar(shoppingAssistant: shoppingAssistant)
+        Group {
+            if !splashDisplayed && !hideSplash {
+                SplashView(displayed: $splashDisplayed)
+            } else {
+                NavigationView {
+                    SideBar(shoppingAssistant: shoppingAssistant)
 
-                HomeView(shoppingAssistant: shoppingAssistant)
+                    HomeView(shoppingAssistant: shoppingAssistant)
+                }
             }
+        }.confirmationDialog("Switch to In Market view?",
+                             isPresented: $shoppingAssistant.userIsinAMarket) {
+            Button(action: {
+                print("Time to switch")
+                withAnimation {
+                    shoppingAssistant.switchToInMarketView.toggle()
+                }
+
+            }) {
+                Label("Switch", systemImage: "cart")
+            }
+        } message: {
+            // swiftlint:disable line_length
+            Text("Seems you are close to \(shoppingAssistant.marketTheUserIsInCurrently?.name ?? "N.A."). Switch to in market view to view its products in your current list?")
         }
     }
 }

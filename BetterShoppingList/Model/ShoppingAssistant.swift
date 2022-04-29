@@ -8,17 +8,44 @@
 import Foundation
 import CoreData
 import Algorithms
+import Combine
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter {
-    @Published var currentList: ShoppingList?
+    @Published var currentList: ShoppingList? {
+        didSet {
+            listMarketLocationManager.shoppingList = currentList
+        }
+    }
+
     @Published var markets: [Market]?
 
     let persitenceAdapter: PersistenceAdapter
+
+    let listMarketLocationManager = ListMarketLocationManager()
+
+    @Published var marketTheUserIsInCurrently: Market? {
+        didSet {
+            self.userIsinAMarket = marketTheUserIsInCurrently != nil
+        }
+    }
+
+    @Published var userIsinAMarket = false
+
+    @Published var switchToInMarketView = false
+
+    private var cancellableSet: Set<AnyCancellable> = []
+
     init(persistenceAdapter: PersistenceAdapter) {
         self.persitenceAdapter = persistenceAdapter
         currentList = persistenceAdapter.currentList
         markets = persistenceAdapter.markets
+
+        listMarketLocationManager.currentMarketPublisher
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .assign(to: \.marketTheUserIsInCurrently, on: self)
+            .store(in: &cancellableSet)
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
@@ -163,7 +190,13 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter {
         return newList
     }
 
+    ///
+    /// Save context in database
     func save() throws {
         try persitenceAdapter.save()
+    }
+
+    func startSearchingForNearMarkets() {
+        listMarketLocationManager.start()
     }
 }

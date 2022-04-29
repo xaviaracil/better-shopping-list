@@ -21,15 +21,19 @@ class LocationManager: NSObject {
     let statusPublisher = PassthroughSubject<CLAuthorizationStatus, LocationError>()
     let locationPublisher = PassthroughSubject<CLLocation?, Never>()
 
-    override init() {
+    init(desiredAccuracy: CLLocationAccuracy = kCLLocationAccuracyHundredMeters) {
         super.init()
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        self.locationManager.desiredAccuracy = desiredAccuracy
         self.locationManager.requestWhenInUseAuthorization()
     }
 
     func start() {
         locationManager.startUpdatingLocation()
+    }
+
+    func stop() {
+        locationManager.stopUpdatingLocation()
     }
 }
 

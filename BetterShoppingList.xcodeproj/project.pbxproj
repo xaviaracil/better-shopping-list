@@ -45,6 +45,7 @@
 		4783597D281B305B00239174 /* CurrentListMarketInMarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783597C281B305B00239174 /* CurrentListMarketInMarketViewModel.swift */; };
 		47835981281BC13900239174 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835980281BC13900239174 /* UIExtensions.swift */; };
 		478ADB61281BD095009C852E /* EarnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB60281BD095009C852E /* EarnedView.swift */; };
+		478ADB63281BE029009C852E /* ListMarketLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478ADB62281BE029009C852E /* ListMarketLocationManager.swift */; };
 		478C142A27FE0EAF007FF217 /* CurrentShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */; };
 		478C142C27FE1CD6007FF217 /* MarketLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478C142B27FE1CD6007FF217 /* MarketLabelView.swift */; };
 		47941FE127FF74C200F0D5AF /* ListDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47941FE027FF74C200F0D5AF /* ListDetailView.swift */; };
@@ -138,6 +139,7 @@
 		4783597C281B305B00239174 /* CurrentListMarketInMarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketInMarketViewModel.swift; sourceTree = "<group>"; };
 		47835980281BC13900239174 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		478ADB60281BD095009C852E /* EarnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedView.swift; sourceTree = "<group>"; };
+		478ADB62281BE029009C852E /* ListMarketLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMarketLocationManager.swift; sourceTree = "<group>"; };
 		478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShoppingListView.swift; sourceTree = "<group>"; };
 		478C142B27FE1CD6007FF217 /* MarketLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketLabelView.swift; sourceTree = "<group>"; };
 		47941FE027FF74C200F0D5AF /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				4795541928070C0500BD23F3 /* MarketSearchManager.swift */,
 				4795541B2807344000BD23F3 /* Market+usermarkets.swift */,
 				471BE63C28118FE300A4CF42 /* Model+utils.swift */,
+				478ADB62281BE029009C852E /* ListMarketLocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */,
 				477EC56227F99B1100A589FD /* SearchSuggestionsView.swift in Sources */,
 				478ADB61281BD095009C852E /* EarnedView.swift in Sources */,
+				478ADB63281BE029009C852E /* ListMarketLocationManager.swift in Sources */,
 				4795541A28070C0500BD23F3 /* MarketSearchManager.swift in Sources */,
 				47835977281ACB6A00239174 /* ShoppingListView.swift in Sources */,
 				47835981281BC13900239174 /* UIExtensions.swift in Sources */,
