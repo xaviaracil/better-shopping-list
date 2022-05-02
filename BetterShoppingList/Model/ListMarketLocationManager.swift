@@ -49,11 +49,7 @@ class ListMarketLocationManager: ObservableObject {
     @Published
     var items: [MKMapItem] = []
 
-    public var shoppingList: ShoppingList? {
-        didSet {
-            start()
-        }
-    }
+    public var shoppingList: ShoppingList?
 
     init() {
         locationManager.locationPublisher
