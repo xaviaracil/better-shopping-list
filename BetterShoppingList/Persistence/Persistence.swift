@@ -21,8 +21,7 @@ struct PersistenceController {
 
             var markets: [Market] = []
             // swiftlint:disable line_length
-
-            for (name, icon) in ["Sorli": "https://scontent-mad1-1.cdninstagram.com/v/t51.2885-19/140360878_111790920848567_5837078838760084208_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-mad1-1.cdninstagram.com&_nc_cat=111&_nc_ohc=p1nyNQap-coAX_wk-IJ&edm=ALbqBD0BAAAA&ccb=7-4&oh=00_AT8kF6h9NznYrD6pq17X9iHSmd0yvBnDWA6u1kGJ5xWSJA&oe=62599002&_nc_sid=9a90d6",
+            for (name, icon) in ["Sorli": "https://www.sorli.com/wp-content/themes/sorli/img/sorli_logo.png",
                          "Carrefour": "https://pbs.twimg.com/profile_images/1501460589612306438/mzRWN7ev_400x400.jpg",
                          "BonPreu Esclat": "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png"] {
                 let market = Market(context: viewContext)
