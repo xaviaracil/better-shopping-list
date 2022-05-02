@@ -18,7 +18,6 @@ struct FavoriteButton: View {
             Label("Favorite", systemImage: "star")
                 .symbolVariant(isOn ? .fill : .none)
         }
-//        .background(.blue)
     }
 }
 
