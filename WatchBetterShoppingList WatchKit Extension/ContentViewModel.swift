@@ -56,7 +56,10 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
 
         if session.isReachable {
             // ask for products
-            session.sendMessage(["name": "products", "latitude": currentLocation.coordinate.latitude, "longitude": currentLocation.coordinate.longitude], replyHandler: nil) { print("\($0)") }
+            session.sendMessage(["name": "products",
+                                 "latitude": currentLocation.coordinate.latitude,
+                                 "longitude": currentLocation.coordinate.longitude],
+                                replyHandler: nil) { print("\($0)") }
             DispatchQueue.main.async {
                 self.askedForProducts = true
             }

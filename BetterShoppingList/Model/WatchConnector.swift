@@ -8,13 +8,14 @@
 import Foundation
 import WatchConnectivity
 import CoreData
+import CoreLocation
 
-protocol WatchConnectorDelegate {
-    func askForNearbyProducts()
+@objc protocol WatchConnectorDelegate {
+    func askForNearbyProducts(in location: CLLocation)
 }
 
 class WatchConnector: NSObject, WCSessionDelegate {
-    var delegate: WatchConnectorDelegate?
+    weak var delegate: WatchConnectorDelegate?
 
     override init() {
         super.init()
@@ -36,11 +37,13 @@ class WatchConnector: NSObject, WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {
     }
 
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         if let operation = message["name"] as? String,
+           let latitude = message["latitude"] as? CLLocationDegrees,
+           let longitude = message["longitude"] as? CLLocationDegrees,
            operation == "products" {
             // launch a new operation
-            delegate?.askForNearbyProducts()
+            delegate?.askForNearbyProducts(in: CLLocation(latitude: latitude, longitude: longitude))
         }
     }
 

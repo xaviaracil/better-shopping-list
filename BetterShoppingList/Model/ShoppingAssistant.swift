@@ -7,8 +7,8 @@
 
 import Foundation
 import CoreData
-// import Algorithms
 import Combine
+import Intents
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDelegate {
@@ -30,8 +30,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
             self.userIsinAMarket = marketTheUserIsInCurrently != nil
             if self.userIsinAMarket {
                 // notify watch app
-                if let products = self.currentList?.products as? Set<ChosenProduct> {
-                    watchConnector.notifyProducts(products.map {$0.objectID }, for: marketTheUserIsInCurrently!)
+                if let products = self.currentList?.products as? Set<ChosenProduct>,
+                   let market = marketTheUserIsInCurrently {
+                    let productsInMarket = products.ofMarket(market: market)
+                    watchConnector.notifyProducts(productsInMarket.map {$0.objectID }, for: market)
                 }
             }
         }
@@ -50,7 +52,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
 
         listMarketLocationManager.currentMarketPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
-            .removeDuplicates()
             .assign(to: \.marketTheUserIsInCurrently, on: self)
             .store(in: &cancellableSet)
 
@@ -212,7 +213,25 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     }
 
     // MARK: - WatchConnector Delegate
-    func askForNearbyProducts() {
-        startSearchingForNearMarkets()
+    func askForNearbyProducts(in location: CLLocation) {
+        listMarketLocationManager.currentLocation = location
+    }
+
+    // MARK: - Siri
+    private func donateIntent(product: ChosenProduct) {
+        let intent = AddProductIntent()
+        intent.suggestedInvocationPhrase = "Add \(String(describing: product.name))"
+        intent.name = product.name
+        intent.quantity = NSNumber(value: product.quantity)
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate { (error) in
+            if error != nil {
+                if let error = error as NSError? {
+                    print("Interaction donation failed: \(error.description)")
+                } else {
+                    print("Successfully donated interaction")
+                }
+            }
+        }
     }
 }

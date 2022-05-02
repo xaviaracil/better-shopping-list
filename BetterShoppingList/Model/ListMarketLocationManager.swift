@@ -24,7 +24,7 @@ class ListMarketLocationManager: ObservableObject {
     let currentMarketPublisher = PassthroughSubject<Market?, Never>()
 
     @Published
-    private var currentLocation: CLLocation? {
+    var currentLocation: CLLocation? {
         didSet {
             region = MKCoordinateRegion(center: currentLocation!.coordinate,
                                        latitudinalMeters: 50,
