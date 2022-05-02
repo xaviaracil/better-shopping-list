@@ -13,7 +13,7 @@ class ChosenProductViewModel: ObservableObject {
     @Published var quantity: Int16 {
         didSet {
             chosenProduct.quantity = quantity
-            try? shoppingAssitant.save()
+            shoppingAssitant.save()
         }
     }
 

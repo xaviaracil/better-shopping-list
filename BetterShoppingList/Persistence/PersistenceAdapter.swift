@@ -23,7 +23,7 @@ protocol PersistenceAdapter {
     func productNamePredicate(for text: String) -> NSPredicate?
     func removeList(_ list: ShoppingList)
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
-    func save() throws
+    func save()
 }
 
 struct CoreDataPersistenceAdapter: PersistenceAdapter {
@@ -42,7 +42,7 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
             _ = newList(isCurrent: true)
         }
         currentList?.addToProducts(product)
-        try save()
+        save()
     }
 
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
@@ -141,7 +141,14 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         viewContext.delete(chosenProduct)
     }
 
-    func save() throws {
-        try viewContext.save()
+    func save() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }

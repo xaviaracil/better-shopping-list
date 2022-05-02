@@ -42,7 +42,7 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
         return nil
     }
 
-    func save() throws {
+    func save() {
         // nothing here
     }
 

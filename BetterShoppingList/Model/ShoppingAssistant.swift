@@ -109,13 +109,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
                 }
             }
         }
-        do {
-            try save()
-            currentList = persitenceAdapter.currentList
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        save()
     }
 
     func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
@@ -137,16 +131,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         }
     }
 
-    public func toogleFavourite(market: Market) {
-        var userMarket = market.userMarket
-        if userMarket == nil {
-            userMarket = UserMarket(context: market.managedObjectContext!)
-            userMarket?.marketUUID = market.uuid
-        }
-        guard let userMarket = userMarket else {
-            return
-        }
-        userMarket.isFavorite.toggle()
     func removeList(_ list: ShoppingList) {
         persitenceAdapter.removeList(list)
         save()
@@ -158,12 +142,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     ///     - the chosen product to remove
     public func removeChosenProduct(_ chosenProduct: ChosenProduct) {
         persitenceAdapter.removeChosenProduct(chosenProduct)
-        do {
-            try save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        save()
     }
 
     ///
@@ -191,20 +170,18 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         newList.isFavorite = false
         newList.name = name
         newList.earning = newList.earned
-        do {
-            try save()
-            currentList = persitenceAdapter.currentList
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        save()
         return newList
     }
 
+    func reloadCurrentList() {
+        currentList = persitenceAdapter.currentList
+    }
     ///
     /// Save context in database
-    func save() throws {
-        try persitenceAdapter.save()
+    func save() {
+        persitenceAdapter.save()
+        reloadCurrentList()
     }
 
     func startSearchingForNearMarkets() {

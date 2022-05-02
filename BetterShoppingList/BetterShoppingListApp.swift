@@ -34,7 +34,7 @@ struct BetterShoppingListApp: App {
             INPreferences.requestSiriAuthorization { print($0) }
 
             // save when entering background, etc
-            try? persistenceController.container.viewContext.save()
+            shoppingAssitant.save()
 
             if phase == .active {
                 // refresh
