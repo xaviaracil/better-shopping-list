@@ -13,29 +13,41 @@ struct ShoppingListButtonView: View {
     var list: ShoppingList
 
     var body: some View {
-        Group {
-            Label(list.name ?? "No Name", systemImage: "cart")
-                .labelStyle(ShoppingListLabelStyle())
-                .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
-        }
-        .accessibilityAddTraits(.isButton)
-        .addBorder(.foreground, width: 1, cornerRadius: 10)
-        .onTapGesture {
-            shoppingAssistant.newList(from: list)
+        GeometryReader { reader  in
+            Group {
+                Label(list.name ?? "No Name", systemImage: "cart")
+                    .labelStyle(ShoppingListLabelStyle(maxHeight: reader.size.height))
+                    .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
+            }
+            .frame(width: reader.size.height)
+            .accessibilityAddTraits(.isButton)
+            .addBorder(.foreground, width: 1, cornerRadius: 10)
+            .onTapGesture {
+                shoppingAssistant.newList(from: list)
+            }
         }
     }
 }
 
 struct ShoppingListLabelStyle: LabelStyle {
+    let defaultHeight = 220.0
+    let defaultSize = 96.0
+
+    var maxHeight: CGFloat?
+
     func makeBody(configuration: Configuration) -> some View {
         VStack {
             configuration.icon
-                .font(.system(size: 96))
+                .font(.system(size: calcSize()))
                 .minimumScaleFactor(0.5)
                 .foregroundColor(.accentColor)
             configuration.title
                 .font(.headline)
         }
+    }
+
+    func calcSize() -> CGFloat {
+        return min(defaultHeight, maxHeight ?? defaultHeight) * defaultSize / defaultHeight
     }
 }
 struct ShoppingListButtonView_Previews: PreviewProvider {
@@ -50,6 +62,8 @@ struct ShoppingListButtonView_Previews: PreviewProvider {
         let lists = try? context.fetch(persistenceAdapter.savedListsFetchRequest)
         Group {
             ShoppingListButtonView(list: lists!.first!)
+                .frame(height: 100)
+                .border(.foreground, width: 1.0)
             ShoppingListButtonView(list: lists!.first!)
                 .previewInterfaceOrientation(.landscapeLeft)
         }
