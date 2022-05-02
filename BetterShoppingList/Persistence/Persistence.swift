@@ -100,6 +100,7 @@ struct PersistenceController {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
+            description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             description.configuration = "Local"
@@ -111,7 +112,7 @@ struct PersistenceController {
 
             // public datababase
             // swiftlint:disable:next line_length
-            let publicStoreUrl = description.url!.deletingLastPathComponent().appendingPathComponent("Model-public.sqlite")
+            let publicStoreUrl = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-public")
 
             let publicDescription = NSPersistentStoreDescription(url: publicStoreUrl)
             publicDescription.configuration = "Public"
@@ -144,5 +145,18 @@ struct PersistenceController {
             print("Error initializing CloudKit: \(error)")
         }
         #endif
+    }
+}
+
+public extension URL {
+
+    /// Returns a URL for the given app group and database pointing to the sqlite database.
+    static func storeURL(for appGroup: String, databaseName: String) -> URL {
+        // swiftlint:disable line_length
+        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+            fatalError("Shared file container could not be created.")
+        }
+
+        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
     }
 }

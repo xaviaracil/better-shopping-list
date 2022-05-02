@@ -12,5 +12,11 @@
 	<array>
 		<string>CloudKit</string>
 	</array>
+	<key>com.apple.developer.siri</key>
+	<true/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.name.xaviaracil.BetterShoppingList.shared</string>
+	</array>
 </dict>
 </plist>
