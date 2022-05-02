@@ -92,10 +92,6 @@
 		47A9E1012812A6BC007DDA1D /* CurrentShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */; };
 		47AFD336281D82C200F178B7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478ADBB8281D80C9009C852E /* Intents.framework */; };
 		47AFD339281D82C200F178B7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD338281D82C200F178B7 /* IntentHandler.swift */; };
-		47AFD340281D82C200F178B7 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478ADBD4281D8131009C852E /* IntentsUI.framework */; };
-		47AFD343281D82C300F178B7 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD342281D82C300F178B7 /* IntentViewController.swift */; };
-		47AFD346281D82C300F178B7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AFD344281D82C300F178B7 /* MainInterface.storyboard */; };
-		47AFD34A281D82C300F178B7 /* SiriIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		47AFD34D281D82C300F178B7 /* SiriIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 47AFD335281D82C200F178B7 /* SiriIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		47AFD355281D869300F178B7 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD354281D869300F178B7 /* Intents.intentdefinition */; };
 		47AFD357281D929100F178B7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
@@ -155,13 +151,6 @@
 			remoteGlobalIDString = 478ADB65281C0F2B009C852E;
 			remoteInfo = WatchBetterShoppingList;
 		};
-		47AFD348281D82C300F178B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 470C390527F60694009C1967 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 47AFD33E281D82C200F178B7;
-			remoteInfo = SiriIntentsUI;
-		};
 		47AFD34B281D82C300F178B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 470C390527F60694009C1967 /* Project object */;
@@ -210,7 +199,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				47AFD34A281D82C300F178B7 /* SiriIntentsUI.appex in Embed App Extensions */,
 				47AFD34D281D82C300F178B7 /* SiriIntents.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -301,10 +289,6 @@
 		47AFD335281D82C200F178B7 /* SiriIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		47AFD338281D82C200F178B7 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		47AFD33A281D82C200F178B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntentsUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		47AFD342281D82C300F178B7 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
-		47AFD345281D82C300F178B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		47AFD347281D82C300F178B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47AFD354281D869300F178B7 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		47AFD356281D915E00F178B7 /* SiriIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SiriIntents.entitlements; sourceTree = "<group>"; };
 		47AFD35C281DBEA100F178B7 /* Product+sorted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+sorted.swift"; sourceTree = "<group>"; };
@@ -373,14 +357,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47AFD33C281D82C200F178B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47AFD340281D82C200F178B7 /* IntentsUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -395,7 +371,6 @@
 				478ADB67281C0F2B009C852E /* WatchBetterShoppingList */,
 				478ADB72281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
 				47AFD337281D82C200F178B7 /* SiriIntents */,
-				47AFD341281D82C200F178B7 /* SiriIntentsUI */,
 				470C390E27F60694009C1967 /* Products */,
 				47BC1E2F27F60DFE00293AE9 /* Frameworks */,
 			);
@@ -410,7 +385,6 @@
 				478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */,
 				478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */,
 				47AFD335281D82C200F178B7 /* SiriIntents.appex */,
-				47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -583,16 +557,6 @@
 			path = SiriIntents;
 			sourceTree = "<group>";
 		};
-		47AFD341281D82C200F178B7 /* SiriIntentsUI */ = {
-			isa = PBXGroup;
-			children = (
-				47AFD342281D82C300F178B7 /* IntentViewController.swift */,
-				47AFD344281D82C300F178B7 /* MainInterface.storyboard */,
-				47AFD347281D82C300F178B7 /* Info.plist */,
-			);
-			path = SiriIntentsUI;
-			sourceTree = "<group>";
-		};
 		47AFE35B27F766D9003264D8 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,7 +620,6 @@
 			);
 			dependencies = (
 				478ADB85281C0F31009C852E /* PBXTargetDependency */,
-				47AFD349281D82C300F178B7 /* PBXTargetDependency */,
 				47AFD34C281D82C300F178B7 /* PBXTargetDependency */,
 			);
 			name = BetterShoppingList;
@@ -763,23 +726,6 @@
 			productReference = 47AFD335281D82C200F178B7 /* SiriIntents.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		47AFD33E281D82C200F178B7 /* SiriIntentsUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 47AFD34E281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntentsUI" */;
-			buildPhases = (
-				47AFD33B281D82C200F178B7 /* Sources */,
-				47AFD33C281D82C200F178B7 /* Frameworks */,
-				47AFD33D281D82C200F178B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SiriIntentsUI;
-			productName = SiriIntentsUI;
-			productReference = 47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -810,9 +756,6 @@
 					47AFD334281D82C200F178B7 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					47AFD33E281D82C200F178B7 = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 				};
 			};
 			buildConfigurationList = 470C390827F60694009C1967 /* Build configuration list for PBXProject "BetterShoppingList" */;
@@ -840,7 +783,6 @@
 				478ADB65281C0F2B009C852E /* WatchBetterShoppingList */,
 				478ADB6D281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
 				47AFD334281D82C200F178B7 /* SiriIntents */,
-				47AFD33E281D82C200F178B7 /* SiriIntentsUI */,
 			);
 		};
 /* End PBXProject section */
@@ -893,14 +835,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		47AFD33D281D82C200F178B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47AFD346281D82C300F178B7 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,14 +1005,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		47AFD33B281D82C200F178B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				47AFD343281D82C300F178B7 /* IntentViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1102,11 +1028,6 @@
 			target = 478ADB65281C0F2B009C852E /* WatchBetterShoppingList */;
 			targetProxy = 478ADB84281C0F31009C852E /* PBXContainerItemProxy */;
 		};
-		47AFD349281D82C300F178B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 47AFD33E281D82C200F178B7 /* SiriIntentsUI */;
-			targetProxy = 47AFD348281D82C300F178B7 /* PBXContainerItemProxy */;
-		};
 		47AFD34C281D82C300F178B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 47AFD334281D82C200F178B7 /* SiriIntents */;
@@ -1123,14 +1044,6 @@
 				470D066A27FE302C002A5EBA /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		47AFD344281D82C300F178B7 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				47AFD345281D82C300F178B7 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1522,56 +1435,6 @@
 			};
 			name = Release;
 		};
-		47AFD34F281D82C300F178B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q74977A756;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SiriIntentsUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SiriIntentsUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntentsUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		47AFD350281D82C300F178B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q74977A756;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SiriIntentsUI/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SiriIntentsUI;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntentsUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		47AFD352281D82C300F178B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1677,15 +1540,6 @@
 			buildConfigurations = (
 				478ADB8C281C0F32009C852E /* Debug */,
 				478ADB8D281C0F32009C852E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		47AFD34E281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntentsUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				47AFD34F281D82C300F178B7 /* Debug */,
-				47AFD350281D82C300F178B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
