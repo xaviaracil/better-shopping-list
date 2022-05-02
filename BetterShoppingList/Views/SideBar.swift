@@ -63,8 +63,17 @@ struct SideBar: View {
                 }
 
                 ForEach(markets, id: \.self) { market in
-                    NavigationLink(destination: MarketRowView(market: market), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
-                        Label(market.name ?? "N.A.", systemImage: "info.circle")
+                    NavigationLink(destination: MarketsMapView(markets: [market]), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
+                        Label {
+                            Text(market.name ?? "N.A.")
+                        } icon: {
+                            AsyncImage(url: market.iconUrl) { logo in
+                                logo.resizable()
+                                    .scaledToFit()
+                            } placeholder: {
+                                Image(systemName: "cart.circle")
+                            }
+                        }
                     }
                 }
             }
