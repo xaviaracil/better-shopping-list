@@ -13,7 +13,9 @@ struct ContentView: View {
     var viewModel = ContentViewModel()
 
     var body: some View {
-        if viewModel.marketName != "" {
+        if viewModel.askedForProducts {
+            ProgressView()
+        } else if viewModel.marketName != "" {
             CurrentListMarketInMarketView(name: viewModel.marketName,
                                           products: viewModel.products)
         } else {
