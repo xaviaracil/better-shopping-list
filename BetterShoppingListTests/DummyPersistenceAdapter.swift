@@ -49,4 +49,13 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
     func removeChosenProduct(_ chosenProduct: ChosenProduct) {
         // nothing here
     }
+
+    func removeList(_ list: ShoppingList) {
+        // nothing here
+    }
+
+    func addProductToCurrentList(_ product: ChosenProduct) throws {
+        // nothing here
+    }
+
 }

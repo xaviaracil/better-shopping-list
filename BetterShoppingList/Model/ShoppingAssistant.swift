@@ -147,6 +147,9 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
             return
         }
         userMarket.isFavorite.toggle()
+    func removeList(_ list: ShoppingList) {
+        persitenceAdapter.removeList(list)
+        save()
     }
 
     ///

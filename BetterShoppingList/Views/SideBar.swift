@@ -54,6 +54,11 @@ struct SideBar: View {
                             Text(shoppingList.name ?? "No Name")
                         }
                     }
+                    .onDelete(perform: { offsets in
+                        withAnimation {
+                            viewModel.deleteShoppingLists(lists: offsets.map { section[$0] })
+                        }
+                    })
                 }
             }
 

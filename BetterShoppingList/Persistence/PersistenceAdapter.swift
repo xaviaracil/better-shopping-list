@@ -21,6 +21,7 @@ protocol PersistenceAdapter {
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
     func productNamePredicate(for text: String) -> NSPredicate?
+    func removeList(_ list: ShoppingList)
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
     func save() throws
 }
@@ -130,6 +131,10 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
             }
         }
         return NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
+    }
+
+    func removeList(_ list: ShoppingList) {
+        viewContext.delete(list)
     }
 
     func removeChosenProduct(_ chosenProduct: ChosenProduct) {

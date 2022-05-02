@@ -33,4 +33,8 @@ class SidebarViewModel: ObservableObject {
                                                          sectionIdentifier: \.isFavorite,
                                                          animation: .none)
     }
+
+    func deleteShoppingLists(lists: [ShoppingList]) {
+        lists.forEach(shoppingAssistant.removeList)
+    }
 }
