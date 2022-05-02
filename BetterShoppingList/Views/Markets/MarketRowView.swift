@@ -6,28 +6,31 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MarketRowView: View {
-    var market: Market?
     var defaultString: String?
 
-    @EnvironmentObject
-    private var shoppingAssitant: ShoppingAssistant
+    @ObservedObject
+    var viewModel: MarketRowViewModel
+
+    init(market: Market?, defaultString: String?, shoppingAssistant: ShoppingAssistant) {
+        _viewModel = .init(wrappedValue: MarketRowViewModel(market: market, shoppingAssistant: shoppingAssistant))
+        self.defaultString = defaultString
+    }
 
     var body: some View {
         HStack {
-            MarketLabelView(market: market, defaultString: defaultString ?? "N.A.")
-            if let market = market {
-                Image(systemName: "star")
-                    .symbolVariant(market.userMarket?.isFavorite ?? false ? .fill : .none)
+            MarketLabelView(market: viewModel.market,
+                            defaultString: defaultString ?? "N.A.",
+                            height: 20,
+                            labelFont: .callout)
+            if viewModel.market != nil {
+                FavoriteButton(isOn: $viewModel.isFavorite)
+                    .labelStyle(.iconOnly)
             }
         }
-        .padding([.horizontal, .vertical], 4.0)
-        .onTapGesture {
-            if let market = market {
-                shoppingAssitant.toogleFavourite(market: market)
-            }
-        }
+        .padding(.init(top: 6.0, leading: 4.0, bottom: 6.0, trailing: 4.0))
     }
 }
 
@@ -39,8 +42,7 @@ struct MarketRowView_Previews: PreviewProvider {
                                                             coordinator: container.persistentStoreCoordinator)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
-        MarketRowView(market: mockMarket())
-            .environmentObject(shoppingAssistant)
+        MarketRowView(market: mockMarket(), defaultString: "N.A.", shoppingAssistant: shoppingAssistant)
             .border(.foreground, width: 1.0)
     }
 

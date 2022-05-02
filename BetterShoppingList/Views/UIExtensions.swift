@@ -36,23 +36,12 @@ extension View {
              .overlay(roundedRect.strokeBorder(content, lineWidth: width))
     }
 
-    func marketLabel() -> some View {
-        modifier(MarketLabel())
-    }
-
     func productTitle() -> some View {
         modifier(ProductTitle())
     }
 
     func bestPrice() -> some View {
         modifier(OfferBestPrice())
-    }
-}
-
-struct MarketLabel: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.caption2)
     }
 }
 

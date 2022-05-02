@@ -25,6 +25,9 @@ where Data: RandomAccessCollection,
     @State
     private var displayMode = MapDisplayMode.all
 
+    @EnvironmentObject
+    private var shoppingAssistant: ShoppingAssistant
+
     var body: some View {
         Map(coordinateRegion: $viewModel.region,
             showsUserLocation: true,
@@ -34,7 +37,7 @@ where Data: RandomAccessCollection,
                 let name = item.name
                 let market = marketWithName(name: name)
                 if displayInMap(item: item, market: market) {
-                    MarketRowView(market: market, defaultString: name)
+                    MarketRowView(market: market, defaultString: name, shoppingAssistant: shoppingAssistant)
                     .padding(4.0)
                     .background(.background)
                     .cornerRadius(10.0)
