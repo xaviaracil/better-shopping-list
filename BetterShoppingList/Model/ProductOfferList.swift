@@ -37,9 +37,3 @@ extension Collection where Self.Element == Offer {
         return list
     }
 }
-
-extension Product {
-    var sorteredOffers: [Offer]? {
-        self.offers?.sortedArray(using: [NSSortDescriptor(keyPath: \Offer.price, ascending: true)]) as? [Offer]
-    }
-}
