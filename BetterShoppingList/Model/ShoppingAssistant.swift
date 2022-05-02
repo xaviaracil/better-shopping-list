@@ -126,12 +126,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     }
 
     func addProductToCurrentList(_ product: ChosenProduct) {
-        if currentList == nil {
-            currentList = newList(isCurrent: true)
-        }
-        currentList?.addToProducts(product)
         do {
-            try save()
+            try persitenceAdapter.addProductToCurrentList(product)
+            reloadCurrentList()
+            donateIntent(product: product)
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

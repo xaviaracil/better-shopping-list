@@ -17,6 +17,7 @@ protocol PersistenceAdapter {
     var markets: [Market]? { get }
 
     func newList(isCurrent: Bool) -> ShoppingList
+    func addProductToCurrentList(_ product: ChosenProduct) throws
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
     func productNamePredicate(for text: String) -> NSPredicate?
@@ -33,6 +34,14 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         list.isCurrent = isCurrent
         list.timestamp = Date()
         return list
+    }
+
+    func addProductToCurrentList(_ product: ChosenProduct) throws {
+        if currentList == nil {
+            _ = newList(isCurrent: true)
+        }
+        currentList?.addToProducts(product)
+        try save()
     }
 
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
