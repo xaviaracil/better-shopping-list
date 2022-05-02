@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Intents
 
 @main
 struct BetterShoppingListApp: App {
@@ -29,10 +30,17 @@ struct BetterShoppingListApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(shoppingAssitant)
         }.onChange(of: scenePhase) { phase in
+            // ask for siri permission
+            INPreferences.requestSiriAuthorization { print($0) }
+
             // save when entering background, etc
             try? persistenceController.container.viewContext.save()
 
             if phase == .active {
+                // refresh
+                persistenceController.container.viewContext.refreshAllObjects()
+                shoppingAssitant.reloadCurrentList()
+
                 // when active, check if we are near a market in the current list
                 shoppingAssitant.startSearchingForNearMarkets()
             }

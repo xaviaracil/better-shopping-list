@@ -90,6 +90,25 @@
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
 		47A9E0FF2812A35D007DDA1D /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */; };
 		47A9E1012812A6BC007DDA1D /* CurrentShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */; };
+		47AFD336281D82C200F178B7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478ADBB8281D80C9009C852E /* Intents.framework */; };
+		47AFD339281D82C200F178B7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD338281D82C200F178B7 /* IntentHandler.swift */; };
+		47AFD340281D82C200F178B7 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478ADBD4281D8131009C852E /* IntentsUI.framework */; };
+		47AFD343281D82C300F178B7 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD342281D82C300F178B7 /* IntentViewController.swift */; };
+		47AFD346281D82C300F178B7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AFD344281D82C300F178B7 /* MainInterface.storyboard */; };
+		47AFD34A281D82C300F178B7 /* SiriIntentsUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		47AFD34D281D82C300F178B7 /* SiriIntents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 47AFD335281D82C200F178B7 /* SiriIntents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		47AFD355281D869300F178B7 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD354281D869300F178B7 /* Intents.intentdefinition */; };
+		47AFD357281D929100F178B7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
+		47AFD358281D937700F178B7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
+		47AFD359281DB23800F178B7 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
+		47AFD35B281DBE2600F178B7 /* Model+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63C28118FE300A4CF42 /* Model+utils.swift */; };
+		47AFD35D281DBEA100F178B7 /* Product+sorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD35C281DBEA100F178B7 /* Product+sorted.swift */; };
+		47AFD35E281DBEB200F178B7 /* Product+sorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD35C281DBEA100F178B7 /* Product+sorted.swift */; };
+		47AFD35F281DBEB800F178B7 /* Product+sorted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD35C281DBEA100F178B7 /* Product+sorted.swift */; };
+		47AFD360281DC39B00F178B7 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD354281D869300F178B7 /* Intents.intentdefinition */; };
+		47AFD38B281DCE4600F178B7 /* AddProductHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD38A281DCE4600F178B7 /* AddProductHandler.swift */; };
+		47AFD38D281FE0C200F178B7 /* AddProductStandardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFD38C281FE0C200F178B7 /* AddProductStandardHandler.swift */; };
+		47AFD38E281FF0D800F178B7 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
 		47AFE35527F6355C003264D8 /* schema.ckdb in Resources */ = {isa = PBXBuildFile; fileRef = 47AFE35427F6355C003264D8 /* schema.ckdb */; };
 		47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35627F758B6003264D8 /* FixtureLoader.swift */; };
 		47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
@@ -136,6 +155,20 @@
 			remoteGlobalIDString = 478ADB65281C0F2B009C852E;
 			remoteInfo = WatchBetterShoppingList;
 		};
+		47AFD348281D82C300F178B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 470C390527F60694009C1967 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47AFD33E281D82C200F178B7;
+			remoteInfo = SiriIntentsUI;
+		};
+		47AFD34B281D82C300F178B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 470C390527F60694009C1967 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47AFD334281D82C200F178B7;
+			remoteInfo = SiriIntents;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -159,6 +192,28 @@
 				478ADB86281C0F31009C852E /* WatchBetterShoppingList.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478ADBC4281D80C9009C852E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478ADBE9281D8132009C852E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				47AFD34A281D82C300F178B7 /* SiriIntentsUI.appex in Embed App Extensions */,
+				47AFD34D281D82C300F178B7 /* SiriIntents.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -192,6 +247,7 @@
 		4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferViewModel.swift; sourceTree = "<group>"; };
 		4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsMapView.swift; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
+		477D622F2820133500F4640D /* WatchBetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WatchBetterShoppingList.entitlements; sourceTree = "<group>"; };
 		477EC55D27F8D89000A589FD /* CurrentListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentListTests.swift; sourceTree = "<group>"; };
 		477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSuggestionsView.swift; sourceTree = "<group>"; };
 		477EC56527F9D26600A589FD /* SearchResultsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsUITests.swift; sourceTree = "<group>"; };
@@ -224,6 +280,8 @@
 		478ADBAD281C1F4F009C852E /* BetterShoppingListApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterShoppingListApp.swift; sourceTree = "<group>"; };
 		478ADBAF281C1FF4009C852E /* WatchConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnector.swift; sourceTree = "<group>"; };
 		478ADBB1281C2304009C852E /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		478ADBB8281D80C9009C852E /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		478ADBD4281D8131009C852E /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShoppingListView.swift; sourceTree = "<group>"; };
 		478C142B27FE1CD6007FF217 /* MarketLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketLabelView.swift; sourceTree = "<group>"; };
 		47941FE027FF74C200F0D5AF /* ListDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailView.swift; sourceTree = "<group>"; };
@@ -240,6 +298,18 @@
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
 		47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 		47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShoppingListViewModel.swift; sourceTree = "<group>"; };
+		47AFD335281D82C200F178B7 /* SiriIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		47AFD338281D82C200F178B7 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		47AFD33A281D82C200F178B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriIntentsUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		47AFD342281D82C300F178B7 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		47AFD345281D82C300F178B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		47AFD347281D82C300F178B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47AFD354281D869300F178B7 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		47AFD356281D915E00F178B7 /* SiriIntents.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SiriIntents.entitlements; sourceTree = "<group>"; };
+		47AFD35C281DBEA100F178B7 /* Product+sorted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Product+sorted.swift"; sourceTree = "<group>"; };
+		47AFD38A281DCE4600F178B7 /* AddProductHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductHandler.swift; sourceTree = "<group>"; };
+		47AFD38C281FE0C200F178B7 /* AddProductStandardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductStandardHandler.swift; sourceTree = "<group>"; };
 		47AFE35427F6355C003264D8 /* schema.ckdb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.ckdb; sourceTree = "<group>"; };
 		47AFE35627F758B6003264D8 /* FixtureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureLoader.swift; sourceTree = "<group>"; };
 		47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterShoppingList.entitlements; sourceTree = "<group>"; };
@@ -294,6 +364,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		47AFD332281D82C200F178B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AFD336281D82C200F178B7 /* Intents.framework in Frameworks */,
+				47AFD38E281FF0D800F178B7 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47AFD33C281D82C200F178B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AFD340281D82C200F178B7 /* IntentsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -307,6 +394,8 @@
 				470C392F27F60695009C1967 /* BetterShoppingListUITests */,
 				478ADB67281C0F2B009C852E /* WatchBetterShoppingList */,
 				478ADB72281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
+				47AFD337281D82C200F178B7 /* SiriIntents */,
+				47AFD341281D82C200F178B7 /* SiriIntentsUI */,
 				470C390E27F60694009C1967 /* Products */,
 				47BC1E2F27F60DFE00293AE9 /* Frameworks */,
 			);
@@ -320,6 +409,8 @@
 				470C392C27F60695009C1967 /* BetterShoppingListUITests.xctest */,
 				478ADB66281C0F2B009C852E /* WatchBetterShoppingList.app */,
 				478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */,
+				47AFD335281D82C200F178B7 /* SiriIntents.appex */,
+				47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,6 +520,7 @@
 		478ADB67281C0F2B009C852E /* WatchBetterShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				477D622F2820133500F4640D /* WatchBetterShoppingList.entitlements */,
 				478ADB68281C0F30009C852E /* Assets.xcassets */,
 			);
 			path = WatchBetterShoppingList;
@@ -478,6 +570,29 @@
 			path = "Shopping List";
 			sourceTree = "<group>";
 		};
+		47AFD337281D82C200F178B7 /* SiriIntents */ = {
+			isa = PBXGroup;
+			children = (
+				47AFD356281D915E00F178B7 /* SiriIntents.entitlements */,
+				47AFD338281D82C200F178B7 /* IntentHandler.swift */,
+				47AFD33A281D82C200F178B7 /* Info.plist */,
+				47AFD354281D869300F178B7 /* Intents.intentdefinition */,
+				47AFD38A281DCE4600F178B7 /* AddProductHandler.swift */,
+				47AFD38C281FE0C200F178B7 /* AddProductStandardHandler.swift */,
+			);
+			path = SiriIntents;
+			sourceTree = "<group>";
+		};
+		47AFD341281D82C200F178B7 /* SiriIntentsUI */ = {
+			isa = PBXGroup;
+			children = (
+				47AFD342281D82C300F178B7 /* IntentViewController.swift */,
+				47AFD344281D82C300F178B7 /* MainInterface.storyboard */,
+				47AFD347281D82C300F178B7 /* Info.plist */,
+			);
+			path = SiriIntentsUI;
+			sourceTree = "<group>";
+		};
 		47AFE35B27F766D9003264D8 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +614,8 @@
 			children = (
 				478ADB90281C12B8009C852E /* CloudKit.framework */,
 				47BC1E3027F60DFE00293AE9 /* CloudKit.framework */,
+				478ADBB8281D80C9009C852E /* Intents.framework */,
+				478ADBD4281D8131009C852E /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,6 +633,7 @@
 				471BE63C28118FE300A4CF42 /* Model+utils.swift */,
 				478ADB62281BE029009C852E /* ListMarketLocationManager.swift */,
 				478ADBAF281C1FF4009C852E /* WatchConnector.swift */,
+				47AFD35C281DBEA100F178B7 /* Product+sorted.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -532,11 +650,14 @@
 				470C390B27F60694009C1967 /* Resources */,
 				470C393F27F606D7009C1967 /* ShellScript */,
 				478ADB8E281C0F32009C852E /* Embed Watch Content */,
+				478ADBE9281D8132009C852E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				478ADB85281C0F31009C852E /* PBXTargetDependency */,
+				47AFD349281D82C300F178B7 /* PBXTargetDependency */,
+				47AFD34C281D82C300F178B7 /* PBXTargetDependency */,
 			);
 			name = BetterShoppingList;
 			packageProductDependencies = (
@@ -609,6 +730,7 @@
 				478ADB6A281C0F30009C852E /* Sources */,
 				478ADB6B281C0F30009C852E /* Frameworks */,
 				478ADB6C281C0F30009C852E /* Resources */,
+				478ADBC4281D80C9009C852E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -623,6 +745,40 @@
 			productName = "WatchBetterShoppingList WatchKit Extension";
 			productReference = 478ADB6E281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		47AFD334281D82C200F178B7 /* SiriIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47AFD351281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntents" */;
+			buildPhases = (
+				47AFD331281D82C200F178B7 /* Sources */,
+				47AFD332281D82C200F178B7 /* Frameworks */,
+				47AFD333281D82C200F178B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SiriIntents;
+			productName = SiriIntents;
+			productReference = 47AFD335281D82C200F178B7 /* SiriIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		47AFD33E281D82C200F178B7 /* SiriIntentsUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47AFD34E281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntentsUI" */;
+			buildPhases = (
+				47AFD33B281D82C200F178B7 /* Sources */,
+				47AFD33C281D82C200F178B7 /* Frameworks */,
+				47AFD33D281D82C200F178B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SiriIntentsUI;
+			productName = SiriIntentsUI;
+			productReference = 47AFD33F281D82C200F178B7 /* SiriIntentsUI.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -651,6 +807,12 @@
 					478ADB6D281C0F30009C852E = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					47AFD334281D82C200F178B7 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					47AFD33E281D82C200F178B7 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 				};
 			};
 			buildConfigurationList = 470C390827F60694009C1967 /* Build configuration list for PBXProject "BetterShoppingList" */;
@@ -677,6 +839,8 @@
 				470C392B27F60695009C1967 /* BetterShoppingListUITests */,
 				478ADB65281C0F2B009C852E /* WatchBetterShoppingList */,
 				478ADB6D281C0F30009C852E /* WatchBetterShoppingList WatchKit Extension */,
+				47AFD334281D82C200F178B7 /* SiriIntents */,
+				47AFD33E281D82C200F178B7 /* SiriIntentsUI */,
 			);
 		};
 /* End PBXProject section */
@@ -722,6 +886,21 @@
 			files = (
 				478ADB81281C0F31009C852E /* Preview Assets.xcassets in Resources */,
 				478ADB7E281C0F31009C852E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47AFD333281D82C200F178B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47AFD33D281D82C200F178B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AFD346281D82C300F178B7 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,6 +956,7 @@
 				470A76B828003F8A00328EB2 /* HomeView.swift in Sources */,
 				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
 				477F77E027F8A84A006F5902 /* ShoppingListButtonView.swift in Sources */,
+				47AFD360281DC39B00F178B7 /* Intents.intentdefinition in Sources */,
 				47941FE327FF757900F0D5AF /* ChosenProductView.swift in Sources */,
 				477F77DD27F8A505006F5902 /* SplashView.swift in Sources */,
 				47A9E1012812A6BC007DDA1D /* CurrentShoppingListViewModel.swift in Sources */,
@@ -803,6 +983,7 @@
 				477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */,
 				478C142A27FE0EAF007FF217 /* CurrentShoppingListView.swift in Sources */,
 				470C391127F60694009C1967 /* BetterShoppingListApp.swift in Sources */,
+				47AFD35D281DBEA100F178B7 /* Product+sorted.swift in Sources */,
 				4737B8D72806D0B5009B9E98 /* ProductOfferViewModel.swift in Sources */,
 				478C142C27FE1CD6007FF217 /* MarketLabelView.swift in Sources */,
 				4737B8DB2806DC91009B9E98 /* MarketsMapView.swift in Sources */,
@@ -858,6 +1039,7 @@
 				478ADBA7281C1C1E009C852E /* UIExtensions.swift in Sources */,
 				478ADBA4281C1BEC009C852E /* ProductImageView.swift in Sources */,
 				478ADB96281C150C009C852E /* Model.xcdatamodeld in Sources */,
+				47AFD35F281DBEB800F178B7 /* Product+sorted.swift in Sources */,
 				478ADB9D281C1B2D009C852E /* ProductOfferList.swift in Sources */,
 				478ADB95281C14EF009C852E /* Persistence.swift in Sources */,
 				478ADB7C281C0F30009C852E /* ComplicationController.swift in Sources */,
@@ -870,6 +1052,30 @@
 				478ADBA6281C1BFD009C852E /* Market+usermarkets.swift in Sources */,
 				478ADB99281C1A8C009C852E /* PersistenceAdapter.swift in Sources */,
 				478ADB9A281C1AAD009C852E /* CurrentListMarketInMarketView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47AFD331281D82C200F178B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AFD35B281DBE2600F178B7 /* Model+utils.swift in Sources */,
+				47AFD357281D929100F178B7 /* Persistence.swift in Sources */,
+				47AFD38B281DCE4600F178B7 /* AddProductHandler.swift in Sources */,
+				47AFD355281D869300F178B7 /* Intents.intentdefinition in Sources */,
+				47AFD35E281DBEB200F178B7 /* Product+sorted.swift in Sources */,
+				47AFD339281D82C200F178B7 /* IntentHandler.swift in Sources */,
+				47AFD358281D937700F178B7 /* Model.xcdatamodeld in Sources */,
+				47AFD38D281FE0C200F178B7 /* AddProductStandardHandler.swift in Sources */,
+				47AFD359281DB23800F178B7 /* PersistenceAdapter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47AFD33B281D82C200F178B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AFD343281D82C300F178B7 /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +1102,16 @@
 			target = 478ADB65281C0F2B009C852E /* WatchBetterShoppingList */;
 			targetProxy = 478ADB84281C0F31009C852E /* PBXContainerItemProxy */;
 		};
+		47AFD349281D82C300F178B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47AFD33E281D82C200F178B7 /* SiriIntentsUI */;
+			targetProxy = 47AFD348281D82C300F178B7 /* PBXContainerItemProxy */;
+		};
+		47AFD34C281D82C300F178B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47AFD334281D82C200F178B7 /* SiriIntents */;
+			targetProxy = 47AFD34B281D82C300F178B7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -907,6 +1123,14 @@
 				470D066A27FE302C002A5EBA /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		47AFD344281D82C300F178B7 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47AFD345281D82C300F178B7 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1035,6 +1259,7 @@
 		470C393727F60695009C1967 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BetterShoppingList/BetterShoppingList.entitlements;
@@ -1045,7 +1270,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterShoppingList/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location services, please";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_NSSiriUsageDescription = "You can use Siri to add items to your list. In order to do so, please enable it.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1067,6 +1293,7 @@
 		470C393827F60695009C1967 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BetterShoppingList/BetterShoppingList.entitlements;
@@ -1077,7 +1304,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BetterShoppingList/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Enable location services, please";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_NSSiriUsageDescription = "You can use Siri to add items to your list. In order to do so, please enable it.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1244,12 +1472,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WatchBetterShoppingList/WatchBetterShoppingList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q74977A756;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchBetterShoppingList;
+				INFOPLIST_KEY_CFBundleDisplayName = BetterShoppingList;
+				INFOPLIST_KEY_NSLocationUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
 				MARKETING_VERSION = 1.0;
@@ -1270,12 +1500,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WatchBetterShoppingList/WatchBetterShoppingList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q74977A756;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchBetterShoppingList;
+				INFOPLIST_KEY_CFBundleDisplayName = BetterShoppingList;
+				INFOPLIST_KEY_NSLocationUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
 				MARKETING_VERSION = 1.0;
@@ -1287,6 +1519,108 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		47AFD34F281D82C300F178B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SiriIntentsUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SiriIntentsUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntentsUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		47AFD350281D82C300F178B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SiriIntentsUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SiriIntentsUI;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntentsUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		47AFD352281D82C300F178B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SiriIntents/SiriIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SiriIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SiriIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		47AFD353281D82C300F178B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SiriIntents/SiriIntents.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q74977A756;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SiriIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SiriIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = name.xaviaracil.BetterShoppingList.SiriIntents;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1343,6 +1677,24 @@
 			buildConfigurations = (
 				478ADB8C281C0F32009C852E /* Debug */,
 				478ADB8D281C0F32009C852E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47AFD34E281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntentsUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47AFD34F281D82C300F178B7 /* Debug */,
+				47AFD350281D82C300F178B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47AFD351281D82C300F178B7 /* Build configuration list for PBXNativeTarget "SiriIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47AFD352281D82C300F178B7 /* Debug */,
+				47AFD353281D82C300F178B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
