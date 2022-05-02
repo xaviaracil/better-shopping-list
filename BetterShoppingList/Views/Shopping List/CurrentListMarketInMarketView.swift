@@ -55,6 +55,7 @@ struct CurrentListMarketInMarketView: View {
                 }.opacity(product.inBasket ? 0.7 : 1.0)
             }
         }
+        .emptyListPlaceholder(sortedProducts, AnyView(Text("No products found in market")))
         .listStyle(.plain)
     }
 }
