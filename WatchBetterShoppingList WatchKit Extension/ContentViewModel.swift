@@ -47,6 +47,10 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
         locationManager.start()
     }
 
+    deinit {
+        locationManager.stop()
+    }
+
     func askForProducts() {
         print("🖥 askForProducts")
         guard let session = session,
@@ -77,6 +81,7 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
         let name = message["market"] as? String else {
             return
         }
+        locationManager.stop()
         let controller = PersistenceController()
         let coordinator = controller.container.persistentStoreCoordinator
         let context = controller.container.viewContext
