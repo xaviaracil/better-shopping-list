@@ -116,6 +116,7 @@
 		47D44ABF2820632B00B51F39 /* MarketRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D44ABE2820632B00B51F39 /* MarketRowViewModel.swift */; };
 		47D44AC02821000A00B51F39 /* Market+usermarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541B2807344000BD23F3 /* Market+usermarkets.swift */; };
 		47D44AC22821007F00B51F39 /* AddProductBaseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D44AC12821007F00B51F39 /* AddProductBaseHandler.swift */; };
+		47D44AC32821167200B51F39 /* Model+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63C28118FE300A4CF42 /* Model+utils.swift */; };
 		47F831B627FB4E6400A02CE7 /* ShoppingAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B527FB4E6400A02CE7 /* ShoppingAssistant.swift */; };
 		47F831B827FB4F8200A02CE7 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
 		47FCCA822807691400D84107 /* SearchingResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCCA812807691400D84107 /* SearchingResultsView.swift */; };
@@ -980,6 +981,7 @@
 				478ADBA5281C1BFD009C852E /* ShoppingList+Earned.swift in Sources */,
 				478ADBA7281C1C1E009C852E /* UIExtensions.swift in Sources */,
 				478ADBA4281C1BEC009C852E /* ProductImageView.swift in Sources */,
+				47D44AC32821167200B51F39 /* Model+utils.swift in Sources */,
 				478ADB96281C150C009C852E /* Model.xcdatamodeld in Sources */,
 				47AFD35F281DBEB800F178B7 /* Product+sorted.swift in Sources */,
 				478ADB9D281C1B2D009C852E /* ProductOfferList.swift in Sources */,
@@ -1338,7 +1340,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchBetterShoppingList WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchBetterShoppingList_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1371,7 +1374,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "WatchBetterShoppingList WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchBetterShoppingList_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1402,7 +1406,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = BetterShoppingList;
-				INFOPLIST_KEY_NSLocationUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
 				MARKETING_VERSION = 1.0;
@@ -1430,7 +1434,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchBetterShoppingList_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = BetterShoppingList;
-				INFOPLIST_KEY_NSLocationUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app uses location for searching nearby market. In order to so, please enable it";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = name.xaviaracil.BetterShoppingList;
 				MARKETING_VERSION = 1.0;

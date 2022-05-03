@@ -29,6 +29,7 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
     }
 
     let locationManager = LocationManager()
+    let persistenceController = PersistenceController.shared
     private var cancellableSet: Set<AnyCancellable> = []
 
     override init() {
@@ -52,12 +53,12 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
     }
 
     func askForProducts() {
-        print("🖥 askForProducts")
         guard let session = session,
               let currentLocation = currentLocation else {
             return
         }
 
+        print("🖥 askForProducts in location \(currentLocation)")
         if session.isReachable {
             // ask for products
             session.sendMessage(["name": "products",
@@ -82,17 +83,35 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
             return
         }
         locationManager.stop()
-        let controller = PersistenceController()
-        let coordinator = controller.container.persistentStoreCoordinator
-        let context = controller.container.viewContext
-        let receivedProducts = ids
-            .compactMap { coordinator.managedObjectID(forURIRepresentation: URL(string: $0)!)}
-            .compactMap { try? context.existingObject(with: $0) as? ChosenProduct}
+        let coordinator = persistenceController.container.persistentStoreCoordinator
+        let context = persistenceController.container.viewContext
+        let existingproducts = try? context.fetch(ChosenProduct.fetchRequest())
+        print("Products in store: \(String(describing: existingproducts))")
+        let receivedProducts: [ChosenProduct] = ids
+            .compactMap {
+                if let url = URL(string: $0),
+                   let storeUUID = self.identifierForStore() {
+                    // Switch the host component to be the local storeUUID
+                    var newUrl = URL(string: "\(url.scheme!)://\(storeUUID)")!
+                    newUrl.appendPathComponent(url.path)
+
+                    print(newUrl)
+
+                    if let objectId = coordinator.managedObjectID(forURIRepresentation: newUrl) {
+                        return context.object(with: objectId) as? ChosenProduct
+                    }
+                }
+                return nil
+            }
         DispatchQueue.main.async {
             self.askedForProducts = false
             self.marketName = name
             self.products = receivedProducts
         }
+    }
+
+    func identifierForStore() -> String? {
+        return persistenceController.container.persistentStoreCoordinator.persistentStores.first?.identifier
     }
 
     private func lessThan50Meters(_ lhs: CLLocation?,

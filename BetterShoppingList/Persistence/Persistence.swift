@@ -126,11 +126,11 @@ struct PersistenceController {
             container.persistentStoreDescriptions.append(publicDescription)
         }
 
-        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (_, error) in
             guard let error = error as NSError? else { return }
             fatalError("😱 \(#function): Failed to load persistent stores: \(error)")
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
 
         // Only initialize the schema when building the app with the
         // Debug build configuration.
@@ -144,18 +144,5 @@ struct PersistenceController {
             print("Error initializing CloudKit: \(error)")
         }
         #endif
-    }
-}
-
-public extension URL {
-
-    /// Returns a URL for the given app group and database pointing to the sqlite database.
-    static func storeURL(for appGroup: String, databaseName: String) -> URL {
-        // swiftlint:disable line_length
-        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-            fatalError("Shared file container could not be created.")
-        }
-
-        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
     }
 }

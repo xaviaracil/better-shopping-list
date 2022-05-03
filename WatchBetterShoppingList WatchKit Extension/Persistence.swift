@@ -25,6 +25,8 @@ struct PersistenceController {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
+            // swiftlint:disable line_length
+            description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             description.configuration = "Local"
@@ -35,11 +37,11 @@ struct PersistenceController {
             description.cloudKitContainerOptions = privateOptions
         }
 
-        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (_, error) in
             guard let error = error as NSError? else { return }
             fatalError("😱 \(#function): Failed to load persistent stores: \(error)")
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
 
         // Only initialize the schema when building the app with the
         // Debug build configuration.
