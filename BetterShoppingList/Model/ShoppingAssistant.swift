@@ -19,11 +19,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     }
 
     /// Markets the user can search products into
-    @Published var markets: [Market]? {
-        didSet {
-            print("🖥 ShoppingAssistant chaned markets: \(String(describing: markets?.count))")
-        }
-    }
+    @Published var markets: [Market]?
 
     let persistenceAdapter: PersistenceAdapter
 
