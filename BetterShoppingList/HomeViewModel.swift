@@ -18,12 +18,14 @@ class HomeViewModel: ObservableObject {
     let shoppingAssistant: ShoppingAssistant
 
     init(shoppingAssistant: ShoppingAssistant) {
+        print("🖥 HomeViewModel init \(String(describing: shoppingAssistant.markets?.count))")
         self.shoppingAssistant = shoppingAssistant
         savedListsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.savedListsFetchRequest,
                                               animation: .default)
     }
 
     func productQueryPredicate(for text: String) -> NSPredicate? {
-        return shoppingAssistant.productNamePredicate(for: text)
+        print("🖥 HomeViewModel productQueryPredicate \(String(describing: shoppingAssistant.markets?.count))")
+        return shoppingAssistant.productNamePredicate(for: text, in: shoppingAssistant.markets ?? [])
     }
 }

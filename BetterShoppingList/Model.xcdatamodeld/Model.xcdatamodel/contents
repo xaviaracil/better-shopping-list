@@ -61,6 +61,7 @@
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChosenProduct" inverseName="list" inverseEntity="ChosenProduct"/>
     </entity>
     <entity name="UserMarket" representedClassName="UserMarket" syncable="YES" codeGenerationType="class">
+        <attribute name="excluded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="marketUUID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <fetchedProperty name="market" optional="YES">
@@ -86,6 +87,6 @@
         <element name="Product" positionX="-442.247314453125" positionY="-126.1036376953125" width="128" height="134"/>
         <element name="ProductMarket" positionX="-210.7304077148438" positionY="-51.4351806640625" width="128" height="118"/>
         <element name="ShoppingList" positionX="-449.7039184570312" positionY="77.97479248046875" width="128" height="119"/>
-        <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="101"/>
+        <element name="UserMarket" positionX="26.090576171875" positionY="89.1700439453125" width="128" height="95"/>
     </elements>
 </model>

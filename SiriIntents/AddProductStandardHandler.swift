@@ -8,19 +8,7 @@
 import Foundation
 import Intents
 
-class AddProductStandardHandler: NSObject, INAddTasksIntentHandling {
-    let runningInTests = NSClassFromString("XCTestCase") != nil || ProcessInfo().arguments.contains("testMode")
-
-    var persistenceController: PersistenceController!
-    var persistenceAdapter: PersistenceAdapter!
-
-    override init() {
-        super.init()
-        persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
-        let container = persistenceController.container
-        persistenceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
-                                                        coordinator: container.persistentStoreCoordinator)
-    }
+class AddProductStandardHandler: AddProductBaseHandler, INAddTasksIntentHandling {
 
     func handle(intent: INAddTasksIntent) async -> INAddTasksIntentResponse {
         if let names = intent.taskTitles {
@@ -41,33 +29,8 @@ class AddProductStandardHandler: NSObject, INAddTasksIntentHandling {
     }
 
     func addProduct(name: INSpeakableString) -> INTask? {
-        print("🖥 adding product with name: \(name)")
-        // get product by name
-        let fetchRequest = Product.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name == %@", name.spokenPhrase)
-        fetchRequest.fetchLimit = 1
-        do {
-            let products = try persistenceController.container.viewContext.fetch(fetchRequest)
-            print("🖥 found product with name: \(name)")
-            print("🖥 \(products)")
-            let product = products.first!
-
-            // get best offer
-            print("🖥 finding best offer")
-            if let offer = product.sorteredOffers?.first {
-                print("🖥 adding product to the list")
-                // add chosen product and save
-                let chosenProduct = persistenceAdapter.newChosenProduct(offer: offer, quantity: 1)
-                // add chosen product to the current list
-                try persistenceAdapter.addProductToCurrentList(chosenProduct)
-
-                print("🖥 returning")
-                return chosenProduct.toINTask()
-            }
-        } catch {
-            print("Error adding product \(name): \(error)")
-        }
-        return nil
+        let product = try? addProduct(name: name.spokenPhrase)
+        return product?.toINTask()
     }
 
     func resolveTaskTitles(for intent: INAddTasksIntent) async -> [INSpeakableStringResolutionResult] {
@@ -99,14 +62,6 @@ class AddProductStandardHandler: NSObject, INAddTasksIntentHandling {
         } catch {
             return .unsupported()
         }
-    }
-
-    private func searchProducts(_ name: String) throws -> [Product] {
-        print("🖥 searchProducts: \(name)")
-        let fetchRequest = Product.fetchRequest()
-        fetchRequest.predicate = persistenceAdapter.productNamePredicate(for: name)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Product.name, ascending: true)]
-        return try persistenceController.container.viewContext.fetch(fetchRequest)
     }
 }
 

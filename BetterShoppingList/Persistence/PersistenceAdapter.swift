@@ -20,7 +20,7 @@ protocol PersistenceAdapter {
     func addProductToCurrentList(_ product: ChosenProduct) throws
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
-    func productNamePredicate(for text: String) -> NSPredicate?
+    func productNamePredicate(for text: String, in markets: [Market]) -> NSPredicate?
     func removeList(_ list: ShoppingList)
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
     func save()
@@ -118,7 +118,7 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         return namePredicate
     }
 
-    func productNamePredicate(for text: String) -> NSPredicate? {
+    func productNamePredicate(for text: String, in markets: [Market]) -> NSPredicate? {
         guard !text.isEmpty else {
             return nil
         }
@@ -130,7 +130,20 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
                 textPredicates.append(predicate)
             }
         }
-        return NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
+        let namePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
+
+        if markets.isEmpty {
+            return namePredicate
+        }
+
+        var marketNamePredicates: [NSPredicate] = []
+        for market in markets {
+            let predicate = NSPredicate(format: "SUBQUERY(offers, $offer, $offer.market == %@) .@count > 0", market)
+            marketNamePredicates.append(predicate)
+        }
+        let marketPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: marketNamePredicates)
+
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, marketPredicate])
     }
 
     func removeList(_ list: ShoppingList) {

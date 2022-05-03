@@ -37,4 +37,27 @@ class SidebarViewModel: ObservableObject {
     func deleteShoppingLists(lists: [ShoppingList]) {
         lists.forEach(shoppingAssistant.removeList)
     }
+
+    func userMarket(for market: Market) -> UserMarket {
+        var userMarket = market.userMarket
+        if userMarket == nil {
+            userMarket = UserMarket(context: market.managedObjectContext!)
+            userMarket?.marketUUID = market.uuid
+        }
+        return userMarket!
+    }
+
+    func includeMarket(_ market: Market) {
+        userMarket(for: market).excluded = false
+        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
+                                           animation: .default)
+        shoppingAssistant.save()
+    }
+
+    func excludeMarket(_ market: Market) {
+        userMarket(for: market).excluded = true
+        marketsFetchRequest = FetchRequest(fetchRequest: shoppingAssistant.markertsFetchRequest,
+                                           animation: .default)
+        shoppingAssistant.save()
+    }
 }

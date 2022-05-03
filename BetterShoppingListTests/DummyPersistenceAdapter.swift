@@ -38,7 +38,7 @@ struct DummyPersistenceAdapter: PersistenceAdapter {
         NSFetchRequest()
     }
 
-    func productNamePredicate(for text: String) -> NSPredicate? {
+    func productNamePredicate(for text: String, in markets: [Market]) -> NSPredicate? {
         return nil
     }
 

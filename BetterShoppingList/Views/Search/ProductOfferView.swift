@@ -17,7 +17,7 @@ struct ProductOfferView: View {
     var onAdded: () -> Void = {}
 
     var chosenOffer: Offer? {
-        return product.sorteredOffers?.first// [currentOfferIndex]
+        return shoppingAssistant.activeOffers(for: product)?.first
     }
 
     var viewModel = ProductOfferViewModel()

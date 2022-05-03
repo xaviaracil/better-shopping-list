@@ -15,4 +15,8 @@ extension Market {
     var userMarket: UserMarket? {
         return userMarkets?.first
     }
+
+    var isExcluded: Bool {
+        return userMarket?.excluded ?? false
+    }
 }

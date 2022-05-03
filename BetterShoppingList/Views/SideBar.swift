@@ -68,7 +68,36 @@ struct SideBar: View {
                 }
 
                 ForEach(markets, id: \.self) { market in
-                    NavigationLink(destination: MarketsMapView(markets: [market]), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
+                    if market.userMarket?.excluded ?? false {
+                        EmptyView()
+                    } else {
+                        NavigationLink(destination: MarketsMapView(markets: [market]), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
+                            Label {
+                                Text(market.name ?? "N.A.")
+                            } icon: {
+                                AsyncImage(url: market.iconUrl) { logo in
+                                    logo.resizable()
+                                        .scaledToFit()
+                                } placeholder: {
+                                    Image(systemName: "cart.circle")
+                                }
+                            }
+                        }
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                viewModel.excludeMarket(market)
+                            } label: {
+                                Label("Exclude", systemImage: "cart.fill.badge.minus")
+                            }
+                            .tint(.accentColor)
+                        }
+
+                    }
+                }
+            }
+            Section(header: Label("Excluded Markets", systemImage: "cart.badge.minus")) {
+                ForEach(markets, id: \.self) { market in
+                    if market.userMarket?.excluded ?? false {
                         Label {
                             Text(market.name ?? "N.A.")
                         } icon: {
@@ -79,6 +108,16 @@ struct SideBar: View {
                                 Image(systemName: "cart.circle")
                             }
                         }
+                        .swipeActions {
+                            Button {
+                                viewModel.includeMarket(market)
+                            } label: {
+                                Label("Include", systemImage: "cart.fill.badge.plus")
+                            }
+                            .tint(.accentColor)
+                        }
+                    } else {
+                        EmptyView()
                     }
                 }
             }

@@ -29,11 +29,17 @@ class ChosenProductViewModel: ObservableObject {
         self.offer = chosenProduct.offer
         self.product = chosenProduct.offer?.product
         self.additionalOffers = chosenProduct.offer?.product?.offers?
-            .filter { $0 as? Offer != chosenProduct.offer }
-            .sorted { lhs, rhs in // sort by difference
-                let diffLhs = ((lhs as? Offer)?.price ?? 0.0) - chosenProduct.price
-                let diffRhs = ((rhs as? Offer)?.price ?? 0.0) - chosenProduct.price
-                return diffLhs < diffRhs
+            .filter { offer in
+                guard let offer = offer as? Offer else {
+                    return false
+                }
+
+                return shoppingAssistant.offerIsIncluded(offer) && offer != chosenProduct.offer
+            }
+            .sorted { lhs, rhs in // sort by price
+                let lhsPrice = (lhs as? Offer)?.price ?? 0.0
+                let rhsPrice = (rhs as? Offer)?.price ?? 0.0
+                return lhsPrice < rhsPrice
             } as? [Offer]
     }
 }
