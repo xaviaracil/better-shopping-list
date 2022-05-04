@@ -20,6 +20,7 @@ struct SmallView: View {
                 Label("\(entry.products.groupedByMarket(markets: []).count)", systemImage: "bag.circle")
                 Spacer()
                 EarnedView(value: entry.earned)
+                    .minimumScaleFactor(0.5)
             }
             .font(.largeTitle)
             .foregroundColor(.white)
