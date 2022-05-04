@@ -10,6 +10,7 @@ import CoreData
 import Combine
 import Intents
 import SwiftUI
+import WidgetKit
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDelegate {
@@ -144,6 +145,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
             try persistenceAdapter.addProductToCurrentList(product)
             reloadCurrentList()
             donateIntent(product: product)
+            reloadWidgets()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -155,6 +157,11 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         save()
     }
 
+    func reloadWidgets() {
+        // reload widgets
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
+    }
+
     ///
     /// Removes a chosen product
     /// - Parameters:
@@ -162,6 +169,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     public func removeChosenProduct(_ chosenProduct: ChosenProduct) {
         persistenceAdapter.removeChosenProduct(chosenProduct)
         save()
+        reloadWidgets()
     }
 
     ///

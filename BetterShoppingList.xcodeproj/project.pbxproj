@@ -35,6 +35,9 @@
 		474A41BE2822766B00B62E60 /* WidgetsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41BD2822766B00B62E60 /* WidgetsExtension.swift */; };
 		474A41C02822766E00B62E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 474A41BF2822766E00B62E60 /* Assets.xcassets */; };
 		474A41C42822766E00B62E60 /* WidgetsExtensionExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 474A41B72822766B00B62E60 /* WidgetsExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
+		474A41CA28227F1200B62E60 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41C928227F1200B62E60 /* WidgetConstants.swift */; };
+		474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41C928227F1200B62E60 /* WidgetConstants.swift */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
 		475DFD9428216DD000D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
 		475DFD9528216DD500D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
@@ -264,6 +267,7 @@
 		474A41BD2822766B00B62E60 /* WidgetsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetsExtension.swift; sourceTree = "<group>"; };
 		474A41BF2822766E00B62E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		474A41C12822766E00B62E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		474A41C928227F1200B62E60 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
 		475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Wrapped.swift"; sourceTree = "<group>"; };
 		475DFD9728216FA900D7CB0F /* ShoppingList+ChosenProductSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+ChosenProductSet.swift"; sourceTree = "<group>"; };
@@ -661,6 +665,7 @@
 				475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */,
 				475DFD9728216FA900D7CB0F /* ShoppingList+ChosenProductSet.swift */,
 				475DFD9A2821CAD300D7CB0F /* WCChosenProduct.swift */,
+				474A41C928227F1200B62E60 /* WidgetConstants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -984,6 +989,7 @@
 				479554162806E21700BD23F3 /* LocationManager.swift in Sources */,
 				477F77E027F8A84A006F5902 /* ShoppingListButtonView.swift in Sources */,
 				47AFD360281DC39B00F178B7 /* Intents.intentdefinition in Sources */,
+				474A41CA28227F1200B62E60 /* WidgetConstants.swift in Sources */,
 				47941FE327FF757900F0D5AF /* ChosenProductView.swift in Sources */,
 				477F77DD27F8A505006F5902 /* SplashView.swift in Sources */,
 				47A9E1012812A6BC007DDA1D /* CurrentShoppingListViewModel.swift in Sources */,
@@ -1064,7 +1070,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */,
 				474A41BE2822766B00B62E60 /* WidgetsExtension.swift in Sources */,
+				474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
