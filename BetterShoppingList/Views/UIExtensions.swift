@@ -12,7 +12,7 @@ extension Double {
         self.formatted(.currency(code: "eur"))
     }
     var eurosWithoutSign: String {
-        self.formatted(.currency(code: "eur").sign(strategy: .never).presentation(.narrow))
+        self.formatted(.currency(code: "eur")).replacingOccurrences(of: "€", with: "")
     }
 }
 
