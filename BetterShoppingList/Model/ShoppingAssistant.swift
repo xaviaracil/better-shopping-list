@@ -130,6 +130,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
             }
         }
         save()
+        reloadWidgets()
     }
 
     func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
@@ -198,6 +199,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         newList.name = name
         newList.earning = newList.earned
         save()
+        reloadWidgets()
         return newList
     }
 
