@@ -16,8 +16,8 @@ extension Double {
 struct ProductTitle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .truncationMode(.tail)
             .font(.headline)
+            .minimumScaleFactor(0.01)
     }
 }
 
@@ -66,3 +66,12 @@ extension List {
         modifier(EmptyDataModifier(items: items, placeholder: placeholder))
     }
 }
+
+extension Bool {
+     static var watchOS: Bool {
+         guard #available(watchOS 8, *) else {
+             return true
+         }
+         return false
+     }
+ }

@@ -25,10 +25,13 @@ struct PersistenceController {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
-            // swiftlint:disable line_length
-            description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
+//            // swiftlint:disable line_length
+//            description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
+
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+            description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+            description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
             description.configuration = "Local"
             let containerIdentifier = description.cloudKitContainerOptions!.containerIdentifier
 
@@ -37,23 +40,17 @@ struct PersistenceController {
             description.cloudKitContainerOptions = privateOptions
         }
 
+        container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.undoManager = nil
+        container.viewContext.shouldDeleteInaccessibleFaults = true
+        container.viewContext.transactionAuthor = "watchApp"
+        try? container.viewContext.setQueryGenerationFrom(.current)
+
         container.loadPersistentStores(completionHandler: { (_, error) in
             guard let error = error as NSError? else { return }
             fatalError("😱 \(#function): Failed to load persistent stores: \(error)")
         })
-        container.viewContext.automaticallyMergesChangesFromParent = true
 
-        // Only initialize the schema when building the app with the
-        // Debug build configuration.
-        #if DEBUG
-        do {
-            // Use the container to initialize the development schema.
-            try container.initializeCloudKitSchema(options: [])
-
-        } catch {
-            // Handle any errors.
-            print("Error initializing CloudKit: \(error)")
-        }
-        #endif
     }
 }

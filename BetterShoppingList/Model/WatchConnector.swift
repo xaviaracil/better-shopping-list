@@ -47,13 +47,16 @@ class WatchConnector: NSObject, WCSessionDelegate {
         }
     }
 
-    func notifyProducts(_ ids: [NSManagedObjectID], for market: Market) {
-        if WCSession.default.isReachable {
-            let message: [String: Any] = ["ids": ids.map { $0.uriRepresentation().absoluteString },
-                                          "market": market.name ?? "N.A"]
-            WCSession.default.sendMessage(message, replyHandler: nil) { error in
-                print("Error sendiing message \(error)")
-            }
+    func notifyProducts(_ products: [ChosenProduct], for market: Market) {
+        guard WCSession.default.isReachable,
+              let data = try? products.toPropertyList() else {
+                  print("Can't send message")
+                  return
+              }
+        let message: [String: Any] = ["products": data,
+                                      "market": market.wrappedName]
+        WCSession.default.sendMessage(message, replyHandler: nil) { error in
+            print("Error sending message \(error)")
         }
     }
 }

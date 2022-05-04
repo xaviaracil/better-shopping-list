@@ -78,35 +78,26 @@ class ContentViewModel: NSObject, WCSessionDelegate, ObservableObject {
 
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         print("🖥 session didReceiveMessage \(message)")
-        guard let ids = message["ids"] as? [String],
+        guard let encodedProducts = message["products"] as? Data,
         let name = message["market"] as? String else {
             return
         }
         locationManager.stop()
-        let coordinator = persistenceController.container.persistentStoreCoordinator
+
         let context = persistenceController.container.viewContext
-        let existingproducts = try? context.fetch(ChosenProduct.fetchRequest())
-        print("Products in store: \(String(describing: existingproducts))")
-        let receivedProducts: [ChosenProduct] = ids
-            .compactMap {
-                if let url = URL(string: $0),
-                   let storeUUID = self.identifierForStore() {
-                    // Switch the host component to be the local storeUUID
-                    var newUrl = URL(string: "\(url.scheme!)://\(storeUUID)")!
-                    newUrl.appendPathComponent(url.path)
+        let decoder = PropertyListDecoder()
+        var chosenProducts: [ChosenProduct] = []
+        do {
+            let products = try decoder.decode([WCChosenProduct].self, from: encodedProducts)
+            chosenProducts = products.map { $0.toChosenProduct(context: context)}
+        } catch {
+            print("🖥 Error decoding products: \(error)")
+        }
 
-                    print(newUrl)
-
-                    if let objectId = coordinator.managedObjectID(forURIRepresentation: newUrl) {
-                        return context.object(with: objectId) as? ChosenProduct
-                    }
-                }
-                return nil
-            }
         DispatchQueue.main.async {
             self.askedForProducts = false
             self.marketName = name
-            self.products = receivedProducts
+            self.products = chosenProducts
         }
     }
 
