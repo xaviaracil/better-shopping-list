@@ -99,9 +99,7 @@ struct ChosenProductView: View {
 struct ChosenProductView_Previews: PreviewProvider {
     static var previews: some View {
         let viewContext = PersistenceController.preview.container.viewContext
-        // swiftlint:disable line_length
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext,
-                                                            coordinator: PersistenceController.preview.container.persistentStoreCoordinator)
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         let market1 = Market(context: viewContext)

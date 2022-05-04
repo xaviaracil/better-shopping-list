@@ -36,10 +36,8 @@ struct MarketRowView: View {
 
 struct MarketRowView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = PersistenceController.preview.container
-        let viewContext = container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext,
-                                                            coordinator: container.persistentStoreCoordinator)
+        let viewContext = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         MarketRowView(market: mockMarket(), defaultString: "N.A.", shoppingAssistant: shoppingAssistant)

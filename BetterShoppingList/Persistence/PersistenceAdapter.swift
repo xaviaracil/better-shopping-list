@@ -28,7 +28,6 @@ protocol PersistenceAdapter {
 
 struct CoreDataPersistenceAdapter: PersistenceAdapter {
     let viewContext: NSManagedObjectContext
-    let coordinator: NSPersistentStoreCoordinator
 
     func newList(isCurrent: Bool = false) -> ShoppingList {
         let list = ShoppingList(context: viewContext)

@@ -92,10 +92,8 @@ where Data: RandomAccessCollection,
 
 struct EmptyCurrentListView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = PersistenceController.preview.container
-        let context = container.viewContext
-        let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
-                                                           coordinator: container.persistentStoreCoordinator)
+        let context = PersistenceController.preview.container.viewContext
+        let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
 //        Group {
         NavigationView {

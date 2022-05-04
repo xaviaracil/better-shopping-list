@@ -16,9 +16,8 @@ class AddProductBaseHandler: NSObject {
     override init() {
         super.init()
         persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
-        let container = persistenceController.container
-        persistenceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
-                                                        coordinator: container.persistentStoreCoordinator)
+        let context = persistenceController.container.viewContext
+        persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
     }
 
     func searchProducts(_ name: String) throws -> [Product] {

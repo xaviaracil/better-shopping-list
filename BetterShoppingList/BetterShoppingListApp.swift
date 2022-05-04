@@ -18,9 +18,8 @@ struct BetterShoppingListApp: App {
     @Environment(\.scenePhase) var scenePhase
     init() {
         persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
-        let container = persistenceController.container
-        let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: container.viewContext,
-                                                            coordinator: container.persistentStoreCoordinator)
+        let context = persistenceController.container.viewContext
+        let persistanceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         self._shoppingAssitant = StateObject(wrappedValue: ShoppingAssistant(persistenceAdapter: persistanceAdapter))
     }
 

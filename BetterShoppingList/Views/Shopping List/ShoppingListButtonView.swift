@@ -52,10 +52,8 @@ struct ShoppingListLabelStyle: LabelStyle {
 }
 struct ShoppingListButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = PersistenceController.preview.container
-        let context = container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context,
-                                                           coordinator: container.persistentStoreCoordinator)
+        let context = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
 
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 

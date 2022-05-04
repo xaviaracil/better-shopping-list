@@ -38,6 +38,8 @@
 		474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
 		474A41CA28227F1200B62E60 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41C928227F1200B62E60 /* WidgetConstants.swift */; };
 		474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41C928227F1200B62E60 /* WidgetConstants.swift */; };
+		474A41CC2822811500B62E60 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
+		474A41CD2822817500B62E60 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
 		475DFD9428216DD000D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
 		475DFD9528216DD500D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
@@ -1071,8 +1073,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */,
+				474A41CC2822811500B62E60 /* Persistence.swift in Sources */,
 				474A41BE2822766B00B62E60 /* WidgetsExtension.swift in Sources */,
 				474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */,
+				474A41CD2822817500B62E60 /* PersistenceAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

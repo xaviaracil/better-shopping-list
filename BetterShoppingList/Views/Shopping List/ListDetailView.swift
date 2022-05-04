@@ -69,10 +69,8 @@ struct ListDetailView: View {
 
 struct ListDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let container = PersistenceController.preview.container
-        let viewContext = container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext,
-                                                            coordinator: container.persistentStoreCoordinator)
+        let viewContext = PersistenceController.preview.container.viewContext
+        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
 
         let market1 = Market(context: viewContext)
