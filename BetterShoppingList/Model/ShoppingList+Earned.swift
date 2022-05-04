@@ -10,7 +10,7 @@ import Foundation
 extension ShoppingList {
 
     var markets: [Market]? {
-        return (self.products as? Set<ChosenProduct>)?
+        return self.chosenProductSet
             .compactMap { $0.market }
             .uniqued(on: {$0.uuid})
             .sorted(by: { $0.name ?? "N.A" < $1.name ?? "N.A"})

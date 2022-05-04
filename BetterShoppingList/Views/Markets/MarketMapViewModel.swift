@@ -103,8 +103,10 @@ class MarketsMapViewModel: ObservableObject {
         regionPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [self] _ in
-                // update search
-                self.marketSearchManager.search(region: region)
+                Task {
+                    // update search
+                    await self.marketSearchManager.search(region: region)
+                }
             }
             .store(in: &cancellableSet)
     }

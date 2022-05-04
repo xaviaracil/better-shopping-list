@@ -21,17 +21,17 @@ class CurrentShoppingListViewModel: ObservableObject {
     init(shoppingList: ShoppingList?) {
         _shoppingList = .init(initialValue: shoppingList)
         _isFavorite = .init(initialValue: shoppingList?.isFavorite ?? false)
-        _products = .init(initialValue: shoppingList?.products as? Set<ChosenProduct>)
+        _products = .init(initialValue: shoppingList?.chosenProductSet)
     }
 
     func removeProduct(_ chosenProduct: ChosenProduct) {
         shoppingList?.removeFromProducts(chosenProduct)
-        products = shoppingList?.products as? Set<ChosenProduct>
+        products = shoppingList?.chosenProductSet
     }
 
     func replaceProduct(_ chosenProduct: ChosenProduct, with newChosenProduct: ChosenProduct) {
         shoppingList?.removeFromProducts(chosenProduct)
         shoppingList?.addToProducts(newChosenProduct)
-        products = shoppingList?.products as? Set<ChosenProduct>
+        products = shoppingList?.chosenProductSet
     }
 }

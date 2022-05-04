@@ -31,11 +31,11 @@ struct SideBar: View {
             if let market = viewModel.shoppingAssistant.marketTheUserIsInCurrently {
                 // swiftlint:disable line_length
                 NavigationLink(destination:
-                    CurrentListMarketInMarketView(name: market.name ?? "N.A.",
-                                                  products: (viewModel.shoppingAssistant.currentList?.products as? Set<ChosenProduct>)?.ofMarket(market: market) ?? [])
-                                .navigationBarTitle(market.name ?? "N.A."),
+                    CurrentListMarketInMarketView(name: market.wrappedName,
+                                                  products: viewModel.shoppingAssistant.currentList?.chosenProductSet.ofMarket(market: market) ?? [])
+                                .navigationBarTitle(market.wrappedName),
                                isActive: $viewModel.shoppingAssistant.switchToInMarketView) {
-                    Label(market.name ?? "N.A.", systemImage: "cart")
+                    Label(market.wrappedName, systemImage: "cart")
                 }
             }
 
@@ -49,7 +49,7 @@ struct SideBar: View {
                     ForEach(section) { shoppingList in
                         NavigationLink(destination:
                                         ShoppingListView(shoppingList: shoppingList),
-                                       tag: shoppingList.name ?? "N.A.",
+                                       tag: shoppingList.wrappedName,
                                        selection: $viewModel.selectedItem) {
                             Text(shoppingList.name ?? "No Name")
                         }
@@ -73,7 +73,7 @@ struct SideBar: View {
                     } else {
                         NavigationLink(destination: MarketsMapView(markets: [market]), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
                             Label {
-                                Text(market.name ?? "N.A.")
+                                Text(market.wrappedName)
                             } icon: {
                                 AsyncImage(url: market.iconUrl) { logo in
                                     logo.resizable()
@@ -99,7 +99,7 @@ struct SideBar: View {
                 ForEach(markets, id: \.self) { market in
                     if market.userMarket?.excluded ?? false {
                         Label {
-                            Text(market.name ?? "N.A.")
+                            Text(market.wrappedName)
                         } icon: {
                             AsyncImage(url: market.iconUrl) { logo in
                                 logo.resizable()

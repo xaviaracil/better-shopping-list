@@ -54,11 +54,11 @@ class AddProductStandardHandler: AddProductBaseHandler, INAddTasksIntentHandling
 
             if products.count == 1 {
                 print("🖥 only one product found with name: \(name)")
-                return .success(with: INSpeakableString(spokenPhrase: products.first!.name ?? "N.A."))
+                return .success(with: INSpeakableString(spokenPhrase: products.first!.wrappedName))
             }
 
             print("🖥 more than one product found with name: \(name)")
-            return .disambiguation(with: products.map { INSpeakableString(spokenPhrase: $0.name ?? "N.A.") })
+            return .disambiguation(with: products.map { INSpeakableString(spokenPhrase: $0.wrappedName) })
         } catch {
             return .unsupported()
         }

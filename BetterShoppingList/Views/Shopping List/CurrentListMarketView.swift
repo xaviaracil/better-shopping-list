@@ -25,7 +25,7 @@ struct CurrentListMarketView: View {
                 .labelStyle(ShoppingListLabelStyle())
                 .padding(EdgeInsets(top: 20.0, leading: 10.0, bottom: 10.0, trailing: 10.0))
             }
-            .accessibility(label: Text("Products in market \(market.name ?? "N.A.")"))
+            .accessibility(label: Text("Products in market \(market.wrappedName)"))
             .accessibility(hint: Text("Display products"))
             .accessibility(addTraits: .isButton)
             .addBorder(.foreground, width: 1, cornerRadius: 10)
@@ -43,11 +43,11 @@ struct CurrentListMarketView: View {
                         .foregroundColor(.white)
                         .minimumScaleFactor(0.5)
                 )
-                .accessibilityLabel(Text("Number of products in market \(market.name ?? "N.A.")"))
+                .accessibilityLabel(Text("Number of products in market \(market.wrappedName)"))
                 .accessibilityValue(Text("\(products.ofMarket(market: market).count)"))
         }.sheet(isPresented: $isPresented) {
             ListDetailSheet(products: products,
-                           name: market.name ?? "N. A.",
+                           name: market.wrappedName,
                            deleteChosenProducts: deleteChosenProducts,
                            changeChosenProduct: changeChosenProduct)
         }

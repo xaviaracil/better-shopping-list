@@ -34,10 +34,10 @@ class AddProductHandler: AddProductBaseHandler, AddProductIntentHandling {
                 }
 
                 if products.count == 1 {
-                    return .success(with: products.first!.name ?? "N.A.")
+                    return .success(with: products.first!.wrappedName)
                 }
 
-                return .disambiguation(with: products.map { $0.name ?? "N.A." })
+                return .disambiguation(with: products.map { $0.wrappedName })
             } catch {
                 return .unsupported()
             }
