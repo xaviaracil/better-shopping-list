@@ -70,14 +70,17 @@ class ListMarketLocationManager: ObservableObject {
         regionPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [self] _ in
-                // update search
-                self.marketSearchManager.search(region: region)
+                Task {
+                    // update search
+                    await self.marketSearchManager.search(region: region)
+                }
             }
             .store(in: &cancellableSet)
 
     }
 
     fileprivate func checkMarkets(_ results: [MKMapItem]) {
+        // swiftlint:disable line_length
         print("🖥 Some results found \(results.map { String(describing: $0.name) }). Markets: \(String(describing: self.shoppingList?.markets))")
         self.currentMarket = self.shoppingList?.markets?.first(where: { market in
             results.contains { item in
@@ -88,9 +91,7 @@ class ListMarketLocationManager: ObservableObject {
     }
 
     func start() {
-        print("🖥 Start searching for markets")
         guard shoppingList != nil else {
-            print("🖥 Start cancelled since there isn't any list")
             return
         }
         self.checkMarkets(items)

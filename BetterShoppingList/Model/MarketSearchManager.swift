@@ -18,20 +18,17 @@ class MarketSearchManager: NSObject {
     let resultsPublisher =
     PassthroughSubject<[MKMapItem], Never>()
 
-    func search(region: MKCoordinateRegion) {
+    func search(region: MKCoordinateRegion) async {
 
         let searchRequest = MKLocalPointsOfInterestRequest(center: region.center, radius: Constants.DISTANCE)
         searchRequest.pointOfInterestFilter = MKPointOfInterestFilter(including: [.foodMarket, .store])
         let localSearch = MKLocalSearch(request: searchRequest)
         print("🖥 searching...")
-        localSearch.start { [unowned self] (response, error) in
-            if let error = error as NSError? {
-                print("MKLocalSearch encountered an error: \(error.localizedDescription).")
-                return
-            }
-            if let response = response {
-                self.resultsPublisher.send(response.mapItems)
-            }
+        do {
+            let response = try await localSearch.start()
+            self.resultsPublisher.send(response.mapItems)
+        } catch {
+            print("MKLocalSearch encountered an error: \(error.localizedDescription).")
         }
     }
 }

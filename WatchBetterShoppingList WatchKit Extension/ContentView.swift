@@ -14,7 +14,10 @@ struct ContentView: View {
 
     var body: some View {
         if viewModel.askedForProducts {
-            ProgressView()
+            VStack {
+                ProgressView()
+                Text("Open iOS App for searching nearby markets, please")
+            }
         } else if viewModel.marketName != "" {
             CurrentListMarketInMarketView(name: viewModel.marketName,
                                           products: viewModel.products)

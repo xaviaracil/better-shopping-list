@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import Combine
 import Intents
+import SwiftUI
 
 /// Main Model class for the application
 class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDelegate {
@@ -26,15 +27,17 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     let listMarketLocationManager = ListMarketLocationManager()
     let watchConnector = WatchConnector()
 
+    public var askedFromWatch = false
+
     @Published var marketTheUserIsInCurrently: Market? {
         didSet {
-            self.userIsinAMarket = marketTheUserIsInCurrently != nil
-            if self.userIsinAMarket {
+            self.userIsinAMarket = !askedFromWatch && self.marketTheUserIsInCurrently != nil
+            if self.marketTheUserIsInCurrently != nil {
                 // notify watch app
                 if let products = self.currentList?.products as? Set<ChosenProduct>,
                    let market = marketTheUserIsInCurrently {
                     let productsInMarket = products.ofMarket(market: market)
-                    watchConnector.notifyProducts(productsInMarket.map {$0.objectID }, for: market)
+                    watchConnector.notifyProducts(productsInMarket, for: market)
                 }
             }
         }
@@ -211,6 +214,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
 
     // MARK: - WatchConnector Delegate
     func askForNearbyProducts(in location: CLLocation) {
+        askedFromWatch = true
         listMarketLocationManager.currentLocation = location
     }
 
