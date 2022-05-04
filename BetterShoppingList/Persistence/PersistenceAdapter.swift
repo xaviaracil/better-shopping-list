@@ -124,16 +124,21 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         }
         let words = text.components(separatedBy: " ")
         var textPredicates: [NSPredicate] = []
+        var brandNamePredicates: [NSPredicate] = []
         for word in words {
             if !word.isEmpty && !(word == " ") {
                 let predicate = NSPredicate(format: "name CONTAINS[cd] %@", word)
                 textPredicates.append(predicate)
+                let brandPredicate = NSPredicate(format: "brand CONTAINS[cd] %@", word)
+                brandNamePredicates.append(brandPredicate)
             }
         }
         let namePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: textPredicates)
+        let brandPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: brandNamePredicates)
+        let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [namePredicate, brandPredicate])
 
         if markets.isEmpty {
-            return namePredicate
+            return predicate
         }
 
         var marketNamePredicates: [NSPredicate] = []
@@ -143,7 +148,7 @@ struct CoreDataPersistenceAdapter: PersistenceAdapter {
         }
         let marketPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: marketNamePredicates)
 
-        return NSCompoundPredicate(andPredicateWithSubpredicates: [namePredicate, marketPredicate])
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, marketPredicate])
     }
 
     func removeList(_ list: ShoppingList) {
