@@ -51,7 +51,7 @@ struct ChosenProductView: View {
             .frame(width: 90, height: 90)
 
             VStack(alignment: .leading) {
-                Text(viewModel.product?.name ?? "No Name")
+                Text(viewModel.chosenProduct.wrappedName)
                     .productTitle()
                 Text(viewModel.chosenProduct.price.euros)
                     .bestPrice()
@@ -135,7 +135,9 @@ struct ChosenProductView_Previews: PreviewProvider {
         chosenProduct.marketUUID = market1.uuid
 
         return
-            ChosenProductView(chosenProduct: chosenProduct, shoppingAssistant: shoppingAssistant, deleteChosenProducts: nil, changeChosenProduct: nil)
-
+            ChosenProductView(chosenProduct: chosenProduct,
+                              shoppingAssistant: shoppingAssistant,
+                              deleteChosenProducts: nil,
+                              changeChosenProduct: nil)
     }
 }

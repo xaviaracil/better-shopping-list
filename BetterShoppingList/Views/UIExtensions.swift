@@ -11,6 +11,9 @@ extension Double {
     var euros: String {
         self.formatted(.currency(code: "eur"))
     }
+    var eurosWithoutSign: String {
+        self.formatted(.currency(code: "eur").sign(strategy: .never).presentation(.narrow))
+    }
 }
 
 struct ProductTitle: ViewModifier {

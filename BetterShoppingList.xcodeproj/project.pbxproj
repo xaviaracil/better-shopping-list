@@ -40,6 +40,19 @@
 		474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41C928227F1200B62E60 /* WidgetConstants.swift */; };
 		474A41CC2822811500B62E60 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C391927F60695009C1967 /* Persistence.swift */; };
 		474A41CD2822817500B62E60 /* PersistenceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */; };
+		474A41CE2822838D00B62E60 /* ShoppingList+ChosenProductSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9728216FA900D7CB0F /* ShoppingList+ChosenProductSet.swift */; };
+		474A41CF2822866400B62E60 /* Model+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63C28118FE300A4CF42 /* Model+utils.swift */; };
+		474A41D12822A29800B62E60 /* SmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41D02822A29800B62E60 /* SmallView.swift */; };
+		474A41D42822A46200B62E60 /* ChosenProduct+grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */; };
+		474A41D52822A50C00B62E60 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835980281BC13900239174 /* UIExtensions.swift */; };
+		474A41DB2822AA3C00B62E60 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
+		474A41DD2822B86000B62E60 /* MediumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41DC2822B86000B62E60 /* MediumView.swift */; };
+		474A41DE2822B9BB00B62E60 /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
+		474A41E02822C23000B62E60 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 474A41DF2822C23000B62E60 /* Algorithms */; };
+		474A41E22822D68C00B62E60 /* EarnedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41E12822D68C00B62E60 /* EarnedView.swift */; };
+		474A41E42822D90D00B62E60 /* LargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474A41E32822D90D00B62E60 /* LargeView.swift */; };
+		474A41E52822D9D100B62E60 /* MarketLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478C142B27FE1CD6007FF217 /* MarketLabelView.swift */; };
+		474A41E62822DAAB00B62E60 /* ProductImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCCA852807751700D84107 /* ProductImageView.swift */; };
 		474FB90527F9ED4100BCC79B /* ProductOfferList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474FB90427F9ED4100BCC79B /* ProductOfferList.swift */; };
 		475DFD9428216DD000D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
 		475DFD9528216DD500D7CB0F /* CoreData+Wrapped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */; };
@@ -270,6 +283,11 @@
 		474A41BF2822766E00B62E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		474A41C12822766E00B62E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		474A41C928227F1200B62E60 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
+		474A41D02822A29800B62E60 /* SmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallView.swift; sourceTree = "<group>"; };
+		474A41DA2822AA2B00B62E60 /* WidgetsExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtensionExtension.entitlements; sourceTree = "<group>"; };
+		474A41DC2822B86000B62E60 /* MediumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumView.swift; sourceTree = "<group>"; };
+		474A41E12822D68C00B62E60 /* EarnedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarnedView.swift; sourceTree = "<group>"; };
+		474A41E32822D90D00B62E60 /* LargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeView.swift; sourceTree = "<group>"; };
 		474FB90427F9ED4100BCC79B /* ProductOfferList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferList.swift; sourceTree = "<group>"; };
 		475DFD9328216DD000D7CB0F /* CoreData+Wrapped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Wrapped.swift"; sourceTree = "<group>"; };
 		475DFD9728216FA900D7CB0F /* ShoppingList+ChosenProductSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+ChosenProductSet.swift"; sourceTree = "<group>"; };
@@ -382,6 +400,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474A41E02822C23000B62E60 /* Algorithms in Frameworks */,
+				474A41DB2822AA3C00B62E60 /* CloudKit.framework in Frameworks */,
 				474A41BB2822766B00B62E60 /* SwiftUI.framework in Frameworks */,
 				474A41B92822766B00B62E60 /* WidgetKit.framework in Frameworks */,
 			);
@@ -413,6 +433,7 @@
 		470C390427F60694009C1967 = {
 			isa = PBXGroup;
 			children = (
+				474A41DA2822AA2B00B62E60 /* WidgetsExtensionExtension.entitlements */,
 				47A0D70428008285008C2663 /* .swiftlint.yml */,
 				47AFE35C27F77954003264D8 /* Test Fixtures */,
 				470C390F27F60694009C1967 /* BetterShoppingList */,
@@ -530,6 +551,10 @@
 				474A41BD2822766B00B62E60 /* WidgetsExtension.swift */,
 				474A41BF2822766E00B62E60 /* Assets.xcassets */,
 				474A41C12822766E00B62E60 /* Info.plist */,
+				474A41D02822A29800B62E60 /* SmallView.swift */,
+				474A41DC2822B86000B62E60 /* MediumView.swift */,
+				474A41E12822D68C00B62E60 /* EarnedView.swift */,
+				474A41E32822D90D00B62E60 /* LargeView.swift */,
 			);
 			path = WidgetsExtension;
 			sourceTree = "<group>";
@@ -753,6 +778,9 @@
 			dependencies = (
 			);
 			name = WidgetsExtensionExtension;
+			packageProductDependencies = (
+				474A41DF2822C23000B62E60 /* Algorithms */,
+			);
 			productName = WidgetsExtensionExtension;
 			productReference = 474A41B72822766B00B62E60 /* WidgetsExtensionExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1072,10 +1100,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				474A41E62822DAAB00B62E60 /* ProductImageView.swift in Sources */,
+				474A41CE2822838D00B62E60 /* ShoppingList+ChosenProductSet.swift in Sources */,
+				474A41E52822D9D100B62E60 /* MarketLabelView.swift in Sources */,
+				474A41E22822D68C00B62E60 /* EarnedView.swift in Sources */,
+				474A41CF2822866400B62E60 /* Model+utils.swift in Sources */,
+				474A41D52822A50C00B62E60 /* UIExtensions.swift in Sources */,
+				474A41E42822D90D00B62E60 /* LargeView.swift in Sources */,
+				474A41D42822A46200B62E60 /* ChosenProduct+grouping.swift in Sources */,
 				474A41CB28227F1200B62E60 /* WidgetConstants.swift in Sources */,
 				474A41CC2822811500B62E60 /* Persistence.swift in Sources */,
+				474A41DD2822B86000B62E60 /* MediumView.swift in Sources */,
 				474A41BE2822766B00B62E60 /* WidgetsExtension.swift in Sources */,
 				474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */,
+				474A41D12822A29800B62E60 /* SmallView.swift in Sources */,
+				474A41DE2822B9BB00B62E60 /* CoreData+Wrapped.swift in Sources */,
 				474A41CD2822817500B62E60 /* PersistenceAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1447,6 +1486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtensionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q74977A756;
@@ -1474,6 +1514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtensionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q74977A756;
@@ -1770,6 +1811,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		4701904527FC182500488534 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		474A41DF2822C23000B62E60 /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4701904427FC182500488534 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;

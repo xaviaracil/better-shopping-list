@@ -19,8 +19,11 @@ struct ProductImageView: View {
                     image.resizable()
                         .scaledToFit()
                 } placeholder: {
-                    ProgressView()
-                        .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                    Image(systemName: "photo.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.accentColor)
+                        .opacity(0.5)
                 }
                 // mark special offers
                 if isSpecialOffer {
