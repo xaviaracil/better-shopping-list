@@ -26,7 +26,7 @@ struct MediumView: View {
             Color("WidgetBackground")
             VStack {
                 let columns: [GridItem] =
-                             Array(repeating: .init(.flexible()), count: 2)
+                             Array(repeating: .init(.flexible(), alignment: .leading), count: 2)
                 LazyVGrid(columns: columns) {
                     ForEach(markets.prefix(numberOfMarketsToShow), id: \.self) { market in
                             Label("\(market.wrappedName)", systemImage: "bag.circle")
@@ -34,7 +34,7 @@ struct MediumView: View {
                     }
                     .padding([.bottom], 2.0)
                     .minimumScaleFactor(0.01)
-                }.padding([.top])
+                }.padding([.top, .leading])
 
                 Spacer()
                 EarnedView(value: entry.earned)

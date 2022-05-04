@@ -1,0 +1,8 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "WatchBetterShoppingList WatchKit Extension";
+/* Bundle name */
+"CFBundleName" = "WatchBetterShoppingList WatchKit Extension";
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "";
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "The app uses location for searching nearby market. In order to so, please enable it";

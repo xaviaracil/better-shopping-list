@@ -2,14 +2,104 @@
 "Add to basket" = "Añadir a la cesta";
 
 /* No comment provided by engineer. */
+"Add to cart" = "Añadir a la cesta";
+
+/* No comment provided by engineer. */
+"All" = "Todos";
+
+/* No comment provided by engineer. */
+"Can't find any product with this name." = "No encuentro ningún producto con ese nombre.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancelar";
+
+/* No comment provided by engineer. */
 "Choose a favourite list to start" = "Escoge una lista favorita para empezar";
 
 /* No comment provided by engineer. */
-"OR" = "O";
+"Close" = "Cerrar";
+
+/* No comment provided by engineer. */
+"Current List" = "Lista actual";
+
+/* No comment provided by engineer. */
+"Delete" = "Borrar";
+
+/* No comment provided by engineer. */
+"Display products" = "Mostrar productos";
+
+/* No comment provided by engineer. */
+"Exclude" = "Excluir";
+
+/* No comment provided by engineer. */
+"Excluded Markets" = "Supermercados excluidos";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorito";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favoritos";
+
+/* No comment provided by engineer. */
+"Include" = "Incluir";
+
+/* No comment provided by engineer. */
+"List name" = "Nombre de la lista";
+
+/* No comment provided by engineer. */
+"Map" = "Mapa";
+
+/* No comment provided by engineer. */
+"Markets" = "Supermercados";
+
+/* No comment provided by engineer. */
+"Menu" = "Menú";
+
+/* No comment provided by engineer. */
+"Mode" = "Modo";
+
+/* No comment provided by engineer. */
+"Move to" = "Mover";
+
+/* No comment provided by engineer. */
+"Name" = "Nombre";
+
+/* No comment provided by engineer. */
+"No products found in market" = "Este supermercado no tiene ningún producto";
+
+/* No comment provided by engineer. */
+"Number of products in market %@" = "Número de productos en el supermercado %@";
+
+/* No comment provided by engineer. */
+"OR" = "o";
+
+/* No comment provided by engineer. */
+"Products in market %@" = "Productos en el supermercado %@";
+
+/* No comment provided by engineer. */
+"Quantity: %d" = "Cantidad: %d";
+
+/* No comment provided by engineer. */
+"Remove from cart" = "Quitar de la cesta";
+
+/* No comment provided by engineer. */
+"Save List" = "Guardar lista";
 
 /* No comment provided by engineer. */
 "Search Products Here" = "Buscar productos aquí";
 
 /* No comment provided by engineer. */
+"Seems you are close to %@. Switch to in market view to view its products in your current list?" = "Parece que estás cerca de %@. ¿Quieres cambiar a la vista dentro del supermercado para ver sus productos de tu lista?";
+
+/* No comment provided by engineer. */
+"Shop" = "Comprar";
+
+/* No comment provided by engineer. */
 "Start searching products" = "Empieza a buscar productos";
+
+/* No comment provided by engineer. */
+"Switch" = "Cambiar";
+
+/* No comment provided by engineer. */
+"Switch to In Market view?" = "¿Cambiar a vista dentro del supermercado?";
 

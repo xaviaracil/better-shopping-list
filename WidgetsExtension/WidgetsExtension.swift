@@ -15,13 +15,13 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> ShoppingListEntry {
         ShoppingListEntry(date: Date(),
                           products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                          earned: 10.0) //persistenceAdapter.currentList?.earned ?? 0.0)
+                          earned: persistenceAdapter.currentList?.earned ?? 0.0)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (ShoppingListEntry) -> Void) {
         let entry = ShoppingListEntry(date: Date(),
                                       products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                                      earned: 10.0) //persistenceAdapter.currentList?.earned ?? 0.0)
+                                      earned: persistenceAdapter.currentList?.earned ?? 0.0)
         completion(entry)
     }
 
@@ -29,7 +29,7 @@ struct Provider: TimelineProvider {
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let entry = ShoppingListEntry(date: Date(),
                                       products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                                      earned: 10.0) //persistenceAdapter.currentList?.earned ?? 0.0)
+                                      earned: persistenceAdapter.currentList?.earned ?? 0.0)
         let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }

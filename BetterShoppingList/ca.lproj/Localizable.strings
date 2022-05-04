@@ -2,17 +2,104 @@
 "Add to basket" = "Afegir a la cistella";
 
 /* No comment provided by engineer. */
+"Add to cart" = "Afegir a la cistella";
+
+/* No comment provided by engineer. */
+"All" = "Tot";
+
+/* No comment provided by engineer. */
 "Can't find any product with this name." = "No trobo cap producte amb aquest nom.";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel·la";
 
 /* No comment provided by engineer. */
 "Choose a favourite list to start" = "Escull una llista favorita per començar";
 
 /* No comment provided by engineer. */
+"Close" = "Tanca";
+
+/* No comment provided by engineer. */
+"Current List" = "Llista actual";
+
+/* No comment provided by engineer. */
+"Delete" = "Esborrar";
+
+/* No comment provided by engineer. */
+"Display products" = "Mostrar productes";
+
+/* No comment provided by engineer. */
+"Exclude" = "Excloure";
+
+/* No comment provided by engineer. */
+"Excluded Markets" = "Supermercats exclosos";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorit";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favorits";
+
+/* No comment provided by engineer. */
+"Include" = "Incloure";
+
+/* No comment provided by engineer. */
+"List name" = "Nom";
+
+/* No comment provided by engineer. */
+"Map" = "Mapa";
+
+/* No comment provided by engineer. */
+"Markets" = "Supermercats";
+
+/* No comment provided by engineer. */
+"Menu" = "Menú";
+
+/* No comment provided by engineer. */
+"Mode" = "Mode";
+
+/* No comment provided by engineer. */
+"Move to" = "Moure";
+
+/* No comment provided by engineer. */
+"Name" = "Nom";
+
+/* No comment provided by engineer. */
+"No products found in market" = "Aquest mercat no conté cap producte";
+
+/* No comment provided by engineer. */
+"Number of products in market %@" = "Número de productes: %@";
+
+/* No comment provided by engineer. */
 "OR" = "o";
+
+/* No comment provided by engineer. */
+"Products in market %@" = "Productes al mercat: %@";
+
+/* No comment provided by engineer. */
+"Quantity: %d" = "Quantitat: %d";
+
+/* No comment provided by engineer. */
+"Remove from cart" = "Treure de la cistella";
+
+/* No comment provided by engineer. */
+"Save List" = "Desa llista";
 
 /* No comment provided by engineer. */
 "Search Products Here" = "Cerca productes aquí";
 
 /* No comment provided by engineer. */
+"Seems you are close to %@. Switch to in market view to view its products in your current list?" = "Sembla que estàs a prop de %@. Vols canviar a la vista dins del supermercat per veure els seus productes dins la teva llista?";
+
+/* No comment provided by engineer. */
+"Shop" = "Comprar";
+
+/* No comment provided by engineer. */
 "Start searching products" = "Comença a cercar productes";
+
+/* No comment provided by engineer. */
+"Switch" = "Canviar";
+
+/* No comment provided by engineer. */
+"Switch to In Market view?" = "Canviar a mode dins del supermercat?";
 

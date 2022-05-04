@@ -1,0 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "SiriIntents";
+/* Bundle name */
+"CFBundleName" = "SiriIntents";
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "";

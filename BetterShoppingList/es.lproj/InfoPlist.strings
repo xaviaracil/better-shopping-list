@@ -1,0 +1,9 @@
+/* Bundle name */
+"CFBundleName" = "BetterShoppingList";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "La aplicación utiliza la localización para buscar supermercados cercanos. Para ello, tienes que permitir su uso.";
+
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Puedes pedir a Siri añadir productos a tu lista. Para ello, tienes que permitir su uso.";
+
