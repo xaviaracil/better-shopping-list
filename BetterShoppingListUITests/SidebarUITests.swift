@@ -33,15 +33,13 @@ class SidebarUITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
         XCTAssertTrue(app.buttons["Current List"].firstMatch.exists)
-        XCTAssertTrue(app.buttons["All"].firstMatch.exists)
-        XCTAssertTrue(app.buttons["Markets"].firstMatch.exists)
         XCTAssertTrue(app.buttons["Map"].firstMatch.exists)
 
         for listIndex in 1...10 {
             XCTAssertTrue(app.staticTexts["List \(listIndex)"].firstMatch.exists)
         }
-        for marketIndex in 1...3 {
-            XCTAssertTrue(app.staticTexts["Market \(marketIndex)"].firstMatch.exists)
-        }
+        XCTAssertTrue(app.staticTexts["Carrefour"].firstMatch.exists)
+        XCTAssertTrue(app.staticTexts["Sorli"].firstMatch.exists)
+        XCTAssertTrue(app.staticTexts["BonPreu Esclat"].firstMatch.exists)
     }
 }

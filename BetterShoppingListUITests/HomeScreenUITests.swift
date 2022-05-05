@@ -44,16 +44,15 @@ class HomeScreenUITests: XCTestCase {
         if app.staticTexts["OR"].exists ||
             app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "OR")).element.exists {
             XCTAssertTrue(app.scrollViews["Saved Lists"].exists)
-            XCTAssertTrue(app.scrollViews["Saved Lists"].images.firstMatch.exists)
         } else {
-            XCTAssertFalse(app.scrollViews["Saved Lists"].images.firstMatch.exists)
+            XCTAssertFalse(app.scrollViews["Saved Lists"].exists)
         }
     }
 
     func testSelectASavedList() throws {
         let listButton = app.buttons["List 1"].firstMatch
         XCTAssert(listButton.exists)
-        listButton.tap()
+        listButton.forceTap()
 
         // at least there must be one market
         let predicate = NSPredicate(format: "label BEGINSWITH \"Number of products in market \"")

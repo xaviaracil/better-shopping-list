@@ -10,6 +10,10 @@ import XCTest
 class SavedListsUITest: XCTestCase {
     var app: XCUIApplication!
 
+    var marketPredicate: NSPredicate {
+        NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
+    }
+
     override func setUpWithError() throws {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
@@ -42,8 +46,7 @@ class SavedListsUITest: XCTestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 1))
 
         // at least there must be one market
-        let predicate = NSPredicate(format: "label BEGINSWITH \"Number of products in market \"")
-        let marketText = app.staticTexts.matching(predicate).firstMatch
+        let marketText = app.staticTexts.matching(marketPredicate).firstMatch
         XCTAssertTrue(marketText.waitForExistence(timeout: 5))
     }
 

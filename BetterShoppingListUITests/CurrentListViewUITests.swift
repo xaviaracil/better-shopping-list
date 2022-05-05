@@ -10,6 +10,9 @@ import XCTest
 class CurrentListViewUITests: XCTestCase {
     var app: XCUIApplication!
 
+    var marketPredicate: NSPredicate {
+        NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
+    }
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -34,7 +37,7 @@ class CurrentListViewUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 
-        let market = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH \"Market\"")).firstMatch
+        let market = app.staticTexts.matching(marketPredicate).firstMatch
         XCTAssertNotNil(market)
         let label = market.label
 
@@ -56,7 +59,7 @@ class CurrentListViewUITests: XCTestCase {
     }
 
     func testDisplayList() throws {
-        let market = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH \"Market\"")).firstMatch
+        let market = app.staticTexts.matching(marketPredicate).firstMatch
         XCTAssertNotNil(market)
         let label = market.label
 

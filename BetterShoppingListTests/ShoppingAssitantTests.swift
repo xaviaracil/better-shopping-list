@@ -8,7 +8,6 @@
 import XCTest
 @testable import BetterShoppingList
 import CoreData
-import Combine
 
 class ShoppingAssitantTests: XCTestCase {
 
@@ -30,7 +29,7 @@ class ShoppingAssitantTests: XCTestCase {
         // Given inital
 
         // When asking for persistence
-        let persistenceAdapter = shoppingAsistant.persitenceAdapter
+        let persistenceAdapter = shoppingAsistant.persistenceAdapter
 
         // Then something is returned
         XCTAssertNotNil(persistenceAdapter)

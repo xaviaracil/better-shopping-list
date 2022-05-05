@@ -74,6 +74,7 @@
 		477F77E027F8A84A006F5902 /* ShoppingListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77DF27F8A849006F5902 /* ShoppingListButtonView.swift */; };
 		477F77E227F8AAED006F5902 /* EmptyCurrentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */; };
 		477F77E427F8B1E8006F5902 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F77E327F8B1E8006F5902 /* Arrow.swift */; };
+		477F82E02823F48B0057DF98 /* XCUIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477F82DF2823F48B0057DF98 /* XCUIExtensions.swift */; };
 		47835977281ACB6A00239174 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835976281ACB6A00239174 /* ShoppingListView.swift */; };
 		47835979281AD18300239174 /* ListDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47835978281AD18200239174 /* ListDetailSheet.swift */; };
 		4783597B281B14A200239174 /* CurrentListMarketInMarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783597A281B14A100239174 /* CurrentListMarketInMarketView.swift */; };
@@ -314,6 +315,7 @@
 		477F77DF27F8A849006F5902 /* ShoppingListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListButtonView.swift; sourceTree = "<group>"; };
 		477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCurrentListView.swift; sourceTree = "<group>"; };
 		477F77E327F8B1E8006F5902 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		477F82DF2823F48B0057DF98 /* XCUIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIExtensions.swift; sourceTree = "<group>"; };
 		47835976281ACB6A00239174 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		47835978281AD18200239174 /* ListDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailSheet.swift; sourceTree = "<group>"; };
 		4783597A281B14A100239174 /* CurrentListMarketInMarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketInMarketView.swift; sourceTree = "<group>"; };
@@ -490,10 +492,7 @@
 				470C394127F607D1009C1967 /* Model.xcdatamodeld */,
 				47AFE35B27F766D9003264D8 /* Persistence */,
 				470C391627F60695009C1967 /* Preview Content */,
-				4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */,
-				470A76B528003D4300328EB2 /* SidebarViewModel.swift */,
 				477F77DE27F8A514006F5902 /* Views */,
-				47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */,
 			);
 			path = BetterShoppingList;
 			sourceTree = "<group>";
@@ -534,6 +533,7 @@
 				471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */,
 				471BE6422811B4D900A4CF42 /* SidebarUITests.swift */,
 				471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */,
+				477F82DF2823F48B0057DF98 /* XCUIExtensions.swift */,
 			);
 			path = BetterShoppingListUITests;
 			sourceTree = "<group>";
@@ -544,6 +544,7 @@
 				47FCCA812807691400D84107 /* SearchingResultsView.swift */,
 				477EC56127F99B1100A589FD /* SearchSuggestionsView.swift */,
 				477EC56C27F9E70100A589FD /* ProductOfferView.swift */,
+				4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -586,6 +587,7 @@
 				478C142B27FE1CD6007FF217 /* MarketLabelView.swift */,
 				4737B8D82806DBDF009B9E98 /* Search */,
 				470A76B328003C2D00328EB2 /* SideBar.swift */,
+				470A76B528003D4300328EB2 /* SidebarViewModel.swift */,
 				477F77DC27F8A505006F5902 /* SplashView.swift */,
 				47FCCA852807751700D84107 /* ProductImageView.swift */,
 				47A9E0FE2812A35D007DDA1D /* FavoriteButton.swift */,
@@ -637,6 +639,7 @@
 			children = (
 				477F77DF27F8A849006F5902 /* ShoppingListButtonView.swift */,
 				478C142927FE0EAF007FF217 /* CurrentShoppingListView.swift */,
+				47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */,
 				47941FE027FF74C200F0D5AF /* ListDetailView.swift */,
 				47941FE227FF757900F0D5AF /* ChosenProductView.swift */,
 				47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */,
@@ -1112,6 +1115,7 @@
 				470C393327F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift in Sources */,
 				47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */,
 				471BE6412811B23F00A4CF42 /* MarketMapUITests.swift in Sources */,
+				477F82E02823F48B0057DF98 /* XCUIExtensions.swift in Sources */,
 				470C393127F60695009C1967 /* HomeScreenUITests.swift in Sources */,
 				471BE6432811B4D900A4CF42 /* SidebarUITests.swift in Sources */,
 			);
