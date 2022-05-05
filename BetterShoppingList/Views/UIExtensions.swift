@@ -32,6 +32,19 @@ struct OfferBestPrice: ViewModifier {
     }
 }
 
+struct ShoppingListLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            configuration.icon
+                .font(.system(size: 96.0))
+                .minimumScaleFactor(0.5)
+                .foregroundColor(.accentColor)
+            configuration.title
+                .font(.headline)
+        }
+    }
+}
+
 extension View {
     public func addBorder<S>(_ content: S, width: CGFloat = 1, cornerRadius: CGFloat) -> some View where S: ShapeStyle {
         let roundedRect = RoundedRectangle(cornerRadius: cornerRadius)

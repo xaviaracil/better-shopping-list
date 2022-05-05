@@ -75,13 +75,10 @@ where Data: RandomAccessCollection,
                 }
             }
             ScrollView(.horizontal) {
-                GeometryReader { reader in
                     LazyHStack {
                         ForEach(lists, id: \.objectID) { list in
                             ShoppingListButtonView(list: list)
-                                .frame(width: reader.size.height * 0.8, height: reader.size.height * 0.8)
                         }
-                    }
                 }
             }
             .padding(.leading)
@@ -95,7 +92,7 @@ struct EmptyCurrentListView_Previews: PreviewProvider {
         let context = PersistenceController.preview.container.viewContext
         let persitenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         let lists = try? context.fetch(persitenceAdapter.savedListsFetchRequest)
-//        Group {
+        Group {
         NavigationView {
             EmptyCurrentListView(lists: lists ?? [])
                 .navigationBarTitle("", displayMode: .inline)
@@ -106,6 +103,15 @@ struct EmptyCurrentListView_Previews: PreviewProvider {
             .previewDevice(.init(rawValue: "iPhone 7"))
             .previewInterfaceOrientation(.portrait)
             .environment(\.verticalSizeClass, .regular)
+            NavigationView {
+                EmptyCurrentListView(lists: lists ?? [])
+                    .navigationBarTitle("", displayMode: .inline)
+                    .searchable(text: .constant(""),
+                                placement: .navigationBarDrawer(displayMode: .always),
+                                prompt: "Search Products Here")
+            }.searchable(text: .constant(""))
+                .previewDevice(.init(rawValue: "iPhone 7"))
+                .previewInterfaceOrientation(.landscapeLeft)
         NavigationView {
             EmptyCurrentListView(lists: lists ?? [])
                 .navigationBarTitle("", displayMode: .inline)
@@ -116,12 +122,21 @@ struct EmptyCurrentListView_Previews: PreviewProvider {
             .previewDevice(.init(rawValue: "iPhone 13"))
             .previewInterfaceOrientation(.portrait)
             .environment(\.verticalSizeClass, .regular)
+            NavigationView {
+                EmptyCurrentListView(lists: lists ?? [])
+                    .navigationBarTitle("", displayMode: .inline)
+                    .searchable(text: .constant(""),
+                                placement: .navigationBarDrawer(displayMode: .always),
+                                prompt: "Search Products Here")
+            }.searchable(text: .constant(""))
+                .previewDevice(.init(rawValue: "iPhone 13"))
+                .previewInterfaceOrientation(.landscapeLeft)
 //            EmptyCurrentListView(lists: lists ?? [])
 //                .previewInterfaceOrientation(.landscapeRight)
 //                .environment(\.verticalSizeClass, .compact)
 //            EmptyCurrentListView(lists: [])
 //                .previewInterfaceOrientation(.landscapeLeft)
 //                .environment(\.verticalSizeClass, .compact)
-//        }
+        }
     }
 }
