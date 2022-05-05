@@ -108,7 +108,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "testMode"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-com.apple.CoreData.SQLDebug 1"
