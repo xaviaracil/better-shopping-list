@@ -69,39 +69,25 @@ final class BetterShoppingListTests: XCTestCase {
     }
 
     func test_Given_AMultipleName_When_AskingForList_Then_TheListIsSortedByNameAndPrice() throws {
-        // given a name
-        let name = "Pro 1"
+        // given a product
 
-        // when searching
-        let offers = try context.fetch(shoppingAssistant.offersFetchRequest(productName: name))
+        let products = try context.fetch(Product.fetchRequest())
+        let product = products.first
+        XCTAssertNotNil(product)
+
+        // when geeting the offers
+        let offers = shoppingAssistant.activeOffers(for: product!)
 
         // then we got some only one product
         XCTAssertNotNil(offers)
-        XCTAssertEqual(20, offers.count)
 
-        // and offers are sorted by name
-        let productsOffers = offers.toProductOffers()
-        for productOffer in productsOffers {
-            if let fetchedOffers = productOffer.offers {
-                for index in 0..<fetchedOffers.count - 1 {
-                    XCTAssertTrue(fetchedOffers[index].price <= fetchedOffers[index+1].price,
-                                  """
-                                  List should be ordered: \(fetchedOffers[index].price)
-                                  is more expensive than \(fetchedOffers[index+1].price)
-                                  """)
-                }
-            }
+        // and offers are sorted by price
+        for index in 0..<offers!.count - 1 {
+            XCTAssertTrue(offers![index].price <= offers![index+1].price,
+                          """
+                          List should be ordered: \(offers![index].price)
+                          is more expensive than \(offers![index+1].price)
+                          """)
         }
-
-        XCTAssertEqual(offers.map { $0.price }, Constants.prices + Constants.prices)
-        let productNames = Set(offers.map { $0.product?.name})
-        XCTAssertEqual(productNames.count, 2)
-        XCTAssertTrue(productNames.contains("Product 1"))
-        XCTAssertTrue(productNames.contains("Product 10"))
-        XCTAssertEqual(offers.map { $0.market?.name }, ["Market 1", "Market 2", "Market 3", "Market 4", "Market 5",
-                                                        "Market 6", "Market 7", "Market 8", "Market 9", "Market 10",
-                                                        "Market 2", "Market 3", "Market 4", "Market 5", "Market 6",
-                                                        "Market 7", "Market 8", "Market 9", "Market 10", "Market 1"]
-        )
     }
 }
