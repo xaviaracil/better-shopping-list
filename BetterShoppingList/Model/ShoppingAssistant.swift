@@ -41,6 +41,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
                     watchConnector.notifyProducts(productsInMarket, for: market)
                 }
             }
+            askedFromWatch = false
         }
     }
 

@@ -17,6 +17,16 @@ struct ContentView: View {
     @State private var switchToInMarket = false
     private var hideSplash: Bool
 
+    @State private var alreadyDisplayedInMarketView = false
+
+    var switchDialogPresented: Binding<Bool> {
+        Binding {
+            !alreadyDisplayedInMarketView && shoppingAssistant.userIsinAMarket
+        } set: { newValue in
+            alreadyDisplayedInMarketView = !newValue
+        }
+    }
+
     init(hideSplash: Bool = false) {
         self.hideSplash = hideSplash
     }
@@ -33,12 +43,13 @@ struct ContentView: View {
                 }
             }
         }.confirmationDialog("Switch to In Market view?",
-                             isPresented: $shoppingAssistant.userIsinAMarket) {
+                             isPresented: switchDialogPresented) {
             Button(action: {
                 print("Time to switch")
                 withAnimation {
                     shoppingAssistant.stopSearchingForNearMarkets()
                     shoppingAssistant.switchToInMarketView.toggle()
+                    alreadyDisplayedInMarketView = true
                 }
 
             }) {
@@ -47,6 +58,7 @@ struct ContentView: View {
 
             Button("Cancel", role: .cancel) {
                 shoppingAssistant.stopSearchingForNearMarkets()
+                alreadyDisplayedInMarketView = true
             }
         } message: {
             // swiftlint:disable line_length
