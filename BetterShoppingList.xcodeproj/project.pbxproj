@@ -23,6 +23,8 @@
 		470C393327F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C393227F60695009C1967 /* BetterShoppingListUITestsLaunchTests.swift */; };
 		470C394327F607D1009C1967 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 470C394127F607D1009C1967 /* Model.xcdatamodeld */; };
 		470D066827FE2B00002A5EBA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 470D066627FE2B00002A5EBA /* Localizable.strings */; };
+		470F7D81282406A5003A3C91 /* CurrentListMarketInMarketViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F7D80282406A5003A3C91 /* CurrentListMarketInMarketViewUITests.swift */; };
+		470F7D8328243DC0003A3C91 /* ShoppingListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470F7D8228243DC0003A3C91 /* ShoppingListViewUITests.swift */; };
 		471BE63D28118FE300A4CF42 /* Model+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63C28118FE300A4CF42 /* Model+utils.swift */; };
 		471BE63F28119D0500A4CF42 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE63E28119D0500A4CF42 /* AppUtils.swift */; };
 		471BE6412811B23F00A4CF42 /* MarketMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */; };

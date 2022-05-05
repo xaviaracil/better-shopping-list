@@ -1,14 +1,17 @@
 //
-//  MarketMapUITests.swift
+//  ShoppingListViewUITests.swift
 //  BetterShoppingListUITests
 //
-//  Created by Xavi Aracil on 21/4/22.
+//  Created by Xavi Aracil on 5/5/22.
 //
 
 import XCTest
 
-class MarketMapUITests: XCTestCase {
+class ShoppingListViewUITests: XCTestCase {
     var app: XCUIApplication!
+
+    // swiftlint:disable line_length
+    let marketPredicate = NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -18,6 +21,8 @@ class MarketMapUITests: XCTestCase {
 
         // UI tests must launch the application that they test.
         app = launchApp()
+
+        sleep(1)
     }
 
     override func tearDownWithError() throws {
@@ -25,25 +30,19 @@ class MarketMapUITests: XCTestCase {
         app.terminate()
     }
 
-    func testMapIsDisplayed() throws {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
+    func testDisplayList() throws {
         let sidebarButton = app.buttons["Menu"].firstMatch
         XCTAssertTrue(sidebarButton.exists)
         sidebarButton.tap()
 
-        let mapButton = app.buttons["Map"].firstMatch
-        XCTAssertTrue(mapButton.exists)
-        mapButton.tap()
+        // tap on first list in order to create a current list
+        let list1Button = app.buttons["List 1"].firstMatch
+        XCTAssertTrue(list1Button.exists)
+        list1Button.forceTap()
 
-        let title = app.staticTexts["Markets"].firstMatch
-        XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let allButton = app.buttons["All"].firstMatch
-        XCTAssertTrue(allButton.waitForExistence(timeout: 5))
-
-        let map = app.descendants(matching: .map).firstMatch
-        XCTAssertTrue(map.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.navigationBars["List 1"].exists)
+        // at least there should be one market
+        let market = app.staticTexts.matching(marketPredicate).firstMatch
+        XCTAssertNotNil(market)
     }
-
 }

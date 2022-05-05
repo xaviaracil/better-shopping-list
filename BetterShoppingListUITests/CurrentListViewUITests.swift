@@ -10,9 +10,9 @@ import XCTest
 class CurrentListViewUITests: XCTestCase {
     var app: XCUIApplication!
 
-    var marketPredicate: NSPredicate {
-        NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
-    }
+    // swiftlint:disable line_length
+    let marketPredicate = NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -31,6 +31,7 @@ class CurrentListViewUITests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
     }
 
     func testChooseProduct() throws {
@@ -80,4 +81,57 @@ class CurrentListViewUITests: XCTestCase {
 
     }
 
+    func testRemoveProduct() throws {
+        let market = app.staticTexts.matching(marketPredicate).firstMatch
+        XCTAssertNotNil(market)
+        let label = market.label
+
+        let estrellaDammAddButton = app.buttons["Add to basket"].firstMatch
+        estrellaDammAddButton.tap()
+
+        sleep(1)
+
+        let listButton = app.buttons["Products in market \(label)"].firstMatch
+        XCTAssertTrue(listButton.waitForExistence(timeout: 5))
+        listButton.tap()
+
+        let cell = app.tables.firstMatch.cells.firstMatch
+        if cell.exists {
+            // portrait mode
+            XCTAssertTrue(cell.exists)
+
+            cell.children(matching: .other).element(boundBy: 0).swipeLeft()
+        } else {
+            // landscape
+            app.buttons["Move to"].firstMatch.tap()
+        }
+
+        app.buttons["Delete"].firstMatch.tap()
+        let productName = app.staticTexts["Cervesa Estrella Damm"].firstMatch
+        XCTAssertFalse(productName.waitForExistence(timeout: 5))
+    }
+
+    func testReplaceProduct() throws {
+        let market = app.staticTexts.matching(marketPredicate).firstMatch
+        XCTAssertNotNil(market)
+        let label = market.label
+
+        let estrellaDammAddButton = app.buttons["Add to basket"].firstMatch
+        estrellaDammAddButton.tap()
+
+        sleep(1)
+
+        let listButton = app.buttons["Products in market \(label)"].firstMatch
+        XCTAssertTrue(listButton.waitForExistence(timeout: 5))
+        listButton.tap()
+
+        let moveButton = app.buttons["Move to"].firstMatch
+        moveButton.tap()
+
+        let marketButton = app.buttons.matching(NSPredicate(format: "label BEGINSWITH \"Carrefour\" OR label BEGINSWITH \"Sorli\" OR label BEGINSWITH \"BonPreu Esclat\"")).firstMatch
+        marketButton.tap()
+
+        let productName = app.staticTexts["Cervesa Estrella Damm"].firstMatch
+        XCTAssertFalse(productName.waitForExistence(timeout: 5))
+    }
 }

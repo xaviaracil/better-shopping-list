@@ -10,9 +10,8 @@ import XCTest
 class SavedListsUITest: XCTestCase {
     var app: XCUIApplication!
 
-    var marketPredicate: NSPredicate {
-        NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
-    }
+    // swiftlint:disable line_length
+    let marketPredicate = NSPredicate(format: "(label = \"Carrefour\") OR (label = \"Sorli\") OR (label =\"BonPreu Esclat\")")
 
     override func setUpWithError() throws {
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -27,6 +26,7 @@ class SavedListsUITest: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
     }
 
     func testShowList() throws {

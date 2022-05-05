@@ -14,7 +14,7 @@ func launchApp(wait: Bool = true) -> XCUIApplication {
     app.launch()
     if wait {
         // wait for the splash screen
-        sleep(4)
+        sleep(6)
     }
     return app
 }
