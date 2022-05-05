@@ -10,7 +10,7 @@ import SwiftUI
 struct SplashView: View {
     @Binding var displayed: Bool
 
-    @State private var scale: CGFloat = 1
+    @State private var scaling = false
 
     let waitingTime: Double = 1
 
@@ -24,9 +24,11 @@ struct SplashView: View {
                 .cornerRadius(20.0)
                 .shadow(radius: 5.0)
                 .frame(width: reader.size.width * 0.6)
-                .scaleEffect(scale)
-                .animation(.spring(response: 1, dampingFraction: 0.2, blendDuration: 0), value: scale)
+                .scaleEffect(scaling ? 1 : 1.05)
                 .onAppear {
+                    withAnimation(.easeInOut(duration: 0.5).repeatCount(2, autoreverses: false)) {
+                        scaling.toggle()
+                    }
                     DispatchQueue.main.asyncAfter(deadline: .now() + waitingTime) {
                         displayed = true
                     }
@@ -34,9 +36,6 @@ struct SplashView: View {
             Spacer()
             }
             .frame(width: reader.size.width)
-            .onAppear {
-                scale = 1.1
-            }
         }
     }
 }
