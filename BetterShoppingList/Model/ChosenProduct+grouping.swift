@@ -32,6 +32,8 @@ extension Collection where Element == ChosenProduct {
     func ofMarket(market: Market) -> [Element] {
         return self.filter { product in
             product.market == market
+        }.sorted { lhs, rhs in
+            lhs.wrappedName < rhs.wrappedName
         }
     }
 }
