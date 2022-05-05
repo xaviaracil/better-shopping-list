@@ -21,6 +21,13 @@ where Data: RandomAccessCollection,
     @Binding
     var added: Bool
 
+    @Binding
+    var isDragging: Bool {
+        didSet {
+            print("isDragging: \(isDragging)")
+        }
+    }
+
     var body: some View {
         VStack {
             if products.isEmpty {
@@ -38,7 +45,10 @@ where Data: RandomAccessCollection,
                                     .padding()
                             }
                         }
-                    }
+                    }.simultaneousGesture(DragGesture()
+                                            .onChanged { _ in
+                        isDragging = true
+                    })
                 } else {
                     // portrait
                     ScrollView {
@@ -47,7 +57,10 @@ where Data: RandomAccessCollection,
                                 ProductOfferView(product: product, added: $added)
                             }
                         }
-                    }
+                    }.simultaneousGesture(DragGesture()
+                                            .onChanged { _ in
+                        isDragging = true
+                    })
                 }
             }
         }
@@ -58,7 +71,7 @@ struct SearchingResultsView_Previews: PreviewProvider {
     static var previews: some View {
         let products =  mockProducts()
 
-        return SearchingResultsView(products: products, added: .constant(false))
+        return SearchingResultsView(products: products, added: .constant(false), isDragging: .constant(false))
     }
 
     static func mockProducts() -> [Product] {

@@ -21,6 +21,27 @@ struct HomeView: View {
         return searchText.count > 2
     }
 
+    enum Field: Hashable {
+        case search
+    }
+
+    @FocusState private var focusedField: Field?
+    @State private var searchResultsDragging = false
+    var dragging: Binding<Bool> {
+        Binding {
+            searchResultsDragging
+        } set: { newValue in
+            print("dragging: \(newValue)")
+            searchResultsDragging = newValue
+            if newValue {
+                // hide keyboard
+                #if canImport(UIKit)
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                #endif
+            }
+        }
+    }
+
     @State private var searchText = ""
     var query: Binding<String> {
         Binding {
@@ -62,13 +83,15 @@ struct HomeView: View {
                 }
             }
             if canSearch {
-                SearchingResultsView(products: products, added: added)
+                SearchingResultsView(products: products, added: added, isDragging: dragging)
+
             }
         }
         .navigationBarTitle("", displayMode: .inline)
         .searchable(text: query,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search Products Here")
+        .focused($focusedField, equals: .search)
     }
 }
 
