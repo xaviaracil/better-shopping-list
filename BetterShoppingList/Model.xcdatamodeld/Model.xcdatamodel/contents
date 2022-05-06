@@ -58,7 +58,7 @@
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ChosenProduct" inverseName="list" inverseEntity="ChosenProduct"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChosenProduct" inverseName="list" inverseEntity="ChosenProduct"/>
     </entity>
     <entity name="UserMarket" representedClassName="UserMarket" syncable="YES" codeGenerationType="class">
         <attribute name="excluded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
