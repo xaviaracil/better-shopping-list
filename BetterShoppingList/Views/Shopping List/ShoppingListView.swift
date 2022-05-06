@@ -19,31 +19,32 @@ struct ShoppingListView: View {
 
     var body: some View {
         VStack {
-            ForEach(viewModel.shoppingList?.markets ?? [], id: \.self) { market in
-                VStack(alignment: .leading) {
-                    MarketLabelView(market: market)
-                    ScrollView(.horizontal) {
-                        let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
-                        LazyHGrid(rows: rows) {
-                            ForEach(viewModel.products?.ofMarket(market: market) ?? [], id: \.self) { chosenProduct in
+            ScrollView {
+                ForEach(viewModel.shoppingList?.markets ?? [], id: \.self) { market in
+                    VStack(alignment: .leading) {
+                        MarketLabelView(market: market)
+                        ScrollView(.horizontal) {
+                            let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+                            LazyHGrid(rows: rows) {
+                                ForEach(viewModel.products?.ofMarket(market: market) ?? [], id: \.self) { chosenProduct in
+                                    HStack {
+                                        ProductImageView(product: chosenProduct.offer?.product,
+                                                         isSpecialOffer: chosenProduct.isSpecialOffer)
+                                            .frame(width: 90, height: 90)
 
-                                HStack {
-                                    ProductImageView(product: chosenProduct.offer?.product,
-                                                     isSpecialOffer: chosenProduct.isSpecialOffer)
-                                        .frame(width: 90, height: 90)
-
-                                    VStack(alignment: .leading) {
-                                        Text(chosenProduct.offer?.product?.name ?? "No Name")
-                                            .productTitle()
-                                        Text(chosenProduct.price.euros)
-                                            .bestPrice()
+                                        VStack(alignment: .leading) {
+                                            Text(chosenProduct.offer?.product?.name ?? "No Name")
+                                                .productTitle()
+                                            Text(chosenProduct.price.euros)
+                                                .bestPrice()
+                                        }
                                     }
+                                    .padding()
                                 }
-                                .padding()
                             }
                         }
-                    }
-                }.padding()
+                    }.padding()
+                }
             }
             Spacer()
             EarnedView(value: viewModel.shoppingList?.earning)
