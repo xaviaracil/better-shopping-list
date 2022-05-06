@@ -36,6 +36,7 @@ struct HomeView: View {
             if newValue {
                 // hide keyboard
                 #if canImport(UIKit)
+                    // swiftlint:disable line_length
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 #endif
             }
