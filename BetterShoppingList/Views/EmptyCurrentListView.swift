@@ -84,6 +84,7 @@ where Data: RandomAccessCollection,
             .padding(.leading)
             .accessibilityIdentifier("Saved Lists")
         }
+        .ignoresSafeArea(.keyboard, edges: [.bottom]) // don't resize with the keyboard
     }
 }
 
