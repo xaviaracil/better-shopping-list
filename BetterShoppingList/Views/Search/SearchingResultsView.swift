@@ -22,11 +22,7 @@ where Data: RandomAccessCollection,
     var added: Bool
 
     @Binding
-    var isDragging: Bool {
-        didSet {
-            print("isDragging: \(isDragging)")
-        }
-    }
+    var isDragging: Bool
 
     var body: some View {
         VStack {

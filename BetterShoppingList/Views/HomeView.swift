@@ -31,7 +31,6 @@ struct HomeView: View {
         Binding {
             searchResultsDragging
         } set: { newValue in
-            print("dragging: \(newValue)")
             searchResultsDragging = newValue
             if newValue {
                 // hide keyboard
