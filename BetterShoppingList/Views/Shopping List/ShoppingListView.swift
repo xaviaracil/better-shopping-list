@@ -26,6 +26,7 @@ struct ShoppingListView: View {
                         ScrollView(.horizontal) {
                             let rows: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
                             LazyHGrid(rows: rows) {
+                                // swiftlint:disable line_length
                                 ForEach(viewModel.products?.ofMarket(market: market) ?? [], id: \.self) { chosenProduct in
                                     HStack {
                                         ProductImageView(product: chosenProduct.offer?.product,
