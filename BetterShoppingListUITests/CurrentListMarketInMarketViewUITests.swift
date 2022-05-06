@@ -25,13 +25,14 @@ class CurrentListMarketInMarketViewUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         app.terminate()
+        app = nil
     }
 
     func testDisplayProducts() throws {
         // tap on first list in order to create a current list
         let list1Button = app.buttons["List 1"].firstMatch
+        app.scrollDownToElement(element: list1Button)
         XCTAssertTrue(list1Button.exists)
         list1Button.forceTap()
 
@@ -48,6 +49,7 @@ class CurrentListMarketInMarketViewUITests: XCTestCase {
     func testMarkAsCompleted() throws {
         // tap on first list in order to create a current list
         let list1Button = app.buttons["List 1"].firstMatch
+        app.scrollDownToElement(element: list1Button)
         XCTAssertTrue(list1Button.exists)
         list1Button.forceTap()
 
@@ -56,12 +58,9 @@ class CurrentListMarketInMarketViewUITests: XCTestCase {
 
         // click on in market view
         app.navigationBars.matching(marketPredicate).buttons["Shop"].tap()
-        let before = app.staticTexts.count
         let addToCartButton = app.buttons["Add to cart"].firstMatch
         XCTAssert(addToCartButton.waitForExistence(timeout: 5))
         addToCartButton.tap()
-        let after = app.staticTexts.count
-        XCTAssertEqual(before, after)
         let removeFromCartButton = app.buttons["Remove from cart"]
         XCTAssert(removeFromCartButton.waitForExistence(timeout: 5))
     }

@@ -23,6 +23,8 @@ final class BetterShoppingListTests: XCTestCase {
 
     override func tearDownWithError() throws {
         try destroyFixture(from: context)
+        context = nil
+        shoppingAssistant = nil
     }
 
     func test_Given_AProductName_When_AskingForList_Then_TheListIsSortedByPrice() throws {

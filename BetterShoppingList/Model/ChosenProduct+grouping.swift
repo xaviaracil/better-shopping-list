@@ -24,6 +24,7 @@ extension Collection where Element == ChosenProduct {
     func groupedByMarket(markets: [Market]) -> [Market] {
         return self
             .compactMap { $0.market }
+            .uniqued()
             .sorted {
                 $0.name?.localizedCaseInsensitiveCompare($1.name ?? "") == .orderedAscending
             }

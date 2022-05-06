@@ -20,13 +20,13 @@ class SidebarUITests: XCTestCase {
         app = launchApp()
 
         let sidebarButton = app.buttons["Menu"].firstMatch
-        XCTAssertTrue(sidebarButton.exists)
+        XCTAssertTrue(sidebarButton.waitForExistence(timeout: 5))
         sidebarButton.tap()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         app.terminate()
+        app = nil
     }
 
     func testOpenSideBar() throws {
@@ -37,10 +37,15 @@ class SidebarUITests: XCTestCase {
         XCTAssertTrue(app.buttons["Map"].firstMatch.exists)
 
         for listIndex in 1...10 {
-            XCTAssertTrue(app.staticTexts["List \(listIndex)"].firstMatch.exists)
+            assertTextExists(name: "List \(listIndex)")
         }
-        XCTAssertTrue(app.staticTexts["Carrefour"].firstMatch.exists)
-        XCTAssertTrue(app.staticTexts["Sorli"].firstMatch.exists)
-        XCTAssertTrue(app.staticTexts["BonPreu Esclat"].firstMatch.exists)
+        assertTextExists(name: "Carrefour")
+        assertTextExists(name: "Sorli")
+        assertTextExists(name: "BonPreu Esclat")
+    }
+
+    func assertTextExists(name: String) {
+        let text = app.staticTexts[name].firstMatch
+        XCTAssertTrue(text.exists)
     }
 }

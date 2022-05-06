@@ -10,15 +10,8 @@ import XCTest
 
 class ProductOfferViewModelTests: XCTestCase {
 
-    var productOfferViewModel: ProductOfferViewModel!
-    let context = PersistenceController.preview.container.viewContext
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        productOfferViewModel = ProductOfferViewModel()
-    }
-
     func test_Given_Initial_Data_When_Chosing_A_Product_And_An_Offer_Then_A_ChosenProduct_Is_Returned() throws {
+        let context = PersistenceController.preview.container.viewContext
         // given a product and an offer
         let product = Product(context: context)
         product.name =  "Some product name"
@@ -31,6 +24,7 @@ class ProductOfferViewModelTests: XCTestCase {
         let quantity = Int16.random(in: 0..<Int16.max)
 
         // when chosing them
+        let productOfferViewModel = ProductOfferViewModel()
         let chosenProduct = productOfferViewModel.choseProduct(product: product, offer: offer, quantity: quantity)
 
         // then a chosen product is returned

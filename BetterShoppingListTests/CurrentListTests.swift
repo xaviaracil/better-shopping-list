@@ -17,6 +17,8 @@ final class CurrentListTests: XCTestCase {
 
     override func tearDownWithError() throws {
         try destroyFixture(from: context)
+        context = nil
+        shoppingAssistant = nil
     }
 
     func testEmptyList() throws {
@@ -66,29 +68,25 @@ final class CurrentListTests: XCTestCase {
         // given a list with one product
         let list = mockList(name: "Current List", current: true, context: context)
 
-        let offers = try context.fetch(Offer.fetchRequest())
+        let products = try context.fetch(Product.fetchRequest())
+        let product = products.first!
 
-        let chosenOffer = offers.first!
-        let product = mockChosenProduct(offer: chosenOffer, context: context)
+        let chosenOffer = product.sorteredOffers!.first!
+        let chosenProduct = mockChosenProduct(offer: chosenOffer, context: context)
 
-        list.addToProducts(product)
+        list.addToProducts(chosenProduct)
 
         // when asking for how many have we earned
         let earned = list.earned
 
-        // then we get the maximum difference
-        let productOffers = offers.filter { offer in
-            offer.product == chosenOffer.product
-        }
-
-        let maxPrice: Double? = productOffers.map { $0.price }.sorted().last
+        let maxPrice: Double? = (product.offers as? Set<Offer>)?.map { $0.price }.sorted().last
         XCTAssertNotNil(maxPrice)
         XCTAssertEqual(maxPrice! - chosenOffer.price, earned)
     }
 
     // swiftlint:disable line_length
     func test_Given_CurrentListWithTwoProductsOfDifferentMarkets_WhenAskedForEarned_Then_ReturnsTheDifferenceBetweenTwoMarkets() throws {
-        // given a list with one product
+        // given a list with two products
         let list = mockList(name: "Current List", current: true, context: context)
 
         let offers = try context.fetch(Offer.fetchRequest())

@@ -25,8 +25,8 @@ class SavedListsUITest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         app.terminate()
+        app = nil
     }
 
     func testShowList() throws {
@@ -37,12 +37,12 @@ class SavedListsUITest: XCTestCase {
         sidebarButton.tap()
 
         let list1Button = app.buttons["List 1"].firstMatch
+        app.scrollDownToElement(element: list1Button)
         XCTAssertTrue(list1Button.exists)
         list1Button.tap()
 
         // There must be the list's name
-        let bar = app.descendants(matching: .navigationBar)
-        let title  = bar.staticTexts["List 1"]
+        let title  = app.navigationBars["List 1"]
         XCTAssertTrue(title.waitForExistence(timeout: 1))
 
         // at least there must be one market

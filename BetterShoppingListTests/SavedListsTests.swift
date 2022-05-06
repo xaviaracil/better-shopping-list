@@ -26,6 +26,8 @@ class SavedListsTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         try destroyFixture(from: context)
+        context = nil
+        shoppingAssistant = nil
     }
 
     func test_Given_InitialState_When_Fetched_Then_TheCurrentListIsEmpty() throws {

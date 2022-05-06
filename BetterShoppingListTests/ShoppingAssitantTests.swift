@@ -11,25 +11,27 @@ import CoreData
 
 class ShoppingAssitantTests: XCTestCase {
 
-    var shoppingAsistant: ShoppingAssistant!
+    var shoppingAssistant: ShoppingAssistant!
     var context: NSManagedObjectContext!
 
     override func setUpWithError() throws {
         context = PersistenceController(inMemory: true).container.viewContext
         try loadFixture(into: context)
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
-        shoppingAsistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
+        shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
     }
 
     override func tearDownWithError() throws {
         try destroyFixture(from: context)
+        context = nil
+        shoppingAssistant = nil
     }
 
     func test_Given_Initial_Then_ItHasPersistenceAdapter() throws {
         // Given inital
 
         // When asking for persistence
-        let persistenceAdapter = shoppingAsistant.persistenceAdapter
+        let persistenceAdapter = shoppingAssistant.persistenceAdapter
 
         // Then something is returned
         XCTAssertNotNil(persistenceAdapter)
@@ -39,7 +41,7 @@ class ShoppingAssitantTests: XCTestCase {
         // Given inital
 
         // When asking for currentList
-        let currentList = shoppingAsistant.currentList
+        let currentList = shoppingAssistant.currentList
 
         // Then an empty list is returned
         XCTAssertNil(currentList)
@@ -50,10 +52,10 @@ class ShoppingAssitantTests: XCTestCase {
         let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
 
         // When adding the product to our list
-        shoppingAsistant.addProductToCurrentList(product)
+        shoppingAssistant.addProductToCurrentList(product)
 
         // Then currentList is created
-        let currentList = shoppingAsistant.currentList
+        let currentList = shoppingAssistant.currentList
         XCTAssertNotNil(currentList)
 
         // And it has only one product
@@ -64,16 +66,16 @@ class ShoppingAssitantTests: XCTestCase {
     func test_Given_ACurrentList_When_ChoosingAProduct_Then_ItsAddedToTheCurrentList() throws {
         // Given some chosenProduct and a list
         let product = mockChosenProduct(name: "Product 1", price: 1.50, context: context)
-        shoppingAsistant.addProductToCurrentList(product)
-        let currentList = shoppingAsistant.currentList
+        shoppingAssistant.addProductToCurrentList(product)
+        let currentList = shoppingAssistant.currentList
 
         let product2 = mockChosenProduct(name: "Product 2", price: 2.50, context: context)
 
         // When adding the product to our list
-        shoppingAsistant.addProductToCurrentList(product2)
+        shoppingAssistant.addProductToCurrentList(product2)
 
         // Then currentList is created
-        let currentListAfter = shoppingAsistant.currentList
+        let currentListAfter = shoppingAssistant.currentList
         XCTAssertNotNil(currentListAfter)
         XCTAssertEqual(currentList, currentListAfter)
 

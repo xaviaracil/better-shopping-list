@@ -26,21 +26,22 @@ class ShoppingListViewUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         app.terminate()
+        app = nil
     }
 
     func testDisplayList() throws {
         let sidebarButton = app.buttons["Menu"].firstMatch
-        XCTAssertTrue(sidebarButton.exists)
+        XCTAssertTrue(sidebarButton.waitForExistence(timeout: 5))
         sidebarButton.tap()
 
         // tap on first list in order to create a current list
         let list1Button = app.buttons["List 1"].firstMatch
-        XCTAssertTrue(list1Button.exists)
+        XCTAssertTrue(list1Button.waitForExistence(timeout: 5))
+        app.scrollDownToElement(element: list1Button)
         list1Button.forceTap()
 
-        XCTAssertTrue(app.navigationBars["List 1"].exists)
+        XCTAssertTrue(app.navigationBars["List 1"].waitForExistence(timeout: 5))
         // at least there should be one market
         let market = app.staticTexts.matching(marketPredicate).firstMatch
         XCTAssertNotNil(market)

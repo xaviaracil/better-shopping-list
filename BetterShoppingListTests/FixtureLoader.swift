@@ -66,10 +66,17 @@ func mockMarket(name: String, url: String, context: NSManagedObjectContext) -> M
     return market
 }
 
+func mockUserMarket(market: Market, favorite: Bool, context: NSManagedObjectContext) -> UserMarket {
+    let userMarket = UserMarket(context: context)
+    userMarket.marketUUID = market.uuid
+    userMarket.isFavorite = favorite
+    return userMarket
+}
 func mockChosenProduct(name: String, price: Double, context: NSManagedObjectContext) -> ChosenProduct {
     let product = ChosenProduct(context: context)
     product.name = name
     product.price = price
+    product.quantity = 1
     return product
 }
 

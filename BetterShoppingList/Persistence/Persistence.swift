@@ -20,10 +20,7 @@ struct PersistenceController {
             try viewContext.deleteAllObjects()
 
             var markets: [Market] = []
-            // swiftlint:disable line_length
-            for (name, icon) in ["Sorli": "https://www.sorli.com/wp-content/themes/sorli/img/sorli_logo.png",
-                         "Carrefour": "https://pbs.twimg.com/profile_images/1501460589612306438/mzRWN7ev_400x400.jpg",
-                         "BonPreu Esclat": "https://pbs.twimg.com/profile_images/1103993935419068416/f8FkyYcp_400x400.png"] {
+            for (name, icon) in PersistenceTestData.markets {
                 let market = Market(context: viewContext)
                 market.name = name
                 market.uuid = UUID()
@@ -31,12 +28,8 @@ struct PersistenceController {
                 markets.append(market)
             }
 
-            // swiftlint:disable line_length
-            let products = ["Cervesa Estrella Damm": "https://www.compraonline.bonpreuesclat.cat/images-v3/dcbcfd72-cf23-44a2-8e14-8a38edd645a3/4d4e1ec4-18ec-4982-8267-90b2a6ec90db/300x300.jpg",
-                         "Cervesa Moritz 33": "https://www.compraonline.bonpreuesclat.cat/images-v3/dcbcfd72-cf23-44a2-8e14-8a38edd645a3/f39437cc-7536-4355-afd4-4cd266a6ea3e/300x300.jpg",
-                         "Llet ATO 1L": "https://static.condisline.com/resize_395x416/images/catalog/large/704005.jpg"]
             var offers: [String: [Offer]] = [:]
-            for (name, image) in products {
+            for (name, image) in PersistenceTestData.products {
                 let product = Product(context: viewContext)
                 product.name = name
                 product.brand = "Brand"
@@ -54,7 +47,11 @@ struct PersistenceController {
                     // prices is based on prices arrays, shifted by market index and product index
                     offer.price = Double.random(in: (0.15)...(3.00))
                     productOffers.append(offer)
-                    print("🖥 Adding Offer for product \(String(describing: product.name)) in market \(String(describing: market.name)) at price \(String(describing: offer.price))")
+                    print("""
+                          🖥 Adding Offer for product \(String(describing: product.name))
+                          in market \(String(describing: market.name))
+                          at price \(String(describing: offer.price))
+                    """)
                 }
                 offers[name] = productOffers
             }
@@ -66,7 +63,7 @@ struct PersistenceController {
                 newList.name = "List \(index + 1)"
                 newList.isFavorite = Bool.random()
                 newList.earning = Double.random(in: 0...(16.0))
-                for (name, _) in products {
+                for (name, _) in PersistenceTestData.products {
                     let chosenProduct = ChosenProduct(context: viewContext)
                     let offer = offers[name]?.randomElement()
                     chosenProduct.quantity = Int16.random(in: 1..<10)
@@ -101,6 +98,7 @@ struct PersistenceController {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
+            // swiftlint:disable line_length
             description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
@@ -137,13 +135,15 @@ struct PersistenceController {
         // Only initialize the schema when building the app with the
         // Debug build configuration.
         #if DEBUG
-        do {
-            // Use the container to initialize the development schema.
-            try container.initializeCloudKitSchema(options: [])
+        if !inMemory {
+            do {
+                // Use the container to initialize the development schema.
+                try container.initializeCloudKitSchema(options: [])
 
-        } catch {
-            // Handle any errors.
-            print("Error initializing CloudKit: \(error)")
+            } catch {
+                // Handle any errors.
+                print("Error initializing CloudKit: \(error)")
+            }
         }
         #endif
     }

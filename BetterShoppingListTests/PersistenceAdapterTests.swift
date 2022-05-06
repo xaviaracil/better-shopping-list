@@ -21,6 +21,8 @@ class PersistenceAdapterTests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        context = nil
+        persistenceAdapter = nil
     }
 
     func testGiven_A_Name_When_Searched_It_Returns_the_Product() throws {

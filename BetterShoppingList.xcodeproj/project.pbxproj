@@ -30,6 +30,13 @@
 		471BE6412811B23F00A4CF42 /* MarketMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */; };
 		471BE6432811B4D900A4CF42 /* SidebarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6422811B4D900A4CF42 /* SidebarUITests.swift */; };
 		471BE6452811C42D00A4CF42 /* SavedListsUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */; };
+		47204C1328255CB100C2EE7B /* PersistenceTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1228255CB100C2EE7B /* PersistenceTestData.swift */; };
+		47204C1428255D8000C2EE7B /* PersistenceTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1228255CB100C2EE7B /* PersistenceTestData.swift */; };
+		47204C1528255D8000C2EE7B /* PersistenceTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1228255CB100C2EE7B /* PersistenceTestData.swift */; };
+		47204C172825881D00C2EE7B /* ChosenProduct+groupingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C162825881D00C2EE7B /* ChosenProduct+groupingTests.swift */; };
+		47204C1A28258BCF00C2EE7B /* MarketRowViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1928258BCF00C2EE7B /* MarketRowViewModelTest.swift */; };
+		47204C1C2825908500C2EE7B /* CurrentShoppingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1B2825908500C2EE7B /* CurrentShoppingListViewModelTests.swift */; };
+		47204C1F2825936A00C2EE7B /* CurrentListMarketInMarketViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47204C1E2825936A00C2EE7B /* CurrentListMarketInMarketViewModelTests.swift */; };
 		4737B8D72806D0B5009B9E98 /* ProductOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */; };
 		4737B8DB2806DC91009B9E98 /* MarketsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */; };
 		474A41B92822766B00B62E60 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474A41B82822766B00B62E60 /* WidgetKit.framework */; };
@@ -282,6 +289,11 @@
 		471BE6402811B23F00A4CF42 /* MarketMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketMapUITests.swift; sourceTree = "<group>"; };
 		471BE6422811B4D900A4CF42 /* SidebarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarUITests.swift; sourceTree = "<group>"; };
 		471BE6442811C42D00A4CF42 /* SavedListsUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedListsUITest.swift; sourceTree = "<group>"; };
+		47204C1228255CB100C2EE7B /* PersistenceTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceTestData.swift; sourceTree = "<group>"; };
+		47204C162825881D00C2EE7B /* ChosenProduct+groupingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChosenProduct+groupingTests.swift"; sourceTree = "<group>"; };
+		47204C1928258BCF00C2EE7B /* MarketRowViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowViewModelTest.swift; sourceTree = "<group>"; };
+		47204C1B2825908500C2EE7B /* CurrentShoppingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentShoppingListViewModelTests.swift; sourceTree = "<group>"; };
+		47204C1E2825936A00C2EE7B /* CurrentListMarketInMarketViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListMarketInMarketViewModelTests.swift; sourceTree = "<group>"; };
 		4737B8D62806D0B5009B9E98 /* ProductOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOfferViewModel.swift; sourceTree = "<group>"; };
 		4737B8DA2806DC91009B9E98 /* MarketsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsMapView.swift; sourceTree = "<group>"; };
 		474A41B72822766B00B62E60 /* WidgetsExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -509,16 +521,16 @@
 		470C392527F60695009C1967 /* BetterShoppingListTests */ = {
 			isa = PBXGroup;
 			children = (
+				47204C1828258B4B00C2EE7B /* ViewModels */,
 				47AFE35427F6355C003264D8 /* schema.ckdb */,
 				47AFE35627F758B6003264D8 /* FixtureLoader.swift */,
 				477EC55D27F8D89000A589FD /* CurrentListTests.swift */,
 				470C392627F60695009C1967 /* CompareTests.swift */,
 				4701904227FB527F00488534 /* SavedListsTests.swift */,
 				47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */,
-				47FCCA87280DEAEA00D84107 /* ChosenProductViewModelTests.swift */,
 				47FCCA89280DEB4C00D84107 /* DummyPersistenceAdapter.swift */,
-				47FCCA8B280DEDD500D84107 /* ProductOfferViewModelTests.swift */,
 				47C4A9772824F9C800EDCEF3 /* PersistenceAdapterTests.swift */,
+				47204C162825881D00C2EE7B /* ChosenProduct+groupingTests.swift */,
 			);
 			path = BetterShoppingListTests;
 			sourceTree = "<group>";
@@ -539,6 +551,18 @@
 				470F7D8228243DC0003A3C91 /* ShoppingListViewUITests.swift */,
 			);
 			path = BetterShoppingListUITests;
+			sourceTree = "<group>";
+		};
+		47204C1828258B4B00C2EE7B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				47FCCA87280DEAEA00D84107 /* ChosenProductViewModelTests.swift */,
+				47FCCA8B280DEDD500D84107 /* ProductOfferViewModelTests.swift */,
+				47204C1928258BCF00C2EE7B /* MarketRowViewModelTest.swift */,
+				47204C1B2825908500C2EE7B /* CurrentShoppingListViewModelTests.swift */,
+				47204C1E2825936A00C2EE7B /* CurrentListMarketInMarketViewModelTests.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		4737B8D82806DBDF009B9E98 /* Search */ = {
@@ -673,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				470C391927F60695009C1967 /* Persistence.swift */,
+				47204C1228255CB100C2EE7B /* PersistenceTestData.swift */,
 				47F831B727FB4F8200A02CE7 /* PersistenceAdapter.swift */,
 			);
 			path = Persistence;
@@ -1079,6 +1104,7 @@
 				478C142C27FE1CD6007FF217 /* MarketLabelView.swift in Sources */,
 				475DFD9B2821CAD300D7CB0F /* WCChosenProduct.swift in Sources */,
 				4737B8DB2806DC91009B9E98 /* MarketsMapView.swift in Sources */,
+				47204C1328255CB100C2EE7B /* PersistenceTestData.swift in Sources */,
 				477F77E427F8B1E8006F5902 /* Arrow.swift in Sources */,
 				470A76B428003C2D00328EB2 /* SideBar.swift in Sources */,
 				470A76BA28003FC100328EB2 /* HomeViewModel.swift in Sources */,
@@ -1096,11 +1122,15 @@
 			files = (
 				47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */,
 				47FCCA8C280DEDD500D84107 /* ProductOfferViewModelTests.swift in Sources */,
+				47204C172825881D00C2EE7B /* ChosenProduct+groupingTests.swift in Sources */,
 				47FCCA88280DEAEA00D84107 /* ChosenProductViewModelTests.swift in Sources */,
+				47204C1C2825908500C2EE7B /* CurrentShoppingListViewModelTests.swift in Sources */,
 				47FCCA8A280DEB4C00D84107 /* DummyPersistenceAdapter.swift in Sources */,
 				4701904327FB527F00488534 /* SavedListsTests.swift in Sources */,
 				47C4A9782824F9C800EDCEF3 /* PersistenceAdapterTests.swift in Sources */,
 				47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */,
+				47204C1F2825936A00C2EE7B /* CurrentListMarketInMarketViewModelTests.swift in Sources */,
+				47204C1A28258BCF00C2EE7B /* MarketRowViewModelTest.swift in Sources */,
 				470C392727F60695009C1967 /* CompareTests.swift in Sources */,
 				477EC55E27F8D89000A589FD /* CurrentListTests.swift in Sources */,
 			);
@@ -1143,6 +1173,7 @@
 				474A41BE2822766B00B62E60 /* WidgetsExtension.swift in Sources */,
 				474A41C828227A8800B62E60 /* Model.xcdatamodeld in Sources */,
 				474A41D12822A29800B62E60 /* SmallView.swift in Sources */,
+				47204C1528255D8000C2EE7B /* PersistenceTestData.swift in Sources */,
 				474A41DE2822B9BB00B62E60 /* CoreData+Wrapped.swift in Sources */,
 				474A41CD2822817500B62E60 /* PersistenceAdapter.swift in Sources */,
 			);
@@ -1188,6 +1219,7 @@
 				47AFD355281D869300F178B7 /* Intents.intentdefinition in Sources */,
 				47AFD35E281DBEB200F178B7 /* Product+sorted.swift in Sources */,
 				47AFD339281D82C200F178B7 /* IntentHandler.swift in Sources */,
+				47204C1428255D8000C2EE7B /* PersistenceTestData.swift in Sources */,
 				47AFD358281D937700F178B7 /* Model.xcdatamodeld in Sources */,
 				47AFD38D281FE0C200F178B7 /* AddProductStandardHandler.swift in Sources */,
 				47D44AC02821000A00B51F39 /* Market+usermarkets.swift in Sources */,
