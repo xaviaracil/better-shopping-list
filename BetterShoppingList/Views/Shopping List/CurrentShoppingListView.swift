@@ -27,75 +27,97 @@ struct CurrentShoppingListView: View {
             if verticalSizeClass == .compact {
                 // landscape
                 let rows: [GridItem] = Array(repeating: .init(.flexible(minimum: 200.0, maximum: .infinity)), count: 1)
-                ScrollView(.horizontal) {
-                    LazyHGrid(rows: rows) {
-                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market,
-                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts,
-                                                  changeChosenProduct: changeChosenProduct)
-                        }
-                    }
-                    .padding([.top, .bottom])
-                }
+                CurrentListScrollView(axis: .horizontal, gridItems: rows, viewModel: viewModel)
             } else if horizontalSizeClass == .regular {
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 4)
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market,
-                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts,
-                                                  changeChosenProduct: changeChosenProduct)
-                        }
-                    }
-                }
+                CurrentListScrollView(gridItems: columns, viewModel: viewModel)
             } else {
-            // portrait
+                // portrait
                 let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.shoppingList?.markets ?? []) { market in
-                            CurrentListMarketView(market: market,
-                                                  products: viewModel.products?.ofMarket(market: market) ?? [],
-                                                  deleteChosenProducts: deleteChosenProducts,
-                                                  changeChosenProduct: changeChosenProduct)
-                        }
-                    }
-                }
+                CurrentListScrollView(gridItems: columns, viewModel: viewModel)
             }
             Spacer()
             EarnedView(value: viewModel.shoppingList?.earned)
         }
         .navigationTitle(viewModel.shoppingList?.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .ignoresSafeArea(.keyboard, edges: [.bottom]) // don't resize with the keyboard
         .toolbar(content: {
             ToolbarItem(placement: .primaryAction) {
                 if viewModel.shoppingList?.isCurrent ?? false {
                     Button(action: { saveListIsPresented = true }) {
                         Image(systemName: "square.and.arrow.down")
-                    }
+                    }.accessibilityLabel(Text("Save"))
                 }
             }
         })
         .sheet(isPresented: $saveListIsPresented) {
-            VStack {
-                Text("Save List").font(.largeTitle)
-                Spacer()
-                TextField(text: $name, prompt: Text("List name")) {
-                    Text("Name")
+            // save list sheet
+            VStack(alignment: .center) {
+                Form {
+                    Section(header: Text("Name")) {
+                        TextField(text: $name, prompt: Text("List name")) {
+                            Text("Name")
+                        }
+                        .textFieldStyle(.roundedBorder)
+                        .padding()
+                        .submitLabel(.done)
+                        .submitScope(name.isEmpty)
+
+                    }
                 }
-                .textFieldStyle(.roundedBorder)
-                .padding()
-                .submitLabel(.done)
-                .onSubmit {
-                    let newList = shoppingAssitant.saveList(name: name)
-                    viewModel.shoppingList = newList
-                    saveListIsPresented = false
+                Button(action: save) {
+                    Label("Save", systemImage: "square.and.arrow.down")
+                        .padding(10)
                 }
-                Spacer()
+                .disabled(name.isEmpty)
+                .onSubmit(save)
             }
         }
+    }
+
+    func save() {
+        guard name.count > 0 else {
+            return
+        }
+        let newList = shoppingAssitant.saveList(name: name)
+        viewModel.shoppingList = newList
+        saveListIsPresented = false
+    }
+
+}
+
+struct CurrentListScrollView: View {
+    var axis: Axis.Set = .vertical
+    var gridItems: [GridItem]
+    var viewModel: CurrentShoppingListViewModel
+    @EnvironmentObject var shoppingAssitant: ShoppingAssistant
+
+    @ViewBuilder
+    var body: some View {
+        ScrollView(axis) {
+            if axis == .vertical {
+                LazyVGrid(columns: gridItems) {
+                    ForEach(viewModel.shoppingList?.markets ?? []) { market in
+                        CurrentListMarketView(market: market,
+                                              products: viewModel.products?.ofMarket(market: market) ?? [],
+                                              deleteChosenProducts: deleteChosenProducts,
+                                              changeChosenProduct: changeChosenProduct)
+                    }
+                }
+            } else {
+                LazyHGrid(rows: gridItems) {
+                    ForEach(viewModel.shoppingList?.markets ?? []) { market in
+                        CurrentListMarketView(market: market,
+                                              products: viewModel.products?.ofMarket(market: market) ?? [],
+                                              deleteChosenProducts: deleteChosenProducts,
+                                              changeChosenProduct: changeChosenProduct)
+                    }
+                }
+                .padding()
+            }
+        }
+        .ignoresSafeArea(.all, edges: [.bottom]) // don't resize with the keyboard
     }
 
     func deleteChosenProducts(products: [ChosenProduct]) {
@@ -114,7 +136,6 @@ struct CurrentShoppingListView: View {
             viewModel.replaceProduct(chosenProduct, with: newChosenProduct)
         }
     }
-
 }
 
 struct CurrentListView_Previews: PreviewProvider {
