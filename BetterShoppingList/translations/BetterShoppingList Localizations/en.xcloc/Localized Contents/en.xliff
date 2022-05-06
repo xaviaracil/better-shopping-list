@@ -182,9 +182,9 @@
         <target>Remove from cart</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
-      <trans-unit id="Save List" xml:space="preserve">
-        <source>Save List</source>
-        <target>Save List</target>
+      <trans-unit id="Save" xml:space="preserve">
+        <source>Save</source>
+        <target>Save</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Search Products Here" xml:space="preserve">
