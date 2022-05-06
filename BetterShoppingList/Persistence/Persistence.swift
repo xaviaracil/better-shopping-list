@@ -39,6 +39,8 @@ struct PersistenceController {
             for (name, image) in products {
                 let product = Product(context: viewContext)
                 product.name = name
+                product.brand = "Brand"
+                product.tokenizedName = "\(product.brand ?? "") \(name)"
                 product.imageUrl = URL(string: image)
 
                 var productOffers: [Offer] = []

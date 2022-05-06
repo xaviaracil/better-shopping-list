@@ -28,9 +28,11 @@ func loadFixture(into context: NSManagedObjectContext) throws {
     }
 
     // load some products and offers
+    let brands = ["COMPANY", "ANOTHER"]
     for productIndex in 1...Constants.productNumber {
         let product = mockProduct(name: "Product \(productIndex)",
                                   url: "http://url.to/product/\(productIndex)",
+                                  brand: brands[productIndex % brands.count],
                                   context: context)
 
         // load some offers
@@ -81,10 +83,12 @@ func mockChosenProduct(offer: Offer, quantity: Int16 = 1, context: NSManagedObje
     return chosenProduct
 }
 
-func mockProduct(name: String, url: String, context: NSManagedObjectContext) -> Product {
+func mockProduct(name: String, url: String, brand: String = "Test", context: NSManagedObjectContext) -> Product {
     let product = Product(context: context)
     product.name = name
+    product.brand = brand
     product.imageUrl = URL(string: url)
+    product.tokenizedName = "\(brand) \(name)"
     return product
 }
 

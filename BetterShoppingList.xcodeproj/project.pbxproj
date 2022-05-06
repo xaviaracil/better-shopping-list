@@ -144,6 +144,7 @@
 		47AFE35527F6355C003264D8 /* schema.ckdb in Resources */ = {isa = PBXBuildFile; fileRef = 47AFE35427F6355C003264D8 /* schema.ckdb */; };
 		47AFE35F27F77A4B003264D8 /* FixtureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFE35627F758B6003264D8 /* FixtureLoader.swift */; };
 		47BC1E3127F60DFE00293AE9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BC1E3027F60DFE00293AE9 /* CloudKit.framework */; };
+		47C4A9782824F9C800EDCEF3 /* PersistenceAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4A9772824F9C800EDCEF3 /* PersistenceAdapterTests.swift */; };
 		47C57DF227FB446D00A86D5A /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 47C57DF127FB446D00A86D5A /* Collections */; };
 		47C57DF427FB446D00A86D5A /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 47C57DF327FB446D00A86D5A /* OrderedCollections */; };
 		47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */; };
@@ -371,6 +372,7 @@
 		47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BetterShoppingList.entitlements; sourceTree = "<group>"; };
 		47BC1E3027F60DFE00293AE9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		47BC1E3227F60E2500293AE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47C4A9772824F9C800EDCEF3 /* PersistenceAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceAdapterTests.swift; sourceTree = "<group>"; };
 		47CC13F127FC366800839DA5 /* ShoppingAssitantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingAssitantTests.swift; sourceTree = "<group>"; };
 		47CC13F827FCD7D200839DA5 /* ChosenProduct+grouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChosenProduct+grouping.swift"; sourceTree = "<group>"; };
 		47D44ABE2820632B00B51F39 /* MarketRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowViewModel.swift; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				47FCCA87280DEAEA00D84107 /* ChosenProductViewModelTests.swift */,
 				47FCCA89280DEB4C00D84107 /* DummyPersistenceAdapter.swift */,
 				47FCCA8B280DEDD500D84107 /* ProductOfferViewModelTests.swift */,
+				47C4A9772824F9C800EDCEF3 /* PersistenceAdapterTests.swift */,
 			);
 			path = BetterShoppingListTests;
 			sourceTree = "<group>";
@@ -1096,6 +1099,7 @@
 				47FCCA88280DEAEA00D84107 /* ChosenProductViewModelTests.swift in Sources */,
 				47FCCA8A280DEB4C00D84107 /* DummyPersistenceAdapter.swift in Sources */,
 				4701904327FB527F00488534 /* SavedListsTests.swift in Sources */,
+				47C4A9782824F9C800EDCEF3 /* PersistenceAdapterTests.swift in Sources */,
 				47CC13F227FC366800839DA5 /* ShoppingAssitantTests.swift in Sources */,
 				470C392727F60695009C1967 /* CompareTests.swift in Sources */,
 				477EC55E27F8D89000A589FD /* CurrentListTests.swift in Sources */,
