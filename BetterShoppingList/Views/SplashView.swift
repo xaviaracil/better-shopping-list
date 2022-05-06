@@ -15,33 +15,30 @@ struct SplashView: View {
     let waitingTime: Double = 1
 
     var body: some View {
-        GeometryReader { reader in
-            VStack {
-            Spacer()
-            Image(uiImage: UIImage(named: "Logo") ?? UIImage())
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(20.0)
-                .shadow(radius: 5.0)
-                .frame(width: reader.size.width * 0.6)
-                .scaleEffect(scaling ? 1 : 1.05)
-                .onAppear {
-                    withAnimation(.easeInOut(duration: 0.5).repeatCount(2, autoreverses: false)) {
-                        scaling.toggle()
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + waitingTime) {
-                        displayed = true
-                    }
+        Image(uiImage: UIImage(named: "Logo") ?? UIImage())
+            .resizable()
+            .scaledToFit()
+            .cornerRadius(20.0)
+            .shadow(radius: 5.0)
+            .frame(width: 260.0)
+            .scaleEffect(scaling ? 1 : 1.05)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.5).repeatCount(2, autoreverses: false)) {
+                    scaling.toggle()
                 }
-            Spacer()
+                DispatchQueue.main.asyncAfter(deadline: .now() + waitingTime) {
+                    displayed = true
+                }
             }
-            .frame(width: reader.size.width)
-        }
     }
 }
 
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
-        SplashView(displayed: .constant(false))
+        Group {
+            SplashView(displayed: .constant(false))
+            SplashView(displayed: .constant(false))
+.previewInterfaceOrientation(.landscapeLeft)
+        }
     }
 }
