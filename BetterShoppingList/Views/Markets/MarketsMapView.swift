@@ -15,6 +15,8 @@ where Data: RandomAccessCollection,
     /// markets to display
     var markets: Data
 
+    var onlyGivenMarkets = false
+
     /// view model object
     @StateObject
     var viewModel = MarketsMapViewModel()
@@ -60,15 +62,16 @@ where Data: RandomAccessCollection,
         }
     }
 
-    func displayInMap(item: MKMapItem, market: Market?) -> Bool {
-        let result = market != nil || (item.pointOfInterestCategory == .foodMarket && displayMode == .all)
+    func displayInMap(item: MKMapItem, market: Data.Element?) -> Bool {
+        // swiftlint:disable line_length
+        let result = onlyGivenMarkets ? (market != nil && markets.contains(market!)) : (market != nil || (item.pointOfInterestCategory == .foodMarket && displayMode == .all))
         if result {
             print("🖥 displayInMap \(item.name ?? "nil")")
         }
         return result
     }
 
-    func marketWithName(name: String?) -> Market? {
+    func marketWithName(name: String?) -> Data.Element? {
         guard let name = name else {
             return nil
         }
