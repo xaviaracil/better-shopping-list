@@ -90,6 +90,9 @@ struct PersistenceController {
 
     let container: NSPersistentCloudKitContainer
 
+    let appGroup = "group.name.xaviaracil.BetterShoppingList.shared"
+    let publicName = "Model-public"
+
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Model")
         if inMemory {
@@ -98,8 +101,8 @@ struct PersistenceController {
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
-            // swiftlint:disable line_length
-            description.url = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-private")
+
+            description.url = URL.storeURL(for: appGroup, databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             description.configuration = "Local"
@@ -110,9 +113,26 @@ struct PersistenceController {
             description.cloudKitContainerOptions = privateOptions
 
             // public datababase
-            // swiftlint:disable:next line_length
-            let publicStoreUrl = URL.storeURL(for: "group.name.xaviaracil.BetterShoppingList.shared", databaseName: "Model-public")
+            let publicStoreUrl = URL.storeURL(for: appGroup, databaseName: publicName)
 
+            // seed database
+            do {
+                let isReachable = try? publicStoreUrl.checkResourceIsReachable()
+                if !(isReachable ?? false) {
+                    let sourceSqliteURLs = [Bundle.main.url(forResource: publicName, withExtension: "sqlite")!,
+                                            Bundle.main.url(forResource: publicName, withExtension: "sqlite-wal")!,
+                                            Bundle.main.url(forResource: publicName, withExtension: "sqlite-shm")!]
+
+                    let destSqliteURLs = [publicStoreUrl,
+                                          URL.fileURL(for: appGroup, name: publicName, extension: "sqlite-wal"),
+                                          URL.fileURL(for: appGroup, name: publicName, extension: "sqlite-shm")]
+                    for index in 0..<sourceSqliteURLs.count {
+                        try FileManager.default.copyItem(at: sourceSqliteURLs[index], to: destSqliteURLs[index])
+                    }
+                }
+            } catch {
+                print("Error copying initial seed: \(error)")
+            }
             let publicDescription = NSPersistentStoreDescription(url: publicStoreUrl)
             publicDescription.configuration = "Public"
             publicDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
@@ -138,7 +158,7 @@ struct PersistenceController {
         if !inMemory {
             do {
                 // Use the container to initialize the development schema.
-                try container.initializeCloudKitSchema(options: [])
+                try container.initializeCloudKitSchema(options: [.dryRun])
 
             } catch {
                 // Handle any errors.
