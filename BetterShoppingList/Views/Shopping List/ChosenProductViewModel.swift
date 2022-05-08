@@ -12,8 +12,12 @@ class ChosenProductViewModel: ObservableObject {
     @Published var product: Product?
     @Published var quantity: Int16 {
         didSet {
-            chosenProduct.quantity = quantity
-            shoppingAssitant.save()
+            if quantity <= 0 {
+                quantity = 1
+            } else {
+                chosenProduct.quantity = quantity
+                shoppingAssitant.save()
+            }
         }
     }
 
