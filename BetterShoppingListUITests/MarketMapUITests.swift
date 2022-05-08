@@ -27,7 +27,7 @@ class MarketMapUITests: XCTestCase {
 
     func testMapIsDisplayed() throws {
         let sidebarButton = app.buttons["Menu"].firstMatch
-        XCTAssertTrue(sidebarButton.exists)
+        XCTAssertTrue(sidebarButton.waitForExistence(timeout: 5))
         sidebarButton.tap()
 
         let mapButton = app.buttons["Map"].firstMatch

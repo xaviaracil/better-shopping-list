@@ -42,7 +42,7 @@ class HomeScreenUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let predicate = NSPredicate(format: "label BEGINSWITH[c] %@", "Start searching products")
-        XCTAssertTrue(app.staticTexts.containing(predicate).element.exists)
+        XCTAssertTrue(app.staticTexts.containing(predicate).element.waitForExistence(timeout: 5))
         if app.staticTexts["OR"].exists ||
             app.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", "OR")).element.exists {
             XCTAssertTrue(app.scrollViews["Saved Lists"].exists)
@@ -53,6 +53,7 @@ class HomeScreenUITests: XCTestCase {
 
     func testSelectASavedList() throws {
         let listButton = app.buttons["List 1"].firstMatch
+        app.scrollDownToElement(element: listButton)
         XCTAssert(listButton.exists)
         listButton.forceTap()
 
@@ -61,14 +62,5 @@ class HomeScreenUITests: XCTestCase {
         let marketText = app.staticTexts.matching(predicate).firstMatch
         XCTAssertTrue(marketText.waitForExistence(timeout: 5))
 
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
     }
 }

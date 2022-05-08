@@ -60,7 +60,8 @@ class CurrentListMarketInMarketViewUITests: XCTestCase {
         app.navigationBars.matching(marketPredicate).buttons["Shop"].tap()
         let addToCartButton = app.buttons["Add to cart"].firstMatch
         XCTAssert(addToCartButton.waitForExistence(timeout: 5))
-        addToCartButton.tap()
+        app.scrollDownToElement(element: addToCartButton)
+        addToCartButton.forceTap()
         let removeFromCartButton = app.buttons["Remove from cart"]
         XCTAssert(removeFromCartButton.waitForExistence(timeout: 5))
     }
