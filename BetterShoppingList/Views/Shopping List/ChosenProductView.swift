@@ -58,6 +58,7 @@ struct ChosenProductView: View {
                 if canChangeQuantity {
                     Stepper(value: $viewModel.quantity) {
                         Text("Quantity: \(viewModel.quantity)")
+                            .minimumScaleFactor(0.05)
                     }
                     .font(.subheadline)
                 } else {
