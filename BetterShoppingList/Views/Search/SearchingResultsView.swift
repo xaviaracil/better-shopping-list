@@ -59,7 +59,7 @@ where Data: RandomAccessCollection,
                     })
                 }
             }
-        }
+        }.padding([.leading, .trailing])
     }
 }
 
