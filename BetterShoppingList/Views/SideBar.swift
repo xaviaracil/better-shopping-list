@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SideBar: View {
     @FetchRequest
@@ -13,6 +14,12 @@ struct SideBar: View {
 
     @SectionedFetchRequest
     private var shoppingLists: SectionedFetchResults<Bool, ShoppingList>
+
+    @FetchRequest
+    private var products: FetchedResults<Product>
+
+    @FetchRequest
+    private var offers: FetchedResults<Offer>
 
     @StateObject
     private var viewModel: SidebarViewModel
@@ -22,12 +29,16 @@ struct SideBar: View {
         _viewModel = .init(wrappedValue: auxViewModel)
         _markets = auxViewModel.marketsFetchRequest
         _shoppingLists = auxViewModel.shoppingListFetchRequest
+        _products = auxViewModel.productsFetchRequest
+        _offers = auxViewModel.offersFetchRequest
         print("init!!! \(_viewModel)")
     }
 
     var body: some View {
         print("Update body \(viewModel)")
-        return List {
+        return VStack {
+            List {
+                // in market view
             if let market = viewModel.shoppingAssistant.marketTheUserIsInCurrently {
                 // swiftlint:disable line_length
                 NavigationLink(destination:
@@ -39,11 +50,15 @@ struct SideBar: View {
                 }
             }
 
+                // current list
             // swiftlint:disable line_length
-            NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant), tag: "Current", selection: $viewModel.selectedItem) {
+            NavigationLink(destination: HomeView(shoppingAssistant: viewModel.shoppingAssistant),
+                           tag: "Current",
+                           selection: $viewModel.selectedItem) {
                 Label("Current List", systemImage: "bag.fill")
             }
 
+                // saved lists
             ForEach(shoppingLists) { section in
                 Section(header: Label(section.id ? "Favorites" : "All", systemImage: section.id ? "star" : "bag") ) {
                     ForEach(section) { shoppingList in
@@ -63,15 +78,17 @@ struct SideBar: View {
             }
 
             Section(header: Label("Markets", systemImage: "cart")) {
+                // map view
                 NavigationLink(destination: MarketsMapView(markets: markets), tag: "Map", selection: $viewModel.selectedItem) {
                     Label("Map", systemImage: "map")
                 }
 
+                // included markets
                 ForEach(markets, id: \.self) { market in
                     if market.userMarket?.excluded ?? false {
                         EmptyView()
                     } else {
-                        NavigationLink(destination: MarketsMapView(markets: [market]), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
+                        NavigationLink(destination: MarketsMapView(markets: [market], onlyGivenMarkets: true), tag: market.uuid?.uuidString ?? "null", selection: $viewModel.selectedItem) {
                             Label {
                                 Text(market.wrappedName)
                             } icon: {
@@ -123,6 +140,9 @@ struct SideBar: View {
             }
         }
         .listStyle(.sidebar)
+                Text("Products: \(products.count). Offers: \(offers.count)")
+                    .font(.footnote)
+        }
         .navigationTitle("Menu")
     }
 }

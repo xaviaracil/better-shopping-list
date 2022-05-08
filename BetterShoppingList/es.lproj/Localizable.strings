@@ -77,6 +77,9 @@
 "Products in market %@" = "Productos en el supermercado %@";
 
 /* No comment provided by engineer. */
+"Products: %lld. Offers: %lld" = "Productos: %lld. Ofertas: %lld";
+
+/* No comment provided by engineer. */
 "Quantity: %d" = "Cantidad: %d";
 
 /* No comment provided by engineer. */

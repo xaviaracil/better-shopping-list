@@ -172,6 +172,11 @@
         <target>Products in market %@</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Products: %lld. Offers: %lld" xml:space="preserve">
+        <source>Products: %lld. Offers: %lld</source>
+        <target>Products: %lld. Offers: %lld</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Quantity: %d" xml:space="preserve">
         <source>Quantity: %d</source>
         <target>Quantity: %d</target>

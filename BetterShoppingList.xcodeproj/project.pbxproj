@@ -128,6 +128,9 @@
 		4795541A28070C0500BD23F3 /* MarketSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541928070C0500BD23F3 /* MarketSearchManager.swift */; };
 		4795541C2807344000BD23F3 /* Market+usermarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541B2807344000BD23F3 /* Market+usermarkets.swift */; };
 		4795542028073DAA00BD23F3 /* MarketRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4795541F28073DAA00BD23F3 /* MarketRowView.swift */; };
+		479BF7A62827B42B002DA9A5 /* Model-public.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 479BF7A32827B42B002DA9A5 /* Model-public.sqlite */; };
+		479BF7A72827B42B002DA9A5 /* Model-public.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 479BF7A42827B42B002DA9A5 /* Model-public.sqlite-wal */; };
+		479BF7A82827B42B002DA9A5 /* Model-public.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 479BF7A52827B42B002DA9A5 /* Model-public.sqlite-shm */; };
 		47A0D70528008285008C2663 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 47A0D70428008285008C2663 /* .swiftlint.yml */; };
 		47A0D7072800850C008C2663 /* ShoppingList+Earned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */; };
 		47A55AE727FF198F00F29A60 /* CurrentListViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */; };
@@ -366,6 +369,9 @@
 		4795541928070C0500BD23F3 /* MarketSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSearchManager.swift; sourceTree = "<group>"; };
 		4795541B2807344000BD23F3 /* Market+usermarkets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Market+usermarkets.swift"; sourceTree = "<group>"; };
 		4795541F28073DAA00BD23F3 /* MarketRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketRowView.swift; sourceTree = "<group>"; };
+		479BF7A32827B42B002DA9A5 /* Model-public.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model-public.sqlite"; sourceTree = "<group>"; };
+		479BF7A42827B42B002DA9A5 /* Model-public.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model-public.sqlite-wal"; sourceTree = "<group>"; };
+		479BF7A52827B42B002DA9A5 /* Model-public.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model-public.sqlite-shm"; sourceTree = "<group>"; };
 		47A0D70428008285008C2663 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		47A0D7062800850C008C2663 /* ShoppingList+Earned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingList+Earned.swift"; sourceTree = "<group>"; };
 		47A55AE627FF198F00F29A60 /* CurrentListViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentListViewUITests.swift; sourceTree = "<group>"; };
@@ -493,11 +499,10 @@
 		470C390F27F60694009C1967 /* BetterShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				479BF7A12827B412002DA9A5 /* Resources */,
 				470C391427F60695009C1967 /* Assets.xcassets */,
 				47BC1E2E27F60DF600293AE9 /* BetterShoppingList.entitlements */,
 				470C391027F60694009C1967 /* BetterShoppingListApp.swift */,
-				47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */,
-				470A76B928003FC100328EB2 /* HomeViewModel.swift */,
 				47BC1E3227F60E2500293AE9 /* Info.plist */,
 				474A41E828230BF200B62E60 /* InfoPlist.strings */,
 				470D066627FE2B00002A5EBA /* Localizable.strings */,
@@ -611,6 +616,7 @@
 				47941FE827FF8DC100F0D5AF /* Shopping List */,
 				477F77E127F8AAED006F5902 /* EmptyCurrentListView.swift */,
 				470A76B728003F8A00328EB2 /* HomeView.swift */,
+				470A76B928003FC100328EB2 /* HomeViewModel.swift */,
 				478C142B27FE1CD6007FF217 /* MarketLabelView.swift */,
 				4737B8D82806DBDF009B9E98 /* Search */,
 				470A76B328003C2D00328EB2 /* SideBar.swift */,
@@ -669,6 +675,7 @@
 				47A9E1002812A6BC007DDA1D /* CurrentShoppingListViewModel.swift */,
 				47941FE027FF74C200F0D5AF /* ListDetailView.swift */,
 				47941FE227FF757900F0D5AF /* ChosenProductView.swift */,
+				47941FE627FF7A5100F0D5AF /* ChosenProductViewModel.swift */,
 				47941FEB27FF8E0D00F0D5AF /* CurrentListMarketView.swift */,
 				47835976281ACB6A00239174 /* ShoppingListView.swift */,
 				47835978281AD18200239174 /* ListDetailSheet.swift */,
@@ -677,6 +684,24 @@
 				478ADB60281BD095009C852E /* EarnedView.swift */,
 			);
 			path = "Shopping List";
+			sourceTree = "<group>";
+		};
+		479BF7A12827B412002DA9A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				479BF7A22827B42B002DA9A5 /* dbseed */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		479BF7A22827B42B002DA9A5 /* dbseed */ = {
+			isa = PBXGroup;
+			children = (
+				479BF7A32827B42B002DA9A5 /* Model-public.sqlite */,
+				479BF7A42827B42B002DA9A5 /* Model-public.sqlite-wal */,
+				479BF7A52827B42B002DA9A5 /* Model-public.sqlite-shm */,
+			);
+			path = dbseed;
 			sourceTree = "<group>";
 		};
 		47AFD337281D82C200F178B7 /* SiriIntents */ = {
@@ -960,7 +985,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				47A0D70528008285008C2663 /* .swiftlint.yml in Resources */,
+				479BF7A82827B42B002DA9A5 /* Model-public.sqlite-shm in Resources */,
+				479BF7A72827B42B002DA9A5 /* Model-public.sqlite-wal in Resources */,
 				470C391827F60695009C1967 /* Preview Assets.xcassets in Resources */,
+				479BF7A62827B42B002DA9A5 /* Model-public.sqlite in Resources */,
 				470D066827FE2B00002A5EBA /* Localizable.strings in Resources */,
 				470C391527F60695009C1967 /* Assets.xcassets in Resources */,
 				474A41EA28230BF300B62E60 /* InfoPlist.strings in Resources */,
@@ -1451,7 +1479,6 @@
 				INFOPLIST_KEY_NSSiriUsageDescription = "You can use Siri to add items to your list. In order to do so, please enable it.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1485,7 +1512,6 @@
 				INFOPLIST_KEY_NSSiriUsageDescription = "You can use Siri to add items to your list. In order to do so, please enable it.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

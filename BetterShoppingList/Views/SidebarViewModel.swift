@@ -17,6 +17,12 @@ class SidebarViewModel: ObservableObject {
     var shoppingListFetchRequest: SectionedFetchRequest<Bool, ShoppingList>
 
     @Published
+    var productsFetchRequest: FetchRequest<Product>
+
+    @Published
+    var offersFetchRequest: FetchRequest<Offer>
+
+    @Published
     var selectedItem: String? = "Current"
 
     var shoppingAssistant: ShoppingAssistant
@@ -32,6 +38,13 @@ class SidebarViewModel: ObservableObject {
         shoppingListFetchRequest = SectionedFetchRequest(fetchRequest: fetchRequest,
                                                          sectionIdentifier: \.isFavorite,
                                                          animation: .none)
+        let productsRequest = Product.fetchRequest()
+        productsRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Product.name, ascending: false)]
+        productsFetchRequest = FetchRequest(fetchRequest: productsRequest, animation: .default)
+
+        let offersRequest = Offer.fetchRequest()
+        offersRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Offer.uuid, ascending: false)]
+        offersFetchRequest = FetchRequest(fetchRequest: offersRequest, animation: .default)
     }
 
     func deleteShoppingLists(lists: [ShoppingList]) {

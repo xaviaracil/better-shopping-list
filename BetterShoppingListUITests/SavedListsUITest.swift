@@ -33,7 +33,7 @@ class SavedListsUITest: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let sidebarButton = app.buttons["Menu"].firstMatch
-        XCTAssertTrue(sidebarButton.exists)
+        XCTAssertTrue(sidebarButton.waitForExistence(timeout: 5))
         sidebarButton.tap()
 
         let list1Button = app.buttons["List 1"].firstMatch
