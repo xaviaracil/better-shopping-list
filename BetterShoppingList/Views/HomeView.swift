@@ -21,11 +21,6 @@ struct HomeView: View {
         return searchText.count > 2
     }
 
-    enum Field: Hashable {
-        case search
-    }
-
-    @FocusState private var focusedField: Field?
     @State private var searchResultsDragging = false
     var dragging: Binding<Bool> {
         Binding {
@@ -87,11 +82,13 @@ struct HomeView: View {
 
             }
         }
+        .onAppear(perform: {
+            products.nsPredicate = viewModel.productQueryPredicate(for: searchText)
+        })
         .navigationBarTitle("", displayMode: .inline)
         .searchable(text: query,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search Products Here")
-        .focused($focusedField, equals: .search)
     }
 }
 
