@@ -36,12 +36,13 @@ class ShoppingListViewUITests: XCTestCase {
         sidebarButton.tap()
 
         // tap on first list in order to create a current list
-        let list1Button = app.buttons["List 1"].firstMatch
-        XCTAssertTrue(list1Button.waitForExistence(timeout: 5))
-        app.scrollDownToElement(element: list1Button)
-        list1Button.forceTap()
+        let listButton = app.buttons.matching(NSPredicate(format: "label BEGINSWITH \"List\"")).firstMatch
+        XCTAssertTrue(listButton.waitForExistence(timeout: 5))
+        app.scrollDownToElement(element: listButton)
+        listButton.forceTap()
+        let list = listButton.label
 
-        XCTAssertTrue(app.navigationBars["List 1"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.navigationBars[list].waitForExistence(timeout: 5))
         // at least there should be one market
         let market = app.staticTexts.matching(marketPredicate).firstMatch
         XCTAssertNotNil(market)
