@@ -29,6 +29,9 @@
 "Display products" = "Mostrar productos";
 
 /* No comment provided by engineer. */
+"Downloading data (%lld/%lld)…" = "Descargando datos (%lld/%lld)…";
+
+/* No comment provided by engineer. */
 "Exclude" = "Excluir";
 
 /* No comment provided by engineer. */

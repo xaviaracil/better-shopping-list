@@ -89,6 +89,11 @@
         <target>Mostrar productes</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Downloading data (%lld/%lld)…" xml:space="preserve">
+        <source>Downloading data (%lld/%lld)…</source>
+        <target>Descarregant dades (%lld/%lld)…</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Exclude" xml:space="preserve">
         <source>Exclude</source>
         <target>Excloure</target>
@@ -107,6 +112,11 @@
       <trans-unit id="Favorites" xml:space="preserve">
         <source>Favorites</source>
         <target>Favorits</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello" xml:space="preserve">
+        <source>Hello</source>
+        <target/>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Include" xml:space="preserve">
@@ -217,6 +227,11 @@
       <trans-unit id="Switch to In Market view?" xml:space="preserve">
         <source>Switch to In Market view?</source>
         <target>Canviar a mode dins del supermercat?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="There" xml:space="preserve">
+        <source>There</source>
+        <target/>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>

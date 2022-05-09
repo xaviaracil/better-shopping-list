@@ -29,6 +29,9 @@
 "Display products" = "Mostrar productes";
 
 /* No comment provided by engineer. */
+"Downloading data (%lld/%lld)…" = "Descarregant dades (%lld/%lld)…";
+
+/* No comment provided by engineer. */
 "Exclude" = "Excloure";
 
 /* No comment provided by engineer. */
@@ -39,6 +42,9 @@
 
 /* No comment provided by engineer. */
 "Favorites" = "Favorits";
+
+/* No comment provided by engineer. */
+"Hello" = "";
 
 /* No comment provided by engineer. */
 "Include" = "Incloure";
@@ -105,4 +111,7 @@
 
 /* No comment provided by engineer. */
 "Switch to In Market view?" = "Canviar a mode dins del supermercat?";
+
+/* No comment provided by engineer. */
+"There" = "";
 

@@ -92,6 +92,11 @@
         <target>Display products</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Downloading data (%lld/%lld)…" xml:space="preserve">
+        <source>Downloading data (%lld/%lld)…</source>
+        <target>Downloading data (%lld/%lld)…</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Exclude" xml:space="preserve">
         <source>Exclude</source>
         <target>Exclude</target>
@@ -110,6 +115,11 @@
       <trans-unit id="Favorites" xml:space="preserve">
         <source>Favorites</source>
         <target>Favorites</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello" xml:space="preserve">
+        <source>Hello</source>
+        <target>Hello</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Include" xml:space="preserve">
@@ -220,6 +230,11 @@
       <trans-unit id="Switch to In Market view?" xml:space="preserve">
         <source>Switch to In Market view?</source>
         <target>Switch to In Market view?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="There" xml:space="preserve">
+        <source>There</source>
+        <target>There</target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
