@@ -84,6 +84,35 @@ class ShoppingAssitantTests: XCTestCase {
 
     }
 
+    func test_Given_ACurrentList_When_ChoosingAnExistingProduct_Then_ItsNotAddedAgainToTheCurrentList() throws {
+        // Given a list with some chosenProduct
+        let offers = try context.fetch(Offer.fetchRequest())
+
+        let offer1 = offers.first!
+        let offer2 = offers.filter { offer in
+            offer.product != offer1.product
+        }.first!
+
+        let product1 = mockChosenProduct(offer: offer1, context: context)
+        let product2 = mockChosenProduct(offer: offer2, context: context)
+
+        shoppingAssistant.addProductToCurrentList(product1)
+        shoppingAssistant.addProductToCurrentList(product2)
+
+        // and another chosen product of the same product
+        let offer3 = offers.filter { offer in
+            offer != offer1 && offer.product == offer1.product
+        }.first!
+        let product3 = mockChosenProduct(offer: offer3, context: context)
+
+        // when adding
+        shoppingAssistant.addProductToCurrentList(product3)
+
+        // then the product is not added
+        XCTAssertEqual(2, shoppingAssistant.currentList?.products?.count)
+
+    }
+
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

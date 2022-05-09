@@ -144,6 +144,18 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
 
     func addProductToCurrentList(_ product: ChosenProduct) {
         do {
+            let existingProduct = currentList?.chosenProductSet.first(where: { chosenProduct in
+                guard let offer = chosenProduct.offer,
+                      let productOffer = product.offer else {
+                          return false
+                      }
+                return offer.product == productOffer.product
+            })
+            // if there's thre product already, remove it
+            if let existingProduct = existingProduct {
+                persistenceAdapter.removeChosenProduct(existingProduct)
+            }
+
             try persistenceAdapter.addProductToCurrentList(product)
             reloadCurrentList()
             donateIntent(product: product)
