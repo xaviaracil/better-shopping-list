@@ -54,83 +54,26 @@ class PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
 
-        do {
+        let lock = PersistenceLock()
+        if !lock.exists {
+            do {
+                try viewContext.deleteAllObjects()
 
-            try viewContext.deleteAllObjects()
+                PersistenceTestData.load(in: viewContext)
 
-            var markets: [Market] = []
-            for (name, icon) in PersistenceTestData.markets {
-                let market = Market(context: viewContext)
-                market.name = name
-                market.uuid = UUID()
-                market.iconUrl = URL(string: icon)
-                markets.append(market)
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-
-            var offers: [String: [Offer]] = [:]
-            for (name, image) in PersistenceTestData.products {
-                let product = Product(context: viewContext)
-                product.name = name
-                product.brand = "Brand"
-                product.tokenizedName = "\(product.brand ?? "") \(name)"
-                product.imageUrl = URL(string: image)
-
-                var productOffers: [Offer] = []
-                // load some offers
-                for market in markets {
-                    let offer = Offer(context: viewContext)
-                    offer.uuid = UUID()
-                    offer.product = product
-                    offer.market = market
-                    offer.isSpecialOffer = false
-                    // prices is based on prices arrays, shifted by market index and product index
-                    offer.price = Double.random(in: (0.15)...(3.00))
-                    productOffers.append(offer)
-                    print("""
-                          🖥 Adding Offer for product \(String(describing: product.name))
-                          in market \(String(describing: market.name))
-                          at price \(String(describing: offer.price))
-                    """)
-                }
-                offers[name] = productOffers
-            }
-
-            for index in 0..<10 {
-                let newList = ShoppingList(context: viewContext)
-                newList.isCurrent = false
-                newList.timestamp = Date()
-                newList.name = "List \(index + 1)"
-                newList.isFavorite = Bool.random()
-                newList.earning = Double.random(in: 0...(16.0))
-                for (name, _) in PersistenceTestData.products {
-                    let chosenProduct = ChosenProduct(context: viewContext)
-                    let offer = offers[name]?.randomElement()
-                    chosenProduct.quantity = Int16.random(in: 1..<10)
-                    chosenProduct.name = name
-                    chosenProduct.price = offer?.price ?? Double.random(in: 0...(16.0))
-                    chosenProduct.isSpecialOffer = offer?.isSpecialOffer ?? false
-                    chosenProduct.offerUUID = offer?.uuid
-                    chosenProduct.marketUUID = offer?.market?.uuid
-                    newList.addToProducts(chosenProduct)
-                }
-
-            }
-
-            try viewContext.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate.
-            // You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
         return result
     }()
 
     let container: NSPersistentCloudKitContainer
 
-    let appGroup = "group.name.xaviaracil.BetterShoppingList.shared"
-    let publicName = "Model-public"
+    static let appGroup = "group.name.xaviaracil.BetterShoppingList.shared"
+    static let publicName = "Model-public"
 
     // swiftlint:disable function_body_length
     init(inMemory: Bool = false) {
@@ -138,11 +81,12 @@ class PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         } else {
+
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
 
-            description.url = URL.storeURL(for: appGroup, databaseName: "Model-private")
+            description.url = URL.storeURL(for: PersistenceController.appGroup, databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             description.configuration = "Local"
@@ -153,26 +97,8 @@ class PersistenceController {
             description.cloudKitContainerOptions = privateOptions
 
             // public datababase
-            let publicStoreUrl = URL.storeURL(for: appGroup, databaseName: publicName)
-
-            // seed database
-            do {
-                let isReachable = try? publicStoreUrl.checkResourceIsReachable()
-                if !(isReachable ?? false) {
-                    let sourceSqliteURLs = [Bundle.main.url(forResource: publicName, withExtension: "sqlite")!,
-                                            Bundle.main.url(forResource: publicName, withExtension: "sqlite-wal")!,
-                                            Bundle.main.url(forResource: publicName, withExtension: "sqlite-shm")!]
-
-                    let destSqliteURLs = [publicStoreUrl,
-                                          URL.fileURL(for: appGroup, name: publicName, extension: "sqlite-wal"),
-                                          URL.fileURL(for: appGroup, name: publicName, extension: "sqlite-shm")]
-                    for index in 0..<sourceSqliteURLs.count {
-                        try FileManager.default.copyItem(at: sourceSqliteURLs[index], to: destSqliteURLs[index])
-                    }
-                }
-            } catch {
-                print("Error copying initial seed: \(error)")
-            }
+            // swiftlint:disable:next line_length
+            let publicStoreUrl = URL.storeURL(for: PersistenceController.appGroup, databaseName: PersistenceController.publicName)
             let publicDescription = NSPersistentStoreDescription(url: publicStoreUrl)
             publicDescription.configuration = "Public"
             publicDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
@@ -216,16 +142,26 @@ class PersistenceController {
         #endif
 
         loadHistoryToken()
-        initNotifications()
+        initNotifications(inMemory: inMemory)
     }
 
-    func initNotifications() {
-        NotificationCenter.default
-          .publisher(for: .NSPersistentStoreRemoteChange)
-          .sink {
-              self.processRemoteStoreChange($0)
-          }
-          .store(in: &cancellableSet)
+    func initNotifications(inMemory: Bool) {
+        if !inMemory {
+            NotificationCenter.default
+              .publisher(for: .NSPersistentStoreRemoteChange)
+              .sink {
+                  self.processRemoteStoreChange($0)
+              }
+              .store(in: &cancellableSet)
+        } else {
+            NotificationCenter.default
+                .publisher(for: NSPersistentCloudKitContainer.eventChangedNotification)
+                .receive(on: RunLoop.main)
+                .sink {
+                    self.processContainerChanged($0)
+                }
+                .store(in: &cancellableSet)
+        }
     }
 
     private var historyRequestQueue = DispatchQueue(label: "history")
@@ -280,6 +216,25 @@ class PersistenceController {
                 NSManagedObjectContext
                     .mergeChanges(fromRemoteContextSave: userInfo, into: [context])
 
+            }
+        }
+    }
+
+    private func processContainerChanged(_ notification: Notification) {
+        // swiftlint:disable line_length
+        guard let event = notification.userInfo?[NSPersistentCloudKitContainer.eventNotificationUserInfoKey] as? NSPersistentCloudKitContainer.Event,
+              event.type == .setup else {
+            print("wrong type of notification")
+                  return
+        }
+
+        if !event.succeeded,
+           let error = event.error {
+            let nsError = error as NSError
+            if nsError.code == 134400 {
+              // error initializing database: Unable to initialize without an iCloud account (CKAccountStatusNoAccount)
+                // since we are here only in inMemory initializations, load test data
+                PersistenceTestData.load(in: container.viewContext)
             }
         }
     }

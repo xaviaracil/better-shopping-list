@@ -15,9 +15,14 @@ class AddProductBaseHandler: NSObject {
 
     override init() {
         super.init()
-        persistenceController = runningInTests ? PersistenceController.preview : PersistenceController.shared
-        let context = persistenceController.container.viewContext
-        persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+
+        let persistenceLock = PersistenceLock()
+        if persistenceLock.exists {
+            // swiftlint:disable line_length
+            persistenceController = persistenceLock.testMode ? PersistenceController.preview : PersistenceController.shared
+            let context = persistenceController.container.viewContext
+            persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
+        }
     }
 
     func searchProducts(_ name: String) throws -> [Product] {

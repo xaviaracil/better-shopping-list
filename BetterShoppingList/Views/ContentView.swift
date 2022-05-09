@@ -13,9 +13,7 @@ struct ContentView: View {
     @EnvironmentObject
     private var shoppingAssistant: ShoppingAssistant
 
-    @State private var splashDisplayed = false
     @State private var switchToInMarket = false
-    private var hideSplash: Bool
 
     @State private var alreadyDisplayedInMarketView = false
 
@@ -27,22 +25,13 @@ struct ContentView: View {
         }
     }
 
-    init(hideSplash: Bool = false) {
-        self.hideSplash = hideSplash
-    }
-
     var body: some View {
-        Group {
-            if !splashDisplayed && !hideSplash {
-                SplashView(displayed: $splashDisplayed)
-            } else {
-                NavigationView {
-                    SideBar(shoppingAssistant: shoppingAssistant)
+        NavigationView {
+            SideBar(shoppingAssistant: shoppingAssistant)
 
-                    HomeView(shoppingAssistant: shoppingAssistant)
-                }
-            }
-        }.confirmationDialog("Switch to In Market view?",
+            HomeView(shoppingAssistant: shoppingAssistant)
+        }
+        .confirmationDialog("Switch to In Market view?",
                              isPresented: switchDialogPresented) {
             Button(action: {
                 print("Time to switch")
@@ -80,8 +69,8 @@ struct ContentView_Previews: PreviewProvider {
         let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: viewContext)
         let shoppingAssistant = ShoppingAssistant(persistenceAdapter: persistenceAdapter)
         Group {
-            ContentView(hideSplash: true)
-            ContentView(hideSplash: true)
+            ContentView()
+            ContentView()
 .previewInterfaceOrientation(.landscapeLeft)
         }
         .environmentObject(shoppingAssistant)

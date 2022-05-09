@@ -9,13 +9,11 @@ import SwiftUI
 
 @main
 struct BetterShoppingListApp: App {
-    let persistenceController = PersistenceController.shared
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
 

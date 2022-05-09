@@ -10,26 +10,34 @@ import SwiftUI
 import CoreData
 
 struct Provider: TimelineProvider {
-    var persistenceAdapter: PersistenceAdapter
+    var persistenceAdapter: PersistenceAdapter? {
+        let persistenceLock = PersistenceLock()
+        if persistenceLock.exists {
+            let controller = persistenceLock.testMode ? PersistenceController.preview : PersistenceController.shared
+            let context = controller.container.viewContext
+            return CoreDataPersistenceAdapter(viewContext: context)
+        }
+        return nil
+    }
 
     func placeholder(in context: Context) -> ShoppingListEntry {
         ShoppingListEntry(date: Date(),
-                          products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                          earned: persistenceAdapter.currentList?.earned ?? 0.0)
+                          products: persistenceAdapter?.currentList?.chosenProductSet ?? [],
+                          earned: persistenceAdapter?.currentList?.earned ?? 0.0)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (ShoppingListEntry) -> Void) {
         let entry = ShoppingListEntry(date: Date(),
-                                      products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                                      earned: persistenceAdapter.currentList?.earned ?? 0.0)
+                                      products: persistenceAdapter?.currentList?.chosenProductSet ?? [],
+                                      earned: persistenceAdapter?.currentList?.earned ?? 0.0)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let entry = ShoppingListEntry(date: Date(),
-                                      products: persistenceAdapter.currentList?.chosenProductSet ?? [],
-                                      earned: persistenceAdapter.currentList?.earned ?? 0.0)
+                                      products: persistenceAdapter?.currentList?.chosenProductSet ?? [],
+                                      earned: persistenceAdapter?.currentList?.earned ?? 0.0)
         let timeline = Timeline(entries: [entry], policy: .never)
         completion(timeline)
     }
@@ -60,10 +68,8 @@ struct WidgetsExtensionEntryView: View {
 @main
 struct WidgetsExtension: Widget {
     var body: some WidgetConfiguration {
-        let context = PersistenceController.shared.container.viewContext
-        let persistenceAdapter = CoreDataPersistenceAdapter(viewContext: context)
         return StaticConfiguration(kind: WidgetConstants.kind,
-                            provider: Provider(persistenceAdapter: persistenceAdapter)) { entry in
+                                   provider: Provider()) { entry in
             WidgetsExtensionEntryView(entry: entry)
         }
         .configurationDisplayName("BetterShoopingList")

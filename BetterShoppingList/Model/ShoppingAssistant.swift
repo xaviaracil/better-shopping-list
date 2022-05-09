@@ -56,12 +56,17 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         currentList = persistenceAdapter.currentList
         markets = persistenceAdapter.markets?.filter { !$0.isExcluded }
 
+        // subscribe to market search
         listMarketLocationManager.currentMarketPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .assign(to: \.marketTheUserIsInCurrently, on: self)
             .store(in: &cancellableSet)
 
+        // set as watch connector delegate
         watchConnector.delegate = self
+
+        // reload widget timeline
+        reloadWidgets()
     }
 
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
@@ -228,7 +233,9 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     }
 
     func startSearchingForNearMarkets() {
-        listMarketLocationManager.start()
+        if !(currentList?.markets?.isEmpty ?? true) {
+            listMarketLocationManager.start()
+        }
     }
 
     func stopSearchingForNearMarkets() {
