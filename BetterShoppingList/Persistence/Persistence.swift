@@ -7,8 +7,47 @@
 
 import CoreData
 import CloudKit
+import Combine
 
-struct PersistenceController {
+class PersistenceController {
+    var lastToken: NSPersistentHistoryToken? = nil {
+        didSet {
+            guard let token = lastToken,
+                let data = try? NSKeyedArchiver.archivedData(
+                    withRootObject: token,
+                    requiringSecureCoding: true
+                ) else { return }
+            do {
+                try data.write(to: tokenFile)
+            } catch {
+                let message = "Could not write token data"
+                print("###\(#function): \(message): \(error)")
+            }
+        }
+    }
+
+    lazy var tokenFile: URL = {
+        let url = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent(
+            "BetterShoppingList",
+            isDirectory: true
+        )
+        if !FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.createDirectory(
+                    at: url,
+                    withIntermediateDirectories: true,
+                    attributes: nil
+                )
+            } catch {
+                let message = "Could not create persistent container URL"
+                print("###\(#function): \(message): \(error)")
+            }
+        }
+        return url.appendingPathComponent("token.data", isDirectory: false)
+    }()
+
+    private var cancellableSet: Set<AnyCancellable> = []
+
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
@@ -93,6 +132,7 @@ struct PersistenceController {
     let appGroup = "group.name.xaviaracil.BetterShoppingList.shared"
     let publicName = "Model-public"
 
+    // swiftlint:disable function_body_length
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Model")
         if inMemory {
@@ -152,6 +192,14 @@ struct PersistenceController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
 
+        if !inMemory {
+          do {
+              try container.viewContext.setQueryGenerationFrom(.current)
+          } catch {
+              print("Error in setQueryGenerationFrom: \(error)")
+          }
+        }
+
         // Only initialize the schema when building the app with the
         // Debug build configuration.
         #if DEBUG
@@ -166,5 +214,73 @@ struct PersistenceController {
             }
         }
         #endif
+
+        loadHistoryToken()
+        initNotifications()
+    }
+
+    func initNotifications() {
+        NotificationCenter.default
+          .publisher(for: .NSPersistentStoreRemoteChange)
+          .sink {
+              self.processRemoteStoreChange($0)
+          }
+          .store(in: &cancellableSet)
+    }
+
+    private var historyRequestQueue = DispatchQueue(label: "history")
+
+    private func loadHistoryToken() {
+      do {
+        let tokenData = try Data(contentsOf: tokenFile)
+          lastToken = try NSKeyedUnarchiver
+          .unarchivedObject(ofClass: NSPersistentHistoryToken.self, from: tokenData)
+      } catch {
+        // log any errors
+      }
+    }
+
+    func processRemoteStoreChange(_ notification: Notification) {
+        historyRequestQueue.async {
+            let backgroundContext = self.container.newBackgroundContext()
+            backgroundContext.performAndWait {
+                let request = NSPersistentHistoryChangeRequest
+                  .fetchHistory(after: self.lastToken)
+
+            do {
+              let result = try backgroundContext.execute(request) as?
+                NSPersistentHistoryResult
+              guard
+                let transactions = result?.result as? [NSPersistentHistoryTransaction],
+                !transactions.isEmpty
+              else {
+                return
+              }
+                if let newToken = transactions.last?.token {
+                    self.lastToken = newToken
+                }
+
+                self.mergeChanges(from: transactions)
+
+            } catch {
+              // log any errors
+            }
+          }
+        }
+    }
+
+    private func mergeChanges(from transactions: [NSPersistentHistoryTransaction]) {
+        let context = container.viewContext
+        context.perform {
+            transactions.forEach { transaction in
+                guard let userInfo = transaction.objectIDNotification().userInfo else {
+                    return
+                }
+
+                NSManagedObjectContext
+                    .mergeChanges(fromRemoteContextSave: userInfo, into: [context])
+
+            }
+        }
     }
 }
