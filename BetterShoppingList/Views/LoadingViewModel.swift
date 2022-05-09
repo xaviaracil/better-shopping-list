@@ -56,6 +56,7 @@ class LoadingViewModel: ObservableObject {
 
     func load() {
         if index < files.count {
+            // download file
             let (source, destination) = files.elements[index]
             let task = URLSession.shared.downloadTask(with: source) { location, _, error in
                 guard let location = location else {
@@ -73,6 +74,7 @@ class LoadingViewModel: ObservableObject {
                     self.load() // load net file
                 }
             }
+            // observe progress for displaying in view
             self.observation = task.progress.observe(\.fractionCompleted) { progress, _ in
                 DispatchQueue.main.async {
                     self.progress = progress
