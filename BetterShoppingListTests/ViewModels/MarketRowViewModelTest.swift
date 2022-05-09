@@ -16,7 +16,7 @@ class MarketRowViewModelTest: XCTestCase {
 
     override func setUpWithError() throws {
         shoppingAssistant = ShoppingAssistant(persistenceAdapter: DummyPersistenceAdapter())
-        context = PersistenceController.preview.container.viewContext
+        context = PersistenceController(inMemory: true).container.viewContext
     }
 
     override func tearDownWithError() throws {

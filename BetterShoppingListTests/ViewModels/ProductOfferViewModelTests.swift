@@ -11,7 +11,7 @@ import XCTest
 class ProductOfferViewModelTests: XCTestCase {
 
     func test_Given_Initial_Data_When_Chosing_A_Product_And_An_Offer_Then_A_ChosenProduct_Is_Returned() throws {
-        let context = PersistenceController.preview.container.viewContext
+        let context = PersistenceController(inMemory: true).container.viewContext
         // given a product and an offer
         let product = Product(context: context)
         product.name =  "Some product name"
