@@ -42,9 +42,9 @@ struct LoadingView: View {
                     Text("Downloading data (\(viewModel.index + 1)/\(viewModel.count))…")
                     ProgressView(viewModel.progress)
                         .frame(width: 260.0)
-                        .padding(.top)
+                        .padding(.top, 4.0)
                 }
-                .padding(.top)
+                .padding(.top, 30.0)
             }.task {
                 viewModel.load()
                 }

@@ -19,7 +19,7 @@ struct CompactStack<Content>: View where Content: View {
         if verticalSizeClass == .compact {
             HStack(alignment: .firstTextBaseline) { content }
         } else {
-            VStack(alignment: .leading) { content }
+            VStack(alignment: .center) { content }
         }
     }
 }
