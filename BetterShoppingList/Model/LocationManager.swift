@@ -25,10 +25,10 @@ class LocationManager: NSObject {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = desiredAccuracy
-        self.locationManager.requestWhenInUseAuthorization()
     }
 
     func start() {
+        self.locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
 
