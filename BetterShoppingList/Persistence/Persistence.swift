@@ -10,6 +10,7 @@ import CloudKit
 import Combine
 
 class PersistenceController {
+    // MARK: - NSPersistentHistoryToken variables
     var lastToken: NSPersistentHistoryToken? = nil {
         didSet {
             guard let token = lastToken,
@@ -48,6 +49,7 @@ class PersistenceController {
 
     private var cancellableSet: Set<AnyCancellable> = []
 
+    // MARK: - static variables
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
@@ -75,17 +77,18 @@ class PersistenceController {
     static let appGroup = "group.name.xaviaracil.BetterShoppingList.shared"
     static let publicName = "Model-public"
 
+    // MARK: - Constructor
     // swiftlint:disable function_body_length
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Model")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         } else {
-
             guard let description = container.persistentStoreDescriptions.first else {
                 fatalError("😱 \(#function): Failed to retrieve a persistent store description.")
             }
 
+            // define private database
             description.url = URL.storeURL(for: PersistenceController.appGroup, databaseName: "Model-private")
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
@@ -96,7 +99,7 @@ class PersistenceController {
             privateOptions.databaseScope = .private
             description.cloudKitContainerOptions = privateOptions
 
-            // public datababase
+            // define public datababase
             // swiftlint:disable:next line_length
             let publicStoreUrl = URL.storeURL(for: PersistenceController.appGroup, databaseName: PersistenceController.publicName)
             let publicDescription = NSPersistentStoreDescription(url: publicStoreUrl)

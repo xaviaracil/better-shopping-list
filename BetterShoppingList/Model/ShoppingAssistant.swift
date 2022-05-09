@@ -25,11 +25,16 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
 
     let persistenceAdapter: PersistenceAdapter
 
+    /// market location manager
     let listMarketLocationManager = ListMarketLocationManager()
+
+    /// watch connector for comunicating with watch extension
     let watchConnector = WatchConnector()
 
+    /// flag telling is location query is done by the watch
     public var askedFromWatch = false
 
+    /// market the user is currently in, updated by location manager
     @Published var marketTheUserIsInCurrently: Market? {
         didSet {
             self.userIsinAMarket = !askedFromWatch && self.marketTheUserIsInCurrently != nil
@@ -45,8 +50,10 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         }
     }
 
+    /// flag telling if user in current in a market
     @Published var userIsinAMarket = false
 
+    /// flag telling if we have to switch to "in market view"
     @Published var switchToInMarketView = false
 
     private var cancellableSet: Set<AnyCancellable> = []
@@ -69,30 +76,20 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         reloadWidgets()
     }
 
-    var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
-        persistenceAdapter.savedListsFetchRequest
-    }
-
-    var currentListFetchRequest: NSFetchRequest<ShoppingList> {
-        persistenceAdapter.currentListFetchRequest
-    }
-
-    var markertsFetchRequest: NSFetchRequest<Market> {
-        persistenceAdapter.markertsFetchRequest
-    }
-
-    func newList(isCurrent: Bool) -> ShoppingList {
-        persistenceAdapter.newList(isCurrent: isCurrent)
-    }
-
-    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
-        persistenceAdapter.newChosenProduct(offer: offer, quantity: quantity)
-    }
-
+    ///
+    /// Filter offers by active markets
+    /// - Parameters:
+    ///     - product: The product to get the offers from
+    ///
     func activeOffers(for product: Product) -> [Offer]? {
         product.sorteredOffers?.filter(offerIsIncluded)
     }
 
+    ///
+    /// Tells if offers is from a included market
+    /// - Parameters:
+    ///     - offer: The offer to filter
+    /// - Returns: true if offer is from an included market, false otherwise
     func offerIsIncluded(_ offer: Offer) -> Bool {
         if markets == nil {
             return true
@@ -102,6 +99,36 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
             return false
         }
         return markets.contains(market)
+    }
+
+    ///
+    /// Adds a chosen product to the current list. It's added if it's not already in.
+    /// In that case, the existing product is replaced with the given by parameter
+    /// - Parameters:
+    ///     - product: The chosen product to add to the list
+    ///
+    func addProductToCurrentList(_ product: ChosenProduct) {
+        do {
+            let existingProduct = currentList?.chosenProductSet.first(where: { chosenProduct in
+                guard let offer = chosenProduct.offer,
+                      let productOffer = product.offer else {
+                          return false
+                      }
+                return offer.product == productOffer.product
+            })
+            // if there's thre product already, remove it
+            if let existingProduct = existingProduct {
+                persistenceAdapter.removeChosenProduct(existingProduct)
+            }
+
+            try persistenceAdapter.addProductToCurrentList(product)
+            reloadCurrentList()
+            donateIntent(product: product)
+            reloadWidgets()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
     }
 
     ///
@@ -137,48 +164,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         }
         save()
         reloadWidgets()
-    }
-
-    func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
-        return persistenceAdapter.offersFetchRequest(productName: text, in: markets)
-    }
-
-    func productNamePredicate(for text: String, in markets: [Market] = []) -> NSPredicate? {
-        return persistenceAdapter.productNamePredicate(for: text, in: markets)
-    }
-
-    func addProductToCurrentList(_ product: ChosenProduct) {
-        do {
-            let existingProduct = currentList?.chosenProductSet.first(where: { chosenProduct in
-                guard let offer = chosenProduct.offer,
-                      let productOffer = product.offer else {
-                          return false
-                      }
-                return offer.product == productOffer.product
-            })
-            // if there's thre product already, remove it
-            if let existingProduct = existingProduct {
-                persistenceAdapter.removeChosenProduct(existingProduct)
-            }
-
-            try persistenceAdapter.addProductToCurrentList(product)
-            reloadCurrentList()
-            donateIntent(product: product)
-            reloadWidgets()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
-
-    func removeList(_ list: ShoppingList) {
-        persistenceAdapter.removeList(list)
-        save()
-    }
-
-    func reloadWidgets() {
-        // reload widgets
-        WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
     }
 
     ///
@@ -225,6 +210,43 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         currentList = persistenceAdapter.currentList
         markets = persistenceAdapter.markets?.filter { !$0.isExcluded }
     }
+
+    // MARK: - PersistenceAdapter methods
+
+    var savedListsFetchRequest: NSFetchRequest<ShoppingList> {
+        persistenceAdapter.savedListsFetchRequest
+    }
+
+    var currentListFetchRequest: NSFetchRequest<ShoppingList> {
+        persistenceAdapter.currentListFetchRequest
+    }
+
+    var markertsFetchRequest: NSFetchRequest<Market> {
+        persistenceAdapter.markertsFetchRequest
+    }
+
+    func newList(isCurrent: Bool) -> ShoppingList {
+        persistenceAdapter.newList(isCurrent: isCurrent)
+    }
+
+    func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct {
+        persistenceAdapter.newChosenProduct(offer: offer, quantity: quantity)
+    }
+
+
+    func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
+        return persistenceAdapter.offersFetchRequest(productName: text, in: markets)
+    }
+
+    func productNamePredicate(for text: String, in markets: [Market] = []) -> NSPredicate? {
+        return persistenceAdapter.productNamePredicate(for: text, in: markets)
+    }
+
+    func removeList(_ list: ShoppingList) {
+        persistenceAdapter.removeList(list)
+        save()
+    }
+
     ///
     /// Save context in database
     func save() {
@@ -232,6 +254,7 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         reloadCurrentList()
     }
 
+    // MARK: - Location
     func startSearchingForNearMarkets() {
         if !(currentList?.markets?.isEmpty ?? true) {
             listMarketLocationManager.start()
@@ -241,6 +264,13 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
     func stopSearchingForNearMarkets() {
         listMarketLocationManager.stop()
     }
+
+    // MARK: - Widgets
+    func reloadWidgets() {
+        // reload widgets
+        WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
+    }
+
 
     // MARK: - WatchConnector Delegate
     func askForNearbyProducts(in location: CLLocation) {

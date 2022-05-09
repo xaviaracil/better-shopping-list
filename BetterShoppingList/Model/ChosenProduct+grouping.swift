@@ -21,6 +21,11 @@ extension ChosenProduct {
 }
 
 extension Collection where Element == ChosenProduct {
+    ///
+    /// Returns the markets of the given chosen products
+    /// - Parameters:
+    ///     - markets: Markets to filter
+    /// - Returns: unique list of markets
     func groupedByMarket(markets: [Market]) -> [Market] {
         return self
             .compactMap { $0.market }
@@ -30,6 +35,11 @@ extension Collection where Element == ChosenProduct {
             }
     }
 
+    ///
+    /// Filters the list returning elements of given market
+    /// - Parameters:
+    ///     - market: Market to filter
+    /// - Returns: elements of the list whose market is the given by parameter
     func ofMarket(market: Market) -> [Element] {
         return self.filter { product in
             product.market == market

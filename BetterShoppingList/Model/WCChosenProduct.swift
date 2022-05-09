@@ -15,6 +15,7 @@ extension Collection where Element == ChosenProduct {
     }
 }
 
+/// Data transfer struct between iOS App and watch extension
 struct WCChosenProduct: Codable {
     let name: String
     let price: Double

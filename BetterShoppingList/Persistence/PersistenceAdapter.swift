@@ -9,23 +9,75 @@ import Foundation
 import CoreData
 import SwiftUI
 
+/// main persistence protocol
 protocol PersistenceAdapter {
+    /// fetch for getting shopping lists
     var savedListsFetchRequest: NSFetchRequest<ShoppingList> { get }
+    /// fetch for getting current shopping list
     var currentListFetchRequest: NSFetchRequest<ShoppingList> { get }
+    /// fetch for getting markets
     var markertsFetchRequest: NSFetchRequest<Market> { get }
+    /// current shopping list
     var currentList: ShoppingList? { get }
+    /// current markets
     var markets: [Market]? { get }
 
+    /// Add new list
+    /// - Parameters:
+    ///     - isCurrent: boolean telling if the new list is going to be the current list
+    ///  - Returns: the new created list
+    ///
     func newList(isCurrent: Bool) -> ShoppingList
+
+    /// Add a product to the current list
+    /// - Parameters:
+    ///     - product: the product to add
     func addProductToCurrentList(_ product: ChosenProduct) throws
+
+    /// Creates a new chosen product
+    /// - Parameters:
+    ///     - offer: the offer to create the chosen product from. It contains market, product and price information
+    ///     - quantity: the quantity of items to add
+    /// - Returns: the newly created ChosenProduct
+    ///
     func newChosenProduct(offer: Offer, quantity: Int16) -> ChosenProduct
+
+    /// fetch for gettings offers of products with given text
+    /// - Parameters:
+    ///     - productName: the text to search for in product names
+    ///     - in: list of markets to contraint the search
+    /// - Returns: fetch request
+    ///
     func offersFetchRequest(productName text: String, in markets: [String]) -> NSFetchRequest<Offer>
+
+    ///
+    /// Constructs a NSPredicate for searching products with given name
+    /// - Parameters:
+    ///     - for: the text to search for in product names
+    ///     - in: list of markets to contraint the search
+    /// - Returns: predicate to search
+    ///
     func productNamePredicate(for text: String, in markets: [Market]) -> NSPredicate?
+
+    ///
+    /// Removes a list from database
+    /// - Parameters:
+    ///     - list: the list to remove
+    ///
     func removeList(_ list: ShoppingList)
+
+    ///
+    /// Removes a chosen product from database
+    /// - Parameters:
+    ///     - chosenProduct: the chosen product to remove
+    ///
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
+    
+    /// saves database in disk
     func save()
 }
 
+/// PersistenceAdapter protocol implementation using Core Data
 struct CoreDataPersistenceAdapter: PersistenceAdapter {
     let viewContext: NSManagedObjectContext
 

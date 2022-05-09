@@ -7,6 +7,7 @@
 import Foundation
 
 extension Product {
+    /// sortered array of offers by price
     var sorteredOffers: [Offer]? {
         self.offers?.sortedArray(using: [NSSortDescriptor(keyPath: \Offer.price, ascending: true)]) as? [Offer]
     }

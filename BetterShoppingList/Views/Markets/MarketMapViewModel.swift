@@ -72,6 +72,7 @@ class MarketsMapViewModel: ObservableObject {
     }
 
     init() {
+        // update location status
         locationManager
             .statusPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
@@ -86,12 +87,14 @@ class MarketsMapViewModel: ObservableObject {
             } receiveValue: { self.status = $0}
             .store(in: &cancellableSet)
 
+        // update current location
         locationManager.locationPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .removeDuplicates(by: lessThan50Meters)
             .assign(to: \.currentLocation, on: self)
             .store(in: &cancellableSet)
 
+        // update markets found
         marketSearchManager.resultsPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .removeDuplicates()
@@ -100,6 +103,7 @@ class MarketsMapViewModel: ObservableObject {
             }
             .store(in: &cancellableSet)
 
+        // search for markets when region changes
         regionPublisher
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .sink { [self] _ in

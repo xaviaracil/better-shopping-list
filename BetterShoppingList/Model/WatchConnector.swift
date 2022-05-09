@@ -10,10 +10,15 @@ import WatchConnectivity
 import CoreData
 import CoreLocation
 
+/// Protocol for comunication between watch extension and the main iOS app
 @objc protocol WatchConnectorDelegate {
+    /// ask for market search in given location
+    /// - Parameters:
+    ///     - in: location to search
     func askForNearbyProducts(in location: CLLocation)
 }
 
+/// Connector to watch extension.
 class WatchConnector: NSObject, WCSessionDelegate {
     weak var delegate: WatchConnectorDelegate?
 
@@ -47,6 +52,7 @@ class WatchConnector: NSObject, WCSessionDelegate {
         }
     }
 
+    /// Notify list of chosen product to the watch extension
     func notifyProducts(_ products: [ChosenProduct], for market: Market) {
         guard WCSession.default.isReachable,
               let data = try? products.toPropertyList() else {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Lock structure for persistence. Allows synchornization of PersistenceControllers over all extensions of the application
 struct PersistenceLock {
     var exists = false
     var testMode = false
