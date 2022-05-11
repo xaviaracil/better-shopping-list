@@ -11,6 +11,8 @@ struct CompactStack<Content>: View where Content: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     let content: Content
 
+    var verticalAlignment: HorizontalAlignment = .leading
+
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
@@ -19,7 +21,7 @@ struct CompactStack<Content>: View where Content: View {
         if verticalSizeClass == .compact {
             HStack(alignment: .firstTextBaseline) { content }
         } else {
-            VStack(alignment: .center) { content }
+            VStack(alignment: verticalAlignment) { content }
         }
     }
 }
@@ -28,7 +30,7 @@ struct CompactStack_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CompactStack {
-                Text("Hello")
+                Text("Hello vertical")
                 Text("There")
             }
             CompactStack {
