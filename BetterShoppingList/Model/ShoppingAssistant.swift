@@ -233,7 +233,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         persistenceAdapter.newChosenProduct(offer: offer, quantity: quantity)
     }
 
-
     func offersFetchRequest(productName text: String, in markets: [String] = []) -> NSFetchRequest<Offer> {
         return persistenceAdapter.offersFetchRequest(productName: text, in: markets)
     }
@@ -270,7 +269,6 @@ class ShoppingAssistant: ObservableObject, PersistenceAdapter, WatchConnectorDel
         // reload widgets
         WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
     }
-
 
     // MARK: - WatchConnector Delegate
     func askForNearbyProducts(in location: CLLocation) {

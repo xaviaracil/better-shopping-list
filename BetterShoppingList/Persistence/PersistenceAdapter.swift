@@ -72,7 +72,7 @@ protocol PersistenceAdapter {
     ///     - chosenProduct: the chosen product to remove
     ///
     func removeChosenProduct(_ chosenProduct: ChosenProduct)
-    
+
     /// saves database in disk
     func save()
 }
